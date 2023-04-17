@@ -20,13 +20,23 @@
                           <div class="card" style="border: 1px solid;">
                              <div class="card-body">
                                   <div class="row">
-                                       <div class="input-group mb-3 col-md-5">
+                                    <div class="col-md-6">
+                                       <div class="input-group mb-3 ">
                                                 <input type="text" class="form-control pull-right mt-2 mb-2" name="daterange" value="" style="height: 45px;" />
                                              
                                               <div class="input-group-append">
-                                                <div class="col-md-12">  <a href="javascript:;" id="reset" class="btn  mb-3 mt-2 sub-button pull-right" >Reload <i class="ti-loop"></i></a> </div>
+                                                <div class="col-md-12">  <a href="javascript:;" id="reset" class="btn  mb-3 mt-2 sub-button pull-right" ><i class="ti-calendar"></i></a> </div>
                                               </div>
                                         </div>
+                                      </div>
+                                     <!--  <div class="col-md-6">
+                                        
+                                    
+                                      <select class="custom-select mt-2" style="height: 45px;">
+                                          
+                                      </select>
+
+                                      </div> -->
                                         
                                     </div>
                                     <div class="row">

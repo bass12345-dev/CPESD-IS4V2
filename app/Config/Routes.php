@@ -96,6 +96,8 @@ $routes->post('api/get-cso', 'api\Cso::get_cso');
 $routes->post('api/get-cso-infomation', 'api\Cso::get_cso_information');
 $routes->post('api/update-cso-information', 'api\Cso::update_cso_information');
 $routes->post('api/update-cso-status', 'api\Cso::update_cso_status');
+$routes->post('api/update-cor', 'api\Cso::update_cso_cor');
+
 
 //CSO Officers
 $routes->post('api/add-officer', 'api\Cso::add_cso_officer');

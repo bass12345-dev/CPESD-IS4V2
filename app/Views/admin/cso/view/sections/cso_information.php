@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-12">
 		<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
 			<tr>
 				<td colspan="2"> <a href="javascript:;" class="mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block"><i class = "fa fa-user" aria-hidden = "true"></i> CSO Information</a> 
@@ -41,25 +41,33 @@
 				<td>CSO Status</td>
 				<td class="cso_status"> </td>
 			</tr>
-			<!-- <tr>
+			<tr>
 				<td>COR</td>
-				<td><a href="javascript:;" class="view-pdf" id="view_cor" data-type="cor">View COR</a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_cor">Update COR</a></td>
+				<td>
+					<a href="javascript:;" class="view-pdf" id="view_cor" data-type="cor">View COR</a> 
+					
+					<a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" data-toggle="modal" data-target="#update_cor_modal">Update COR</a>
+				</td>
 			</tr>
 			<tr>
 				<td>Bylaws</td>
-				<td><a href="javascript:;" class="view-pdf" id="view_bylaws" data-type="bylaws">View Bylaws</a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_bylaws">Update Bylaws</a></td>
+				<td><a href="javascript:;" class="view-pdf" id="view_bylaws" data-type="bylaws">View Bylaws</a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" data-toggle="modal" data-target="#update_bylaws_modal">Update Bylaws</a></td>
 			</tr>
 			<tr>
 				<td>Article</td>
-				<td><a href="javascript:; " class="view-pdf" id="view_article" data-type="articles">View Article</a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article">Update Article</a></td>
-			</tr> -->
+				<td><a href="javascript:; " class="view-pdf" id="view_article" data-type="articles">View AOC/AOI </a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article">Update AOC/AOI </a></td>
+			</tr>
+			<tr>
+				<td>Other Docs</td>
+				<td><a href="javascript:; " class="view-pdf" id="view_article" data-type="articles">View Docs</a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article">Update Article</a></td>
+			</tr>
 		</table>
 	</div>
-	<div class="col-md-6 tree-content">
+	<!-- <div class="col-md-6 tree-content">
         <div class="col-md-12"><h1>PDF Viewer</h1></div>
 		<div id="canvas_container">
 			<div id="pdf_alert"></div>
 			<canvas id="pdf_renderer" style="width: 100%;"></canvas>
 		</div>
-	</div>
+	</div> -->
 </div>

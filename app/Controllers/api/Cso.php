@@ -183,7 +183,7 @@ public function get_cso_information(){
         'email_address' => $row->email_address,
         'type_of_cso' => strtoupper($row->type_of_cso),
         'status' => $row->cso_status,
-        'cso_status' => $row->cso_status == 'active' ?  '<span class="status-p bg-success">'.ucfirst($row->cso_status).'</span>' : '<span class="status-p bg-success">'.ucfirst($row->cso_status).'</span>',
+        'cso_status' => $row->cso_status == 'active' ?  '<span class="status-p bg-success">'.ucfirst($row->cso_status).'</span>' : '<span class="status-p bg-danger">'.ucfirst($row->cso_status).'</span>',
            
 
     );
@@ -268,6 +268,23 @@ public function update_cso_status(){
     }
 
     echo json_encode($resp);
+
+}
+
+public function update_cso_cor(){
+
+        helper(['form', 'url']);
+
+        // $input = $this->validate([
+        //     'file' => [
+        //         'uploaded[file]',
+        //         'mime_in[file,image/jpg,image/jpeg,image/png]',
+        //         'max_size[file,1024]',
+        //     ]
+        // ]);
+
+        print_r($this->validate());
+
 
 }
 
@@ -419,6 +436,6 @@ if ($this->request->isAJAX()) {
 
     
 
-}
+    }
 }
 

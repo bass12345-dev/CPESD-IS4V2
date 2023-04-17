@@ -75,6 +75,12 @@ class Custom_config extends BaseConfig
         'Manager'
         ];
 
+    public $folder_name = ['cor_folder_name' => 'cor','bylaws_folder_name' => 'bylaws', 'aoc_folder_name' => 'aoc' , 'other_docs_folder_name' => 'other_docs'];
+    // public $cor_folder_name = 'cor';
+    // public $cor_folder_name = 'cor';
+    // public $cor_folder_name = 'cor';
+    // public $aoc_folder_name = 'cor';
+    // public $other_docs_folder_name = 'other_docs';
  
 
 } 

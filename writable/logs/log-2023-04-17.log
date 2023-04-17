@@ -1,0 +1,23 @@
+CRITICAL - 2023-04-17 00:38:38 --> Cannot redeclare Config\Custom_config::$cor_folder_name
+in APPPATH\Config\Custom_config.php on line 79.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2023-04-17 00:59:05 --> Invalid file: "admin/cso/modals/update_cor_modal.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/cso/modals/update_cor_modal.php')
+ 2 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('admin/cso/modals/update_cor_modal', [], true)
+ 3 APPPATH\Views\admin\cso\view\index.php(88): view('admin/cso/modals/update_cor_modal')
+ 4 SYSTEMPATH\View\View.php(213): include('C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Views\\admin\\cso\\view\\index.php')
+ 5 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\Common.php(1184): CodeIgniter\View\View->render('admin/cso/view/index', [], true)
+ 7 APPPATH\Controllers\admin\CsoController.php(68): view('admin/cso/view/index', [...])
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Admin\CsoController->view_cso()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\CsoController))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 01:22:12 --> Undefined array key "id"
+in APPPATH\Controllers\admin\CsoController.php on line 46.
+ 1 APPPATH\Controllers\admin\CsoController.php(46): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id"', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\admin\\CsoController.php', 46)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Admin\CsoController->view_cso()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\CsoController))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

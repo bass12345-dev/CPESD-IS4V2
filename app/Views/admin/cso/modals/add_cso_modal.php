@@ -66,7 +66,7 @@
                   <label for="exampleInputPassword1">Email</label><span class="text-danger">*</span>
                   <input type="text" class="form-control input" name="email_address"  placeholder="">
                </div>
-         <!--       <div class="form-group">
+<!--         <div class="form-group">
                   <label for="exampleInputPassword1">COR</label><span class="text-danger">*</span>
                   <input type="file" class="form-control input" name="update_email"  placeholder="">
                </div>
@@ -77,11 +77,11 @@
                <div class="form-group">
                   <label for="exampleInputPassword1">AOC/AOI </label><span class="text-danger">*</span>
                   <input type="file" class="form-control input" name="update_email"  placeholder="">
-               </div> -->
+               </div> --> 
             </div>
             <div class="modal-footer" id="update_cso_footer">
                <button type="button" class="btn btn-danger update-cso-close" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn  btn-update-center sub-button btn-add-cso" name="btn-update-center " >Save changes</button>
+               <button type="submit" class="btn   sub-button btn-add-cso" >Submit</button>
             </div>
          </form>
       </div>

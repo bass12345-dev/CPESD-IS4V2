@@ -162,7 +162,7 @@
                                                <i class="ti-settings" style="font-size : 15px;"></i>\
                                               </button>\
                                               <div class="dropdown-menu">\
-                                                <a class="dropdown-item" href="javascript:;" data-id="'+data['cso_id']+'"  id="view-cso" > <i class="ti-eye"></i> View Information</a>\
+                                                <a class="dropdown-item" href="javascript:;" data-id="'+data['cso_id']+'"  id="view-cso" > <i class="ti-eye"></i> View/Update Information</a>\
                                                 <hr>\
                                                 <a class="dropdown-item " href="javascript:;" data-id="'+data['cso_id']+'" data-status="'+data['cso_status']+'"    id="update-cso-status" ><i class="ti-pencil"></i> Update CSO Status</a>\
                                               </di>';

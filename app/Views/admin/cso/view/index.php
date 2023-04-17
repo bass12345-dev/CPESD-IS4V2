@@ -85,10 +85,113 @@
       <?php echo view('admin/cso/view/modals/update_officer_modal'); ?> 
       <?php echo view('admin/cso/view_officers/modals/add_officer_modal'); ?>   
       <?php echo view('admin/cso/modals/update_cso_status_modal'); ?> 
+     <?php echo view('admin/cso/view/modals/update_cor_modal'); ?> 
+     <?php echo view('admin/cso/view/modals/update_bylaws_modal'); ?> 
       <?php echo view('includes/scripts.php') ?> 
       <script src="https://balkan.app/js/OrgChart.js"></script>
       <script>
 
+
+
+function Validate_file(oInput) {
+
+       
+
+        if (oInput.type == "file") {
+            var sFileName = oInput.value;
+             if (sFileName.length > 0) {
+                var blnValid = false;
+                for (var j = 0; j < _validFileExtensions.length; j++) {
+                    var sCurExtension = _validFileExtensions[j];
+                    if (sFileName.substr(sFileName.length - sCurExtension.length, sCurExtension.length).toLowerCase() == sCurExtension.toLowerCase()) {
+                         // $('button.update-cor-cso-save').removeClass('d-none')
+                        blnValid = true;
+                        break;
+                         
+                         
+                    }
+
+                }
+                 
+                if (!blnValid) {
+                    alert("Sorry, " + sFileName + " is invalid, allowed extension is " + _validFileExtensions.join(", ") + ' only');
+                    // $('button.update-cor-cso-save').addClass('d-none')
+                    oInput.value = "";
+                    return false;
+                    
+                     
+                }
+            }
+        }
+        return true;
+
+    }
+
+
+
+$('#update_cor_form').on('submit', function(e) {
+        e.preventDefault();
+
+        
+        $.ajax({
+             type: "POST",
+            url: base_url + 'api/update-cor',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            dataType: 'json',
+            beforeSend: function() {
+                $('.update-cor-cso-save').html('<div class="loader"></div>');
+                $('.update-cor-cso-save').prop("disabled", true);
+                
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_cor_modal').modal('hide');
+                    $('.update-cor-cso-save').prop("disabled", false);
+                    $('.update-cor-cso-save').text('Save Changes');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+                        
+                           
+             
+                }else {
+                    $('.update-cor-cso-save').prop("disabled", false);
+                    $('.update-cor-cso-save').text('Save Changes');
+                      Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                   
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                 $('.update-cor-cso-save').prop("disabled", false);
+                 $('.update-cor-cso-save').text('Save Changes');
+            },
+
+        })
+
+
+    })
 
 
 
@@ -395,7 +498,7 @@ function get_cso_information(){
                                 $('.telephone_number').text(data.telephone_number)
                                 $('.email').text(data.email_address)
                                 $('.classification').html('<span class="status-p sub-button">'+data.type_of_cso+'<span>')
-                                $('.cso_status').html(data.cso_status+' '+'<a href="javascript:;" data-id="'+data.cso_id+'" data-status="'+data.status+'"  id="update-cso-status"  class=" text-center ml-3  btn-rounded "><i class = "fa fa-edit" aria-hidden = "true"></i> Update Status</a>')
+                                $('.cso_status').html(data.cso_status+' '+'<a href="javascript:;" data-id="'+data.cso_id+'" data-status="'+data.status+'"  id="update-cso-status"  class=" text-center ml-3  btn-rounded  pull-right"><i class = "fa fa-edit" aria-hidden = "true"></i> Update Status</a>')
                                 $('#update-cso-information').data('id',data.cso_id);
 
 
