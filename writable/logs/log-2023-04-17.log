@@ -169,3 +169,166 @@ in APPPATH\Controllers\api\Cso.php on line 284.
  3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
  4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:00:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:00:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:01:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:01:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:01:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:01:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:03:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:03:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:05:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:10:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:17:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:18:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:25:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:25:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:26:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:26:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:27:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:29:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:32:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:33:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:36:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:37:47 --> Undefined variable $path
+in APPPATH\Controllers\api\Cso.php on line 169.
+ 1 APPPATH\Controllers\api\Cso.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $path', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 169)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:37:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:38:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:39:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:39:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:41:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:41:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:41:40 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/cor): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 173.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/cor): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 173)
+ 2 APPPATH\Controllers\api\Cso.php(173): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/cor')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:41:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:41:50 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/cor): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 173.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/cor): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 173)
+ 2 APPPATH\Controllers\api\Cso.php(173): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/cor')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:43:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:43:34 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/cor): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 173.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/cor): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 173)
+ 2 APPPATH\Controllers\api\Cso.php(173): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/cor')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:43:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:43:50 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 175.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 175)
+ 2 APPPATH\Controllers\api\Cso.php(175): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:45:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:45:49 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 177.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 177)
+ 2 APPPATH\Controllers\api\Cso.php(177): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:46:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:46:20 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 175.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 175)
+ 2 APPPATH\Controllers\api\Cso.php(175): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:46:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:46:54 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)
+in APPPATH\Controllers\api\Cso.php on line 177.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc): The system cannot find the path specifi (code: 3)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 177)
+ 2 APPPATH\Controllers\api\Cso.php(177): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/1/aoc')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->get_cso_information()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:48:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 07:50:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 07:50:13 --> syntax error, unexpected token "}", expecting "," or ";"
+in APPPATH\Controllers\api\Cso.php on line 199.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\api\\Cso')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\api\\Cso')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\api\\Cso', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 07:50:14 --> syntax error, unexpected token "}", expecting "," or ";"
+in APPPATH\Controllers\api\Cso.php on line 199.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\api\\Cso')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\api\\Cso')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\api\\Cso', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 07:50:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:02:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:02:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:02:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:20:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:20:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:22:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:23:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:25:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:25:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:27:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:28:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:28:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:29:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:29:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:29:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:30:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:30:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:30:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:31:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:31:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:32:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:33:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:34:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:34:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:36:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:37:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:37:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:38:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:38:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:40:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:40:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:41:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:41:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:41:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:42:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:45:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:45:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 08:48:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

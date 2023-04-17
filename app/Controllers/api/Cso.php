@@ -163,7 +163,11 @@ class Cso extends BaseController
 public function get_cso_information(){
 
 
- 
+
+    $cor_path = FCPATH ."uploads/cso_files/".$this->request->getPost('id').'/'.$this->config->folder_name['cor_folder_name'];
+    $bylaws_path = FCPATH ."uploads/cso_files/".$this->request->getPost('id').'/'.$this->config->folder_name['bylaws_folder_name'];
+
+     $aoc_path = FCPATH ."uploads/cso_files/".$this->request->getPost('id').'/'.$this->config->folder_name['aoc_folder_name'];
 
 	$row = $this->CustomModel->getwhere($this->cso_table,array('cso_id' =>  $this->request->getPost('id')))[0];
 	$data = array(
@@ -180,6 +184,7 @@ public function get_cso_information(){
         'type_of_cso' => strtoupper($row->type_of_cso),
         'status' => $row->cso_status,
         'cso_status' => $row->cso_status == 'active' ?  '<span class="status-p bg-success">'.ucfirst($row->cso_status).'</span>' : '<span class="status-p bg-danger">'.ucfirst($row->cso_status).'</span>',
+      
            
 
     );
@@ -188,6 +193,8 @@ public function get_cso_information(){
 
 
 }
+
+
 
 
 public function update_cso_information(){
@@ -267,6 +274,42 @@ public function update_cso_status(){
 
 }
 
+
+
+public function get_cso_cor(){
+
+     $path = FCPATH ."uploads/cso_files/".$this->request->getPost('id').'/'.$this->config->folder_name['cor_folder_name'];
+
+
+    if (is_dir($path)) {
+        
+         $file = scandir($path)[2];
+
+         $data = array(
+
+                'file' => $path.'/'.$file,
+                'resp' => true,
+                'message' => ''
+         );
+         
+        
+    }else {
+
+          $data = array(
+
+                'file' => '',
+                'resp' => false,
+                'message' => 'Please update COR file'
+         );
+       
+
+    }
+
+
+    echo json_encode($data);
+
+}
+
 public function update_cso_cor(){
 
     $path = FCPATH ."uploads/cso_files/".$this->request->getPost('cso_idd').'/'.$this->config->folder_name['cor_folder_name'];
@@ -300,6 +343,132 @@ public function update_cso_cor(){
         $new_name = $_FILES['update_cor']['name'];
         $destination = $path.'/'.$new_name;
         move_uploaded_file($_FILES['update_cor']['tmp_name'], $destination);
+        
+
+    }
+
+     if(file_exists($destination)) {
+
+             $data = array(
+                'message' => 'Data Updated Successfully',
+                'response' => true
+                );
+         
+        } else {
+
+
+             $data = array(
+                'message' => 'Error',
+                'response' => false
+                );
+          
+        }
+
+
+        echo  json_encode($data);
+}
+
+
+}
+
+
+
+public function update_cso_bylaws(){
+
+    $path = FCPATH ."uploads/cso_files/".$this->request->getPost('cso_idd').'/'.$this->config->folder_name['bylaws_folder_name'];
+
+    if (!is_dir($path)) {
+        mkdir($path,0777, true);
+    }
+
+
+
+
+
+
+    $allFiles = scandir($path);
+    $files = array_diff($allFiles, array('.', '..'));
+
+
+    if ($files > 0) {
+        
+         foreach ($files as $file) {
+
+                unlink($path.'/'.$file);
+         }
+    }
+
+    $destination = '';
+    $new_name = '';
+
+    if (is_dir($path)) {
+        if (isset($_FILES['update_bylaws'])) {
+        $new_name = $_FILES['update_bylaws']['name'];
+        $destination = $path.'/'.$new_name;
+        move_uploaded_file($_FILES['update_bylaws']['tmp_name'], $destination);
+        
+
+    }
+
+     if(file_exists($destination)) {
+
+             $data = array(
+                'message' => 'Data Updated Successfully',
+                'response' => true
+                );
+         
+        } else {
+
+
+             $data = array(
+                'message' => 'Error',
+                'response' => false
+                );
+          
+        }
+
+
+        echo  json_encode($data);
+}
+
+
+}
+
+
+
+public function update_cso_aoc(){
+
+    $path = FCPATH ."uploads/cso_files/".$this->request->getPost('cso_idd').'/'.$this->config->folder_name['aoc_folder_name'];
+
+    if (!is_dir($path)) {
+        mkdir($path,0777, true);
+    }
+
+
+
+
+
+
+    $allFiles = scandir($path);
+    $files = array_diff($allFiles, array('.', '..'));
+
+
+    if ($files > 0) {
+        
+         foreach ($files as $file) {
+
+                unlink($path.'/'.$file);
+         }
+    }
+
+    $destination = '';
+    $new_name = '';
+
+    if (is_dir($path)) {
+        if (isset($_FILES['update_aoc'])) {
+        $new_name = $_FILES['update_aoc']['name'];
+        $destination = $path.'/'.$new_name;
+        move_uploaded_file($_FILES['update_aoc']['tmp_name'], $destination);
         
 
     }

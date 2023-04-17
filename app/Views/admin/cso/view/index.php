@@ -87,9 +87,120 @@
       <?php echo view('admin/cso/modals/update_cso_status_modal'); ?> 
      <?php echo view('admin/cso/view/modals/update_cor_modal'); ?> 
      <?php echo view('admin/cso/view/modals/update_bylaws_modal'); ?> 
+     <?php echo view('admin/cso/view/modals/update_aoc_modal'); ?> 
+     <?php echo view('admin/cso/view/modals/view_file_modal'); ?> 
+
+
       <?php echo view('includes/scripts.php') ?> 
       <script src="https://balkan.app/js/OrgChart.js"></script>
       <script>
+
+
+ var myState = {
+            pdf: null,
+            currentPage: 1,
+            zoom: 3
+        }
+var pdf = './../../uploads/cso_files/1/cor/compressed.tracemonkey-pldi-09.pdf';
+
+pdfjsLib.getDocument(pdf).then((pdf) => {    
+                myState.pdf = pdf;
+                render();
+            });
+
+
+function render() {
+            myState.pdf.getPage(myState.currentPage).then((page) => {
+         
+                var canvas = document.getElementById("pdf_renderer");
+                var ctx = canvas.getContext('2d');
+     
+                var viewport = page.getViewport(myState.zoom);
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+         
+                page.render({
+                    canvasContext: ctx,
+                    viewport: viewport
+                });
+            });
+        }
+
+
+        document.getElementById('go_previous').addEventListener('click', (e) => {
+            if(myState.pdf == null || myState.currentPage == 1) 
+              return;
+            myState.currentPage -= 1;
+            document.getElementById("current_page").value = myState.currentPage;
+            render();
+        });
+        document.getElementById('go_next').addEventListener('click', (e) => {
+            if(myState.pdf == null || myState.currentPage > myState.pdf._pdfInfo.numPages) 
+               return;
+            myState.currentPage += 1;
+            document.getElementById("current_page").value = myState.currentPage;
+            render();
+        });
+        document.getElementById('current_page').addEventListener('keypress', (e) => {
+            if(myState.pdf == null) return;
+         
+            // Get key code 
+            var code = (e.keyCode ? e.keyCode : e.which);
+         
+            // If key code matches that of the Enter key 
+            if(code == 13) {
+                var desiredPage = 
+                document.getElementById('current_page').valueAsNumber;
+                                 
+                if(desiredPage >= 1 && desiredPage <= myState.pdf._pdfInfo.numPages) {
+                    myState.currentPage = desiredPage;
+                    document.getElementById("current_page").value = desiredPage;
+                    render();
+                }
+            }
+        });
+        // document.getElementById('zoom_in').addEventListener('click', (e) => {
+        //     if(myState.pdf == null) return;
+        //     myState.zoom += 0.5;
+        //     render();
+        // });
+        // document.getElementById('zoom_out').addEventListener('click', (e) => {
+        //     if(myState.pdf == null) return;
+        //     myState.zoom -= 0.5;
+        //     render();
+        // });
+
+$(document).on('click','a#view_cor',function (e) {
+
+
+
+          $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/get-cor',
+                            data : {'id' : '<?php echo $_GET['id'] ?>'},
+                            cache: false,
+                            dataType: 'json', 
+                            success: function(data){
+
+                                if (data.resp) {
+
+                                     $('#view_file_modal').modal('show');
+
+                                }else {
+
+                                    alert(data.message)
+                                }
+                                       
+                            }
+
+                    })
+
+     
+    
+});
+
+
+
 
 
 
@@ -127,6 +238,136 @@ function Validate_file(oInput) {
 
     }
 
+
+
+$('#update_aoc_form').on('submit', function(e) {
+        e.preventDefault();
+
+        
+        $.ajax({
+             type: "POST",
+            url: base_url + 'api/update-aoc',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            dataType: 'json',
+            beforeSend: function() {
+                $('.update-aoc-cso').html('<div class="loader"></div>');
+                $('.update-aoc-cso').prop("disabled", true);
+                
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_aoc_modal').modal('hide');
+                    $('.update-aoc-cso').prop("disabled", false);
+                    $('.update-aoc-cso').text('Save Changes');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+                        
+                           
+             
+                }else {
+                    $('.update-aoc-cso').prop("disabled", false);
+                    $('.update-aoc-cso').text('Save Changes');
+                      Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                   
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                 $('.update-aoc-cso').prop("disabled", false);
+                 $('.update-aoc-cso').text('Save Changes');
+            },
+
+        })
+
+
+    })
+
+
+$('#update_bylaws_form').on('submit', function(e) {
+        e.preventDefault();
+
+        
+        $.ajax({
+             type: "POST",
+            url: base_url + 'api/update-bylaws',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-update-bylaws').html('<div class="loader"></div>');
+                $('.btn-update-bylaws').prop("disabled", true);
+                
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_bylaws_modal').modal('hide');
+                    $('.btn-update-bylaws').prop("disabled", false);
+                    $('.btn-update-bylaws').text('Save Changes');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+                        
+                           
+             
+                }else {
+                    $('.btn-update-bylaws').prop("disabled", false);
+                    $('.btn-update-bylaws').text('Save Changes');
+                      Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                   
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                 $('.btn-update-bylaws').prop("disabled", false);
+                 $('.btn-update-bylaws').text('Save Changes');
+            },
+
+        })
+
+
+    })
 
 
 $('#update_cor_form').on('submit', function(e) {

@@ -55,7 +55,7 @@
 			</tr>
 			<tr>
 				<td>Article</td>
-				<td><a href="javascript:; " class="view-pdf" id="view_article" data-type="articles">View AOC/AOI </a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article">Update AOC/AOI </a></td>
+				<td><a href="javascript:; " class="view-pdf" id="view_article" data-type="articles">View AOC/AOI </a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article" data-toggle="modal" data-target="#update_aoc_modal" >Update AOC/AOI </a></td>
 			</tr>
 			<tr>
 				<td>Other Docs</td>
