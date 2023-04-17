@@ -16,7 +16,6 @@
             <?php echo view('includes/breadcrumbs.php') ?> 
                 <div class="main-content-inner">
                     
-                </div>
         </div>
     </div>     
 <?php echo view('includes/scripts.php') ?>   

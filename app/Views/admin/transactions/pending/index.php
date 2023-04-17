@@ -15,101 +15,313 @@
             <?php echo view('includes/topbar.php') ?>           
             <?php echo view('includes/breadcrumbs.php') ?> 
                 <div class="main-content-inner">
-                    <table class="table table-hover progress-table text-center">
-<thead class="text-uppercase">
-<tr>
-<th scope="col">ID</th>
- <th scope="col">task</th>
-<th scope="col">Deadline</th>
-<th scope="col">Progress</th>
-<th scope="col">status</th>
-<th scope="col">action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">1</th>
-<td>Mark</td>
-<td>09 / 07 / 2018</td>
-<td>
-<div class="progress" style="height: 8px;">
-<div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-</td>
-<td><span class="status-p bg-primary">pending</span></td>
-<td>
-<ul class="d-flex justify-content-center">
-<li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-<li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-</ul>
-</td>
-</tr>
-<tr>
-<th scope="row">2</th>
-<td>Mark</td>
-<td>09 / 07 / 2018</td>
-<td>
-<div class="progress" style="height: 8px;">
-<div class="progress-bar bg-warning" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-</td>
-<td><span class="status-p bg-warning">pending</span></td>
-<td>
-<ul class="d-flex justify-content-center">
-<li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-<li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-</ul>
-</td>
-</tr>
-<tr>
-<th scope="row">3</th>
-<td>Mark</td>
-<td>09 / 07 / 2018</td>
-<td>
-<div class="progress" style="height: 8px;">
-<div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
- </div>
-</td>
-<td><span class="status-p bg-success">complate</span></td>
-<td>
-<ul class="d-flex justify-content-center">
-<li class="mr-3"><a href="#" class="text-secondary"><i class="fa fa-edit"></i></a></li>
-<li><a href="#" class="text-danger"><i class="ti-trash"></i></a></li>
-</ul>
-</td>
-</tr>
-<tr>
-<th scope="row">4</th>
-<td>Mark</td>
-<td>09 / 07 / 2018</td>
-<td>
-<div class="progress" style="height: 8px;">
-<div class="progress-bar bg-warning" role="progressbar" style="width: 85%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
-</td>
-<td><span class="status-p bg-warning">panding</span></td>
-<td>
-<div class="btn-group">
-<button type="button" class="btn btn-rounded btn-success">Action</button>
-<button type="button" class="btn btn-rounded btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span class="sr-only">Toggle Dropdown</span>
-</button>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="#">Action</a>
-<a class="dropdown-item" href="#">Another action</a>
-<a class="dropdown-item" href="#">Something else here</a>
-<div class="dropdown-divider"></div>
-<a class="dropdown-item" href="#">Separated link</a>
-</div>
- </div>
-</td>
-</tr>
-</tbody>
-</table>
+                    <div class="row">
+                        <div class="col-12 mt-5">
+                              <div class="card" style="border: 1px solid;">
+                                 <div class="card-body">
+                                    <div class="row">
+                                        <div class="input-group mb-3 col-md-5">
+                                            <input type="text" class="form-control pull-right mt-2 mb-2" name="daterange" value="" style="height: 45px;" />
+                                             
+                                            <div class="input-group-append">
+                                                <div class="col-md-12">  <a href="javascript:;" id="reset" class="btn  mb-3 mt-2 sub-button pull-right" >Reload <i class="ti-loop"></i></a> </div>
+                                            </div>
+                                        </div>
+                                        <?php echo view('admin/transactions/pending/sections/pending_transactions_table'); ?> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </div>
         </div>
-    </div>     
-<?php echo view('includes/scripts.php') ?>  
+    </div> 
+<?php echo view('admin/transactions/pending/modals/add_remark_modal') ?>      
+
+<?php echo view('includes/scripts.php') ?>
+ <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script>
+<script type="text/javascript">
+
+
+ $('textarea#tiny').tinymce({
+        height: 500,
+        menubar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+      });
+
+
+
+$(document).on('click','a#add-remarks',function (e) {
+
+               $("#add_remarks_modal").modal('show');
+               $('input[name=transact_id]').val($(this).data('id'));
+});
+
+
+
+$('#add_remarks_modal').on('submit', function(e) {
+        e.preventDefault();
+
+        var myContent = tinymce.get("tiny").getContent();
+        var id = $('input[name=transact_id]').val();
+
+
+
+       
+            
+        $.ajax({
+            type: "POST",
+            url: base_url + 'api/admin/add-remark',
+            data: {content : myContent, id : id},
+            dataType: 'json',
+            beforeSend: function() {
+               $('.btn-add-remarks').html('<div class="loader"></div>');
+                $('.btn-add-remarks').prop("disabled", true);
+            },
+            success: function(data)
+            {            
+                if (data.response) {
+             
+                    $('.btn-add-remarks').prop("disabled", false);
+                    $('.btn-add-remarks').text('Submit');
+                        Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+                      
+                        $('#add_remarks_modal').modal('hide')
+                         var myContent = tinymce.get("tiny").setContent('');
+                         // var show = $('#show_ option:selected').val();
+
+                        $('#pending_transactions_table').DataTable().destroy();
+                        fetch_pending_transactions();
+                        
+                         
+                        
+                           
+             
+                }else {
+                    $('.btn-add-remarks').prop("disabled", false);
+                    $('.btn-add-remarks').text('Submit');
+                      Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+                       
+                   
+                }
+
+                
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                 $('.btn-add-remarks').prop("disabled", false);
+                 $('.btn-add-remarks').text('Submit');
+            },
+
+            })
+                
+
+
+        })
+
+
+
+
+
+
+    function fetch_pending_transactions(){
+
+           $.ajax({
+            url: base_url + 'api/admin/get-admin-pending-transactions',
+            type: "POST",
+            dataType: "json",
+            success: function(data) {
+
+                
+                    $('#pending_transactions_table').DataTable({
+
+                    scrollY: 800,
+                    scrollX: true,
+                    "ordering": false,
+                    "data": data,
+                    'columns': [
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<b><a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['pmas_no']+'</a></b>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['date_and_time_filed']+'</a>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['responsible_section']+'</a>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['type_of_activity_name']+'</a>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['responsibility_center']+'</a>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['date_and_time']+'</a>';
+                }
+
+            },
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['name']+'</a>';
+                }
+
+            },
+
+              {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return row.s;
+                }
+
+            },
+            
+             
+
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return row.action;
+                }
+
+            },
+          ]
+
+                })
+
+
+            }
+
+        })
+    }
+
+
+      $(document).on('click','a#completed',function (e) {
+
+             e.preventDefault()
+            var id = $(this).data('id');
+
+                   Swal.fire({
+        title: "Are you sure?",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Confirm",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/completed',
+                            data: {id:id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                "",
+                "Completed Successfully",
+                "success"
+            );
+
+                        $('#pending_transactions_table').DataTable().destroy();
+                       fetch_pending_transactions();
+                                
+                               }
+
+
+
+
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+         })
+
+    fetch_pending_transactions();
+</script>  
 
 </body>
 </html>

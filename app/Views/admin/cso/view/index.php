@@ -814,6 +814,10 @@ function load_organization_chart(){
                              data-contact="'+data['contact_number']+'"  \
                              data-email="'+data['email_address']+'"  \
                              id="update-cso-officer"><i class="fa fa-edit"></i></a></li>\
+                             <li class="mr-3 ">\
+                             <a href="javascript:;" class="text-danger action-icon" \
+                             data-id="'+data['cso_officer_id']+'"  \
+                             id="delete-cso-officer"><i class="fa fa-trash"></i></a></li>\
                              </ul>';
              }
 
@@ -825,7 +829,7 @@ function load_organization_chart(){
             }
 
 
-   })
+   });
 
 // chart.load([
 //     { id: 1, name: "Denny Curtis", title: "CEO", img: "https://cdn.balkan.app/shared/2.jpg" },
@@ -837,6 +841,74 @@ function load_organization_chart(){
     
 // ]);
 }
+
+
+
+$(document).on('click','a#delete-cso-officer',function (e) {
+
+
+var id = $(this).data('id');
+
+   
+Swal.fire({
+        title: "Are you sure?",
+        text: "You wont be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/delete-cso-officer',
+                            data: {id: id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                "",
+                "Deleted Successfully",
+                "success"
+            )
+
+                                $('#officers_table').DataTable().destroy();
+                                 load_organization_chart();
+                                
+                               }
+
+                              
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+})
 
 
 

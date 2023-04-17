@@ -8,15 +8,20 @@
    <body>
       <div class="page-container sbar_collapsed">
          <div class="main-content">
+
             <?php echo view('user/transactions/pending/add_section/sections/add_transactions_pending_topbar'); ?>
             <?php echo view('user/transactions/pending/add_section/sections/add_transactions_pending_breadcrumbs'); ?>
             <div class="main-content-inner">
-               <section class="wizard-section" style="background-color: #fff;">
-                  <div class="row no-gutters">
-                     <?php echo view('user/transactions/pending/add_section/sections/transactions_table'); ?>
-                     <?php echo view('user/transactions/pending/add_section/sections/add_form'); ?>
-                  </div>
-               </section>
+                <div class="row">
+                    <div class="col-12 mt-3">
+                       <section class="wizard-section" style="background-color: #fff;">
+                          <div class="row no-gutters">
+                             <?php echo view('user/transactions/pending/add_section/sections/transactions_table'); ?>
+                             <?php echo view('user/transactions/pending/add_section/sections/add_form'); ?>
+                          </div>
+                       </section>
+                    </div>
+                </div>
             </div>
          </div>
       <?php echo view('user/transactions/pending/add_section/modals/select_under_type_of_activity_modal') ?> 

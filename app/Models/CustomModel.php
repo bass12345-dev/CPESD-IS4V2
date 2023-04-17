@@ -102,4 +102,12 @@ class CustomModel extends Model
     }
 
     // Delete
+
+    public function deleteData($table,$where){
+
+        $builder = $this->db->table($table);
+        $query = $builder->delete($where);
+        return $query;
+
+    }
 }

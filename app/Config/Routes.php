@@ -110,6 +110,8 @@ $routes->post('api/get-aoc', 'api\Cso::get_cso_aoc');
 $routes->post('api/add-officer', 'api\Cso::add_cso_officer');
 $routes->post('api/get-officers', 'api\Cso::get_officers');
 $routes->post('api/update-officer-information', 'api\Cso::update_officer');
+$routes->post('api/delete-cso-officer', 'api\Cso::delete_cso_officer');
+
 
 
 //Responsibility Center
@@ -128,13 +130,27 @@ $routes->post('api/get-activities', 'api\TypeOfActivity::get_activities');
 $routes->post('api/add-under-type-of-activity', 'api\TypeOfActivity::add_under_type_of_activity');
 $routes->post('api/get_under_type_of_activity', 'api\TypeOfActivity::get_under_type_of_activity');
 
+
+//Pending Transactions
+$routes->post('api/admin/get-admin-pending-transactions', 'api\PendingTransactions::get_admin_pending_transactions');
+$routes->post('api/admin/add-remark', 'api\PendingTransactions::add_remark');
+
+
+
 //User Api:
 $routes->post('api/get-last-pmas-number', 'api\PendingTransactions::get_last_pmas_number');
 
-//Add Transaction
-$routes->post('api/add-transaction', 'api\PendingTransactions::add_transaction');
 
-//Get Transactions
+//Pending Transactions
+$routes->post('api/add-transaction', 'api\PendingTransactions::add_transaction');
+$routes->post('api/user/get-user-pending-transactions', 'api\PendingTransactions::get_user_pending_transactions');
+$routes->post('api/view-remark', 'api\PendingTransactions::view_remark');
+$routes->post('api/accomplished', 'api\PendingTransactions::accomplished');
+$routes->post('api/completed', 'api\PendingTransactions::update_completed');
+
+
+
+//Completed Transactions
 $routes->post('api/get-all-transactions', 'api\Transactions::get_all_transactions');
 
 

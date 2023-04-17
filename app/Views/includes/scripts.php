@@ -83,6 +83,12 @@
     });
 
 
+     $(document).on('click','a#add_transactions',function (e) {
+
+        window.open( base_url + 'user/pending-transactions/add-transaction','_blank');
+
+        });
+
 
     
     $(document).on('click','#back-button',function (e) {window.history.back();});

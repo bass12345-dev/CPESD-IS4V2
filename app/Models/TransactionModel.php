@@ -46,4 +46,21 @@ class TransactionModel extends Model
         return $query;
         
     }
+
+
+
+    ///ADMIN
+
+    public function getAdminPendingTransactions(){
+
+         $builder = $this->db->table('transactions');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
+        $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
+        $builder->join('users','users.user_id = transactions.created_by');
+        $builder->where('transactions.transaction_status','pending');
+        $builder->orderBy('transactions.number','desc');
+        $query = $builder->get()->getResult();
+        return $query;
+    }
 }

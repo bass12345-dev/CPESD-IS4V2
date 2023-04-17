@@ -730,5 +730,37 @@ if ($this->request->isAJAX()) {
     
 
     }
+
+
+    public function delete_cso_officer(){
+
+        
+
+         $where = array(
+        'cso_officer_id' => $id = $this->request->getPost('id')
+        );
+
+        $delete =  $this->CustomModel->deleteData($this->cso_officer_table,$where);
+
+        if($delete){
+
+                $resp = array(
+                    'message' => 'Successfully Updated',
+                    'response' => true
+                );
+
+            }else {
+
+                $resp = array(
+                    'message' => 'Error',
+                    'response' => false
+                );
+
+            }
+
+            echo json_encode($resp);
+    
+
+    }
 }
 
