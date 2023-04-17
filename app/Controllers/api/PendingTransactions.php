@@ -8,12 +8,12 @@ use App\Models\TransactionModel;
 
 class PendingTransactions extends BaseController
 {
-    public $transactions_table = 'transactions';
-    public $type_of_activity_table = 'type_of_activities';
-    public $training_table = 'trainings';
-    public $project_monitoring_table = 'project_monitoring';
-    public $order_by_desc = 'desc';
-    public $order_by_asc = 'asc';
+    public $transactions_table          = 'transactions';
+    public $type_of_activity_table      = 'type_of_activities';
+    public $training_table              = 'trainings';
+    public $project_monitoring_table    = 'project_monitoring';
+    public $order_by_desc               = 'desc';
+    public $order_by_asc                = 'asc';
     protected $request;
     protected $CustomModel;
     protected $TransactionModel;
@@ -21,10 +21,10 @@ class PendingTransactions extends BaseController
 
     public function __construct()
     {
-       $this->db = db_connect();
-       $this->CustomModel = new CustomModel($this->db); 
-       $this->TransactionModel = new TransactionModel($this->db); 
-       $this->request = \Config\Services::request();  
+       $this->db                        = db_connect();
+       $this->CustomModel               = new CustomModel($this->db); 
+       $this->TransactionModel          = new TransactionModel($this->db); 
+       $this->request                   = \Config\Services::request();  
     }
 
     public function get_last_pmas_number()
@@ -60,61 +60,61 @@ class PendingTransactions extends BaseController
         if ($this->request->isAJAX()) {
                 
             $data = array(
-                'number' => $this->request->getPost('pmas_number'),
-                'date_and_time_filed' =>  date('Y-m-d H:i:s', time()),
-                'responsible_section_id' =>$this->request->getPost('type_of_monitoring_id'),
-                'type_of_activity_id' => $this->request->getPost('type_of_activity_id'),
+                'number'                    => $this->request->getPost('pmas_number'),
+                'date_and_time_filed'       =>  date('Y-m-d H:i:s', time()),
+                'responsible_section_id'    =>$this->request->getPost('type_of_monitoring_id'),
+                'type_of_activity_id'       => $this->request->getPost('type_of_activity_id'),
                 'under_type_of_activity_id' => $this->request->getPost('under_type_of_activity_id'),
-                'date_and_time' =>  date("Y/m/d H:i:s", strtotime($this->request->getPost('date_time'))),
-                'responsibility_center_id' =>   $this->request->getPost('responsibility_center_id'),
-                'cso_Id' => $this->request->getPost('cso_id'),
-                'created_by' => session()->get('user_id'),
-                'transaction_status' => 'pending'		
+                'date_and_time'             =>  date("Y/m/d H:i:s", strtotime($this->request->getPost('date_time'))),
+                'responsibility_center_id'  =>   $this->request->getPost('responsibility_center_id'),
+                'cso_Id'                    => $this->request->getPost('cso_id'),
+                'created_by'                => session()->get('user_id'),
+                'transaction_status'        => 'pending'		
             );
 
             
             $array_where = array(
 
-                        'date_and_time_filed' => date('Y-m', time()),
-                        'number' => $data['number']
+                    'date_and_time_filed'   => date('Y-m', time()),
+                    'number'                => $data['number']
             );
             
             $verify =  $this->TransactionModel->verify_pmas_number($array_where)->countAllResults();
 
             if(!$verify){
                 
-                $result  = $this->CustomModel->addData($this->transactions_table,$data);
-                $id = $this->db->insertID();
-                $type_act_name =  $this->CustomModel->getwhere($this->type_of_activity_table,array('type_of_activity_id ' => $data['type_of_activity_id']))[0]->type_of_activity_name;
+                $result         = $this->CustomModel->addData($this->transactions_table,$data);
+                $id             = $this->db->insertID();
+                $type_act_name  =  $this->CustomModel->getwhere($this->type_of_activity_table,array('type_of_activity_id ' => $data['type_of_activity_id']))[0]->type_of_activity_name;
                 
-                $training_data = array(
+                $training_data  = array(
 
-                    'training_transact_id' => $id,
-                    'title_of_training' => $this->request->getPost('title_of_training'),
-                    'number_of_participants' => $this->request->getPost('number_of_participants'),
-                    'female'  => $this->request->getPost('female'),
-                    'overall_ratings'  => $this->request->getPost('over_all_ratings'),
-                    'name_of_trainor'  => $this->request->getPost('name_of_trainor'),
+                    'training_transact_id'      => $id,
+                    'title_of_training'         => $this->request->getPost('title_of_training'),
+                    'number_of_participants'    => $this->request->getPost('number_of_participants'),
+                    'female'                    => $this->request->getPost('female'),
+                    'overall_ratings'           => $this->request->getPost('over_all_ratings'),
+                    'name_of_trainor'           => $this->request->getPost('name_of_trainor'),
                  );
 
 
                  $project_data = array(
 
-                    'project_transact_id' => $id,
-                    'project_title' => $this->request->getPost('project_title'),
-                    'period' => date("Y/m/d", strtotime($this->request->getPost('period'))),
-                    'attendance_present' => $this->request->getPost('present'),
-                    'attendance_absent' => $this->request->getPost('absent'),
-                    'nom_borrowers_delinquent' => $this->request->getPost('deliquent'),
-                    'nom_borrowers_overdue' => $this->request->getPost('overdue'),
-                    'total_production' => $this->request->getPost('total_production'),
-                    'total_collection_sales' => $this->request->getPost('total_collection'),
-                    'total_released_purchases' => $this->request->getPost('total_released'),
-                    'total_delinquent_account' => $this->request->getPost('total_deliquent'),
-                    'total_over_due_account' => $this->request->getPost('total_overdue'),
-                    'cash_in_bank' => $this->request->getPost('cash_in_bank'),
-                    'cash_on_hand' => $this->request->getPost('cash_on_hand'),
-                    'inventories' => $this->request->getPost('inventories'),
+                    'project_transact_id'       => $id,
+                    'project_title'             => $this->request->getPost('project_title'),
+                    'period'                    => date("Y/m/d", strtotime($this->request->getPost('period'))),
+                    'attendance_present'        => $this->request->getPost('present'),
+                    'attendance_absent'         => $this->request->getPost('absent'),
+                    'nom_borrowers_delinquent'  => $this->request->getPost('deliquent'),
+                    'nom_borrowers_overdue'     => $this->request->getPost('overdue'),
+                    'total_production'          => $this->request->getPost('total_production'),
+                    'total_collection_sales'    => $this->request->getPost('total_collection'),
+                    'total_released_purchases'  => $this->request->getPost('total_released'),
+                    'total_delinquent_account'  => $this->request->getPost('total_deliquent'),
+                    'total_over_due_account'    => $this->request->getPost('total_overdue'),
+                    'cash_in_bank'              => $this->request->getPost('cash_in_bank'),
+                    'cash_on_hand'              => $this->request->getPost('cash_on_hand'),
+                    'inventories'               => $this->request->getPost('inventories'),
 
             );
 
@@ -261,19 +261,19 @@ class PendingTransactions extends BaseController
 
 
             $data[] = array(
-                            'transaction_id' => $row->transaction_id,
-                            'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
-                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
-                            'responsible_section' => $row->responsible_section_name,
+                            'transaction_id'        => $row->transaction_id,
+                            'pmas_no'               => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                            'date_and_time_filed'   => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                            'responsible_section'   => $row->responsible_section_name,
                             'type_of_activity_name' => $row->type_of_activity_name,
                             'responsibility_center' => $row->responsibility_center_code.' - '.$row->responsibility_center_name,
-                            'date_and_time' => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
-                            'is_training' => $row->is_training == 1 ? true : false,
+                            'date_and_time'         => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
+                            'is_training'           => $row->is_training == 1 ? true : false,
                             'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
-                            'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
-                            'cso_name' => $row->cso_name,
-                            's' => $status_display,
-                            'action' => $action,
+                            'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'cso_name'              => $row->cso_name,
+                            's'                     => $status_display,
+                            'action'                => $action,
                 );
 
         }
@@ -326,19 +326,19 @@ class PendingTransactions extends BaseController
 
 
             $data[] = array(
-                            'transaction_id' => $row->transaction_id,
-                            'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
-                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
-                            'responsible_section' => $row->responsible_section_name,
+                            'transaction_id'        => $row->transaction_id,
+                            'pmas_no'               => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                            'date_and_time_filed'   => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                            'responsible_section'   => $row->responsible_section_name,
                             'type_of_activity_name' => $row->type_of_activity_name,
                             'responsibility_center' => $row->responsibility_center_code.' - '.$row->responsibility_center_name,
-                            'date_and_time' => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
-                            'is_training' => $row->is_training == 1 ? true : false,
+                            'date_and_time'         => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
+                            'is_training'           => $row->is_training == 1 ? true : false,
                             'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
-                            'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
-                            'cso_name' => $row->cso_name,
-                            's' => $status_display,
-                            'action' => $action,
+                            'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'cso_name'              => $row->cso_name,
+                            's'                     => $status_display,
+                            'action'                => $action,
                 );
 
         }

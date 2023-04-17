@@ -51,4 +51,49 @@ class Transactions extends BaseController
 
         
     }
+
+
+
+    public function generate_pmas_report(){
+
+        $date_filter = $this->request->getPost('date_filter');
+        $type_of_activity = $this->request->getPost('filter_type_of_activity');
+
+        $start = explode(" - ",$date_filter)[0];
+        $end = explode(" - ",$date_filter)[1];
+
+        $data = [];
+
+        if ($type_of_activity != null) {
+
+            $filter_data = array(
+
+                    'start_date' => trim($start),
+                    'end_date' => trim($end),
+                    'type_of_activity' => $type_of_activity
+            );
+
+          $items =   $this->TransactionModel->getCompletedTransactionDateFilterWhere($filter_data);
+
+
+          print_r($items);
+         
+           
+        }else {
+
+
+            $filter_data = array(
+
+                    'start_date' => trim($start),
+                    'end_date' => trim($end),
+            );
+
+          $items =   $this->TransactionModel->getCompletedTransactionDateFilter($filter_data);
+
+          print_r($items);
+            
+        }
+
+
+    }
 }

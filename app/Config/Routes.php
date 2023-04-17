@@ -135,6 +135,9 @@ $routes->post('api/get_under_type_of_activity', 'api\TypeOfActivity::get_under_t
 $routes->post('api/admin/get-admin-pending-transactions', 'api\PendingTransactions::get_admin_pending_transactions');
 $routes->post('api/admin/add-remark', 'api\PendingTransactions::add_remark');
 
+//Generate PMAS Report
+$routes->post('api/admin/generate-pmas-report', 'api\Transactions::generate_pmas_report');
+
 
 
 //User Api:
