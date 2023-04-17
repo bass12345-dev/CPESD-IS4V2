@@ -101,6 +101,8 @@ $routes->post('api/update-bylaws', 'api\Cso::update_cso_bylaws');
 $routes->post('api/update-aoc', 'api\Cso::update_cso_aoc');
 
 $routes->post('api/get-cor', 'api\Cso::get_cso_cor');
+$routes->post('api/get-bylaws', 'api\Cso::get_cso_bylaws');
+$routes->post('api/get-aoc', 'api\Cso::get_cso_aoc');
 
 
 

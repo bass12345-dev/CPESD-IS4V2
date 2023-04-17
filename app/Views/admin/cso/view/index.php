@@ -101,12 +101,9 @@
             currentPage: 1,
             zoom: 3
         }
-var pdf = './../../uploads/cso_files/1/cor/compressed.tracemonkey-pldi-09.pdf';
+// var pdf = './../../uploads/cso_files/1/cor/compressed.tracemonkey-pldi-09.pdf';
 
-pdfjsLib.getDocument(pdf).then((pdf) => {    
-                myState.pdf = pdf;
-                render();
-            });
+
 
 
 function render() {
@@ -180,15 +177,94 @@ $(document).on('click','a#view_cor',function (e) {
                             data : {'id' : '<?php echo $_GET['id'] ?>'},
                             cache: false,
                             dataType: 'json', 
+                            beforeSend :  function(){
+
+                                    $('#view_cor').html('<div class="loader"></div>');
+                            },
                             success: function(data){
 
                                 if (data.resp) {
 
                                      $('#view_file_modal').modal('show');
+                                    pdf = data.file
+                                   pdfjsLib.getDocument(pdf).then((pdf) => {    
+                                        myState.pdf = pdf;
+                                        render();
+                                    });
+
+                                    $('#view_cor').html('View COR');
 
                                 }else {
 
-                                    alert(data.message)
+                                     Toastify({
+                                              text: data.message,
+                                              className: "info",
+                                              style: {
+                                                "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                                "height" : "60px",
+                                                "width" : "350px",
+                                                "font-size" : "20px"
+                                              }
+                                            }).showToast();
+                                    
+                                    $('#view_cor').html('View COR');
+                                }
+                                       
+                            }, error : function(){
+
+                                    alert('error')
+
+                            }
+
+                    })
+
+     
+    
+});
+
+
+
+$(document).on('click','a#view_bylaws',function (e) {
+
+
+
+          $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/get-bylaws',
+                            data : {'id' : '<?php echo $_GET['id'] ?>'},
+                            cache: true,
+                            dataType: 'json', 
+                            beforeSend :  function(){
+
+                                    $('#view_bylaws').html('<div class="loader"></div>');
+                            },
+                            success: function(data){
+
+                                if (data.resp) {
+
+                                     $('#view_file_modal').modal('show');
+                                    pdf = data.file
+                                   pdfjsLib.getDocument(pdf).then((pdf) => {    
+                                        myState.pdf = pdf;
+                                        render();
+                                    });
+
+                                    $('#view_bylaws').html('View Bylaws');
+
+                                }else {
+
+                                     Toastify({
+                                              text: data.message,
+                                              className: "info",
+                                              style: {
+                                                "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                                "height" : "60px",
+                                                "width" : "350px",
+                                                "font-size" : "20px"
+                                              }
+                                            }).showToast();
+                                    
+                                    $('#view_cor').html('View COR');
                                 }
                                        
                             }
@@ -199,6 +275,112 @@ $(document).on('click','a#view_cor',function (e) {
     
 });
 
+
+
+
+$(document).on('click','a#view_bylaws',function (e) {
+
+
+
+          $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/get-bylaws',
+                            data : {'id' : '<?php echo $_GET['id'] ?>'},
+                            cache: true,
+                            dataType: 'json', 
+                            beforeSend :  function(){
+
+                                    $('#view_bylaws').html('<div class="loader"></div>');
+                            },
+                            success: function(data){
+
+                                if (data.resp) {
+
+                                     $('#view_file_modal').modal('show');
+                                    pdf = data.file
+                                   pdfjsLib.getDocument(pdf).then((pdf) => {    
+                                        myState.pdf = pdf;
+                                        render();
+                                    });
+
+                                    $('#view_bylaws').html('View Bylaws');
+
+                                }else {
+
+                                     Toastify({
+                                              text: data.message,
+                                              className: "info",
+                                              style: {
+                                                "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                                "height" : "60px",
+                                                "width" : "350px",
+                                                "font-size" : "20px"
+                                              }
+                                            }).showToast();
+                                    
+                                    $('#view_bylaws').html('View COR');
+                                }
+                                       
+                            }
+
+                    })
+
+     
+    
+});
+
+
+
+$(document).on('click','a#view_aoc',function (e) {
+
+
+
+          $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/get-aoc',
+                            data : {'id' : '<?php echo $_GET['id'] ?>'},
+                            cache: true,
+                            dataType: 'json', 
+                            beforeSend :  function(){
+
+                                    $('#view_aoc').html('<div class="loader"></div>');
+                            },
+                            success: function(data){
+
+                                if (data.resp) {
+
+                                     $('#view_file_modal').modal('show');
+                                    pdf = data.file
+                                   pdfjsLib.getDocument(pdf).then((pdf) => {    
+                                        myState.pdf = pdf;
+                                        render();
+                                    });
+
+                                    $('#view_aoc').html('View Bylaws');
+
+                                }else {
+
+                                     Toastify({
+                                              text: data.message,
+                                              className: "info",
+                                              style: {
+                                                "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                                "height" : "60px",
+                                                "width" : "350px",
+                                                "font-size" : "20px"
+                                              }
+                                            }).showToast();
+                                    
+                                    $('#view_aoc').html('View COR');
+                                }
+                                       
+                            }
+
+                    })
+
+     
+    
+});
 
 
 
