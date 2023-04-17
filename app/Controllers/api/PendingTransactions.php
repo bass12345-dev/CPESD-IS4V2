@@ -69,7 +69,7 @@ class PendingTransactions extends BaseController
                 'responsibility_center_id' =>   $this->request->getPost('responsibility_center_id'),
                 'cso_Id' => $this->request->getPost('cso_id'),
                 'created_by' => session()->get('user_id'),
-                'transactions' => 'pending'		
+                'transaction_status' => 'pending'		
             );
 
             
@@ -215,6 +215,9 @@ class PendingTransactions extends BaseController
 
         $data = [];
 
+
+        if ($this->request->getPost('filter') == 'false') {
+
         $items = $this->TransactionModel->getAdminPendingTransactions();
 
         foreach ($items as $row ) {
@@ -233,6 +236,8 @@ class PendingTransactions extends BaseController
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" id="add-remarks">Add Remarks</a>
                                                 <hr>
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
+                                                 <hr>
+                                                <a class="dropdown-item completed" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  >Approve</a>
                                               </di>';
                 $status_display = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">no remarks</a>';
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
@@ -245,12 +250,12 @@ class PendingTransactions extends BaseController
                                                
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
                                               </di>';
-                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">remarks added</a><br><a href="javascript:;" id="update-remark" >Update</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">remarks added</a><br><a href="javascript:;" data-id="'.$row->transaction_id.'"  id="update-remark" >Update</a>';
 
             }else if ($row->remarks != '' AND $row->action_taken_date != null) {
 
-                $action = '<a href="javascript:;" id="completed" data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2"><i class="ti-check"></i></a>';
-                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Action Taken</a><br><a href="javascript:;" >'.date('M, d Y', strtotime($row->action_taken_date)).'</a>';
+                $action = '<a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2 completed"><i class="ti-check"></i></a>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a><br><a href="javascript:;" >'.date('F d Y', strtotime($row->action_taken_date)).'</a>';
                 
             }
 
@@ -262,15 +267,83 @@ class PendingTransactions extends BaseController
                             'responsible_section' => $row->responsible_section_name,
                             'type_of_activity_name' => $row->type_of_activity_name,
                             'responsibility_center' => $row->responsibility_center_code.' - '.$row->responsibility_center_name,
-                            'date_and_time' => date('M,d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
+                            'date_and_time' => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
                             'is_training' => $row->is_training == 1 ? true : false,
                             'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
                             'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'cso_name' => $row->cso_name,
                             's' => $status_display,
                             'action' => $action,
                 );
 
         }
+
+    }else if($this->request->getPost('filter') == 'true'){
+
+
+            $filter_data = array('start_date' => $this->request->getPost('start_date') , 'end_date' => $this->request->getPost('end_date') );
+
+            $items = $this->TransactionModel->getPendingTransactionDateFilter($filter_data);
+
+              foreach ($items as $row ) {
+
+
+            $action = '';
+            $status_display = '';
+
+            if ($row->remarks == '' AND $row->action_taken_date == null) {
+                
+                $action = '<div class="btn-group dropleft">
+                                              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                               <i class="ti-settings" style="font-size : 15px;"></i>
+                                              </button>
+                                              <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" id="add-remarks">Add Remarks</a>
+                                                <hr>
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
+                                                 <hr>
+                                                <a class="dropdown-item completed" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  >Approve</a>
+                                              </di>';
+                $status_display = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">no remarks</a>';
+            }else if ($row->remarks != '' AND $row->action_taken_date == null) {
+                
+                $action = '<div class="btn-group dropleft">
+                                              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                               <i class="ti-settings" style="font-size : 15px;"></i>
+                                              </button>
+                                              <div class="dropdown-menu">
+                                               
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
+                                              </di>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">remarks added</a><br><a href="javascript:;" data-id="'.$row->transaction_id.'"  id="update-remark" >Update</a>';
+
+            }else if ($row->remarks != '' AND $row->action_taken_date != null) {
+
+                $action = '<a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2 completed"><i class="ti-check"></i></a>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a><br><a href="javascript:;" >'.date('F d Y', strtotime($row->action_taken_date)).'</a>';
+                
+            }
+
+
+            $data[] = array(
+                            'transaction_id' => $row->transaction_id,
+                            'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                            'responsible_section' => $row->responsible_section_name,
+                            'type_of_activity_name' => $row->type_of_activity_name,
+                            'responsibility_center' => $row->responsibility_center_code.' - '.$row->responsibility_center_name,
+                            'date_and_time' => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
+                            'is_training' => $row->is_training == 1 ? true : false,
+                            'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
+                            'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'cso_name' => $row->cso_name,
+                            's' => $status_display,
+                            'action' => $action,
+                );
+
+        }
+        
+    }
 
         echo json_encode($data);
     }

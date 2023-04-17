@@ -6,7 +6,7 @@
 				<a href="javascript:;" id="update-cso-information" class="mt-2  mb-2  text-center  btn-rounded btn-md btn-block" data-toggle="modal" data-target="#update_cso_information_modal"><i class = "fa fa-edit" aria-hidden = "true" ></i> Update CSO Information</a> </td>
 			</tr>
 			<tr>
-				<td>CSO</td>
+				<td>CSO Code</td>
 				<td class="cso_code"></td>
 			</tr>
 			<tr>

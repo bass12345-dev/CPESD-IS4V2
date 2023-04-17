@@ -12,6 +12,7 @@
                <input type="hidden" class="form-control" id="transact_id" name="transact_id" placeholder="" required>
                <div class="form-group">
                   <label for="exampleInputPassword1">Remarks</label>
+                  <div id="please_wait_remarks_alert"></div>
                   <textarea class="form-control" id="tiny"></textarea>
                </div>
             </div>

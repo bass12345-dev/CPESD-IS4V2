@@ -108,8 +108,8 @@
 
 function render() {
             myState.pdf.getPage(myState.currentPage).then((page) => {
-         
-                var canvas = document.getElementById("pdf_renderer");
+            
+                var canvas = document.querySelector('canvas');
                 var ctx = canvas.getContext('2d');
      
                 var viewport = page.getViewport(myState.zoom);
@@ -187,7 +187,9 @@ $(document).on('click','a#view_cor',function (e) {
 
                                      $('#view_file_modal').modal('show');
                                     pdf = data.file
-                                   pdfjsLib.getDocument(pdf).then((pdf) => {    
+                                   pdfjsLib.getDocument(pdf).then((pdf) => {  
+
+                                       
                                         myState.pdf = pdf;
                                         render();
                                     });

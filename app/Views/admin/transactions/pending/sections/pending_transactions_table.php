@@ -4,10 +4,11 @@
            <tr>
                <th>PMAS NO</th>
                <th>Date & Time Filed</th>
-               <th>Responsible Section</th>
+               <!-- <th>Responsible Section</th> -->
                <th>Type of Activity</th>
-               <th>Responsibility Center</th>
-               <th>Date And Time</th>
+               <!-- <th>Responsibility Center</th>
+               <th>Date And Time</th> -->
+               <th>CSO</th>
                <th>Person Responsible</th>
                <th>Status</th>
                <th>Actions</th>  
