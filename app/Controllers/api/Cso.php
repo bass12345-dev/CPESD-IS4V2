@@ -4,6 +4,8 @@ namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use App\Models\CustomModel;
+use Config\Custom_config;
+
 
 class Cso extends BaseController
 {
@@ -13,20 +15,14 @@ class Cso extends BaseController
     public $order_by_asc = 'asc';
     protected $request;
     protected $CustomModel;
-    public $position_array = [
-        'President/BOD Chairperson/BOT',
-        'Vice President/BOD Vice Chairperson',
-        'Secretary',
-        'Treasurer',
-        'Auditor',
-        'Manager'
-        ];
+    public $config;
 
     public function __construct()
     {
        $db = db_connect();
        $this->CustomModel = new CustomModel($db); 
        $this->request = \Config\Services::request();  
+        $this->config = new Custom_config;
     }
 
     public function add_cso()
@@ -273,17 +269,61 @@ public function update_cso_status(){
 
 public function update_cso_cor(){
 
-        helper(['form', 'url']);
+    $path = FCPATH ."uploads/cso_files/".$this->request->getPost('cso_idd').'/'.$this->config->folder_name['cor_folder_name'];
 
-        // $input = $this->validate([
-        //     'file' => [
-        //         'uploaded[file]',
-        //         'mime_in[file,image/jpg,image/jpeg,image/png]',
-        //         'max_size[file,1024]',
-        //     ]
-        // ]);
+    if (!is_dir($path)) {
+        mkdir($path,0777, true);
+    }
 
-        print_r($this->validate());
+
+
+
+
+
+    $allFiles = scandir($path);
+    $files = array_diff($allFiles, array('.', '..'));
+
+
+    if ($files > 0) {
+        
+         foreach ($files as $file) {
+
+                unlink($path.'/'.$file);
+         }
+    }
+
+    $destination = '';
+    $new_name = '';
+
+    if (is_dir($path)) {
+        if (isset($_FILES['update_cor'])) {
+        $new_name = $_FILES['update_cor']['name'];
+        $destination = $path.'/'.$new_name;
+        move_uploaded_file($_FILES['update_cor']['tmp_name'], $destination);
+        
+
+    }
+
+     if(file_exists($destination)) {
+
+             $data = array(
+                'message' => 'Data Updated Successfully',
+                'response' => true
+                );
+         
+        } else {
+
+
+             $data = array(
+                'message' => 'Error',
+                'response' => false
+                );
+          
+        }
+
+
+        echo  json_encode($data);
+}
 
 
 }

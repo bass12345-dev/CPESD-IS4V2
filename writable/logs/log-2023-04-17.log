@@ -21,3 +21,151 @@ in APPPATH\Controllers\admin\CsoController.php on line 46.
  3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\CsoController))
  4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 01:55:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 01:55:37 --> Too few arguments to function CodeIgniter\Controller::validate(), 0 passed in C:\xampp\htdocs\CPESD-IS4V2\app\Controllers\api\Cso.php on line 286 and at least 1 expected
+in SYSTEMPATH\Controller.php on line 136.
+ 1 APPPATH\Controllers\api\Cso.php(286): CodeIgniter\Controller->validate()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 01:58:04 --> Call to a member function move() on null
+in APPPATH\Controllers\api\Cso.php on line 278.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 02:01:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-17 02:03:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 02:03:22 --> mkdir(): File exists
+in APPPATH\Controllers\api\Cso.php on line 277.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mkdir(): File exists', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 277)
+ 2 APPPATH\Controllers\api\Cso.php(277): mkdir('uploads/cso_files/')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 02:10:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 02:15:07 --> Class "App\Controllers\Api\Custom_config" not found
+in APPPATH\Controllers\api\Cso.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Api\Cso->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 02:15:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 02:15:22 --> Class "App\Controllers\Api\Custom_config" not found
+in APPPATH\Controllers\api\Cso.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Api\Cso->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:15:22 --> Class "App\Controllers\Api\Custom_config" not found
+in APPPATH\Controllers\api\Cso.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Api\Cso->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 02:15:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 02:17:43 --> Undefined constant "App\Controllers\Api\APPATH"
+in APPPATH\Controllers\api\Cso.php on line 272.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:25:39 --> syntax error, unexpected token "}", expecting "," or ";"
+in APPPATH\Controllers\api\Cso.php on line 281.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\api\\Cso')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\api\\Cso')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\api\\Cso', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:25:51 --> mkdir(): No such file or directory
+in APPPATH\Controllers\api\Cso.php on line 275.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mkdir(): No such file or directory', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 275)
+ 2 APPPATH\Controllers\api\Cso.php(275): mkdir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:26:30 --> mkdir(): No such file or directory
+in APPPATH\Controllers\api\Cso.php on line 275.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mkdir(): No such file or directory', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 275)
+ 2 APPPATH\Controllers\api\Cso.php(275): mkdir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:26:33 --> mkdir(): No such file or directory
+in APPPATH\Controllers\api\Cso.php on line 275.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'mkdir(): No such file or directory', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 275)
+ 2 APPPATH\Controllers\api\Cso.php(275): mkdir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:30:02 --> Undefined variable $name
+in APPPATH\Controllers\api\Cso.php on line 287.
+ 1 APPPATH\Controllers\api\Cso.php(287): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $name', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 287)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 02:41:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 02:44:46 --> Undefined variable $file_data
+in APPPATH\Controllers\api\Cso.php on line 286.
+ 1 APPPATH\Controllers\api\Cso.php(286): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $file_data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 286)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:44:54 --> Undefined variable $file_data
+in APPPATH\Controllers\api\Cso.php on line 286.
+ 1 APPPATH\Controllers\api\Cso.php(286): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $file_data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 286)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-17 02:45:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-17 02:46:03 --> syntax error, unexpected token "public"
+in APPPATH\Controllers\api\Cso.php on line 315.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\api\\Cso')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\api\\Cso')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\api\\Cso', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:48:42 --> syntax error, unexpected token "public", expecting end of file
+in APPPATH\Controllers\api\Cso.php on line 312.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\api\\Cso')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\api\\Cso')
+ 4 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\api\\Cso', true)
+ 5 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:48:56 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/3/cor/dummy.pdf): The directory name is inval (code: 267)
+in APPPATH\Controllers\api\Cso.php on line 279.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor/dummy.pdf): The directory name is inval (code: 267)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 279)
+ 2 APPPATH\Controllers\api\Cso.php(279): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor/dummy.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:51:30 --> scandir(C:\xampp\htdocs\CPESD-IS4V2\uploads/cso_files/3/cor/dummy.pdf): The directory name is inval (code: 267)
+in APPPATH\Controllers\api\Cso.php on line 279.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'scandir(C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor/dummy.pdf): The directory name is inval (code: 267)', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 279)
+ 2 APPPATH\Controllers\api\Cso.php(279): scandir('C:\\xampp\\htdocs\\CPESD-IS4V2\\uploads/cso_files/3/cor/dummy.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-17 02:52:16 --> Undefined variable $file
+in APPPATH\Controllers\api\Cso.php on line 284.
+ 1 APPPATH\Controllers\api\Cso.php(284): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $file', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Cso.php', 284)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Cso->update_cso_cor()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Cso))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
