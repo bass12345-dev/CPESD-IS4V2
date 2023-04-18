@@ -12,7 +12,7 @@ class CompletedRFAController extends BaseController
         $data['title'] = 'Completed RFA';
         return view('user/rfa/completed/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

@@ -38,7 +38,7 @@ class CompletedTransactionsController extends BaseController
             
             return view('admin/transactions/completed/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

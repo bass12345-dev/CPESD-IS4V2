@@ -20,7 +20,7 @@ class DashboardController extends BaseController
        
         return view('user/dashboard/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

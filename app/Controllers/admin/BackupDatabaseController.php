@@ -13,7 +13,7 @@ class BackupDatabaseController extends BaseController
             $data['title'] = 'Back Up Database';
             return view('admin/back_up_database/index',$data);
         }else {
-           return redirect()->back();
+           throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

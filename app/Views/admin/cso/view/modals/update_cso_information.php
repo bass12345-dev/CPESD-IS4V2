@@ -25,7 +25,7 @@
                   <select  class=" custom-select" id="cso_type" name="cso_type"   style="border: 1px solid;" required>
                      <option  value="" selected>Select type</option>
                      <?php foreach ($type_of_cso as $row) { ?>
-                     <option  value="<?php echo $row; ?>"><?php echo $row; ?></option>
+                     <option  value="<?php echo strtoupper($row); ?>"><?php echo $row; ?></option>
                      <?php } ?>
                   </select>
                </div>

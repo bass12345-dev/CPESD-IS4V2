@@ -12,7 +12,7 @@ class ResponsibleSectionController extends BaseController
             $data['title'] = 'Responsible Section';
             return view('admin/responsible_section/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

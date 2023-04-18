@@ -34,7 +34,7 @@ class CsoController extends BaseController
             
             return view('admin/cso/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 

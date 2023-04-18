@@ -12,7 +12,7 @@ class ResponsibilityCenterController extends BaseController
             $data['title'] = 'Responsibility Center';
             return view('admin/responsibility_center/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

@@ -155,6 +155,8 @@ $routes->post('api/completed', 'api\PendingTransactions::update_completed');
 
 //Completed Transactions
 $routes->post('api/get-all-transactions', 'api\Transactions::get_all_transactions');
+$routes->post('api/get-transaction-data', 'api\Transactions::get_transaction_data');
+
 
 
 /*

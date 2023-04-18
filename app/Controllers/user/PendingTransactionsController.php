@@ -33,7 +33,7 @@ class PendingTransactionsController extends BaseController
         return view('user/transactions/pending/index',$data);
 
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
     

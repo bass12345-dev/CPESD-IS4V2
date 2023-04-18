@@ -13,7 +13,7 @@ class PendingRFAController extends BaseController
             $data['title'] = 'Completed RFA';
             return view('admin/rfa/pending/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

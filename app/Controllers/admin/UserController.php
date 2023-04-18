@@ -13,7 +13,7 @@ class UserController extends BaseController
             $data['title'] = 'Users';
             return view('admin/users/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

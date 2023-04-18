@@ -31,7 +31,7 @@ class Cso extends BaseController
         $data = array(
                 'cso_name' => $this->request->getPost('cso_name'),
                 'cso_code' => $this->request->getPost('cso_code'),
-                'type_of_cso' => $this->request->getPost('cso_type'),
+                'type_of_cso' => strtoupper($this->request->getPost('cso_type')),
                 'purok_number' => $this->request->getPost('purok') ,
                 'barangay' => $this->request->getPost('barangay'),
                 'contact_person' => ($this->request->getPost('contact_person') == '') ?  '' : $this->request->getPost('contact_person') ,

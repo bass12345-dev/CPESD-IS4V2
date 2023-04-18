@@ -12,7 +12,7 @@ class CompletedTransactionsController extends BaseController
         $data['title'] = 'Completed Transactions';
         return view('user/transactions/completed/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

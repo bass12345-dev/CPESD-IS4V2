@@ -12,7 +12,7 @@ class PendingTransactionsController extends BaseController
             $data['title'] = 'Pending Transactions';
             return view('admin/transactions/pending/index',$data);
         }else {
-           return redirect()->back();
+           throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

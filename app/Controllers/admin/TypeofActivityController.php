@@ -12,7 +12,7 @@ class TypeofActivityController extends BaseController
             $data['title'] = 'Type of Activity';
             return view('admin/type_of_activity/index',$data);
         }else {
-           return redirect()->back();
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
     }
 }

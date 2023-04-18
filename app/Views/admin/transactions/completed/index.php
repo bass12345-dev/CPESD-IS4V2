@@ -29,24 +29,64 @@
                                               </div>
                                         </div>
                                       </div>
-                                      <div class="col-md-6">
-                                        <select class="custom-select mt-2" style="height: 45px;" id="filter_type_of_activity">
+                                      <div class="col-md-5">
+                                        <select class="custom-select mt-2 mb-2" style="height: 45px;" id="filter_type_of_activity">
                                             <option value="">Select Type Of Activity</option> 
                                                 <?php  foreach ($activities as $row) : ?>
                                             <option value="<?php echo $row->type_of_activity_id  ?>"><?php echo $row->type_of_activity_name ?></option>
                                                 <?php  endforeach; ?>
                                         </select>
                                       </div>
+                                       <div class="col-md-1">
+                                             <button class="btn sub-button btn-block mt-2 mb-2" style="height: 45px;" id="reset-filter-options"><i class="ti-reload"></i></button>
+                                      </div>
                                     </div>
                                     <div class="row">
-                                        <button class="btn sub-button btn-block" id="generate-pmas-report">Generate Report</button>
+                                        <button class="btn sub-button btn-block" style="width: 100%;" id="generate-pmas-report">Generate Report</button>
+                                    </div>
+                                    <div id="generate_pmas_report_section" hidden="true">
+                                        <div class="row mt-2">
+
+                                            <div class="col-md-12"> 
+                                                <button class="btn  mb-3 mt-2 btn-danger pull-right" id="close_pmas_report_section" ><i class="ti-close "></i></button>   
+                                               
+                                             </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 mt-2">
+                                                <table id="completed_transactions_table" class="text-center stripe ">
+                                                   <thead class="bg-light text-capitalize" >
+                                                       <tr>
+                                                           <th>PMAS NO</th>
+                                                           <th>Date & Time Filed</th>
+                                                           <th>Type of Activity</th>
+                                                           <th>CSO</th>
+                                                           <th>Person Responsible</th>
+                                                           
+                                                       </tr>
+                                                   </thead> 
+
+                                                    <tfoot>
+                                                        <tr>
+                                                            
+                                                           <th></th>
+                                                           <th></th>
+                                                           <th></th>
+                                                           <th></th>
+                                                        </tr>
+                                                    </tfoot>                                     
+                                               </table>   
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
         </div>
-    </div>     
+    </div>   
+<?php echo view('admin/transactions/completed/modals/view_project_monitoring_data_modal') ?>       
 <?php echo view('includes/scripts.php') ?>   
 
 <script type="text/javascript">
@@ -77,10 +117,71 @@ $(document).on('click','button#generate-pmas-report',function (e) {
 
     var date_filter = $('input[name="daterange_completed_filter"]').val();
     var filter_type_of_activity = $('#filter_type_of_activity option:selected').val();
-
+    $('#completed_transactions_table').DataTable().destroy();
     generate_pmas_report(date_filter,filter_type_of_activity);
 
 })
+
+$(document).on('click','button#close_pmas_report_section',function (e) {
+
+    $('#generate_pmas_report_section').attr("hidden",true);
+
+})
+
+
+$(document).on('click','button#reset-filter-options',function (e) {
+
+
+    $('select[id=filter_type_of_activity]').val('');
+    $('input[name=daterange_completed_filter]').val(moment().format("MM/DD/YYYY")+' - '+moment().format("MM/DD/YYYY"));
+    
+
+
+
+});
+
+
+
+$(document).on('click','a#view_project_monitoring',function (e) {
+
+    const id = $(this).data('id');
+    const title = $(this).data('title');
+    $.ajax({
+            type: "POST",
+            url: base_url + 'api/get-transaction-data',
+            data: {id : id},
+            dataType: 'json',
+            success: function(data)
+            {  
+
+                $("#view_project_monitoring_modal").modal('show');
+                $('.cso_title').text(title);
+
+                $('.delinquent').text('₱ ' +data.delinquent)
+                $('.overdue').text('₱ ' +data.overdue)
+                $('.total_production').text('₱ ' +data.total_production)
+                $('.total_collection_sales').text('₱ ' +data.total_collection_sales)
+                $('.total_released_purchases').text('₱ ' +data.total_released_purchases)
+                $('.total_delinquent_account').text('₱ ' +data.total_delinquent_account)
+                $('.total_over_due_account').text('₱ ' +data.total_over_due_account)
+                $('.cash_in_bank').text('₱ ' +data.cash_in_bank)
+                $('.cash_on_hand').text('₱ ' +data.cash_on_hand)
+                $('.inventories').text('₱ ' +data.inventories)
+                $('.total_project_data').text('₱ ' +data.total)
+
+            }
+
+        })
+
+    
+
+
+
+})
+
+
+
+
 
 function generate_pmas_report(date_filter,filter_type_of_activity){
 
@@ -97,6 +198,149 @@ function generate_pmas_report(date_filter,filter_type_of_activity){
             dataType: "json",
             success: function(data) {
 
+                $('#generate_pmas_report_section').removeAttr('hidden');
+
+                $('#completed_transactions_table').DataTable({
+
+
+                    
+                    "ordering": false,
+                     "paging": true,
+                     search: true,
+                     autoWidth: true,
+                      
+                        responsive: false,
+                    "data": data,
+                     "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                                  {
+                                     extend: 'excel',
+                                     text: 'Excel',
+                                     className: 'btn btn-default ',
+                                     // exportOptions: {
+                                     //    columns: 'th:not(:last-child)'
+                                     // }
+                                  },
+                                   {
+                                     extend: 'pdf',
+                                     text: 'pdf',
+                                     className: 'btn btn-default',
+                                     // exportOptions: {
+                                     //    columns: 'th:not(:last-child)'
+                                     // }
+                                  },
+
+                                {
+                                     extend: 'print',
+                                     text: 'print',
+                                     className: 'btn btn-default',
+                                     // exportOptions: {
+                                     //    columns: 'th:not(:last-child)'
+                                     // }
+                                  },    
+
+                        ],
+
+
+                         'columns': [
+            {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<b><a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['pmas_no']+'</a></b>';
+                }
+
+            },
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                     return data.date_and_time_filed;
+                }
+
+            },
+
+             {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return data.type_of_activity_name;
+                }
+
+            },
+
+
+             {
+
+                data: 'cso_name',
+               
+            },
+
+              {
+              
+                data: 'name',
+                
+
+            },
+
+            ],
+
+
+            initComplete: function () {
+            this.api()
+                .columns(['3'])
+                .every(function () {
+                    var column = this;
+                    var select = $('<select class="custom-select"><option value="" >Filter CSO</option></select>')
+                        .appendTo($(column.footer()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+ 
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                        });
+ 
+                    column
+                        .data()
+                        .unique()
+                        .sort()
+                        .each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>');
+                        });
+                });
+        },
+
+       // "footerCallback": function (row, data, start, end, display) {
+       //              var api = this.api(), data;
+
+       //              // Remove the formatting to get integer data for summation
+       //              var intVal = function (i) {
+       //                  return typeof i === 'string' ?
+       //                          i.replace(/[\$,]/g, '') * 1 :
+       //                          typeof i === 'number' ?
+       //                          i : 0;
+       //              };
+       //              // Total over this page
+       //              pageTotal = api
+       //                      .column(3, {page: 'current'})
+       //                      .data()
+       //                      .reduce(function (a, b) {
+       //                          return intVal(a) + intVal(b);
+       //                      }, 0);
+
+       //              // Update footer
+       //              $(api.column(3).footer()).html('$' + pageTotal);
+       //          }
+
+
+
+
+       
+            
+
+
+                    })
 
                     
             }
