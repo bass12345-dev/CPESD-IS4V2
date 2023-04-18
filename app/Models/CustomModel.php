@@ -110,4 +110,13 @@ class CustomModel extends Model
         return $query;
 
     }
+
+
+    public function get_sum_project_monitoring($table,$column){
+
+        $builder = $this->db->table($table);
+        $builder->select('sum('.$column.') as Total');
+        $query = $builder->get()->getResult();
+        return $query;
+    }
 }

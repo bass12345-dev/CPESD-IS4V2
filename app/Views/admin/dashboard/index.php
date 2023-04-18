@@ -21,5 +21,18 @@
         </div>
     </div>     
 <?php echo view('includes/scripts.php') ?>   
+
+<script>
+    
+var year = $('#admin_year option:selected').val();    
+console.log(year)
+function load_graph($this){load_admin_chart($this.value)}
+
+function load_admin_chart(year){
+    
+}
+
+
+</script>
 </body>
 </html>
