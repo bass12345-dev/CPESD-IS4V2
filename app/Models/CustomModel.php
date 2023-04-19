@@ -130,4 +130,18 @@ class CustomModel extends Model
        
 
     }
+
+
+     public function count_search($table,$data){
+
+        $builder = $this->db->table($table);
+        $builder->like($data);
+        $query = $builder->countAllResults();
+        return $query; 
+       
+
+    }
+
+
+
 }

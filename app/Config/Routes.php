@@ -51,6 +51,7 @@ $routes->group('admin', function($routes) {
     $routes->add('pending-rfa', 'admin\CompletedRFAController::index',['filter' => 'authGuard']);
     $routes->add('back-up-database', 'admin\BackupDatabaseController::index',['filter' => 'authGuard']);
     $routes->add('activity-logs', 'admin\ActivityLogsController::index',['filter' => 'authGuard']);
+    $routes->add('type-of-request', 'admin\TypeofRequestController::index',['filter' => 'authGuard']);
 });
 
 
@@ -133,6 +134,11 @@ $routes->post('api/add-under-type-of-activity', 'api\TypeOfActivity::add_under_t
 $routes->post('api/get_under_type_of_activity', 'api\TypeOfActivity::get_under_type_of_activity');
 
 
+//Type of Request
+$routes->post('api/add-type-of-request', 'api\TypeofRequest::add_type_of_request');
+$routes->post('api/get-request', 'api\TypeofRequest::get_request');
+
+
 //Pending Transactions
 $routes->post('api/admin/get-admin-pending-transactions', 'api\PendingTransactions::get_admin_pending_transactions');
 $routes->post('api/admin/add-remark', 'api\PendingTransactions::add_remark');
@@ -151,7 +157,7 @@ $routes->post('api/count-pending-transactions', 'api\PendingTransactions::count_
 
 //User Api:
 $routes->post('api/get-last-pmas-number', 'api\PendingTransactions::get_last_pmas_number');
-
+$routes->post('api/get-last-reference-number', 'api\TypeOfRequest::get_last_ref_number');
 
 //Pending Transactions
 $routes->post('api/add-transaction', 'api\PendingTransactions::add_transaction');
@@ -171,9 +177,13 @@ $routes->post('api/get-transaction-data', 'api\Transactions::get_transaction_dat
 $routes->post('api/load-user-chart-transaction-data', 'api\Transactions::get_user_chart_transaction_data');
 
 
-///User Search Names
+///Client
 $routes->post('api/search-names', 'api\Clients::search_name');
+$routes->post('api/add-client', 'api\Clients::add_client');
 
+
+//RFA
+$routes->post('api/add-rfa', 'api\TypeofRequest::add_rfa');
 
 
 /*

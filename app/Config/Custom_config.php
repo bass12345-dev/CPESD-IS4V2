@@ -82,6 +82,8 @@ class Custom_config extends BaseConfig
     public $user_type = ['admin','user'];
 
     public $employment_status = ['employed','self-employed','unemployed and actively looking for work', 'underemployed'];
+
+    public $type_of_transactions = ['simple','complex'];
  
 
 } 
