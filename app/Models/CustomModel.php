@@ -119,4 +119,15 @@ class CustomModel extends Model
         $query = $builder->get()->getResult();
         return $query;
     }
+
+
+    public function search($table,$data){
+
+        $builder = $this->db->table($table);
+        $builder->like($data);
+        $query = $builder->get()->getResult();
+        return $query;
+       
+
+    }
 }

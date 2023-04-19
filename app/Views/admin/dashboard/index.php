@@ -25,12 +25,134 @@
 <script>
     
 var year = $('#admin_year option:selected').val();    
-console.log(year)
 function load_graph($this){load_admin_chart($this.value)}
 
 function load_admin_chart(year){
+
+      $.ajax({
+                url : base_url + 'api/load-admin-chart-transaction-data',
+                data:{year : year},
+                method : 'POST',
+                dataType : 'json',
+                success : function(data)
+                {
+
+                     try{
+                                 new Chart(document.getElementById("admin-bar-chart"), {
+                                    type: 'bar',
+                                    data: {
+                                      labels: data.label,
+                                      datasets: [
+                                        {
+                                            label               : 'Completed Transactions',
+                                             backgroundColor    :  "#3F6BA4",
+                                             borderColor: 'rgb(23, 125, 255)',
+                                            data                : data.data_completed
+                                        },
+                                        {
+                                            label               : 'Pending Transactions',
+                                             backgroundColor    :  '#e00d14',
+                                             borderColor: 'rgb(23, 125, 255)',
+                                            data                : data.data_pending
+                                        }
+                                      ]
+                                    },
+                                    options: {
+
+                                     legend: {
+                                                position: 'top',
+                                                labels: {
+                                                    padding: 10,
+                                                    fontColor: '#007bff',
+                                                }
+                                            },
+                                            
+
+                                     responsive: true,
+                                      title: {
+                                        display: true,
+                                        text: 'Transactions in year ' + year
+                                      },
+
+                                      scales: {
+                                            y: {
+                                                
+                                                    beginAtZero: true
+                                                
+                                            }
+                                        },
+                                                  
+                                    }
+                                });
+                    }catch(error) {
+
+                    }
+                },error: function (xhr, status, error) {
+                // error here...
+            },
+
+            })
     
 }
+
+
+ $('#pending_transactions_table_limit').DataTable({
+
+        "ordering": false,
+         responsive: false,
+         "pageLength": 3,
+         "ajax" : {
+                        "url": base_url + 'api/get-completed-transaction-limit',
+                        "type" : "POST",
+                        "dataSrc": "",
+
+            },
+
+            'columns': [
+           
+             {
+                data: null,
+                render: function (data, type, row) {
+                    return '<span href="javascript:;"    style="color: #000;" >'+data['pmas_no']+'</span>';
+                }
+
+            },
+             {
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"       style="color: #000;"  >'+data['date_and_time_filed']+'</a>';
+                }
+
+            },
+              {
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"       style="color: #000;"  >'+data['type_of_activity_name']+'</a>';
+                }
+
+            },
+
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"       style="color: #000;"  >'+data['cso_name']+'</a>';
+                }
+
+            },
+
+            {
+                data: null,
+                render: function (data, type, row) {
+                    return '<a href="javascript:;"       style="color: #000;"  >'+data['name']+'</a>';
+                }
+
+            },
+         
+          ]
+    })
+
+
+load_admin_chart(year);
 
 
 </script>

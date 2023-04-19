@@ -54,9 +54,19 @@
                         <td class="inventories text-right"> </td>
                      </tr>
 
-                      <tr>
+                 <!--      <tr>
                         <td style="font-weight: bold;">Total</td>
                         <td class="total_project_data text-right" style="font-weight: bold;"   > </td>
+                     </tr> -->
+
+                     <tr>
+                        <td style="font-weight: bold;">Total Volume of Business</td>
+                        <td class="total_volume_of_business_ text-right" style="font-weight: bold;"   > </td>
+                     </tr>
+
+                     <tr>
+                        <td style="font-weight: bold;">Total Cash Position</td>
+                        <td class="total_cash_position_ text-right" style="font-weight: bold;"   > </td>
                      </tr>
           
              

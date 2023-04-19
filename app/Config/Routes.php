@@ -69,6 +69,8 @@ $routes->group('user', function($routes) {
     $routes->add('completed-rfa', 'user\PendingRFAController::index',['filter' => 'authGuard']);
     $routes->add('pending-rfa', 'user\CompletedRFAController::index',['filter' => 'authGuard']);
     $routes->add('activity-logs', 'user\ActivityLogsController::index',['filter' => 'authGuard']);
+
+    $routes->add('request-for-assistance', 'user\RequestForAssistanceController::index',['filter' => 'authGuard']);
 });
 
 $routes->get('user/pending-transactions/add-transaction', 'user\PendingTransactionsController::add_transaction',['filter' => 'authGuard']);
@@ -139,6 +141,13 @@ $routes->post('api/admin/add-remark', 'api\PendingTransactions::add_remark');
 $routes->post('api/admin/generate-pmas-report', 'api\Transactions::generate_pmas_report');
 
 
+//Admin Dashboard
+$routes->post('api/load-admin-chart-transaction-data', 'api\Transactions::get_admin_chart_transaction_data');
+$routes->post('api/get-completed-transaction-limit', 'api\PendingTransactions::get_admin_completed_transaction_limit');
+
+
+$routes->post('api/count-pending-transactions', 'api\PendingTransactions::count_pending_transactions');
+
 
 //User Api:
 $routes->post('api/get-last-pmas-number', 'api\PendingTransactions::get_last_pmas_number');
@@ -156,6 +165,14 @@ $routes->post('api/completed', 'api\PendingTransactions::update_completed');
 //Completed Transactions
 $routes->post('api/get-all-transactions', 'api\Transactions::get_all_transactions');
 $routes->post('api/get-transaction-data', 'api\Transactions::get_transaction_data');
+
+
+//User Dashboard
+$routes->post('api/load-user-chart-transaction-data', 'api\Transactions::get_user_chart_transaction_data');
+
+
+///User Search Names
+$routes->post('api/search-names', 'api\Clients::search_name');
 
 
 

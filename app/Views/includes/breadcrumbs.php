@@ -12,7 +12,7 @@
         <div class="col-sm-6 clearfix">
             <div class=" pull-right">
                 <?php if (session()->get('user_type') == 'user') { ?>
-                <a href="" class="btn sub-button mb-2 mt-2 mr-2" >Request for Assistance</a>       
+                <a href="javascript:;" id="request_for_assistance" class="btn sub-button mb-2 mt-2 mr-2" >Request for Assistance</a>       
                  <a href="javascript:;" id="add_transactions" class="btn sub-button mb-2 mt-2 mr-2" >Add Transaction</a>  
                  <?php } ?>              
                 <a href="" style="color: #000; font-size: 20px;"><?php echo session()->get('username') ?></a> 
@@ -20,4 +20,4 @@
             </div>
         </div>
     </div>
-</div>
+<?php

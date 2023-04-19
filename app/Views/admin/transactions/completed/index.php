@@ -63,19 +63,20 @@
                                                            <th>Type of Activity</th>
                                                            <th>CSO</th>
                                                            <th>Person Responsible</th>
-                                                           
+                                                            <th>Action</th>
                                                        </tr>
                                                    </thead> 
 
-                                                    <tfoot>
+                                                   <!--  <tfoot>
                                                         <tr>
                                                             
-                                                           <th></th>
-                                                           <th></th>
-                                                           <th></th>
-                                                           <th></th>
+                                                            <th></th>
+                                                           <th>Date & Time Filed</th>
+                                                           <th>Type of Activity</th>
+                                                           <th>CSO</th>
+                                                           <th>Person Responsible</th>
                                                         </tr>
-                                                    </tfoot>                                     
+                                                    </tfoot>               -->                       
                                                </table>   
                                             </div>
                                         </div>
@@ -167,7 +168,10 @@ $(document).on('click','a#view_project_monitoring',function (e) {
                 $('.cash_in_bank').text('₱ ' +data.cash_in_bank)
                 $('.cash_on_hand').text('₱ ' +data.cash_on_hand)
                 $('.inventories').text('₱ ' +data.inventories)
-                $('.total_project_data').text('₱ ' +data.total)
+                // $('.total_project_data').text('₱ ' +data.total);
+
+                $('.total_volume_of_business_').text('₱ ' +data.total_volume_of_business)
+                $('.total_cash_position_').text('₱ ' +data.total_cash_position)
 
             }
 
@@ -246,29 +250,21 @@ function generate_pmas_report(date_filter,filter_type_of_activity){
 
                          'columns': [
             {
-                // data: "song_title",
-                data: null,
-                render: function (data, type, row) {
-                    return '<b><a href="javascript:;"   data-id="'+data['res_center_id']+'"  style="color: #000;"  >'+data['pmas_no']+'</a></b>';
-                }
+             
+                data: 'pmas_no',
+                
 
             },
              {
-                // data: "song_title",
-                data: null,
-                render: function (data, type, row) {
-                     return data.date_and_time_filed;
-                }
+                data: 'date_and_time_filed',
+               
 
             },
 
              {
-                // data: "song_title",
-                data: null,
-                render: function (data, type, row) {
-                    return data.type_of_activity_name;
-                }
-
+                data: "type_of_activity_name",
+                
+               
             },
 
 
@@ -285,31 +281,38 @@ function generate_pmas_report(date_filter,filter_type_of_activity){
 
             },
 
+            {
+              
+                data: 'name',
+                
+
+            },
+
             ],
 
 
-            initComplete: function () {
-            this.api()
-                .columns(['3'])
-                .every(function () {
-                    var column = this;
-                    var select = $('<select class="custom-select"><option value="" >Filter CSO</option></select>')
-                        .appendTo($(column.footer()).empty())
-                        .on('change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        //     initComplete: function () {
+        //     this.api()
+        //         .columns()
+        //         .every(function () {
+        //             var column = this;
+        //             var select = $('<select class="custom-select"><option value="" ></option></select>')
+        //                 .appendTo($(column.footer()).empty())
+        //                 .on('change', function () {
+        //                     var val = $.fn.dataTable.util.escapeRegex($(this).val());
  
-                            column.search(val ? '^' + val + '$' : '', true, false).draw();
-                        });
+        //                     column.search(val ? '^' + val + '$' : '', true, false).draw();
+        //                 });
  
-                    column
-                        .data()
-                        .unique()
-                        .sort()
-                        .each(function (d, j) {
-                            select.append('<option value="' + d + '">' + d + '</option>');
-                        });
-                });
-        },
+        //             column
+        //                 .data()
+        //                 .unique()
+        //                 .sort()
+        //                 .each(function (d, j) {
+        //                     select.append('<option value="' + d + '">' + d + '</option>');
+        //                 });
+        //         });
+        // },
 
        // "footerCallback": function (row, data, start, end, display) {
        //              var api = this.api(), data;

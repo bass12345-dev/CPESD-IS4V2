@@ -53,6 +53,22 @@ class TransactionModel extends Model
 
 
 
+    public function getAdminPendingTransactionsLimit(){
+
+         $builder = $this->db->table('transactions');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
+        $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
+        $builder->join('users','users.user_id = transactions.created_by');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->where('transactions.transaction_status','pending');
+        $builder->orderBy('transactions.number','desc');
+        $builder->limit(10);
+        $query = $builder->get()->getResult();
+        return $query;
+    }
+
+
     public function getAdminPendingTransactions(){
 
          $builder = $this->db->table('transactions');
@@ -121,4 +137,34 @@ class TransactionModel extends Model
         return $query;
 
     }
+
+
+
+
+    public function count_transaction_chart($table,$m,$y,$status){
+
+        $builder = $this->db->table('transactions');
+        $builder->where('MONTH(date_and_time_filed)',$m);
+        $builder->where('YEAR(date_and_time_filed)',$y);
+        $builder->where('transactions.transaction_status',$status);
+        $query = $builder->countAllResults();
+        return $query; 
+
+    }
+
+
+
+    public function count_user_transaction_chart($table,$m,$y,$status,$where){
+
+        $builder = $this->db->table('transactions');
+        $builder->where('MONTH(date_and_time_filed)',$m);
+        $builder->where('YEAR(date_and_time_filed)',$y);
+        $builder->where('transactions.transaction_status',$status);
+        $builder->where($where);
+        $query = $builder->countAllResults();
+        return $query; 
+
+    }
+
+
 }

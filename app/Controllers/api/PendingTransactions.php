@@ -5,6 +5,7 @@ namespace App\Controllers\Api;
 use App\Controllers\BaseController;
 use App\Models\CustomModel;
 use App\Models\TransactionModel;
+use Config\Custom_config;
 
 class PendingTransactions extends BaseController
 {
@@ -18,6 +19,7 @@ class PendingTransactions extends BaseController
     protected $CustomModel;
     protected $TransactionModel;
     protected $db;
+       public $config;
 
     public function __construct()
     {
@@ -25,6 +27,7 @@ class PendingTransactions extends BaseController
        $this->CustomModel               = new CustomModel($this->db); 
        $this->TransactionModel          = new TransactionModel($this->db); 
        $this->request                   = \Config\Services::request();  
+        $this->config = new Custom_config;
     }
 
     public function get_last_pmas_number()
@@ -209,6 +212,37 @@ class PendingTransactions extends BaseController
         }
     }
 
+
+public function get_admin_completed_transaction_limit(){
+
+    $data = [];
+
+    $items = $this->TransactionModel->getAdminPendingTransactionsLimit();
+
+    foreach ($items as $row ) {
+
+
+
+        $data[] = array(
+                            'transaction_id'        => $row->transaction_id,
+                            'pmas_no'               => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                            'date_and_time_filed'   => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                            'responsible_section'   => $row->responsible_section_name,
+                            'type_of_activity_name' => $row->type_of_activity_name,
+                            'responsibility_center' => $row->responsibility_center_code.' - '.$row->responsibility_center_name,
+                            'date_and_time'         => date('F d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
+                            'is_training'           => $row->is_training == 1 ? true : false,
+                            'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
+                            'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'cso_name'              => $row->cso_name,
+                           
+                );
+
+
+    }
+
+     echo json_encode($data);
+}
 
 
     public function get_admin_pending_transactions(){
@@ -504,6 +538,25 @@ public function update_completed(){
         }
 
         echo json_encode($resp);
+
+}
+
+
+public function count_pending_transactions(){
+    $count = 0;
+
+    if (session()->get('user_type') == $this->config->user_type[0]) {
+
+        $where = array('transaction_status' => 'pending');
+        $count = $this->CustomModel->countwhere($this->transactions_table,$where);
+       
+    }else if (session()->get('user_type') == $this->config->user_type[1]) {
+        
+        $where = array('transaction_status' => 'pending','created_by' => session()->get('user_id'));
+        $count = $this->CustomModel->countwhere($this->transactions_table,$where);
+    }
+
+    echo $count;
 
 }
 

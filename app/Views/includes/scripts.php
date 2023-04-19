@@ -83,6 +83,23 @@
     });
 
 
+     function load_total_pending_transactions(){
+
+            $.ajax({
+                    type: "POST",
+                    url: base_url + 'api/count-pending-transactions',
+                    cache: false,
+                    dataType: 'json',  
+                    success: function(data){
+
+                        $('.count_pending').text(data);
+                    }
+
+                })
+     }
+
+     load_total_pending_transactions();
+
      $(document).on('click','a#add_transactions',function (e) {
 
         window.open( base_url + 'user/pending-transactions/add-transaction','_blank');
@@ -90,6 +107,11 @@
         });
 
 
+    $(document).on('click','a#request_for_assistance',function (e) {
+
+        window.open( base_url + 'user/request-for-assistance','_blank');
+
+        });
     
     $(document).on('click','#back-button',function (e) {window.history.back();});
    

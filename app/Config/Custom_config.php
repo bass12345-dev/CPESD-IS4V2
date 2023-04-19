@@ -78,6 +78,10 @@ class Custom_config extends BaseConfig
     public $folder_name = ['cor_folder_name' => 'cor','bylaws_folder_name' => 'bylaws', 'aoc_folder_name' => 'aoc' , 'other_docs_folder_name' => 'other_docs'];
   
     public $type_of_activity = ['rmpm' => 'Regular Monthly Project Monitoring'];
+
+    public $user_type = ['admin','user'];
+
+    public $employment_status = ['employed','self-employed','unemployed and actively looking for work', 'underemployed'];
  
 
 } 

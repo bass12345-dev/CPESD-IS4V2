@@ -25,7 +25,7 @@
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">PMAS  </span>
                             <li class="<?= $page == 'dashboard' ? 'active' : ''?>"><a href="<?php echo base_url('admin/dashboard') ?>" ><i class="fa fa-dashboard"></i> <span>Dashboard </span></a></li>
                            
-                            <li  class="<?= $page == 'pending-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-transactions') ?>"><i class="fa fa-hourglass-start"></i> <span>Pending Transactions</span> <span class="badge badge-danger count_pending">4</span></a></li>
+                            <li  class="<?= $page == 'pending-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-transactions') ?>"><i class="fa fa-hourglass-start"></i> <span>Pending Transactions</span> <span class="badge badge-danger count_pending">0</span></a></li>
                             <li class="<?= $page == 'cso' ? 'active' : ''?>"><a href="<?php echo base_url('admin/cso') ?>"><i class="fa fa-sitemap"></i> <span>CSO </span></a></li>
                             <li class="<?= $page == 'responsibility-center' ? 'active' : ''?>"><a href="<?php echo base_url('admin/responsibility-center') ?>"><i class="fa fa-chevron-right"></i> <span>Responsibilty Center</span></a></li>
                             <li class="<?= $page == 'responsible-section' ? 'active' : ''?>"><a href="<?php echo base_url('admin/responsible-section') ?>"><i class="fa fa-chevron-right"></i> <span>Responsible Section</span></a></li>
@@ -61,6 +61,7 @@
                             
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA</span>
+                            <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="<?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span></a></li>
                             <hr> 

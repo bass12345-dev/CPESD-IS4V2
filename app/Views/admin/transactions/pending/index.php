@@ -412,6 +412,7 @@ $('#add_remarks_modal').on('submit', function(e) {
 
                         $('#pending_transactions_table').DataTable().destroy();
                        fetch_pending_transactions();
+                       load_total_pending_transactions()
                                 
                                }
 

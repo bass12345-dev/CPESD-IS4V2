@@ -85,7 +85,7 @@ class Transactions extends BaseController
             
             $data[] = array(
                             'transaction_id' => $row->transaction_id,
-                            'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                            'pmas_no' => '<b>'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'</b>',
                             'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
                            'type_of_activity_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;"    data-id="'.$row->transaction_id.'"  style="color: #000;"  >'.$row->type_of_activity_name.'</a>' : $row->type_of_activity_name,
                             'cso_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;" data-title="'.$row->cso_name.'" id="view_project_monitoring"    data-id="'.$row->transaction_id.'" style="color: #000; font-weight: bold;"  >'.$row->cso_name.'</a>' : $row->cso_name,
@@ -115,7 +115,7 @@ class Transactions extends BaseController
 
             $data[] = array(
                             'transaction_id' => $row->transaction_id,
-                            'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                            'pmas_no' => '<b>'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'</b>',
                             'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
                             'type_of_activity_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;"    data-id="'.$row->transaction_id.'"  style="color: #000; "  >'.$row->type_of_activity_name.'</a>' : $row->type_of_activity_name,
                             'cso_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;" data-title="'.$row->cso_name.'" id="view_project_monitoring"    data-id="'.$row->transaction_id.'"  style="color: #000; font-weight: bold;"  >'.$row->cso_name.'</a>' : $row->cso_name,
@@ -154,6 +154,19 @@ public function get_transaction_data(){
                     'cash_in_bank'              => $item->cash_in_bank,
                     'cash_on_hand'              => $item->cash_on_hand,
                     'inventories'               => $item->inventories,
+                    'total_volume_of_business'  => number_format(array_sum(array(
+
+                                                    $item->total_collection_sales,
+                                                    $item->total_released_purchases,
+                                                    
+                                                        )), 2, '.', ','),
+                    'total_cash_position'       => number_format(array_sum(array(
+
+                                                    $item->cash_in_bank,
+                                                    $item->cash_on_hand,
+                                                    $item->inventories
+                                                    
+                                                        )), 2, '.', ','),
                     'total'                     => number_format(array_sum(array(
 
                                                     $item->nom_borrowers_delinquent,
@@ -174,5 +187,67 @@ public function get_transaction_data(){
 
 }
 
+
+
+
+public function get_admin_chart_transaction_data(){
+
+        $year = $this->request->getPost('year');
+        $months = array();
+        $completed_transactions = array();
+        $pending_transactions = array();
+
+        for ($m = 1; $m <= 12; $m++) {
+
+            $completed_transaction = $this->TransactionModel->count_transaction_chart($this->transactions_table,$m,$year,'completed');
+            array_push($completed_transactions, $completed_transaction);
+
+
+            $pending_transaction = $this->TransactionModel->count_transaction_chart($this->transactions_table,$m,$year,'pending');
+            array_push($pending_transactions, $pending_transaction);
+           
+            $month =  date('M', mktime(0, 0, 0, $m, 1));
+            array_push($months, $month);
+        }
+
+
+        $data['label'] = $months;
+        $data['data_pending'] = $pending_transactions;
+        $data['data_completed'] = $completed_transactions;
+        echo json_encode($data);
+
+            
+}
+
+
+
+public function get_user_chart_transaction_data(){
+
+        $year = $this->request->getPost('year');
+        $months = array();
+        $completed_transactions = array();
+        $pending_transactions = array();
+        $where = array('created_by' => session()->get('user_id'));
+        for ($m = 1; $m <= 12; $m++) {
+
+            $completed_transaction = $this->TransactionModel->count_user_transaction_chart($this->transactions_table,$m,$year,'completed',$where);
+            array_push($completed_transactions, $completed_transaction);
+
+
+            $pending_transaction = $this->TransactionModel->count_user_transaction_chart($this->transactions_table,$m,$year,'pending',$where);
+            array_push($pending_transactions, $pending_transaction);
+           
+            $month =  date('M', mktime(0, 0, 0, $m, 1));
+            array_push($months, $month);
+        }
+
+
+        $data['label'] = $months;
+        $data['data_pending'] = $pending_transactions;
+        $data['data_completed'] = $completed_transactions;
+        echo json_encode($data);
+
+            
+}
 
 }

@@ -22,5 +22,86 @@
         </div>
     </div>     
 <?php echo view('includes/scripts.php') ?>   
+
+<script type="text/javascript">
+        
+    var year = $('#user_year option:selected').val(); 
+    function load_user_graph($this){load_user_chart($this.value)}
+
+    function load_user_chart(year){
+
+
+        $.ajax({
+                url : base_url + 'api/load-user-chart-transaction-data',
+                data:{year : year},
+                method : 'POST',
+                dataType : 'json',
+                success : function(data)
+                {
+
+                     try{
+                                 new Chart(document.getElementById("user-bar-chart"), {
+                                    type: 'bar',
+                                    data: {
+                                      labels: data.label,
+                                      datasets: [
+                                        {
+                                            label               : 'Completed Transactions',
+                                             backgroundColor    :  "#3F6BA4",
+                                             borderColor: 'rgb(23, 125, 255)',
+                                            data                : data.data_completed
+                                        },
+                                        {
+                                            label               : 'Pending Transactions',
+                                             backgroundColor    :  '#e00d14',
+                                             borderColor: 'rgb(23, 125, 255)',
+                                            data                : data.data_pending
+                                        }
+                                      ]
+                                    },
+                                    options: {
+
+                                     legend: {
+                                                position: 'top',
+                                                labels: {
+                                                    padding: 10,
+                                                    fontColor: '#007bff',
+                                                }
+                                            },
+                                            
+
+                                     responsive: true,
+                                      title: {
+                                        display: true,
+                                        text: 'Transactions in year ' + year
+                                      },
+
+                                      scales: {
+                                            y: {
+                                                
+                                                    beginAtZero: true
+                                                
+                                            }
+                                        },
+                                                  
+                                    }
+                                });
+                    }catch(error) {
+
+                    }
+                },error: function (xhr, status, error) {
+                // error here...
+            },
+
+
+        })
+
+    }
+
+
+    load_user_chart(year);
+
+
+</script>
 </body>
 </html>
