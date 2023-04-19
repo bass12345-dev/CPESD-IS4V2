@@ -277,7 +277,7 @@ $(document).on('click', 'button.close-under-type', function () {
 
 $('#add_transaction_form').on('submit', function(e) {
     e.preventDefault();
-    if ( $('input[name=pmas_number]') == '' ) {
+    if ( $('input[name=pmas_number]').val() == '' ) {
 
         alert('something');
 

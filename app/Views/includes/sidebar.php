@@ -17,7 +17,7 @@
 
                             $last = $request->uri->getSegments();
                             $page = $request->uri->getSegment(2);
-
+                            $first_page = $request->uri->getSegment(1);
                             if (session()->get('user_type') == 'admin') {
                             
                              ?>
@@ -36,6 +36,7 @@
                             
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA</span>
+                             <li class="<?= $page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="scroll-down <?= $page == 'type-of-request' ? 'active' : ''?>"><a href="<?php echo base_url('admin/type-of-request') ?>"><i class="fa fa-history"></i> <span>Type Of Request</span></a></li>
                             <li class="scroll-down <?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="scroll-down <?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span></a></li>
@@ -57,12 +58,12 @@
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">PMAS</span>
                             <li class="<?= $page == 'dashboard' ? 'active' : ''?>"><a href="<?php echo base_url('user/dashboard') ?>" ><i class="fa fa-dashboard"></i> <span>Dashboard </span></a></li>
                             <li class="<?= $page == 'completed-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-transactions') ?>"><i class="fa fa-file"></i> <span>Completed Transactions </span></a></li>
-                            <li  class="<?= $page == 'pending-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-transactions') ?>"><i class="fa fa-hourglass-start"></i> <span>Pending Transactions</span> <span class="badge badge-danger count_pending">4</span></a></li>
+                            <li  class="<?= $page == 'pending-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-transactions') ?>"><i class="fa fa-hourglass-start"></i> <span>Pending Transactions</span> <span class="badge badge-danger count_pending">0</span></a></li>
                             
                             
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA</span>
-                            <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
+                            <li class="<?= $first_page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="<?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span></a></li>
                             <hr> 

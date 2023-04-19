@@ -74,6 +74,8 @@ $routes->group('user', function($routes) {
     $routes->add('request-for-assistance', 'user\RequestForAssistanceController::index',['filter' => 'authGuard']);
 });
 
+$routes->get('clients', 'ClientsController::index',['filter' => 'authGuard']);
+
 $routes->get('user/pending-transactions/add-transaction', 'user\PendingTransactionsController::add_transaction',['filter' => 'authGuard']);
 
 
@@ -183,8 +185,8 @@ $routes->post('api/add-client', 'api\Clients::add_client');
 
 
 //RFA
-$routes->post('api/add-rfa', 'api\TypeofRequest::add_rfa');
-
+$routes->post('api/add-rfa', 'api\PendingRFATransactions::add_rfa');
+$routes->post('api/get-all-rfa-transactions', 'api\CompletedRFATransactions::get_all_rfa_transactions');
 
 /*
  * --------------------------------------------------------------------
