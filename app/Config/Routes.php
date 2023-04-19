@@ -182,7 +182,7 @@ $routes->post('api/load-user-chart-transaction-data', 'api\Transactions::get_use
 ///Client
 $routes->post('api/search-names', 'api\Clients::search_name');
 $routes->post('api/add-client', 'api\Clients::add_client');
-
+$routes->post('api/get-clients', 'api\Clients::get_clients');
 
 //RFA
 $routes->post('api/add-rfa', 'api\PendingRFATransactions::add_rfa');

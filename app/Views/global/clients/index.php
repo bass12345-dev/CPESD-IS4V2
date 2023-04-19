@@ -33,6 +33,60 @@
 <?php echo view('includes/scripts.php') ?>   
 
 <script type="text/javascript">
+
+    var rfa_clients_table = $('#rfa_clients_table').DataTable({
+            responsive: false,
+            "ajax" : {
+                        "url": base_url + 'api/get-clients',
+                        "type" : "POST",
+                        "dataSrc": "",
+            },
+            'columns': [
+             {
+              
+                data: "full_name" ,
+               
+
+            },
+             {
+               
+                data: "address",
+               
+
+            },
+             {
+               
+                data: "contact_number",
+                
+
+            },
+            {
+                
+                data: "age",
+               
+            },
+            {
+               
+                data: "employment_status",
+               
+
+            },
+
+            {
+              
+                data: null,
+                render: function (data, type, row) {
+                    return '<ul class="d-flex justify-content-center">\
+                                <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-secondary action-icon"><i class="fa fa-edit"></i></a></li>\
+                                 <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-success action-icon"><i class="fa fa-eye"></i></a></li>\
+                                </ul>';
+                }
+
+            },
+
+          
+          ]
+        });   
     
 </script>
 

@@ -36,7 +36,7 @@
                             
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA</span>
-                             <li class="<?= $page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
+                             <li class="<?= $first_page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="scroll-down <?= $page == 'type-of-request' ? 'active' : ''?>"><a href="<?php echo base_url('admin/type-of-request') ?>"><i class="fa fa-history"></i> <span>Type Of Request</span></a></li>
                             <li class="scroll-down <?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="scroll-down <?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span></a></li>

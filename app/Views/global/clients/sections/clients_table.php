@@ -9,7 +9,7 @@
                               <th>Contact Number</th>
                               <th>Age</th>
                               <th>Employment Status</th>
-                              
+                               <th>Action</th>
                            </tr>
                         </thead>
                      </table>
