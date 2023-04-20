@@ -388,7 +388,9 @@ public function get_admin_completed_transaction_limit(){
 
         $data = [];
 
-        $items = $this->TransactionModel->getAdminPendingTransactions();
+        $where = array('created_by' => session()->get('user_id'));
+
+        $items = $this->TransactionModel->getUserPendingTransactions($where);
 
         foreach ($items as $row ) {
 

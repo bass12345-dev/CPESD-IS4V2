@@ -47,8 +47,8 @@ $routes->group('admin', function($routes) {
     $routes->add('responsible-section', 'admin\ResponsibleSectionController::index',['filter' => 'authGuard']);
     $routes->add('type-of-activity', 'admin\TypeofActivityController::index',['filter' => 'authGuard']);
     $routes->add('users', 'admin\UserController::index',['filter' => 'authGuard']);
-    $routes->add('completed-rfa', 'admin\PendingRFAController::index',['filter' => 'authGuard']);
-    $routes->add('pending-rfa', 'admin\CompletedRFAController::index',['filter' => 'authGuard']);
+    $routes->add('completed-rfa', 'admin\CompletedRFAController::index',['filter' => 'authGuard']);
+    $routes->add('pending-rfa', 'admin\PendingRFAController::index',['filter' => 'authGuard']);
     $routes->add('back-up-database', 'admin\BackupDatabaseController::index',['filter' => 'authGuard']);
     $routes->add('activity-logs', 'admin\ActivityLogsController::index',['filter' => 'authGuard']);
     $routes->add('type-of-request', 'admin\TypeofRequestController::index',['filter' => 'authGuard']);
@@ -67,11 +67,18 @@ $routes->group('user', function($routes) {
     $routes->add('dashboard', 'user\DashboardController::index',['filter' => 'authGuard']);
     $routes->add('completed-transactions', 'user\CompletedTransactionsController::index',['filter' => 'authGuard']);
     $routes->add('pending-transactions', 'user\PendingTransactionsController::index',['filter' => 'authGuard']);
-    $routes->add('completed-rfa', 'user\PendingRFAController::index',['filter' => 'authGuard']);
-    $routes->add('pending-rfa', 'user\CompletedRFAController::index',['filter' => 'authGuard']);
+    $routes->add('completed-rfa', 'user\CompletedRFAController::index',['filter' => 'authGuard']);
+    $routes->add('pending-rfa', 'user\PendingRFAController::index',['filter' => 'authGuard']);
     $routes->add('activity-logs', 'user\ActivityLogsController::index',['filter' => 'authGuard']);
 
     $routes->add('request-for-assistance', 'user\RequestForAssistanceController::index',['filter' => 'authGuard']);
+});
+
+
+$routes->group('user/rfa', function($routes) {
+    $routes->add('received', 'user\ReceivedController::index',['filter' => 'authGuard']);
+     $routes->add('track', 'user\TrackRFAController::index',['filter' => 'authGuard']);
+    
 });
 
 $routes->get('clients', 'ClientsController::index',['filter' => 'authGuard']);
@@ -173,6 +180,7 @@ $routes->post('api/completed', 'api\PendingTransactions::update_completed');
 //Completed Transactions
 $routes->post('api/get-all-transactions', 'api\Transactions::get_all_transactions');
 $routes->post('api/get-transaction-data', 'api\Transactions::get_transaction_data');
+$routes->post('api/user/get-user-completed-transactions', 'api\Transactions::get_user_completed_transactions');
 
 
 //User Dashboard
@@ -187,6 +195,8 @@ $routes->post('api/get-clients', 'api\Clients::get_clients');
 //RFA
 $routes->post('api/add-rfa', 'api\PendingRFATransactions::add_rfa');
 $routes->post('api/get-all-rfa-transactions', 'api\CompletedRFATransactions::get_all_rfa_transactions');
+$routes->post('api/get-user-pending-rfa', 'api\PendingRFATransactions::get_user_pending_rfa_transactions');
+
 
 /*
  * --------------------------------------------------------------------

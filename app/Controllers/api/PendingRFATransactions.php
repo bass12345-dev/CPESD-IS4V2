@@ -29,16 +29,19 @@ class PendingRFATransactions extends BaseController
           if ($this->request->isAJAX()) {
 
             $data = array(
+                'rfa_tracking_code'         => mt_rand().date('Ymd', time()).$this->request->getPost('reference_number'),
                 'number'                    => $this->request->getPost('reference_number'),
-                'rfa_date_filed'       =>  date('Y-m-d H:i:s', time()),
-                'type_of_transaction'    =>$this->request->getPost('type_of_transaction'),
-                'tor_id'       => $this->request->getPost('type_of_request'),
-                'client_id'                    => $this->request->getPost('client_id'),
-                'rfa_created_by' => session()->get('user_id'),
-                'rfa_status'        => 'pending'        
+                'rfa_date_filed'            =>  date('Y-m-d H:i:s', time()),
+                'type_of_transaction'       =>$this->request->getPost('type_of_transaction'),
+                'tor_id'                    => $this->request->getPost('type_of_request'),
+                'client_id'                 => $this->request->getPost('client_id'),
+                'rfa_created_by'            => session()->get('user_id'),
+                'rfa_status'                => 'pending'        
             );
 
-            
+
+
+    
              $array_where = array(
 
                     'rfa_date_filed'   => date('Y-m', time()),
@@ -53,6 +56,16 @@ class PendingRFATransactions extends BaseController
             $result  = $this->CustomModel->addData($this->rfa_transactions_table,$data);
 
              if ($result) {
+
+                // $tracking_history = array(
+
+                //                     'track_code' => $data['rfa_tracking_code'],
+                //                     'received_by' => $this->db->insertID(),
+                //                     'received_date_and_time'    => date('Y-m-d H:i:s', time()),
+                                    
+                // );
+
+                  
 
                     $resp = array(
                     'message' => 'Data Saved Successfully',
@@ -79,5 +92,30 @@ class PendingRFATransactions extends BaseController
            echo json_encode($resp);
 
           }
+    }
+
+
+    public function get_user_pending_rfa_transactions(){
+
+
+        $data = [];
+        $where = array('created_by' => session()->get('user_id'));
+        $items = $this->RFAModel->getUserPendingRFA($where);
+
+        foreach ($items as $row) {
+            
+                $data[] = array(
+
+                        'rfa_id '               => $row->rfa_id ,
+                        'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_transaction'   => $row->type_of_transaction,
+                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay
+
+                       
+                );
+        }
+
+        echo json_encode($data);
     }
 }

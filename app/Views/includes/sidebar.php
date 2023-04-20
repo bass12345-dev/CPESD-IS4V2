@@ -18,6 +18,7 @@
                             $last = $request->uri->getSegments();
                             $page = $request->uri->getSegment(2);
                             $first_page = $request->uri->getSegment(1);
+                            $third_page = $request->uri->getSegment(3);
                             if (session()->get('user_type') == 'admin') {
                             
                              ?>
@@ -66,6 +67,18 @@
                             <li class="<?= $first_page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="<?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span></a></li>
+                            <li class="<?= $third_page == 'received' || $third_page == 'track' ? 'active' : ''?>">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>RFA Tracker</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="linechart.html">Incoming</a></li>
+                                    <li class="<?= $third_page == 'received' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/received') ?>" >Received</a></li>    
+                                    <li><a href="piechart.html">Outgoing</a></li>
+                                    <li class="<?= $third_page == 'track' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/track') ?>">Tracker</a></li>
+                               
+                                </ul>
+                            </li>
+                            <li>
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span>
                            

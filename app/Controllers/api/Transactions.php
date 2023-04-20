@@ -250,4 +250,28 @@ public function get_user_chart_transaction_data(){
             
 }
 
+
+
+public function get_user_completed_transactions(){
+
+    $items = $this->TransactionModel->getUserCompletedTransactions(array('created_by' => session()->get('user_id')));
+
+
+     foreach ($items as $row) {
+            
+               $data[] = array(
+                            'transaction_id' => $row->transaction_id,
+                            'pmas_no' => '<b>'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'</b>',
+                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                            'type_of_activity_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;"    data-id="'.$row->transaction_id.'"  style="color: #000; "  >'.$row->type_of_activity_name.'</a>' : $row->type_of_activity_name,
+                            'cso_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;" data-title="'.$row->cso_name.'" id="view_project_monitoring"    data-id="'.$row->transaction_id.'"  style="color: #000; font-weight: bold;"  >'.$row->cso_name.'</a>' : $row->cso_name,
+                            
+                            'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            
+                );
+        }
+
+        echo json_encode($data);
+}
+
 }
