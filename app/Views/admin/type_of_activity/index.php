@@ -43,11 +43,7 @@
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<ul class="d-flex justify-content-center">\
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['type_of_activity_id']+'" data-name="'+data['type_of_activity_name']+'" id="update-activity"><i class="fa fa-edit"></i></a></li>\
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['type_of_activity_id']+'" data-name="'+data['type_of_activity_name']+'" id="add-under-activity"><i class="fa fa-arrow-down"></i></a></li>\
-                                <li><a href="javascript:;" data-id="'+data['type_of_activity_id']+'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
-                                </ul>';
+                    return row.action;
                 }
 
             },

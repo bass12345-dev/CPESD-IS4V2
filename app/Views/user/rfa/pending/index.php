@@ -34,7 +34,7 @@
 
 
 
-     var activity_table = $('#rfa_pending_table').DataTable({
+     var rfa_pending_table = $('#rfa_pending_table').DataTable({
 
             responsive: false,
             "ajax" : {

@@ -53,21 +53,26 @@ class PendingRFATransactions extends BaseController
 
            if(!$verify){
 
-            $result  = $this->CustomModel->addData($this->rfa_transactions_table,$data);
+            $result  = $this->RFAModel->addRFA();
+
+             // $tracking_history = array(
+
+
+             //        'track_code' => $data['rfa_tracking_code'],
+             //        'received_by' => $result,
+             //        'received_date_and_time'    => date('Y-m-d H:i:s', time()),
+              
+             //    );
 
              if ($result) {
 
-                // $tracking_history = array(
-
-                //                     'track_code' => $data['rfa_tracking_code'],
-                //                     'received_by' => $this->db->insertID(),
-                //                     'received_date_and_time'    => date('Y-m-d H:i:s', time()),
-                                    
-                // );
+                    
 
                   
 
                     $resp = array(
+
+                   
                     'message' => 'Data Saved Successfully',
                     'response' => true
                     );
@@ -96,6 +101,31 @@ class PendingRFATransactions extends BaseController
 
 
     public function get_user_pending_rfa_transactions(){
+
+
+        $data = [];
+        $where = array('created_by' => session()->get('user_id'));
+        $items = $this->RFAModel->getUserPendingRFA($where);
+
+        foreach ($items as $row) {
+            
+                $data[] = array(
+
+                        'rfa_id '               => $row->rfa_id ,
+                        'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_transaction'   => $row->type_of_transaction,
+                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay
+
+                       
+                );
+        }
+
+        echo json_encode($data);
+    }
+
+
+public function get_user_received_rfa_transactions(){
 
 
         $data = [];

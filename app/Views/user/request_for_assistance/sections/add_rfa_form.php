@@ -25,7 +25,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Name Of Client</div>
-						<input type="text"  class="form-control input" name="name_of_client"   required />
+						<input type="text"  class="form-control input" name="name_of_client"   required onkeydown="return false;" />
 						<input type="hidden"  class="form-control input" name="client_id"    />
 					</div>
 					<div class="wizard-form-error"></div>

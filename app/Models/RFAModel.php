@@ -57,4 +57,12 @@ class RFAModel extends Model
         $query = $builder->get()->getResult();
         return $query;
     }
+
+
+    public function addRFA(){
+
+        $builder = $this->db->table('rfa_transactions');
+        $builder->insert($data);
+        return $builder->insertID();
+    }
 }

@@ -10,7 +10,7 @@ class ReceivedController extends BaseController
     {
        if (session()->get('user_type')       == 'user') {
 
-        $data['title']                       = 'Pending Transactions';
+        $data['title']                       = 'Received RFA Transactions';
         return view('user/rfa/received/index',$data);
 
         }else {

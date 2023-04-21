@@ -198,6 +198,8 @@ $routes->post('api/get-all-rfa-transactions', 'api\CompletedRFATransactions::get
 $routes->post('api/get-user-pending-rfa', 'api\PendingRFATransactions::get_user_pending_rfa_transactions');
 
 
+$routes->post('api/get-user-received-rfa', 'api\PendingRFATransactions::get_user_received_rfa_transactions');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
