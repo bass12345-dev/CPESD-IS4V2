@@ -63,11 +63,10 @@
 
             },
             {
-                // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
                     return '<ul class="d-flex justify-content-center">\
-                                <li><a href="javascript:;" data-id="'+data['type_of_activity_id']+'"  id="delete-activity"  class="text-secondary action-icon mr-2"><i class="fa fa-share"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['rfa_id']+'"  id="received-document"  class="text-success action-icon mr-2"><i class="fa fa-check"></i></a></li>\
                                 <li><a href="javascript:;" data-id="'+data['type_of_activity_id']+'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
                                 </ul>';
                 }
@@ -76,6 +75,94 @@
           ]
         });
 
+
+ $(document).on('click','a#received-document',function (e) {
+            e.preventDefault();
+
+    const id = $(this).data('id');
+
+  
+    Swal.fire({
+        title: "",
+        text: "Receive RFA",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+
+
+
+         $.ajax({
+            type: "POST",
+            url: base_url + 'api/received-rfa',
+            data: {id : id},
+            dataType: 'json',
+            
+            success: function(data)
+            { 
+                if (data.response) {
+             
+       
+                        Toastify({
+                                  text: 'Success',
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+
+                      
+                       
+                         
+                        
+                           
+             
+                }else {
+                  
+                      Toastify({
+                                  text: data.message,
+                                  className: "info",
+                                  style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                  }
+                                }).showToast();
+                        }
+
+                
+           },
+
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                
+            },
+            
+            })
+         
+       
+
+
+
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+        });
+
+
+
+                       
+                   
 
 </script>
 </body>

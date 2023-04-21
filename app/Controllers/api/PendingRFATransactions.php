@@ -8,10 +8,12 @@ use App\Models\RFAModel;
 
 class PendingRFATransactions extends BaseController
 {
-    public    $type_of_request_table        = 'type_of_request';
-    public    $rfa_transactions_table       = 'rfa_transactions';
-    public    $order_by_desc                = 'desc';
-    public    $order_by_asc                 = 'asc';
+    public    $type_of_request_table            = 'type_of_request';
+    public    $rfa_transactions_table           = 'rfa_transactions';
+    public    $rfa_transactions_history_table   = 'rfa_transaction_history';
+    public    $users_table                      = 'users';
+    public    $order_by_desc                    = 'desc';
+    public    $order_by_asc                     = 'asc';
     protected $request;
     protected $CustomModel;
     protected $RFAModel;
@@ -53,22 +55,23 @@ class PendingRFATransactions extends BaseController
 
            if(!$verify){
 
-            $result  = $this->RFAModel->addRFA();
+            $result  = $this->RFAModel->addRFA($data);
 
-             // $tracking_history = array(
+            $item = $this->CustomModel->getwhere($this->rfa_transactions_table,array('rfa_id' => $result))[0]; 
 
+            $history_logs = array(
 
-             //        'track_code' => $data['rfa_tracking_code'],
-             //        'received_by' => $result,
-             //        'received_date_and_time'    => date('Y-m-d H:i:s', time()),
-              
-             //    );
+                            'track_code' => $data['rfa_tracking_code'],
+                            'received_by' => $data['rfa_created_by'],
+                            'received_date_and_time' => $data['rfa_date_filed'],
+
+            );
 
              if ($result) {
 
-                    
 
-                  
+                $this->CustomModel->addData($this->rfa_transactions_history_table,$history_logs);
+
 
                     $resp = array(
 
@@ -111,7 +114,7 @@ class PendingRFATransactions extends BaseController
             
                 $data[] = array(
 
-                        'rfa_id '               => $row->rfa_id ,
+                        'rfa_id'               => $row->rfa_id ,
                         'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
@@ -123,6 +126,36 @@ class PendingRFATransactions extends BaseController
 
         echo json_encode($data);
     }
+
+
+public function received_rfa(){
+
+    $id = $this->request->getPost('id');
+
+
+    $data = array('remarks' => $this->request->getPost('content'));
+    $where = array('rfa_id'=>$this->request->getPost('id'));
+        $update = $this->CustomModel->updatewhere($where,$data,$this->transactions_table);
+
+        if($update){
+
+        $resp = array(
+            'message' => 'Remarks Added Successfully',
+            'response' => true
+        );
+
+        }else {
+
+            $resp = array(
+                'message' => 'Error',
+                'response' => false
+            );
+
+        }
+
+        echo json_encode($resp);
+    
+}
 
 
 public function get_user_received_rfa_transactions(){
@@ -140,7 +173,8 @@ public function get_user_received_rfa_transactions(){
                         'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
-                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay
+                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+                        'tracking_code'         => $row->rfa_tracking_code
 
                        
                 );
@@ -148,4 +182,87 @@ public function get_user_received_rfa_transactions(){
 
         echo json_encode($data);
     }
+
+    public function add_rfa_action_taken(){
+
+
+
+        $data = array('action_taken' => $this->request->getPost('content') );
+        $where = array('track_code' => $this->request->getPost('tracking_code'));
+
+        if (strtolower($this->request->getPost('type')) == 'simple') {
+
+
+            $data_update = array(
+
+                        'action_taken' => $data['action_taken'],
+                         'referred_to' => $this->CustomModel->getwhere($this->users_table,array('user_type' =>
+                            'admin'))[0]->user_id,
+                        'reffered_date_and_time' => date('Y-m-d H:i:s', time()),
+                        'rfa_tracking_status'   => 'to-complete',
+
+            );
+
+
+               $update = $this->CustomModel->updatewhere($where,$data_update,$this->rfa_transactions_history_table);
+             if($update){
+
+                    $resp = array(
+                        'message' => 'Successfully Updated',
+                        'response' => true
+                    );
+
+                }else {
+
+                    $resp = array(
+                        'message' => 'Error',
+                        'response' => false
+                    );
+
+                }
+
+                
+
+
+                }else {
+
+
+
+            $data_update = array(
+
+                        'action_taken' => $data['action_taken'],
+                       
+                        'referred_to' => $this->request->getPost('select_user'),
+                        'reffered_date_and_time' => date('Y-m-d H:i:s', time()),
+                      
+
+            );
+
+
+               $update = $this->CustomModel->updatewhere($where,$data_update,$this->rfa_transactions_history_table);
+             if($update){
+
+                    $resp = array(
+                        'message' => 'Successfully Updated',
+                        'response' => true
+                    );
+
+                }else {
+
+                    $resp = array(
+                        'message' => 'Error',
+                        'response' => false
+                    );
+
+                }
+
+
+
+                }
+
+                echo json_encode($resp);
+                
+        }
+
+     
 }
