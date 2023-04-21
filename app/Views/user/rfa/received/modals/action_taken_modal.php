@@ -20,9 +20,9 @@
                <input type="" name="transaction_type">
                 <input type="" name="rfa_id">
 
-            <div class="form-group select_user" hidden>
+            <div class="form-group select_user" >
                   <label for="exampleInputPassword1">To : </label><span class="text-danger">*</span>
-                   <select class="custom-select"  name="select_user" style="border: 1px solid;height: 45px;">
+                   <select class="custom-select"  name="select_user" style="border: 1px solid;height: 45px;" >
 
                         <option value="">Select User</option> 
                      <?php 

@@ -174,7 +174,8 @@ public function get_user_received_rfa_transactions(){
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
                         'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
-                        'tracking_code'         => $row->rfa_tracking_code
+                        'tracking_code'         => $row->rfa_tracking_code,
+                        'id'                    => $this->CustomModel->getwhere($this->users_table,array('user_type' => 'admin'))[0]->user_id
 
                        
                 );

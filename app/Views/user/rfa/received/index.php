@@ -103,7 +103,7 @@
                 data: null,
                 render: function (data, type, row) {
                     return '<ul class="d-flex justify-content-center">\
-                                <li><a href="javascript:;" data-id="'+data['tracking_code']+'" data-type="'+data['type_of_transaction']+'"  id="received-rfa"  class="text-secondary action-icon mr-2"><i class="fa fa-share"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['tracking_code']+'" data-type="'+data['type_of_transaction']+'" data-admin="'+data['id']+'"  id="received-rfa"  class="text-secondary action-icon mr-2"><i class="fa fa-share"></i></a></li>\
                                 <li><a href="javascript:;" data-id="'+data['type_of_activity_id']+'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
                                 </ul>';
                 }
@@ -119,9 +119,13 @@ $(document).on('click','a#received-rfa',function (e) {
     $('input[name=transaction_type]').val($(this).data('type'));
      $('input[name=rfa_id]').val($(this).data('id'));
     if ($(this).data('type').toLowerCase() != 'simple') {
-        $('.select_user').removeAttr('hidden');
+        $('select[name=select_user]').removeAttr('disabled');
+        $('select[name=select_user]').val('');
+
     }else {
-         $('.select_user').attr('hidden','hidden');
+
+        $('select[name=select_user]').val($(this).data('admin'));
+         $('select[name=select_user]').attr('disabled','disabled');
     }
     $('#add_action_taken_modal').modal('show');
 
