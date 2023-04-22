@@ -194,6 +194,84 @@
         })
     }
 
+
+
+
+
+
+
+    $(document).on('click','a#delete-transaction',function (e) {
+
+        var id = $(this).data('id');   
+        var name = $(this).data('name');
+
+          Swal.fire({
+        title: "",
+        text: "Delete " + name,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/user/delete-transaction',
+                            data: {id:id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                                            "",
+                                            "Success",
+                                            "success"
+                                        )
+                                $('#pending_transactions_table').DataTable().destroy();  
+                                fetch_user_pending_transactions();
+                               }else {
+
+                                 Swal.fire(
+                                            "",
+                                             data.message,
+                                             "error"
+                                           
+                                        )
+
+                               }
+
+                              
+                          
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+     });
+
       $(document).on('click','button#btn-done-remarks',function (e) {
             e.preventDefault();
 
@@ -289,6 +367,11 @@
         });
 
 
+          $(document).on('click','a#update-transaction',function (e) {
+
+        window.open( base_url + 'user/update-pmas?id=' + $(this).data('id'),'_blank');
+
+        });
 
   
 

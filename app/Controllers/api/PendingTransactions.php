@@ -384,7 +384,7 @@ public function get_admin_completed_transaction_limit(){
 
 
 
-        public function get_user_pending_transactions(){
+    public function get_user_pending_transactions(){
 
         $data = [];
 
@@ -398,11 +398,16 @@ public function get_admin_completed_transaction_limit(){
             $action = '';
             $status_display = '';
 
+            // <li><a href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="delete-transaction"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
+            //                     </ul>';
+
             if ($row->remarks == '' AND $row->action_taken_date == null) {
                 
                 $action = '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="javascript:;" data-id=""  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending"><i class="fa fa-eye"></i></a>
+                                </li>
+                                <li><a href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction"  class="text-secondary action-icon"><i class="fa fa-edit"></i></a>
+                                </li>
                                 </ul>';
                 $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Waiting for Remarks....</a>';
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
@@ -425,7 +430,7 @@ public function get_admin_completed_transaction_limit(){
             $data[] = array(
                             'transaction_id' => $row->transaction_id,
                             'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
-                            'date_and_time_filed' => date('M,d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
                             'responsible_section' => $row->responsible_section_name,
                             'type_of_activity_name' => $row->type_of_activity_name,
                             'responsibility_center' => $row->responsibility_center_code.' - '.$row->responsibility_center_name,
@@ -442,6 +447,33 @@ public function get_admin_completed_transaction_limit(){
         echo json_encode($data);
     }    
 
+
+    public function user_delete_transaction(){
+
+
+         $where = array('transaction_id' => $this->request->getPost('id'));
+
+        $result = $this->CustomModel->deleteData($this->transactions_table,$where);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+                 echo json_encode($data);
+
+    }
 
     public function add_remark(){
 

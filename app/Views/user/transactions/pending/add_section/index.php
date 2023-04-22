@@ -247,6 +247,9 @@ $(document).on('change','select#type_of_activity_select',function (e) {
 });
 
 
+
+
+
 $('#select_under_activity_form').on('submit', function(e) {
     e.preventDefault();
    

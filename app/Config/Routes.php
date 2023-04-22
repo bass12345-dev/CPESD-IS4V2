@@ -84,6 +84,7 @@ $routes->group('user/rfa', function($routes) {
 $routes->get('clients', 'ClientsController::index',['filter' => 'authGuard']);
 
 $routes->get('user/pending-transactions/add-transaction', 'user\PendingTransactionsController::add_transaction',['filter' => 'authGuard']);
+$routes->get('user/update-pmas', 'user\PendingTransactionsController::update_transaction',['filter' => 'authGuard']);
 
 
 //Sign out
@@ -183,6 +184,9 @@ $routes->post('api/get-last-reference-number', 'api\TypeOfRequest::get_last_ref_
 //Pending Transactions
 $routes->post('api/add-transaction', 'api\PendingTransactions::add_transaction');
 $routes->post('api/user/get-user-pending-transactions', 'api\PendingTransactions::get_user_pending_transactions');
+$routes->post('api/user/delete-transaction', 'api\PendingTransactions::user_delete_transaction');
+
+
 $routes->post('api/view-remark', 'api\PendingTransactions::view_remark');
 $routes->post('api/accomplished', 'api\PendingTransactions::accomplished');
 $routes->post('api/completed', 'api\PendingTransactions::update_completed');
