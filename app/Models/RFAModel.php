@@ -59,6 +59,25 @@ class RFAModel extends Model
     }
 
 
+    public function getUserReceivedRFA(){
+
+         $builder = $this->db->table('rfa_transaction_history');
+         $builder->join('users','users.user_id = rfa_transaction_history.received_by');
+         $builder->join('rfa_transactions','rfa_transactions.rfa_tracking_code = rfa_transaction_history.track_code');
+         // $builder->join('rfa_transactions','rfa_transactions.rfa_created_by = rfa_transaction_history.received_by');
+         $builder->where('rfa_transaction_history.rfa_tracking_status','received');
+         $builder->where('rfa_transaction_history.release_status',0);
+        $builder->orderBy('rfa_transaction_history.history_id','desc');
+        $query = $builder->get()->getResult();
+        return $query;
+
+
+
+
+
+    }
+
+
     public function addRFA($data){
 
         $builder = $this->db->table('rfa_transactions');

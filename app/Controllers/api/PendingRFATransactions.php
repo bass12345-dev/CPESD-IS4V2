@@ -12,6 +12,7 @@ class PendingRFATransactions extends BaseController
     public    $rfa_transactions_table           = 'rfa_transactions';
     public    $rfa_transactions_history_table   = 'rfa_transaction_history';
     public    $users_table                      = 'users';
+    public    $client_table                     = 'rfa_clients';
     public    $order_by_desc                    = 'desc';
     public    $order_by_asc                     = 'asc';
     protected $request;
@@ -64,6 +65,7 @@ class PendingRFATransactions extends BaseController
                             'track_code' => $data['rfa_tracking_code'],
                             'received_by' => $data['rfa_created_by'],
                             'received_date_and_time' => $data['rfa_date_filed'],
+                            'rfa_tracking_status'   => 'received'
 
             );
 
@@ -163,17 +165,19 @@ public function get_user_received_rfa_transactions(){
 
         $data = [];
         $where = array('created_by' => session()->get('user_id'));
-        $items = $this->RFAModel->getUserPendingRFA($where);
+        $items = $this->RFAModel->getUserReceivedRFA($where);
 
         foreach ($items as $row) {
+
+                $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
             
                 $data[] = array(
 
                         'rfa_id '               => $row->rfa_id ,
                         'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
-                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_request_name'  => $this->CustomModel->getwhere($this->type_of_request_table,array('type_of_request_id' => $row->tor_id))[0]->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
-                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+                        'address'               => $client->purok == 0 ? $client->barangay : $client->purok.' '.$client->barangay,
                         'tracking_code'         => $row->rfa_tracking_code,
                         'id'                    => $this->CustomModel->getwhere($this->users_table,array('user_type' => 'admin'))[0]->user_id
 

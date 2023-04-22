@@ -1,0 +1,281 @@
+INFO - 2023-04-22 06:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:05:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:06:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:06:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:06:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:07:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:07:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:07:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:09:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:12:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:12:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:12:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:32:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:33:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:33:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:33:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:34:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:34:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:34:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-22 06:34:52 --> mysqli_sql_exception: Not unique table/alias: 'rfa_transactions' in C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\CPESD-IS4V2\app\Models\RFAModel.php(71): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\CPESD-IS4V2\app\Controllers\api\PendingRFATransactions.php(167): App\Models\RFAModel->getUserReceivedRFA(Array)
+#6 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+#7 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+#8 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\CPESD-IS4V2\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-04-22 06:34:52 --> Not unique table/alias: 'rfa_transactions'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = :rfa_transaction_history.rfa_tracking_status:
+AND `rfa_transaction_history`.`release_status` = :rfa_transaction_history.release_status:
+ORDER BY `rfa_transaction_history`.`history_id` DESC', [...], false)
+ 5 APPPATH\Models\RFAModel.php(71): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\api\PendingRFATransactions.php(167): App\Models\RFAModel->getUserReceivedRFA([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:35:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:35:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:36:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-22 06:36:50 --> mysqli_sql_exception: Not unique table/alias: 'rfa_transactions' in C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\CPESD-IS4V2\app\Models\RFAModel.php(71): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\CPESD-IS4V2\app\Controllers\api\PendingRFATransactions.php(167): App\Models\RFAModel->getUserReceivedRFA(Array)
+#6 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+#7 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+#8 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\CPESD-IS4V2\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-04-22 06:36:50 --> Not unique table/alias: 'rfa_transactions'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = :rfa_transaction_history.rfa_tracking_status:
+AND `rfa_transaction_history`.`release_status` = :rfa_transaction_history.release_status:
+ORDER BY `rfa_transaction_history`.`history_id` DESC', [...], false)
+ 5 APPPATH\Models\RFAModel.php(71): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\api\PendingRFATransactions.php(167): App\Models\RFAModel->getUserReceivedRFA([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:38:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:38:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:39:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:39:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:39:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-22 06:39:14 --> Undefined property: stdClass::$type_of_request_name
+in APPPATH\Controllers\api\PendingRFATransactions.php on line 175.
+ 1 APPPATH\Controllers\api\PendingRFATransactions.php(175): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$type_of_request_name', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\PendingRFATransactions.php', 175)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:39:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-04-22 06:39:35 --> mysqli_sql_exception: Not unique table/alias: 'rfa_transactions' in C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\CPESD-IS4V2\app\Models\RFAModel.php(71): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\CPESD-IS4V2\app\Controllers\api\PendingRFATransactions.php(167): App\Models\RFAModel->getUserReceivedRFA(Array)
+#6 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+#7 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+#8 C:\xampp\htdocs\CPESD-IS4V2\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\CPESD-IS4V2\index.php(67): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-04-22 06:39:35 --> Not unique table/alias: 'rfa_transactions'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = \'received\'
+AND `rfa_transaction_history`.`release_status` = 0
+ORDER BY `rfa_transaction_history`.`history_id` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `rfa_transaction_history`
+JOIN `users` ON `users`.`user_id` = `rfa_transaction_history`.`received_by`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_tracking_code` = `rfa_transaction_history`.`track_code`
+JOIN `rfa_transactions` ON `rfa_transactions`.`rfa_created_by` = `rfa_transaction_history`.`received_by`
+WHERE `rfa_transaction_history`.`rfa_tracking_status` = :rfa_transaction_history.rfa_tracking_status:
+AND `rfa_transaction_history`.`release_status` = :rfa_transaction_history.release_status:
+ORDER BY `rfa_transaction_history`.`history_id` DESC', [...], false)
+ 5 APPPATH\Models\RFAModel.php(71): CodeIgniter\Database\BaseBuilder->get()
+ 6 APPPATH\Controllers\api\PendingRFATransactions.php(167): App\Models\RFAModel->getUserReceivedRFA([...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:40:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:40:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:40:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-22 06:40:36 --> Undefined property: stdClass::$type_of_request_name
+in APPPATH\Controllers\api\PendingRFATransactions.php on line 175.
+ 1 APPPATH\Controllers\api\PendingRFATransactions.php(175): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$type_of_request_name', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\PendingRFATransactions.php', 175)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:43:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:43:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:43:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-22 06:43:11 --> Undefined property: stdClass::$purok
+in APPPATH\Controllers\api\PendingRFATransactions.php on line 177.
+ 1 APPPATH\Controllers\api\PendingRFATransactions.php(177): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$purok', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\PendingRFATransactions.php', 177)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:46:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:46:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:46:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-04-22 06:46:22 --> Attempt to read property "purok" on array
+in APPPATH\Controllers\api\PendingRFATransactions.php on line 180.
+ 1 APPPATH\Controllers\api\PendingRFATransactions.php(180): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "purok" on array', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\PendingRFATransactions.php', 180)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\PendingRFATransactions->get_user_received_rfa_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\PendingRFATransactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-22 06:46:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:46:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:46:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:47:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:47:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:47:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:47:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:47:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:47:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-04-22 06:48:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
