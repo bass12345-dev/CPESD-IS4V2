@@ -40,7 +40,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Type of Activity</div>
-						<input type="hidden" name="select_under_type_id" >
+						<input type="" name="select_under_type_id" >
 						<select class="custom-select input wizard-required" id="type_of_activity_select"  name="type_of_activity_id" required> 
 						<option value="">Select Type Of Activity</option> 
 						<?php 

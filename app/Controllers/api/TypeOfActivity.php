@@ -7,12 +7,13 @@ use App\Models\CustomModel;
 
 class TypeOfActivity extends BaseController
 {
-    public    $activities_table = 'type_of_activities';
-    public    $under_activity_table = 'under_type_of_activity';
-    public $order_by_desc = 'desc';
-    public $order_by_asc = 'asc';
-    protected $request;
-    protected $CustomModel;
+    public      $activities_table           = 'type_of_activities';
+    public      $transactions_table         = 'transactions';
+    public      $under_activity_table       = 'under_type_of_activity';
+    public      $order_by_desc              = 'desc';
+    public      $order_by_asc               = 'asc';
+    protected   $request;
+    protected   $CustomModel;
 
     public function __construct()
     {
@@ -66,11 +67,11 @@ class TypeOfActivity extends BaseController
                         'action' => strtolower($row->type_of_activity_name) != 'training' ? 
 
                         '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" id="update-activity"><i class="fa fa-edit"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" data-toggle="modal" data-target="#update_type_of_activity_modal" id="update-activity"><i class="fa fa-edit"></i></a></li>
                                 
-                                <li><a href="javascript:;" data-id="'.$row->type_of_activity_id.'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
+                                <li><a href="javascript:;" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
                                 </ul>' : '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" id="update-activity"><i class="fa fa-edit"></i></a></li>
+                               
                                 <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" id="add-under-activity"><i class="fa fa-arrow-down"></i></a></li>
                                 <li><a href="javascript:;" data-id="'.$row->type_of_activity_id.'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
                                 </ul>'
@@ -79,6 +80,78 @@ class TypeOfActivity extends BaseController
         }
 
         echo json_encode($data);
+    }
+
+
+    public function delete_activity(){
+
+        $where = array('type_of_activity_id' => $this->request->getPost('id'));
+        $check = $this->CustomModel->countwhere($this->transactions_table,$where);
+
+
+        if ($check > 0) {
+
+             $data = array(
+                    'message' => 'This type of activity is used in other operations',
+                    'response' => false
+                    );
+            
+        }else {
+
+             $result = $this->CustomModel->deleteData($this->activities_table,$where);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+        }
+       
+
+             echo json_encode($data);
+
+    }
+
+    public function update_activity(){
+
+
+$data = array('type_of_activity_name' => $this->request->getPost('update_type_of_activity') );
+
+  $where = array(
+        'type_of_activity_id' => $this->request->getPost('activity_id')
+    );
+
+ $update = $this->CustomModel->updatewhere($where,$data,$this->activities_table);
+
+    if($update){
+
+        $resp = array(
+            'message' => 'Successfully Updated',
+            'response' => true
+        );
+
+    }else {
+
+        $resp = array(
+            'message' => 'Error',
+            'response' => false
+        );
+
+    }
+
+    echo json_encode($resp);
+
     }
 
 
@@ -146,4 +219,81 @@ class TypeOfActivity extends BaseController
         }
 
     }
+
+
+        public function delete_under_activity(){
+
+        $where1 = array('under_type_of_activity_id' => $this->request->getPost('id'));
+        $where2 = array('under_type_act_id' => $this->request->getPost('id'));
+        $check = $this->CustomModel->countwhere($this->transactions_table,$where1);
+
+
+        if ($check > 0) {
+
+             $data = array(
+                    'message' => 'This data is used in other operations',
+                    'response' => false
+                    );
+            
+        }else {
+
+             $result = $this->CustomModel->deleteData($this->under_activity_table,$where2);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+        }
+       
+
+             echo json_encode($data);
+
+    }
+
+
+
+
+        public function update_under_activity(){
+
+
+$data = array('under_type_act_name' => $this->request->getPost('under_update_type_of_activity') );
+
+  $where = array(
+        'under_type_act_id' => $this->request->getPost('under_activity_id')
+    );
+
+ $update = $this->CustomModel->updatewhere($where,$data,$this->under_activity_table);
+
+    if($update){
+
+        $resp = array(
+            'message' => 'Successfully Updated',
+            'response' => true
+        );
+
+    }else {
+
+        $resp = array(
+            'message' => 'Error',
+            'response' => false
+        );
+
+    }
+
+    echo json_encode($resp);
+
+    }
+
 }

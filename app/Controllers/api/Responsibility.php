@@ -7,10 +7,11 @@ use App\Models\CustomModel;
 
 class  Responsibility  extends BaseController
 {
-    public    $responsibility_table = 'responsibility_center';
-    public $order_by_desc = 'desc';
-    protected $request;
-    protected $CustomModel;
+    public      $responsibility_table        = 'responsibility_center';
+    public      $order_by_desc               = 'desc';
+     public     $transactions_table          = 'transactions';
+    protected   $request;
+    protected   $CustomModel;
 
     public function __construct()
     {
@@ -81,4 +82,7 @@ class  Responsibility  extends BaseController
         echo json_encode($data);
 
     }
+
+
+
 }

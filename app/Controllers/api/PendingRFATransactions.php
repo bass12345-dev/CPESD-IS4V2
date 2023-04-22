@@ -204,7 +204,7 @@ public function get_user_received_rfa_transactions(){
                          'referred_to' => $this->CustomModel->getwhere($this->users_table,array('user_type' =>
                             'admin'))[0]->user_id,
                         'reffered_date_and_time' => date('Y-m-d H:i:s', time()),
-                        'rfa_tracking_status'   => 'to-complete',
+                        'rfa_tracking_status'   => 'for-approval',
 
             );
 

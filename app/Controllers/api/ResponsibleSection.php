@@ -9,6 +9,7 @@ class ResponsibleSection extends BaseController
 {
     public    $responsible_table = 'responsible_section';
     public $order_by_desc = 'desc';
+     public     $transactions_table          = 'transactions';
     protected $request;
     protected $CustomModel;
 
@@ -66,4 +67,79 @@ class ResponsibleSection extends BaseController
 
         echo json_encode($data);
     }
+
+
+
+
+        public function delete_responsible(){
+
+        $where = array('responsible_section_id' => $this->request->getPost('id'));
+        $check = $this->CustomModel->countwhere($this->transactions_table,$where);
+
+
+        if ($check > 0) {
+
+             $data = array(
+                    'message' => 'This item is used in other operations',
+                    'response' => false
+                    );
+            
+        }else {
+
+             $result = $this->CustomModel->deleteData($this->responsible_table,$where);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+        }
+       
+
+             echo json_encode($data);
+
+    }
+
+
+        public function update_responsible(){
+
+
+                $data = array('responsible_section_name' => $this->request->getPost('update_responsible_name') );
+
+                  $where = array(
+                        'responsible_section_id' => $this->request->getPost('responsible_id')
+                    );
+
+                 $update = $this->CustomModel->updatewhere($where,$data,$this->responsible_table);
+
+                    if($update){
+
+                        $resp = array(
+                            'message' => 'Successfully Updated',
+                            'response' => true
+                        );
+
+                    }else {
+
+                        $resp = array(
+                            'message' => 'Error',
+                            'response' => false
+                        );
+
+                    }
+
+                    echo json_encode($resp);
+
+        }
 }

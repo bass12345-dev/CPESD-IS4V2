@@ -18,7 +18,8 @@
                     <?php echo view('admin/responsible_section/sections/responsible_section_table'); ?> 
                 </div>
         </div>
-    </div>     
+    </div>
+<?php echo view('admin/responsible_section/modal/update_responsible') ?>        
 <?php echo view('includes/scripts.php') ?>   
 <script type="text/javascript">
     
@@ -45,8 +46,8 @@
                 data: null,
                 render: function (data, type, row) {
                     return '<ul class="d-flex justify-content-center">\
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['responsible_section_id']+'" data-name="'+data['responsible_section_name']+'" id="update-responsible"><i class="fa fa-edit"></i></a></li>\
-                                <li><a href="javascript:;" data-id="'+data['responsible_section_id']+'"  id="delete-responsible"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['responsible_section_id']+'" data-name="'+data['responsible_section_name']+'" id="update-responsible" data-toggle="modal" data-target="#update_responsible_modal"><i class="fa fa-edit"></i></a></li>\
+                                <li><a href="javascript:;" data-name="'+data['responsible_section_name']+'" data-id="'+data['responsible_section_id']+'"  id="delete-responsible"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
                                 </ul>';
                 }
 
@@ -54,6 +55,68 @@
           ]
 
     })
+
+
+      $(document).on('click','a#update-responsible',function (e) {
+
+                $('input[name=responsible_id]').val($(this).data('id'));
+                $('input[name=update_responsible_name]').val($(this).data('name'));
+      });
+
+
+
+    $('#update_responsible_form').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+            type: "POST",
+            url: base_url + 'api/update-responsible',
+            data: $(this).serialize(),
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-update-responsible').text('Please wait...');
+                $('.btn-update-responsible').attr('disabled','disabled');
+            },
+            success: function(data)
+            {            
+                if (data.response) {
+                   
+                    $('.btn-update-responsible').text('Submit');
+                    $('.btn-update-responsible').removeAttr('disabled');
+                     $('#update_responsible_modal').modal('hide');
+
+                     Swal.fire(
+                                            "",
+                                            data.message,
+                                            "success"
+                                        )
+                            
+                   
+                    responsible_section_table.ajax.reload();
+                }else {
+
+                     Swal.fire(
+                                            "",
+                                             data.message,
+                                             "error"
+                                           
+                                        )
+                    $('.btn-update-responsible').text('Submit');
+                   $('.btn-update-responsible').removeAttr('disabled');
+                 
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-update-responsible').text('Submit');
+                 $('.btn-update-responsible').removeAttr('disabled');
+            },
+       });
+
+
+
+    });
+
 
 
 
@@ -110,6 +173,84 @@
         });
 
     });
+
+
+
+       $(document).on('click','a#delete-responsible',function (e) {
+
+        var id = $(this).data('id');   
+        var name = $(this).data('name');
+       
+
+          Swal.fire({
+        title: "",
+        text: "Delete " + name,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/delete-responsible',
+                            data: {id:id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                                            "",
+                                            "Success",
+                                            "success"
+                                        )
+
+                                 
+
+                                 responsible_section_table.ajax.reload()
+                                 
+                               }else {
+
+                                 Swal.fire(
+                                            "",
+                                             data.message,
+                                             "error"
+                                           
+                                        )
+
+                               }
+
+                              
+                          
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+     });
 </script>
 </body>
 </html>

@@ -133,15 +133,21 @@ $routes->post('api/get-responsiblity', 'api\Responsibility::get_responsibility')
 //Responsible Section
 $routes->post('api/add-responsible', 'api\ResponsibleSection::add_responsible');
 $routes->post('api/get-responsible', 'api\ResponsibleSection::get_responsible');
+$routes->post('api/delete-responsible', 'api\ResponsibleSection::delete_responsible');
+$routes->post('api/update-responsible', 'api\ResponsibleSection::update_responsible');
+
 
 //Type of Activity
 $routes->post('api/add-type-of-activity', 'api\TypeOfActivity::add_type_of_activity');
 $routes->post('api/get-activities', 'api\TypeOfActivity::get_activities');
+$routes->post('api/delete-activity','api\TypeOfActivity::delete_activity');
+$routes->post('api/update-type-of-activity','api\TypeOfActivity::update_activity');
 
 //Under Type of Activity 
 $routes->post('api/add-under-type-of-activity', 'api\TypeOfActivity::add_under_type_of_activity');
 $routes->post('api/get_under_type_of_activity', 'api\TypeOfActivity::get_under_type_of_activity');
-
+$routes->post('api/delete-under-activity','api\TypeOfActivity::delete_under_activity');
+$routes->post('api/update-under-type-of-activity','api\TypeOfActivity::update_under_activity');
 
 //Type of Request
 $routes->post('api/add-type-of-request', 'api\TypeofRequest::add_type_of_request');

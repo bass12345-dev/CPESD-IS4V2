@@ -36,7 +36,7 @@
                           
                            <input  type="text" class="form-control input" id="under_type_activity" name="under_type_activity"  placeholder="" required>      
                         </div>
-                        <button  type="submit" class="btn btn-primary mt-1 pr-4 pl-4 btn-add-under-activity"> Submit</button>
+                        <button  type="submit" class="btn sub-button mt-1 pr-4 pl-4 btn-add-under-activity pull-right"> Submit</button>
                         <div class="alert-add-under-activity"></div>
                         <!--  -->
                      </form>

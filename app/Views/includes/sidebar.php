@@ -41,6 +41,17 @@
                             <li class="scroll-down <?= $page == 'type-of-request' ? 'active' : ''?>"><a href="<?php echo base_url('admin/type-of-request') ?>"><i class="fa fa-history"></i> <span>Type Of Request</span></a></li>
                             <li class="scroll-down <?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="scroll-down <?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span></a></li>
+                             <li class="<?= $third_page == 'received' || $third_page == 'track' ? 'active' : ''?>">
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>RFA Tracker</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li><a href="linechart.html">Incoming</a></li>
+                                    <li class="<?= $third_page == 'received' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/received') ?>" >For Approval</a></li>    
+                                   
+                                   
+                               
+                                </ul>
+                            </li>
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span>
                             <li class="scroll-down <?= $page == 'users' ? 'active' : ''?>"><a href="<?php echo base_url('admin/users') ?>"><i class="fa fa-users"></i> <span>Users</span></a></li>

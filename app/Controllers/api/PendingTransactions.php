@@ -67,7 +67,7 @@ class PendingTransactions extends BaseController
                 'date_and_time_filed'       =>  date('Y-m-d H:i:s', time()),
                 'responsible_section_id'    =>$this->request->getPost('type_of_monitoring_id'),
                 'type_of_activity_id'       => $this->request->getPost('type_of_activity_id'),
-                'under_type_of_activity_id' => $this->request->getPost('under_type_of_activity_id'),
+                'under_type_of_activity_id' => $this->request->getPost('select_under_type_id'),
                 'date_and_time'             =>  date("Y/m/d H:i:s", strtotime($this->request->getPost('date_time'))),
                 'responsibility_center_id'  =>   $this->request->getPost('responsibility_center_id'),
                 'cso_Id'                    => $this->request->getPost('cso_id'),
