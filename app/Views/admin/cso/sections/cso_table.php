@@ -36,6 +36,7 @@
                               <th>Telephone Number</th>
                               <th>Email Address</th>
                               <th>Classification</th>
+                              <th>Status</th>
                               <th>Actions</th>
                            </tr>
                         </thead>

@@ -105,6 +105,9 @@ $routes->post('api/update-user-status', 'api\Users::update_user_status');
 //CSO
 $routes->post('api/add-cso', 'api\Cso::add_cso');
 $routes->post('api/get-cso', 'api\Cso::get_cso');
+$routes->post('api/delete-cso', 'api\Cso::delete_cso');
+
+
 $routes->post('api/get-cso-infomation', 'api\Cso::get_cso_information');
 $routes->post('api/update-cso-information', 'api\Cso::update_cso_information');
 $routes->post('api/update-cso-status', 'api\Cso::update_cso_status');
@@ -129,6 +132,9 @@ $routes->post('api/delete-cso-officer', 'api\Cso::delete_cso_officer');
 //Responsibility Center
 $routes->post('api/add-responsibility', 'api\Responsibility::add_responsibiliy');
 $routes->post('api/get-responsiblity', 'api\Responsibility::get_responsibility');
+$routes->post('api/delete-center', 'api\Responsibility::delete_responsibility');
+$routes->post('api/update-center', 'api\Responsibility::update_responsibility');
+
 
 //Responsible Section
 $routes->post('api/add-responsible', 'api\ResponsibleSection::add_responsible');

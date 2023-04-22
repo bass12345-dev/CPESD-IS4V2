@@ -67,7 +67,7 @@ class CsoController extends BaseController
 
                return view('admin/cso/view/index',$data);
            }else {
-               return redirect()->back();
+                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
            }
            
  
@@ -75,7 +75,7 @@ class CsoController extends BaseController
           
            
        }else {
-          return redirect()->back();
+          throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
        }
        
    }

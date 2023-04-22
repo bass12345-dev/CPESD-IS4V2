@@ -9,7 +9,7 @@ class  Responsibility  extends BaseController
 {
     public      $responsibility_table        = 'responsibility_center';
     public      $order_by_desc               = 'desc';
-     public     $transactions_table          = 'transactions';
+    public     $transactions_table           = 'transactions';
     protected   $request;
     protected   $CustomModel;
 
@@ -80,6 +80,79 @@ class  Responsibility  extends BaseController
         }
 
         echo json_encode($data);
+
+    }
+
+
+    public function update_responsibility(){
+
+         $data = array('responsibility_center_name' => $this->request->getPost('update_center_name') );
+
+                  $where = array(
+                        'responsibility_center_id' => $this->request->getPost('center_id')
+                    );
+
+                 $update = $this->CustomModel->updatewhere($where,$data,$this->responsibility_table);
+
+                    if($update){
+
+                        $resp = array(
+                            'message' => 'Successfully Updated',
+                            'response' => true
+                        );
+
+                    }else {
+
+                        $resp = array(
+                            'message' => 'Error',
+                            'response' => false
+                        );
+
+                    }
+
+                    echo json_encode($resp);
+
+    }
+
+
+
+         public function delete_responsibility(){
+
+        $where = array('responsibility_center_id' => $this->request->getPost('id'));
+        $check = $this->CustomModel->countwhere($this->transactions_table,$where);
+
+
+        if ($check > 0) {
+
+             $data = array(
+                    'message' => 'This item is used in other operations',
+                    'response' => false
+                    );
+            
+        }else {
+
+             $result = $this->CustomModel->deleteData($this->responsibility_table,$where);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+        }
+       
+
+             echo json_encode($data);
 
     }
 

@@ -9,10 +9,11 @@ use Config\Custom_config;
 
 class Cso extends BaseController
 {
-    public $cso_table = 'cso';
-    public $cso_officer_table = 'cso_officers';
-    public $order_by_desc = 'desc';
-    public $order_by_asc = 'asc';
+    public $cso_table                    = 'cso';
+    public $cso_officer_table            = 'cso_officers';
+    public $transactions_table           = 'transactions';
+    public $order_by_desc                = 'desc';
+    public $order_by_asc                 = 'asc';
     protected $request;
     protected $CustomModel;
     public $config;
@@ -75,6 +76,49 @@ class Cso extends BaseController
 
      }
 
+
+
+       public function delete_cso(){
+
+        $where1 = array('cso_Id' => $this->request->getPost('id'));
+        $where2 = array('cso_id' => $this->request->getPost('id'));
+        $check = $this->CustomModel->countwhere($this->transactions_table,$where1);
+
+
+        if ($check > 0) {
+
+             $data = array(
+                    'message' => 'This CSO is used in other operations',
+                    'response' => false
+                    );
+            
+        }else {
+
+             $result = $this->CustomModel->deleteData($this->cso_table,$where2);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+        }
+       
+
+             echo json_encode($data);
+
+    }
+
     public function get_cso(){
 
         if ($this->request->isAJAX()) {
@@ -124,6 +168,7 @@ class Cso extends BaseController
                 'telephone_number' => $row->telephone_number,    
                 'email_address' => $row->email_address,
                 'type_of_cso' => strtoupper($row->type_of_cso),
+                'status' => $row->cso_status == 'active' ? '<span class="status-p bg-success">'.$row->cso_status.'</span>' : '<span class="status-p bg-danger">'.$row->cso_status.'</span>',
                 'cso_status' => $row->cso_status
 
 
@@ -150,6 +195,7 @@ class Cso extends BaseController
                 'telephone_number' => $row->telephone_number,    
                 'email_address' => $row->email_address,
                 'type_of_cso' => $row->type_of_cso,
+                'status' => $row->cso_status == 'active' ? '<span class="status-p bg-success">'.$row->cso_status.'</span>' : '<span class="status-p bg-danger">'.$row->cso_status.'</span>',
                 'cso_status' => $row->cso_status
 
             );
