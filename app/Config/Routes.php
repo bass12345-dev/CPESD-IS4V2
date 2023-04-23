@@ -185,6 +185,10 @@ $routes->post('api/get-last-reference-number', 'api\TypeOfRequest::get_last_ref_
 $routes->post('api/add-transaction', 'api\PendingTransactions::add_transaction');
 $routes->post('api/user/get-user-pending-transactions', 'api\PendingTransactions::get_user_pending_transactions');
 $routes->post('api/user/delete-transaction', 'api\PendingTransactions::user_delete_transaction');
+$routes->post('api/get-transaction-data', 'api\PendingTransactions::get_transaction_data');
+
+
+$routes->post('api/update-transaction', 'api\PendingTransactions::update_transaction');
 
 
 $routes->post('api/view-remark', 'api\PendingTransactions::view_remark');
@@ -195,7 +199,7 @@ $routes->post('api/completed', 'api\PendingTransactions::update_completed');
 
 //Completed Transactions
 $routes->post('api/get-all-transactions', 'api\Transactions::get_all_transactions');
-$routes->post('api/get-transaction-data', 'api\Transactions::get_transaction_data');
+$routes->post('api/get-project-transaction-data', 'api\Transactions::get_project_transaction_data');
 $routes->post('api/user/get-user-completed-transactions', 'api\Transactions::get_user_completed_transactions');
 
 

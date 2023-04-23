@@ -149,7 +149,7 @@ $(document).on('click','a#view_project_monitoring',function (e) {
     const title = $(this).data('title');
     $.ajax({
             type: "POST",
-            url: base_url + 'api/get-transaction-data',
+            url: base_url + 'api/get-project-transaction-data',
             data: {id : id},
             dataType: 'json',
             success: function(data)

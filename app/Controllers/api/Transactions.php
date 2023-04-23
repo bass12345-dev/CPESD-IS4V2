@@ -136,7 +136,7 @@ class Transactions extends BaseController
 
 
 
-public function get_transaction_data(){
+public function get_project_transaction_data(){
 
     
         $where = array('project_transact_id'=>$this->request->getPost('id'));

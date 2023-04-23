@@ -213,6 +213,301 @@ class PendingTransactions extends BaseController
     }
 
 
+
+
+
+public function update_transaction(){
+        
+    if ($this->request->isAJAX()) {
+        $where = array('transaction_id' => $this->request->getPost('transaction_id'));
+
+        $data = array(
+                
+                'responsible_section_id'    =>$this->request->getPost('update_responsible_section_id'),
+                'type_of_activity_id'       => $this->request->getPost('update_type_of_activity_id'),
+                'under_type_of_activity_id' => $this->request->getPost('update_select_under_type_id'),
+                'date_and_time'             =>  date("Y/m/d H:i:s", strtotime($this->request->getPost('update_date_and_time'))),
+                'responsibility_center_id'  =>   $this->request->getPost('update_responsibility_center_id'),
+                'cso_Id'                    => $this->request->getPost('update_cso_id'),       
+        );
+ 
+        $result         = $this->CustomModel->updatewhere($where,$data,$this->transactions_table);
+
+        if ($result) {
+
+            $type_act_name  =  $this->CustomModel->getwhere($this->type_of_activity_table,array('type_of_activity_id ' => $data['type_of_activity_id']))[0]->type_of_activity_name;
+            
+            $training_data  = array(
+
+                    'title_of_training'         => $this->request->getPost('update_title_of_training'),
+                    'number_of_participants'    => $this->request->getPost('update_number_of_participants'),
+                    'female'                    => $this->request->getPost('update_female'),
+                    'overall_ratings'           => $this->request->getPost('update_over_all_ratings'),
+                    'name_of_trainor'           => $this->request->getPost('update_name_of_trainor'),
+                 );
+
+ 
+
+            $project_data = array(
+
+                    
+                    'project_title'             => $this->request->getPost('update_project_title'),
+                    'period'                    => date("Y/m/d", strtotime($this->request->getPost('update_period'))),
+                    'attendance_present'        => $this->request->getPost('update_present'),
+                    'attendance_absent'         => $this->request->getPost('update_absent'),
+                    'nom_borrowers_delinquent'  => $this->request->getPost('update_deliquent'),
+                    'nom_borrowers_overdue'     => $this->request->getPost('update_overdue'),
+                    'total_production'          => $this->request->getPost('update_total_production'),
+                    'total_collection_sales'    => $this->request->getPost('update_total_collection'),
+                    'total_released_purchases'  => $this->request->getPost('update_total_released'),
+                    'total_delinquent_account'  => $this->request->getPost('update_total_deliquent'),
+                    'total_over_due_account'    => $this->request->getPost('update_total_overdue'),
+                    'cash_in_bank'              => $this->request->getPost('update_cash_in_bank'),
+                    'cash_on_hand'              => $this->request->getPost('update_cash_on_hand'),
+                    'inventories'               => $this->request->getPost('update_inventories'),
+
+            );
+
+
+            $where2 = array('training_transact_id'      => $where['transaction_id']);
+            $where3 = array('project_transact_id'       => $where['transaction_id'] );
+
+
+           
+
+
+   
+
+            if (strtolower($type_act_name) == 'training' ) {
+
+
+             $add_training_data  = array(
+
+                    'training_transact_id'      => $where['transaction_id'],
+                    'title_of_training'         => $this->request->getPost('update_title_of_training'),
+                    'number_of_participants'    => $this->request->getPost('update_number_of_participants'),
+                    'female'                    => $this->request->getPost('update_female'),
+                    'overall_ratings'           => $this->request->getPost('update_over_all_ratings'),
+                    'name_of_trainor'           => $this->request->getPost('update_name_of_trainor'),
+                 );
+
+            $is_training_data = array('is_training' => 1,'is_project_monitoring' => 0);
+            $update_is_training = $this->CustomModel->updatewhere($where,$is_training_data,$this->transactions_table);
+
+
+            if ($update_is_training) {
+
+                $count_training =  $this->CustomModel->countwhere($this->training_table,$where2);
+                if ($count_training > 0) {
+                    
+                    $update_training = $this->CustomModel->updatewhere($where2,$training_data,$this->training_table);
+
+
+                    if ($update_training) {
+
+                         $resp = array(
+                                            'message' => 'Success Updated',
+                                            'response' => true
+                                        );
+                       
+                    }else {
+
+                          $resp = array(
+                                            'message' => 'error Update training',
+                                            'response' => false
+                                        );
+                    }
+                    
+
+                }else {
+
+
+                    
+
+                      $add_training = $this->CustomModel->addData($this->training_table,$add_training_data);
+                                if ($add_training) {
+
+                                    $resp = array(
+                                            'message' => 'Success',
+                                            'response' => true
+                                        );
+
+
+                                    // code...
+                                }else {
+
+                                    $resp = array(
+                                            'message' => 'error add training',
+                                            'response' => false
+                                        );
+
+                                }
+
+
+
+
+                    
+                }
+
+            }else {
+
+                $resp = array(
+                                    'message' => 'Error Update',
+                                    'response' => false
+                                );
+
+
+            }
+
+
+
+
+            }else if (strtolower($type_act_name) == 'regular monthly project monitoring') {
+
+
+                $add_project_data = array(
+
+                    'project_transact_id'       => $where['transaction_id'],
+                    'project_title'             => $this->request->getPost('update_project_title'),
+                    'period'                    => date("Y/m/d", strtotime($this->request->getPost('update_period'))),
+                    'attendance_present'        => $this->request->getPost('update_present'),
+                    'attendance_absent'         => $this->request->getPost('update_absent'),
+                    'nom_borrowers_delinquent'  => $this->request->getPost('update_deliquent'),
+                    'nom_borrowers_overdue'     => $this->request->getPost('update_overdue'),
+                    'total_production'          => $this->request->getPost('update_total_production'),
+                    'total_collection_sales'    => $this->request->getPost('update_total_collection'),
+                    'total_released_purchases'  => $this->request->getPost('update_total_released'),
+                    'total_delinquent_account'  => $this->request->getPost('update_total_deliquent'),
+                    'total_over_due_account'    => $this->request->getPost('update_total_overdue'),
+                    'cash_in_bank'              => $this->request->getPost('update_cash_in_bank'),
+                    'cash_on_hand'              => $this->request->getPost('update_cash_on_hand'),
+                    'inventories'               => $this->request->getPost('update_inventories'),
+
+            );
+
+
+
+
+               
+                $is_project_data = array('is_project_monitoring' => 1, 'is_training' => 0);
+                $update_project = $this->CustomModel->updatewhere($where,$is_project_data,$this->transactions_table);
+
+                if ($update_project) {
+
+
+                    $count_project =  $this->CustomModel->countwhere($this->project_monitoring_table,$where3);
+
+
+                    if ($count_project > 0) {
+                    
+                    $update_project = $this->CustomModel->updatewhere($where3,$project_data,$this->project_monitoring_table);
+
+
+                     if ($update_project) {
+
+                         $resp = array(
+                                            'message' => 'Success Updated',
+                                            'response' => true
+                                        );
+                       
+                    }else {
+
+                          $resp = array(
+                                            'message' => 'error Update training',
+                                            'response' => false
+                                        );
+                    }
+
+
+                }else {
+
+
+
+
+                      $add_project = $this->CustomModel->addData($this->project_monitoring_table,$add_project_data);
+                                if ($add_project) {
+
+                                    $resp = array(
+                                            'message' => 'Success',
+                                            'response' => true
+                                        );
+
+
+                                    // code...
+                                }else {
+
+                                    $resp = array(
+                                            'message' => 'error add training',
+                                            'response' => false
+                                        );
+
+                                }
+
+                 
+
+
+
+
+                }
+
+
+
+
+                    //end
+                    
+                }else {
+
+                    $resp = array(
+                                    'message' => 'Error Update',
+                                    'response' => false
+                                );
+
+                }
+
+
+
+            }else {
+
+
+                $this->CustomModel->deleteData($this->training_table,$where2);
+                $this->CustomModel->deleteData($this->project_monitoring_table,$where3);
+                $data_update_2 = array('is_training' => 0, 'is_project_monitoring' => 0 );
+
+                $this->CustomModel->updatewhere($where,$data_update_2,$this->transactions_table);
+
+
+
+            }
+
+             $resp = array(
+                'message' => 'Successfully Updated',
+                'response' => true
+            );
+
+
+
+        }else {
+
+
+
+                    $resp = array(
+                                    'message' => 'Error Update',
+                                    'response' => false
+                                );
+
+        }
+
+                    
+        echo json_encode($resp);;
+       
+
+
+            
+        }
+    }
+
+
+
 public function get_admin_completed_transaction_limit(){
 
     $data = [];
@@ -601,6 +896,100 @@ public function count_pending_transactions(){
 
     echo $count;
 
+}
+
+
+public function get_transaction_data(){
+
+
+        $row = $this->TransactionModel->getTransactionData($this->transactions_table,array('transaction_id' => $this->request->getPost('id')))[0];
+
+        $training_data = [];
+        $project_data = [];
+
+        if ($row->is_training == 1) {
+
+            $row_training = $this->CustomModel->getwhere($this->training_table,array('training_transact_id' => $row->transaction_id))[0];
+            
+            $training_data[] = array(
+
+                    'title_of_training'         => $row_training->title_of_training,
+                    'number_of_participants'    => $row_training->number_of_participants,
+                    'female'                    => $row_training->female,
+                    'male'                      => $row_training->number_of_participants - $row_training->female,
+                    'overall_ratings'           => $row_training->overall_ratings,
+                    'name_of_trainor'           => $row_training->name_of_trainor
+
+
+            );
+        }
+
+        if ($row->is_project_monitoring == 1) {
+
+             $row_project = $this->CustomModel->getwhere($this->project_monitoring_table,array('project_transact_id' => $row->transaction_id))[0];
+
+
+            $project_data[] = array(
+
+                    'project_title'             => $row_project->project_title,
+                    'period'                    => date("m/d/Y", strtotime($row_project->period)),
+                    'present'                   => $row_project->attendance_present,
+                    'absent'                    => $row_project->attendance_absent,
+
+                    'delinquent'                => $row_project->nom_borrowers_delinquent,
+                    'overdue'                   => $row_project->nom_borrowers_overdue,
+                    'total_production'          => $row_project->total_production,
+                    'total_collection_sales'    =>  floatval($row_project->total_collection_sales),
+                    'total_released_purchases'  =>  floatval($row_project->total_released_purchases),
+                    'total_delinquent_account'  =>  floatval($row_project->total_delinquent_account),
+                    'total_over_due_account'    =>  floatval($row_project->total_over_due_account),
+                    'cash_in_bank'              =>  floatval($row_project->cash_in_bank),
+                    'cash_on_hand'              =>  floatval($row_project->cash_on_hand),
+                    'inventories'               =>  floatval($row_project->inventories),
+                     'total_volume_of_business'  => number_format(array_sum(array(
+
+                                                    $row_project->total_collection_sales,
+                                                    $row_project->total_released_purchases,
+                                                    
+                                                        )), 2, '.', ','),
+                    'total_cash_position'       => number_format(array_sum(array(
+
+                                                    $row_project->cash_in_bank,
+                                                    $row_project->cash_on_hand,
+                                                    $row_project->inventories
+                                                    
+                                                        )), 2, '.', ','),
+                    
+            );
+        }
+
+        $data = array(
+
+                    'transaction_id'             => $row->transaction_id,
+                    'number'                     => $row->number,
+                    'month'                      =>  date('m', strtotime($row->date_and_time_filed)),
+                    'year'                       =>  date('Y', strtotime($row->date_and_time_filed)),
+                    'responsible_section_id'     => $row->responsible_section_id,
+                    'type_of_activity_id'        => $row->type_of_activity_id,
+                    'responsibility_center_id'   => $row->responsibility_center_id,
+                    'cso_id'                     => $row->cso_id,
+                    'date_and_time'              => date("m/d/Y h:i:s A", strtotime($row->date_and_time)),
+                    'under_type_of_activity'     => $row->under_type_of_activity_id == 0 ? '' : $row->under_type_of_activity_id,
+
+
+                    'training_data'              => $training_data,
+                    'project_monitoring_data'    => $project_data,
+
+
+                    //View Information
+                    'pmas_no'                    => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                    'date_and_time_filed'        => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                    'responsible_section_name'    => $row->responsible_section_name,
+                    'type_of_activity_name'       => $row->type_of_activity_name,
+                    'responsibility_center_name'  => $row->responsibility_center_name,
+                    'date_time'                   => date('F d Y', strtotime($row->date_and_time))
+        );
+        echo json_encode($data);
 }
 
 
