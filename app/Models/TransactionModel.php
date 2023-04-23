@@ -199,4 +199,18 @@ class TransactionModel extends Model
         return $query;
     }
 
+    public function getTransactionData($table,$where){
+
+        $builder = $this->db->table($table);
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
+        $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
+        $builder->join('users','users.user_id = transactions.created_by');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->where($where);
+        $query = $builder->get()->getResult();
+        return $query;
+
+    }
+
 }
