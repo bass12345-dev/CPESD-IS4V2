@@ -10,7 +10,7 @@ class PendingRFAController extends BaseController
     {
         
          if (session()->get('user_type') == 'admin') {
-            $data['title'] = 'Completed RFA';
+            $data['title'] = 'Pending RFA';
             return view('admin/rfa/pending/index',$data);
         }else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();

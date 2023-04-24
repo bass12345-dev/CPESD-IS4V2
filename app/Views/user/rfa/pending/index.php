@@ -63,15 +63,17 @@
 
             },
             {
-                data: null,
-                render: function (data, type, row) {
-                    return '<ul class="d-flex justify-content-center">\
-                                <li><a href="javascript:;" data-id="'+data['rfa_id']+'"  id="received-document"  class="text-success action-icon mr-2"><i class="fa fa-check"></i></a></li>\
-                                <li><a href="javascript:;" data-id="'+data['type_of_activity_id']+'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>\
-                                </ul>';
-                }
+                data: "type_of_transaction",
+               
 
             },
+            {
+                data: "type_of_transaction",
+               
+
+            },
+
+           
           ]
         });
 

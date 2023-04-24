@@ -9,6 +9,7 @@
                               <th>Complete Address</th>
                               <th>Type of Request</th>
                               <th>Type of Transaction</th>
+                              <th>Status</th>
                                <th>Action</th>
                            </tr>
                         </thead>

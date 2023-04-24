@@ -100,6 +100,31 @@
 
 
 
+
+
+    function count_total_rfa_pending(){
+
+
+         $.ajax({
+                    type: "POST",
+                    url: base_url + 'api/count-pending-rfa',
+                    cache: false,
+                    dataType: 'text',  
+                    success: function(data){
+
+                        $('.count_pending_rfa').text(data);
+                    }
+
+                })
+
+    }
+
+
+
+    count_total_rfa_pending();
+
+
+
      function load_total_pending_transactions(){
 
             $.ajax({

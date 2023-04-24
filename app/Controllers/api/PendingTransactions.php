@@ -693,17 +693,9 @@ public function get_admin_completed_transaction_limit(){
             $action = '';
             $status_display = '';
 
-            // <li><a href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="delete-transaction"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
-            //                     </ul>';
 
             if ($row->remarks == '' AND $row->action_taken_date == null) {
-                
-                // $action = '<ul class="d-flex justify-content-center">
-                //                 <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending"><i class="fa fa-eye"></i></a>
-                //                 </li>
-                //                 <li><a href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction"  class="text-secondary action-icon"><i class="fa fa-edit"></i></a>
-                //                 </li>
-                //                 </ul>';
+               
 
                 $action = '<div class="btn-group dropleft">
                                               <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -726,7 +718,7 @@ public function get_admin_completed_transaction_limit(){
                $action = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
-                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Waiting for Confirmation</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a>';
                 
             }
 

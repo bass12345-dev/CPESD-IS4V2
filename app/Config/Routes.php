@@ -174,6 +174,9 @@ $routes->post('api/update-under-type-of-activity','api\TypeOfActivity::update_un
 //Type of Request
 $routes->post('api/add-type-of-request', 'api\TypeofRequest::add_type_of_request');
 $routes->post('api/get-request', 'api\TypeofRequest::get_request');
+$routes->post('api/update-type-of-request', 'api\TypeofRequest::update_request');
+$routes->post('api/delete-request','api\TypeOfRequest::delete_request');
+
 
 
 //Pending Transactions
@@ -240,6 +243,9 @@ $routes->post('api/get-user-received-rfa', 'api\PendingRFATransactions::get_user
 $routes->post('api/received-rfa', 'api\PendingRFATransactions::received_rfa');
 
 $routes->post('api/add-rfa-action-taken', 'api\PendingRFATransactions::add_rfa_action_taken');
+
+
+$routes->post('api/count-pending-rfa', 'api\PendingRFATransactions::count_pending_rfa');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

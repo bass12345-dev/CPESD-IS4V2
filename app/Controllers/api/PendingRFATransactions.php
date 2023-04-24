@@ -5,6 +5,7 @@ namespace App\Controllers\Api;
 use App\Controllers\BaseController;
 use App\Models\CustomModel;
 use App\Models\RFAModel;
+use Config\Custom_config;
 
 class PendingRFATransactions extends BaseController
 {
@@ -18,6 +19,7 @@ class PendingRFATransactions extends BaseController
     protected $request;
     protected $CustomModel;
     protected $RFAModel;
+    public $config;
 
 
      public function __construct()
@@ -26,6 +28,7 @@ class PendingRFATransactions extends BaseController
        $this->CustomModel = new CustomModel($db); 
        $this->RFAModel = new RFAModel($db); 
        $this->request = \Config\Services::request();  
+       $this->config = new Custom_config;
     }
   
     public function add_rfa(){
@@ -268,6 +271,26 @@ public function get_user_received_rfa_transactions(){
                 echo json_encode($resp);
                 
         }
+
+
+public function count_pending_rfa(){
+    $count = 0;
+
+    if (session()->get('user_type') == $this->config->user_type[0]) {
+
+        $where = array('rfa_status' => 'pending');
+        $count = $this->CustomModel->countwhere($this->rfa_transactions_table,$where);
+       
+    }else if (session()->get('user_type') == $this->config->user_type[1]) {
+        
+        $where = array('rfa_status' => 'pending','rfa_created_by' => session()->get('user_id'));
+        $count = $this->CustomModel->countwhere($this->rfa_transactions_table,$where);
+    }
+
+    echo $count;
+
+}
+
 
      
 }

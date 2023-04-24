@@ -43,7 +43,7 @@
 </div>
 </div>
 
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <div class="row">
           <div class="col-md-6 mt-3 mb-2">
@@ -73,4 +73,4 @@
             
         </div>
     </div>
-</div>
+</div> -->

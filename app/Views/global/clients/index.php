@@ -76,10 +76,18 @@
               
                 data: null,
                 render: function (data, type, row) {
-                    return '<ul class="d-flex justify-content-center">\
-                                <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-secondary action-icon mr-2"><i class="fa fa-edit"></i></a></li>\
-                                 <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-secondary action-icon"><i class="fa fa-eye"></i></a></li>\
-                                </ul>';
+                        
+                        return '<div class="btn-group dropleft">\
+                                              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+                                               <i class="ti-settings" style="font-size : 15px;"></i>\
+                                              </button>\
+                                              <div class="dropdown-menu">\
+                                                <a class="dropdown-item" href="javascript:;" data-id="" id="add-remarks">Update</a>\
+                                                <hr>\
+                                                <a class="dropdown-item" href="javascript:;" data-id="" data-status=""  id="view_transaction"><i class="fa fa-eye"></i> View Information</a>\
+                                                 <hr>\
+                                                <a  href="javascript:;" class="dropdown-item completed" id="delete-client" data-id="'+data['rfa_client_id']+'"   ><i class="fa fa-trash"></i> Delete</a>\
+                                              </di>';
                 }
 
             },
@@ -87,6 +95,10 @@
           
           ]
         });   
+
+    
+
+
     
 </script>
 
