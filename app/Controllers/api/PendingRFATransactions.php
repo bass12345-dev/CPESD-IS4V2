@@ -60,19 +60,19 @@ class PendingRFATransactions extends BaseController
 
             $item = $this->CustomModel->getwhere($this->rfa_transactions_table,array('rfa_id' => $result))[0]; 
 
-            $history_logs = array(
+            // $history_logs = array(
 
-                            'track_code' => $data['rfa_tracking_code'],
-                            'received_by' => $data['rfa_created_by'],
-                            'received_date_and_time' => $data['rfa_date_filed'],
-                            'rfa_tracking_status'   => 'received'
+            //                 'track_code' => $data['rfa_tracking_code'],
+            //                 'received_by' => $data['rfa_created_by'],
+            //                 'received_date_and_time' => $data['rfa_date_filed'],
+            //                 'rfa_tracking_status'   => 'received'
 
-            );
+            // );
 
              if ($result) {
 
 
-                $this->CustomModel->addData($this->rfa_transactions_history_table,$history_logs);
+                // $this->CustomModel->addData($this->rfa_transactions_history_table,$history_logs);
 
 
                     $resp = array(

@@ -77,8 +77,8 @@
                 data: null,
                 render: function (data, type, row) {
                     return '<ul class="d-flex justify-content-center">\
-                                <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-secondary action-icon"><i class="fa fa-edit"></i></a></li>\
-                                 <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-success action-icon"><i class="fa fa-eye"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-secondary action-icon mr-2"><i class="fa fa-edit"></i></a></li>\
+                                 <li><a href="javascript:;" data-id="'+data['rfa_client_id']+'"  id="update-client"  class="text-secondary action-icon"><i class="fa fa-eye"></i></a></li>\
                                 </ul>';
                 }
 

@@ -59,7 +59,7 @@ class Clients extends BaseController
 
          if ($this->request->isAJAX()) {
           $data = array(
-
+                'rfa_client_added_by'   =>  session()->get('user_id'),
                 'first_name'            => $this->request->getPost('first_name'),
                 'middle_name'           => ($this->request->getPost('middle_name') == '') ?  '' : $this->request->getPost('middle_name') ,
                 'last_name'             => $this->request->getPost('last_name'),
@@ -116,9 +116,12 @@ class Clients extends BaseController
 
     public  function get_clients(){
 
+         $data = [];
 
-        $data = [];
-        $item = $this->CustomModel->get_all_desc($this->client_table,'first_name',$this->order_by_desc); 
+        if (session()->get('user_type') == 'admin') {
+
+
+        $item = $this->CustomModel->get_all_order_by($this->client_table,'first_name',$this->order_by_desc); 
         foreach ($item as $row) {
             
                 $data[] = array(
@@ -138,6 +141,33 @@ class Clients extends BaseController
                         
                 );
         }
+
+           
+            // code...
+        }else {
+       
+        $item = $this->CustomModel->getwhere_orderby($this->client_table,array('rfa_client_added_by' => session()->get('user_id')),'first_name',$this->order_by_desc); 
+        foreach ($item as $row) {
+            
+                $data[] = array(
+
+                        'rfa_client_id'     => $row->rfa_client_id,
+                        'first_name'        => $row->first_name,
+                        'middle_name'       => $row->middle_name,
+                        'last_name'         => $row->last_name,
+                        'extension'         => $row->extension,
+                        'address'           => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+                        'contact_number'    => $row->contact_number,
+                        'age'               => $row->age,
+                        'employment_status' => $row->employment_status,
+                        'purok'             => $row->purok,
+                        'barangay'          => $row->barangay,
+                        'full_name'         => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension
+                        
+                );
+        }
+
+    }
 
         echo json_encode($data);
 

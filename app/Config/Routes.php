@@ -56,6 +56,7 @@ $routes->group('admin', function($routes) {
     $routes->add('back-up-database', 'admin\BackupDatabaseController::index',['filter' => 'authGuard']);
     $routes->add('activity-logs', 'admin\ActivityLogsController::index',['filter' => 'authGuard']);
     $routes->add('type-of-request', 'admin\TypeofRequestController::index',['filter' => 'authGuard']);
+    $routes->add('clients', 'ClientsController::index',['filter' => 'authGuard']);
 });
 
 
@@ -76,6 +77,7 @@ $routes->group('user', function($routes) {
     $routes->add('activity-logs', 'user\ActivityLogsController::index',['filter' => 'authGuard']);
 
     $routes->add('request-for-assistance', 'user\RequestForAssistanceController::index',['filter' => 'authGuard']);
+    $routes->add('clients', 'ClientsController::index',['filter' => 'authGuard']);
 });
 
 
@@ -85,7 +87,7 @@ $routes->group('user/rfa', function($routes) {
     
 });
 
-$routes->get('clients', 'ClientsController::index',['filter' => 'authGuard']);
+
 
 $routes->get('user/pending-transactions/add-transaction', 'user\PendingTransactionsController::add_transaction',['filter' => 'authGuard']);
 $routes->get('user/update-pmas', 'user\PendingTransactionsController::update_transaction',['filter' => 'authGuard']);
