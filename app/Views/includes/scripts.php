@@ -92,6 +92,13 @@
 })
 
 
+$(document).on('click','a#view_rfa',function (e) {
+
+        window.open( base_url + 'user/pending/update-rfa?id=' + $(this).data('id'),'_blank');
+
+})
+
+
         $(document).on('click','a#view_user',function (e) {
 
         window.open( base_url + 'view-user?id=' + $(this).data('id'),'_blank');

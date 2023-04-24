@@ -108,6 +108,33 @@ class PendingRFATransactions extends BaseController
     }
 
 
+        public function get_admin_pending_rfa_transactions(){
+
+
+        $data = [];
+        $items = $this->RFAModel->getAdminPendingRFA();
+
+        foreach ($items as $row) {
+
+              
+            
+                $data[] = array(
+
+                        'rfa_id'               => $row->rfa_id ,
+                        'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_transaction'   => $row->type_of_transaction,
+                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+
+
+                       
+                );
+        }
+
+        echo json_encode($data);
+    }
+
+
     public function get_user_pending_rfa_transactions(){
 
 
@@ -116,6 +143,18 @@ class PendingRFATransactions extends BaseController
         $items = $this->RFAModel->getUserPendingRFA($where);
 
         foreach ($items as $row) {
+
+
+              $status1 = 'For Refferal';
+              $action1 = '<div class="btn-group dropleft">
+                                              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                               <i class="ti-settings" style="font-size : 15px;"></i>
+                                              </button>
+                                              <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->rfa_id.'" data-status=""  id="view_rfa">View Update/Information</a>
+                                               
+                                              </di>';
+
             
                 $data[] = array(
 
@@ -123,7 +162,9 @@ class PendingRFATransactions extends BaseController
                         'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
-                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay
+                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+                        'status1'               => $status1,
+                        'action1'               => $action1
 
                        
                 );

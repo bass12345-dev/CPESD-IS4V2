@@ -709,14 +709,14 @@ public function get_admin_completed_transaction_limit(){
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
                 
                 $action = '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending"><i class="fa fa-eye"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction"><i class="fa fa-eye"></i></a></li>
                                 </ul>';
                 $status_display = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">remarks added</a><br><a href="javascript:;"  data-id="'.$row->transaction_id.'" id="view-remarks">View Remarks</a>';
 
             }else if ($row->remarks != '' AND $row->action_taken_date != null) {
 
                $action = '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending" ><i class="fa fa-eye"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
                 $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a>';
                 

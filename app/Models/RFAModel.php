@@ -44,6 +44,22 @@ class RFAModel extends Model
     }
 
 
+
+      public function getAdminPendingRFA(){
+
+        $builder = $this->db->table('rfa_transactions');
+        $builder->join('rfa_clients','rfa_clients.rfa_client_id = rfa_transactions.client_id');
+
+        // $builder->join('users','users.user_id = rfa_transactions.rfa_created_by');
+        $builder->join('type_of_request','type_of_request.type_of_request_id = rfa_transactions.tor_id');
+        $builder->where('rfa_transactions.rfa_status','pending');
+     
+        $builder->orderBy('rfa_transactions.rfa_date_filed','desc');
+        $query = $builder->get()->getResult();
+        return $query;
+    }
+
+
         public function getUserPendingRFA($where){
 
         $builder = $this->db->table('rfa_transactions');

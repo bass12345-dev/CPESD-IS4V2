@@ -89,9 +89,14 @@ $routes->group('user/rfa', function($routes) {
 
 
 
+
+
 $routes->get('user/pending-transactions/add-transaction', 'user\PendingTransactionsController::add_transaction',['filter' => 'authGuard']);
+
 $routes->get('user/update-pmas', 'user\PendingTransactionsController::update_transaction',['filter' => 'authGuard']);
 
+
+$routes->get('user/pending/update-rfa', 'user\PendingRFAController::update_rfa',['filter' => 'authGuard']);
 
 //Sign out
 $routes->get('api/auth/sign_out', 'api\Auth::sign_out');
@@ -177,6 +182,10 @@ $routes->post('api/get-request', 'api\TypeofRequest::get_request');
 $routes->post('api/update-type-of-request', 'api\TypeofRequest::update_request');
 $routes->post('api/delete-request','api\TypeOfRequest::delete_request');
 
+
+//RFA Pending Transactions
+
+$routes->post('api/get-admin-pending-rfa','api\PendingRFATransactions::get_admin_pending_rfa_transactions');
 
 
 //Pending Transactions
