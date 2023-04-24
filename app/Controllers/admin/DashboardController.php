@@ -13,7 +13,10 @@ class DashboardController extends BaseController
 {
     public $transactions_table              = 'transactions';
     public $cso_table                       = 'cso';
+    public $users_table                     = 'users';
     public $project_monitoring_table        = 'project_monitoring';
+    public $order_by_desc                   = 'desc';
+    public $order_by_asc                    = 'asc';
     protected $request;
     protected $CustomModel;
     protected $TransactionModel;
@@ -23,7 +26,7 @@ class DashboardController extends BaseController
 
 
     public $total_collection_sales          = 'total_collection_sales';
-    public $total_released_purchases    = 'total_released_purchases';
+    public $total_released_purchases        = 'total_released_purchases';
     public $cash_in_bank                    = 'cash_in_bank';
     public $cash_on_hand                    = 'cash_on_hand';
     public $inventories                     = 'inventories';
@@ -59,6 +62,7 @@ class DashboardController extends BaseController
 
             $data['total_cash_position'] = number_format($this->CustomModel->get_sum_project_monitoring($this->project_monitoring_table,$this->cash_in_bank)[0]->Total + $this->CustomModel->get_sum_project_monitoring($this->project_monitoring_table,$this->cash_on_hand)[0]->Total + $this->CustomModel->get_sum_project_monitoring($this->project_monitoring_table,$this->inventories)[0]->Total, 2, '.', ',') ;
             
+            $data['users_list'] = $this->CustomModel->getwhere_orderby($this->users_table,array('user_status' => 'active'),'user_type',$this->order_by_asc); 
          
             return view('admin/dashboard/index',$data);
         }else {

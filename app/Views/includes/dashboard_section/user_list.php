@@ -3,22 +3,29 @@
       <div class="card">
          <div class="card-body">
             <div class="d-sm-flex flex-wrap justify-content-between mb-4 align-items-center">
-               <h4 class="header-title mb-0">Team Member</h4>
+               <h4 class="header-title mb-0">CPESD Member</h4>
             </div>
-            <div class="member-box">
-               <div class="s-member">
+            <div class="member-box" id="user_list">
+
+         <?php  foreach ($users_list as $row) {
+            // code...
+          ?>
+          <div class="s-member">
                   <div class="media align-items-center">
-                     <img src="assets/images/team/team-author1.jpg" class="d-block ui-w-30 rounded-circle" alt="">
+                     <!-- <img src="" class="d-block ui-w-30 rounded-circle" alt=""> -->
                      <div class="media-body ml-5">
-                        <p>Amir Hamza</p>
-                        <span>Manager</span>
+                        <p><?php echo $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension ?></p>
+                        <span><?php echo $row->user_type ?></span>
                      </div>
                      <div class="tm-social">
-                        <a href="#"><i class="fa fa-phone"></i></a>
-                        <a href="#"><i class="fa fa-envelope"></i></a>
+                        <a href="#"><i class="fa fa-eye"></i></a>
+                        
                      </div>
                   </div>
-               </div>
+               </div> 
+
+            <?php }  ?> 
+
             </div>
          </div>
       </div>

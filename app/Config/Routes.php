@@ -37,6 +37,9 @@ $routes->get('/login', 'auth\LoginController::index',['filter' => 'usercheck']);
 //Admin Panel
 $routes->get('/', 'Home::index');
 
+
+$routes->add('view-user', 'ViewUserController::index',['filter' => 'authGuard']);
+
 //Admin Panel
 $routes->group('admin', function($routes) {
     $routes->add('dashboard', 'admin\DashboardController::index',['filter' => 'authGuard']);
@@ -92,6 +95,11 @@ $routes->get('api/auth/sign_out', 'api\Auth::sign_out');
 
 //Login
 $routes->post('api/auth/verify', 'api\Auth::verify');
+
+
+
+
+
 
 //Admin Api
 //Database

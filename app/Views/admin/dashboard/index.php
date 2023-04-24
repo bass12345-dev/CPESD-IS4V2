@@ -17,6 +17,7 @@
                 <div class="main-content-inner">
                      <?php echo view('admin/dashboard/sections/count_section'); ?>
                      <?php echo view('admin/dashboard/sections/graph_section'); ?>
+                      <?php echo view('includes/dashboard_section/user_list'); ?>
                 </div>
         </div>
     </div>     
@@ -153,6 +154,9 @@ function load_admin_chart(year){
 
 
 load_admin_chart(year);
+
+
+
 
 
 </script>
