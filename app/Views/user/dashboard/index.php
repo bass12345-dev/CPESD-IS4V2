@@ -17,6 +17,8 @@
                 <div class="main-content-inner">
                      <?php echo view('user/dashboard/sections/count_section'); ?>
                      <?php echo view('user/dashboard/sections/graph_section'); ?>
+                     <?php echo view('includes/dashboard_section/user_list'); ?>
+
                      
                 </div>
         </div>
@@ -47,13 +49,13 @@
                                       datasets: [
                                         {
                                             label               : 'Completed Transactions',
-                                             backgroundColor    :  "#3F6BA4",
+                                             backgroundColor    :  "rgb(5, 176, 133)",
                                              borderColor: 'rgb(23, 125, 255)',
                                             data                : data.data_completed
                                         },
                                         {
                                             label               : 'Pending Transactions',
-                                             backgroundColor    :  '#e00d14',
+                                             backgroundColor    :  'rgb(216, 88, 79)',
                                              borderColor: 'rgb(23, 125, 255)',
                                             data                : data.data_pending
                                         }

@@ -41,9 +41,19 @@
                                              <button class="btn sub-button btn-block mt-2 mb-2" style="height: 45px;" id="reset-filter-options"><i class="ti-reload"></i></button>
                                       </div>
                                     </div>
-                                    <div class="row">
-                                        <button class="btn sub-button btn-block" style="width: 100%;" id="generate-pmas-report">Generate Report</button>
+
+                                    <div id="select_cso_section" hidden>
+                                        <select class="custom-select mt-2 mb-2 pull-right" style="height: 45px;" id="select_cso">
+                                            <option value="">Select CSO</option> 
+                                                <?php  foreach ($cso as $row) : ?>
+                                            <option value="<?php echo $row->cso_id  ?>"><?php echo $row->cso_name ?></option>
+                                                <?php  endforeach; ?>
+                                        </select>
                                     </div>
+                                    
+                                  
+                                        <button class="btn sub-button btn-block mt-2 mb-2" style="width: 100%;" id="generate-pmas-report">Generate Report</button>
+                                   
                                     <div id="generate_pmas_report_section" hidden="true">
                                         <div class="row mt-2">
 
@@ -78,6 +88,10 @@
                                                         </tr>
                                                     </tfoot>               -->                       
                                                </table>   
+                                            </div>
+                                            <div id="total_section" hidden>
+                                            <div class="col-12"><h5>Total Volume of Business : <span class="all_total_volume_of_business"></span></h5> </div>
+                                            <div class="col-12"><h5>Total Cash Position :   <span class="all_total_cash_position"></span></h5></div>
                                             </div>
                                         </div>
                                     </div>
@@ -118,8 +132,17 @@ $(document).on('click','button#generate-pmas-report',function (e) {
 
     var date_filter = $('input[name="daterange_completed_filter"]').val();
     var filter_type_of_activity = $('#filter_type_of_activity option:selected').val();
+    var cso = $('#select_cso option:selected').val();
     $('#completed_transactions_table').DataTable().destroy();
-    generate_pmas_report(date_filter,filter_type_of_activity);
+    generate_pmas_report(date_filter,filter_type_of_activity,cso);
+
+
+   if (cso != '') {
+     // load_total(date_filter,filter_type_of_activity,cso);
+   }else {
+
+   }
+   
 
 })
 
@@ -135,11 +158,30 @@ $(document).on('click','button#reset-filter-options',function (e) {
 
     $('select[id=filter_type_of_activity]').val('');
     $('input[name=daterange_completed_filter]').val(moment().format("MM/DD/YYYY")+' - '+moment().format("MM/DD/YYYY"));
-    
-
 
 
 });
+
+
+$(document).on('change','select#filter_type_of_activity',function (e) {
+
+   var text = $('#filter_type_of_activity').find('option:selected').text().toString().toLowerCase();
+
+   if(text == '<?php echo  $rgpm_text ?>' ){
+       
+       $('#select_cso_section').removeAttr('hidden');
+       $('#total_section').removeAttr('hidden');
+       
+
+    }else {
+         $('#total_section').attr('hidden','hidden');
+        $('#select_cso_section').attr('hidden','hidden');
+    }
+
+})
+
+
+
 
 
 
@@ -157,7 +199,7 @@ $(document).on('click','a#view_project_monitoring',function (e) {
 
                 $("#view_project_monitoring_modal").modal('show');
                 $('.cso_title').text(title);
-
+                $('.project_title').html(data.project_title);
                 $('.delinquent').text('₱ ' +data.delinquent)
                 $('.overdue').text('₱ ' +data.overdue)
                 $('.total_production').text('₱ ' +data.total_production)
@@ -185,9 +227,33 @@ $(document).on('click','a#view_project_monitoring',function (e) {
 
 
 
+function load_total(date_filter,filter_type_of_activity,cso){
 
 
-function generate_pmas_report(date_filter,filter_type_of_activity){
+
+        $.ajax({
+
+            url: base_url + 'api/admin/get_total_report',
+            type: "POST",
+            data: {
+                date_filter,
+                filter_type_of_activity,
+                cso
+            },
+            dataType: "json",
+            success: function(data) {
+
+
+            }
+
+
+        })
+
+}
+
+
+
+function generate_pmas_report(date_filter,filter_type_of_activity,cso){
 
 
 
@@ -197,12 +263,35 @@ function generate_pmas_report(date_filter,filter_type_of_activity){
             type: "POST",
             data: {
                 date_filter,
-               filter_type_of_activity
+               filter_type_of_activity,
+               cso
             },
             dataType: "json",
             success: function(data) {
 
                 $('#generate_pmas_report_section').removeAttr('hidden');
+
+            var total_volume_of_business = 0;
+            var total_cash_position = 0;
+
+            for (var i = 0; i < data.length; i++) {
+                
+                total_volume_of_business = total_volume_of_business + parseInt(data[i].total_volume_of_business)
+                
+            }
+
+            $('.all_total_volume_of_business').text(total_volume_of_business);
+
+
+            for (var i = 0; i < data.length; i++) {
+                
+                total_cash_position = total_cash_position + parseInt(data[i].total_cash_position)
+                
+            }
+
+
+            $('.all_total_cash_position').text(total_cash_position);
+
 
                 $('#completed_transactions_table').DataTable({
 

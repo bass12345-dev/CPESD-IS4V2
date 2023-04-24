@@ -167,7 +167,7 @@ $routes->post('api/admin/add-remark', 'api\PendingTransactions::add_remark');
 
 //Generate PMAS Report
 $routes->post('api/admin/generate-pmas-report', 'api\Transactions::generate_pmas_report');
-
+$routes->post('api/admin/get_total_report', 'api\Transactions::get_total_report');
 
 //Admin Dashboard
 $routes->post('api/load-admin-chart-transaction-data', 'api\Transactions::get_admin_chart_transaction_data');

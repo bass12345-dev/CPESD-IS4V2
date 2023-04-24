@@ -12,7 +12,11 @@
             <div class="row">
                <div class="col-md-12">
                   <table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
-             
+                     
+                     <tr>
+                        <td>Project Title</td>
+                        <td class="project_title text-right"></td>
+                     </tr>
                      <tr>
                         <td>Delinquent</td>
                         <td class="delinquent text-right"></td>

@@ -45,13 +45,13 @@ function load_admin_chart(year){
                                       datasets: [
                                         {
                                             label               : 'Completed Transactions',
-                                             backgroundColor    :  "#3F6BA4",
+                                            backgroundColor    :  "rgb(5, 176, 133)",
                                              borderColor: 'rgb(23, 125, 255)',
                                             data                : data.data_completed
                                         },
                                         {
                                             label               : 'Pending Transactions',
-                                             backgroundColor    :  '#e00d14',
+                                             backgroundColor    :  'rgb(216, 88, 79)',
                                              borderColor: 'rgb(23, 125, 255)',
                                             data                : data.data_pending
                                         }

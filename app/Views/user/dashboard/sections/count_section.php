@@ -8,7 +8,7 @@
                             <div class="seofct-icon">
                                 Completed Transactions
                             </div>
-                            <h2 id="count-c">0</h2>
+                            <h2 id="count-c"><?php echo $count_complete_transactions; ?></h2>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                             <div class="seofct-icon">
                                 Pending Transactions
                             </div>
-                            <h2 id="count-c">0</h2>
+                            <h2 id="count-c"><?php echo $count_pending_transactions; ?></h2>
                         </div>
                     </div>
                 </div>

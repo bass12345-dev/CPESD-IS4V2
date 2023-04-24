@@ -4,7 +4,7 @@
 			</li>
 			<li class="nav-item"><a href="#2a"  class="nav-link" data-toggle="tab">CSO Officers</a>
 			</li>
-			<li class="nav-item"><a href="#3a"  class="nav-link" data-toggle="tab">CSO Completed Transactions</a>
-			</li>
+			<!-- <li class="nav-item"><a href="#3a"  class="nav-link" data-toggle="tab">CSO Completed Transactions</a>
+			</li> -->
 			
 		</ul>

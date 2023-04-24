@@ -21,6 +21,15 @@ class Transactions extends BaseController
     protected $TransactionModel;
     protected $db;
     public $config;
+
+
+    public $total_collection_sales          = 'total_collection_sales';
+    public $total_released_purchases    = 'total_released_purchases';
+    public $cash_in_bank                    = 'cash_in_bank';
+    public $cash_on_hand                    = 'cash_on_hand';
+    public $inventories                     = 'inventories';
+
+
     public function __construct()
     {
        $this->db = db_connect();
@@ -57,37 +66,51 @@ class Transactions extends BaseController
     }
 
 
+    public function get_total_report(){
+
+
+        $date_filter        = $this->request->getPost('date_filter');
+        $type_of_activity   = $this->request->getPost('filter_type_of_activity');
+        $cso_id             = $this->request->getPost('cso');
+
+        $total_volume_of_business = $this->TransactionModel->get_report_total_sum_project_monitoring('total_collection_sales');
+   
+
+    }
+
 
     public function generate_pmas_report(){
 
-        $date_filter = $this->request->getPost('date_filter');
-        $type_of_activity = $this->request->getPost('filter_type_of_activity');
+        $date_filter        = $this->request->getPost('date_filter');
+        $type_of_activity   = $this->request->getPost('filter_type_of_activity');
+        $cso_id             = $this->request->getPost('cso');
 
-        $start = explode(" - ",$date_filter)[0];
-        $end = explode(" - ",$date_filter)[1];
 
-        $data = [];
+        $start              = explode(" - ",$date_filter)[0];
+        $end                = explode(" - ",$date_filter)[1];
 
-        if ($type_of_activity != null) {
+        $data               = [];
 
-            $filter_data = array(
+        if ($type_of_activity != null && $cso_id == null) {
 
-                    'start_date' => date('Y-m-d', strtotime($start)),
-                    'end_date' => date('Y-m-d', strtotime($end)),
-                    'type_of_activity' => $type_of_activity
+            $filter_data    = array(
+
+                    'start_date'        => date('Y-m-d', strtotime($start)),
+                    'end_date'          => date('Y-m-d', strtotime($end)),
+                    'type_of_activity'  => $type_of_activity,
             );
 
-          $items =   $this->TransactionModel->getCompletedTransactionDateFilterWhere($filter_data);
+          $items            =   $this->TransactionModel->getCompletedTransactionDateFilterWhere($filter_data);
 
           foreach ($items as $row ) {
 
 
             
             $data[] = array(
-                            'transaction_id' => $row->transaction_id,
-                            'pmas_no' => '<b>'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'</b>',
-                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
-                           'type_of_activity_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;"    data-id="'.$row->transaction_id.'"  style="color: #000;"  >'.$row->type_of_activity_name.'</a>' : $row->type_of_activity_name,
+                            'transaction_id'        => $row->transaction_id,
+                            'pmas_no'               => '<b>'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'</b>',
+                            'date_and_time_filed'   => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                           'type_of_activity_name'  => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;"    data-id="'.$row->transaction_id.'"  style="color: #000;"  >'.$row->type_of_activity_name.'</a>' : $row->type_of_activity_name,
                             'cso_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;" data-title="'.$row->cso_name.'" id="view_project_monitoring"    data-id="'.$row->transaction_id.'" style="color: #000; font-weight: bold;"  >'.$row->cso_name.'</a>' : $row->cso_name,
                            
                             'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
@@ -98,6 +121,44 @@ class Transactions extends BaseController
 
 
            
+        }else if ($type_of_activity != null && $cso_id != null) {
+
+
+            $filter_data    = array(
+
+                    'start_date'        => date('Y-m-d', strtotime($start)),
+                    'end_date'          => date('Y-m-d', strtotime($end)),
+                    'type_of_activity'  => $type_of_activity,
+                    'cso_Id'            => $cso_id
+            );
+
+
+          $items            =   $this->TransactionModel->getCompletedTransactionDateFilterWhereCSO($filter_data);
+
+
+
+
+
+          foreach ($items as $row ) {
+
+
+            
+            $data[] = array(
+                            'transaction_id'    => $row->transaction_id,
+                            'pmas_no'           => '<b>'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'</b>',
+                            'date_and_time_filed' => date('F d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                           'type_of_activity_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;"    data-id="'.$row->transaction_id.'"  style="color: #000;"  >'.$row->type_of_activity_name.'</a>' : $row->type_of_activity_name,
+                            'cso_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;" data-title="'.$row->cso_name.'" id="view_project_monitoring"    data-id="'.$row->transaction_id.'" style="color: #000; font-weight: bold;"  >'.$row->cso_name.'</a>' : $row->cso_name,
+                           
+                            'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'total_volume_of_business' => number_format($this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->total_collection_sales,array('project_transact_id' => $row->transaction_id))[0]->Total + $this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->total_released_purchases,array('project_transact_id' => $row->transaction_id))[0]->Total, 2, '.', ','),
+                            'total_cash_position' => number_format($this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->cash_in_bank,array('project_transact_id' => $row->transaction_id))[0]->Total + $this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->cash_on_hand,array('project_transact_id' => $row->transaction_id))[0]->Total + $this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->inventories,array('project_transact_id' => $row->transaction_id))[0]->Total, 2, '.', ',')
+                            
+                );
+
+          }
+            
+            
         }else {
 
 
@@ -144,6 +205,8 @@ public function get_project_transaction_data(){
 
         $data = array(
 
+
+                    'project_title'             => '<b>'.$item->project_title.'</b>',
                     'delinquent'                => $item->nom_borrowers_delinquent,
                     'overdue'                   => $item->nom_borrowers_overdue,
                     'total_production'          => $item->total_production,

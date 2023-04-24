@@ -14,6 +14,7 @@ class CompletedTransactionsController extends BaseController
     public $training_table             = 'trainings';
     public $project_monitoring_table   = 'project_monitoring';
     public $activity_table             = 'type_of_activities';
+    public $cso_table                  = 'cso';
     public $order_by_desc              = 'desc';
     public $order_by_asc               = 'asc';
     protected $request;
@@ -35,7 +36,8 @@ class CompletedTransactionsController extends BaseController
 
             $data['title']             = 'Completed Transaction';
             $data['activities']        = $this->CustomModel->get_all_order_by($this->activity_table,'type_of_activity_name',$this->order_by_desc);
-            
+            $data['cso']               = $this->CustomModel->get_all_order_by($this->cso_table,'cso_name',$this->order_by_asc);
+            $data['rgpm_text']               = 'regular monthly project monitoring';
             return view('admin/transactions/completed/index',$data);
         }else {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();

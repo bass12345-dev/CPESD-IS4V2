@@ -45,8 +45,8 @@ class DashboardController extends BaseController
         if (session()->get('user_type') == 'user') {
         
         $data['title']                              = 'Dashboard';
-            $data['count_complete_transactions']        = $this->CustomModel->countwhere($this->transactions_table,array('transaction_status' => 'completed'));
-        $data['count_pending_transactions']         = $this->CustomModel->countwhere($this->transactions_table,array('transaction_status' => 'pending'));
+        $data['count_complete_transactions']        = $this->CustomModel->countwhere($this->transactions_table,array('transaction_status' => 'completed','created_by' => session()->get('user_id')));
+        $data['count_pending_transactions']         = $this->CustomModel->countwhere($this->transactions_table,array('transaction_status' => 'pending','created_by' => session()->get('user_id')));
         $data['count_po']         = $this->CustomModel->countwhere($this->cso_table,array('type_of_cso' => strtoupper($this->config->cso_type[0])));
         $data['count_coop']                         = $this->CustomModel->countwhere($this->cso_table,array('type_of_cso' => strtoupper($this->config->cso_type[1])));
         $data['count_nsc']                          = $this->CustomModel->countwhere($this->cso_table,array('type_of_cso' => strtoupper($this->config->cso_type[2])));

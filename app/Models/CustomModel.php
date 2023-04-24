@@ -121,6 +121,17 @@ class CustomModel extends Model
     }
 
 
+    public function get_sum_project_monitoring_where($table,$column,$where){
+
+        $builder = $this->db->table($table);
+        $builder->select('sum('.$column.') as Total');
+        $builder->where($where);
+        $query = $builder->get()->getResult();
+        return $query;
+    }
+
+
+
     public function search($table,$data){
 
         $builder = $this->db->table($table);

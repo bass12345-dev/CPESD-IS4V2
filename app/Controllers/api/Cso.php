@@ -389,7 +389,7 @@ public function get_cso_bylaws(){
 
                 'file' => '',
                 'resp' => false,
-                'message' => 'Please update COR file'
+                'message' => 'Please update Bylaws file'
          );
        
 
@@ -426,7 +426,7 @@ public function get_cso_aoc(){
 
                 'file' => '',
                 'resp' => false,
-                'message' => 'Please update COR file'
+                'message' => 'Please update AOC/AOI file'
          );
        
 
