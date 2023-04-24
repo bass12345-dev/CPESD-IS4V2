@@ -114,6 +114,8 @@ class Transactions extends BaseController
                             'cso_name' => strtolower($row->type_of_activity_name) == strtolower($this->config->type_of_activity['rmpm']) ? '<a href="javascript:;" data-title="'.$row->cso_name.'" id="view_project_monitoring"    data-id="'.$row->transaction_id.'" style="color: #000; font-weight: bold;"  >'.$row->cso_name.'</a>' : $row->cso_name,
                            
                             'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                            'total_volume_of_business' => number_format($this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->total_collection_sales,array('project_transact_id' => $row->transaction_id))[0]->Total + $this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->total_released_purchases,array('project_transact_id' => $row->transaction_id))[0]->Total, 2, '.', ','),
+                            'total_cash_position' => number_format($this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->cash_in_bank,array('project_transact_id' => $row->transaction_id))[0]->Total + $this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->cash_on_hand,array('project_transact_id' => $row->transaction_id))[0]->Total + $this->CustomModel->get_sum_project_monitoring_where($this->project_monitoring_table,$this->inventories,array('project_transact_id' => $row->transaction_id))[0]->Total, 2, '.', ',')
                             
                 );
 

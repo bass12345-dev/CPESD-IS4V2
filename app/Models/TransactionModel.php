@@ -93,7 +93,7 @@ class TransactionModel extends Model
         $builder->join('users','users.user_id = transactions.created_by');
         $builder->join('cso','cso.cso_id = transactions.cso_Id');
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') >= '".$filter_data['start_date']."' ");
-        $builder->where("DATE_FORMAT(traactions.date_and_time_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
+        $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
         $builder->where('transactions.transaction_status','pending');
         $builder->orderBy('transactions.number','desc');
         $query = $builder->get()->getResult();

@@ -200,6 +200,9 @@
 
 
 
+
+
+
     $(document).on('click','a#delete-transaction',function (e) {
 
         var id = $(this).data('id');   

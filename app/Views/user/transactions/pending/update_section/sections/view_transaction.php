@@ -9,7 +9,7 @@
          </tr>
          <tr>
             <td >PMAS Number</td>
-            <td class="pmas_no"><td>
+            <td class="pmas_no"></td>
          </tr>
          <tr>
             <td >Date & Time Filed</td>
@@ -88,7 +88,7 @@
             <td  class="period"></td>
          </tr>
          <tr  >
-            <td >
+            <td colspan = "2" >
                <h5  class = "  text-center">Attendance</h5>
             </td>
          </tr>

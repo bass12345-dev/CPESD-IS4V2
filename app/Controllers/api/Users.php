@@ -80,7 +80,7 @@ class Users extends BaseController
             if ($row->user_type == 'admin') {
                 $a = '';
             }else {
-                $a = '<ul class="d-flex justify-content-center"><li class="mr-1"><a href="'.base_url().'View/user_profile?id='.$row->user_id.'" data-id="'.$row->user_id.'"   class="text-secondary action-icon"><i class="ti-eye"></i></a></li><li><a href="javascript:;" data-id="'.$row->user_id.'"  id="delete-user" data-set="inactive" class="text-danger action-icon"><i class="ti-close"></i></a></li></ul>';
+                $a = '<ul class="d-flex justify-content-center"><li class="mr-1"><a href="javascript:;" data-id="'.$row->user_id.'" id="view_user"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li><li><a href="javascript:;" data-id="'.$row->user_id.'"  id="delete-user" data-set="inactive" class="text-danger action-icon"><i class="ti-close"></i></a></li></ul>';
             }
  
                 $data[] = array(
@@ -109,7 +109,7 @@ class Users extends BaseController
             if ($row->user_type == 'admin') {
                 $a = '';
             }else {
-                $a = '<ul class="d-flex justify-content-center"><li class="mr-1"><a href="javascript:;" data-id="'.$row->user_id.'"  id="delete-user"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li><li><a href="javascript:;" data-id="'.$row->user_id.'" data-set="active" id="active-user"  class="text-success action-icon"><i class="ti-check"></i></a></li></ul>';
+                $a = '<ul class="d-flex justify-content-center"><li class="mr-1"><a href="javascript:;" data-id="'.$row->user_id.'"  id="view_user"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li><li><a href="javascript:;" data-id="'.$row->user_id.'" data-set="active" id="active-user"  class="text-success action-icon"><i class="ti-check"></i></a></li></ul>';
             }
 
                 $data[] = array(
@@ -149,6 +149,29 @@ class Users extends BaseController
             );
 
         }
+
+        echo json_encode($data);
+
+    }
+
+    public function get_user_data(){
+
+
+        $row  = $this->CustomModel->getwhere($this->users_table,array('user_id' => $this->request->getPost('id')))[0];
+
+        $data = array(
+
+                        'name'           => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'user_type'      => $row->user_type,
+                        'username'       => $row->username,
+                        'user_id'        => $row->user_id,
+                        'first_name'     => $row->first_name,
+                        'middle_name'    => $row->middle_name,
+                        'last_name'      => $row->last_name,
+                        'extension'      => $row->extension,
+                        'email_address'  => $row->email_address,
+                        'contact_number' => $row->contact_number
+        );
 
         echo json_encode($data);
 

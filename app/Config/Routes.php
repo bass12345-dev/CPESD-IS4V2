@@ -39,6 +39,7 @@ $routes->get('/', 'Home::index');
 
 
 $routes->add('view-user', 'ViewUserController::index',['filter' => 'authGuard']);
+$routes->add('view-transaction', 'ViewTransactionController::index',['filter' => 'authGuard']);
 
 //Admin Panel
 $routes->group('admin', function($routes) {
@@ -110,6 +111,10 @@ $routes->post('api/add-user', 'api\Users::add_user');
 $routes->post('api/get-active-user', 'api\Users::get_user_active');
 $routes->post('api/get-inactive-user', 'api\Users::get_user_inactive');
 $routes->post('api/update-user-status', 'api\Users::update_user_status');
+
+$routes->post('api/get-user-data', 'api\Users::get_user_data');
+
+
 
 //CSO
 $routes->post('api/add-cso', 'api\Cso::add_cso');

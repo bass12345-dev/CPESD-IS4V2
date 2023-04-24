@@ -1,9 +1,9 @@
 <div class="row">
-   <div class="col-xl-12 col-lg-5 col-md-12 mt-5">
+   <div class="col-xl-12 col-lg-5 col-md-12 ">
       <div class="card">
          <div class="card-body">
             <div class="d-sm-flex flex-wrap justify-content-between mb-4 align-items-center">
-               <h4 class="header-title mb-0">CPESD Member</h4>
+               <h4 class="header-title mb-0">CPESD Members</h4>
             </div>
             <div class="member-box" id="user_list">
 
@@ -18,7 +18,7 @@
                         <span><?php echo $row->user_type ?></span>
                      </div>
                      <div class="tm-social">
-                        <a href="#"><i class="fa fa-eye"></i></a>
+                        <a href="javascript:;" id="view_user" data-id="<?php echo $row->user_id ?>"><i class="fa fa-eye"></i></a>
                         
                      </div>
                   </div>

@@ -97,7 +97,7 @@
                 data: null,
                 render: function (data, type, row) {
                     return '<ul class="d-flex justify-content-center">\
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['responsibility_center_id']+'" data-name="'+data['responsibility_center_name']+'" data-code="'+data['responsibility_center_code']+'" id="update-center"><i class="fa fa-eye"></i></a></li>\
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'+data['transaction_id']+'"   id="view_transaction"><i class="fa fa-eye"></i></a></li>\
                                 </ul>';
                 }
             }

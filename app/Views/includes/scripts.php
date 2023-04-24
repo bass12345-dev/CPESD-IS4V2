@@ -85,6 +85,18 @@
 
      
     
+    $(document).on('click','a#view_transaction',function (e) {
+
+        window.open( base_url + 'view-transaction?id=' + $(this).data('id'),'_blank');
+
+})
+
+
+        $(document).on('click','a#view_user',function (e) {
+
+        window.open( base_url + 'view-user?id=' + $(this).data('id'),'_blank');
+
+})
 
 
 

@@ -564,7 +564,7 @@ public function get_admin_completed_transaction_limit(){
                                               <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" id="add-remarks">Add Remarks</a>
                                                 <hr>
-                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction">View Information</a>
                                                  <hr>
                                                 <a class="dropdown-item completed" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  >Approve</a>
                                               </di>';
@@ -629,7 +629,7 @@ public function get_admin_completed_transaction_limit(){
                                               <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" id="add-remarks">Add Remarks</a>
                                                 <hr>
-                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction">View Information</a>
                                                  <hr>
                                                 <a class="dropdown-item completed" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  >Approve</a>
                                               </di>';

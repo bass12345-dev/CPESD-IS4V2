@@ -77,16 +77,20 @@
                                                        </tr>
                                                    </thead> 
 
-                                                   <!--  <tfoot>
-                                                        <tr>
-                                                            
-                                                            <th></th>
-                                                           <th>Date & Time Filed</th>
-                                                           <th>Type of Activity</th>
-                                                           <th>CSO</th>
-                                                           <th>Person Responsible</th>
-                                                        </tr>
-                                                    </tfoot>               -->                       
+                                                  <!--   <tfoot>
+                                                            <tr>
+                                                                <th>Total Volume of Business:</th>
+                                                                <th></th>
+
+                                                                <th  >Total Cash Position:</th>
+                                                                <th></th>
+
+                                                            </tr>
+
+                                                             
+                                                        </tfoot> -->
+
+                                                                    
                                                </table>   
                                             </div>
                                             <div id="total_section" hidden>
@@ -166,6 +170,7 @@ $(document).on('click','button#reset-filter-options',function (e) {
 $(document).on('change','select#filter_type_of_activity',function (e) {
 
    var text = $('#filter_type_of_activity').find('option:selected').text().toString().toLowerCase();
+   
 
    if(text == '<?php echo  $rgpm_text ?>' ){
        
@@ -280,7 +285,7 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
                 
             }
 
-            $('.all_total_volume_of_business').text(total_volume_of_business);
+            $('.all_total_volume_of_business').text( '₱ ' + total_volume_of_business);
 
 
             for (var i = 0; i < data.length; i++) {
@@ -290,7 +295,7 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
             }
 
 
-            $('.all_total_cash_position').text(total_cash_position);
+            $('.all_total_cash_position').text('₱ ' + total_cash_position);
 
 
                 $('#completed_transactions_table').DataTable({
@@ -312,6 +317,7 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
                                      extend: 'excel',
                                      text: 'Excel',
                                      className: 'btn btn-default ',
+                                     footer: true
                                      // exportOptions: {
                                      //    columns: 'th:not(:last-child)'
                                      // }
@@ -320,6 +326,7 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
                                      extend: 'pdf',
                                      text: 'pdf',
                                      className: 'btn btn-default',
+                                     footer: true
                                      // exportOptions: {
                                      //    columns: 'th:not(:last-child)'
                                      // }
@@ -329,6 +336,7 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
                                      extend: 'print',
                                      text: 'print',
                                      className: 'btn btn-default',
+                                     footer: true
                                      // exportOptions: {
                                      //    columns: 'th:not(:last-child)'
                                      // }
@@ -370,62 +378,28 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
 
             },
 
-            {
-              
-                data: 'name',
-                
+           {
+                // data: "song_title",
+                data: null,
+                render: function (data, type, row) {
+                    return '<ul class="d-flex justify-content-center">\
+                                <li><a href="javascript:;" data-id="'+data['transaction_id']+'"   id="view_transaction"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li>\
+                                </ul>';
+                }
 
             },
 
             ],
 
 
-        //     initComplete: function () {
-        //     this.api()
-        //         .columns()
-        //         .every(function () {
-        //             var column = this;
-        //             var select = $('<select class="custom-select"><option value="" ></option></select>')
-        //                 .appendTo($(column.footer()).empty())
-        //                 .on('change', function () {
-        //                     var val = $.fn.dataTable.util.escapeRegex($(this).val());
- 
-        //                     column.search(val ? '^' + val + '$' : '', true, false).draw();
-        //                 });
- 
-        //             column
-        //                 .data()
-        //                 .unique()
-        //                 .sort()
-        //                 .each(function (d, j) {
-        //                     select.append('<option value="' + d + '">' + d + '</option>');
-        //                 });
-        //         });
-        // },
-
-       // "footerCallback": function (row, data, start, end, display) {
-       //              var api = this.api(), data;
-
-       //              // Remove the formatting to get integer data for summation
-       //              var intVal = function (i) {
-       //                  return typeof i === 'string' ?
-       //                          i.replace(/[\$,]/g, '') * 1 :
-       //                          typeof i === 'number' ?
-       //                          i : 0;
-       //              };
-       //              // Total over this page
-       //              pageTotal = api
-       //                      .column(3, {page: 'current'})
-       //                      .data()
-       //                      .reduce(function (a, b) {
-       //                          return intVal(a) + intVal(b);
-       //                      }, 0);
-
-       //              // Update footer
-       //              $(api.column(3).footer()).html('$' + pageTotal);
-       //          }
 
 
+                    // footerCallback: function (row, data, start, end, display) {
+                    //      var api = this.api();
+                    //     // Update footer
+                    //     $(api.column(1).footer()).html(total_volume_of_business);
+                    //     $(api.column(3).footer()).html(total_cash_position);
+                    // },
 
 
        

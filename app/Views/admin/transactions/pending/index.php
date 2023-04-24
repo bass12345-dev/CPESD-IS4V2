@@ -112,6 +112,8 @@ $(document).on('click','a#update-remark',function (e) {
 
 
 
+
+
 $('#add_remarks_modal').on('submit', function(e) {
         e.preventDefault();
 

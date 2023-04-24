@@ -15,7 +15,7 @@
                 <a href="javascript:;" id="request_for_assistance" class="btn sub-button mb-2 mt-2 mr-2" >Request for Assistance</a>       
                  <a href="javascript:;" id="add_transactions" class="btn sub-button mb-2 mt-2 mr-2" >Add Transaction</a>  
                  <?php } ?>              
-                <a href="" style="color: #000; font-size: 20px;"><?php echo session()->get('username') ?></a> 
+                <a href="javascript:;" data-id="<?php echo session()->get('user_id') ?>" id="view_user" style="color: #000; font-size: 20px;"><?php echo session()->get('username') ?></a> 
 
             </div>
         </div>
