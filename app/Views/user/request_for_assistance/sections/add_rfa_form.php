@@ -50,7 +50,7 @@
 					<div class="form-group">
 					<div class="col-12">Type Of Transaction</div>
 						<select class="custom-select input" id="input_barangay" name="type_of_transaction"  required>
-							<option value="">Select Type of Request</option> 
+							<option value="">Select Type of Transaction</option> 
 							 <?php foreach ($type_of_transactions as $row) { ?>
                               <option  value="<?php echo $row ?>"><?php echo $row ?></option>
                               <?php } ?>

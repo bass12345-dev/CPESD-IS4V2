@@ -116,15 +116,30 @@ class PendingRFATransactions extends BaseController
 
         foreach ($items as $row) {
 
-              
+                $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+
+
+
+                $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">needs to be refer</a>';
+                $action1 = '<div class="btn-group dropleft">
+                                              <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                               <i class="ti-settings" style="font-size : 15px;"></i>
+                                              </button>
+                                              <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->rfa_id.'"   >Refer to</a>
+                                               
+                                              </di>';
             
                 $data[] = array(
 
                         'rfa_id'               => $row->rfa_id ,
-                        'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
-                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+                        'address'               => $client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
+                        'status1'               => $status1,
+                        'action1'               => $action1
+
 
 
                        
@@ -155,14 +170,15 @@ class PendingRFATransactions extends BaseController
                                                
                                               </di>';
 
+                 $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
             
                 $data[] = array(
 
                         'rfa_id'               => $row->rfa_id ,
-                        'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
-                        'address'               => $row->purok == 0 ? $row->barangay : $row->purok.' '.$row->barangay,
+                        'address'               => 'Purok '.$client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
                         'status1'               => $status1,
                         'action1'               => $action1
 
@@ -330,6 +346,74 @@ public function count_pending_rfa(){
 
     echo $count;
 
+}
+
+public function get_rfa_data(){
+
+
+        
+
+        $row = $this->RFAModel->getRFAData($this->rfa_transactions_table,array('rfa_id' => $this->request->getPost('id'),'created_by' => session()->get('user_id')))[0];
+
+
+        $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+
+        $data = array(
+
+                    'date_time_filed'                   => date('F d Y', strtotime($row->rfa_date_filed)),
+                    'rfa_id '               => $row->rfa_id ,
+                    'client_id'             => $client->rfa_client_id,
+                    'client_name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
+                    'type_of_request_name'  => $this->CustomModel->getwhere($this->type_of_request_table,array('type_of_request_id' => $row->tor_id))[0]->type_of_request_name,
+                    'type_of_transaction'   => $row->type_of_transaction,
+                    'address'               => $client->purok == 0 ? $client->barangay : $client->purok.' '.$client->barangay,
+                    'ref_number' => date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number,
+                    'number'                => $row->number,
+                    'year'                  => date('Y', strtotime($row->rfa_date_filed)),
+                    'month'                 => date('m', strtotime($row->rfa_date_filed)),
+
+                    'tor_id'                => $row->tor_id,
+
+
+
+                
+        );
+        echo json_encode($data);
+
+}
+
+
+public function update_rfa(){
+
+        $data = array(
+
+                    'client_id'           => $this->request->getPost('client_id'),
+                    'tor_id'              => $this->request->getPost('type_of_request'),
+                    'type_of_transaction' => $this->request->getPost('type_of_transaction'),
+
+        );
+
+        $where = array('rfa_id' => $this->request->getPost('rfa_id'));
+
+        $update = $this->CustomModel->updatewhere($where,$data,$this->rfa_transactions_table);
+
+        if($update){
+
+                        $resp = array(
+                            'message' => 'Successfully Updated',
+                            'response' => true
+                        );
+
+        }else {
+
+                        $resp = array(
+                            'message' => 'Error',
+                            'response' => false
+                        );
+
+        }
+
+                    echo json_encode($resp);
 }
 
 

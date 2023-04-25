@@ -37,6 +37,7 @@
      var rfa_pending_table = $('#rfa_pending_table').DataTable({
 
             responsive: false,
+            "ordering": false,
             "ajax" : {
                         "url": base_url + 'api/get-user-pending-rfa',
                         "type" : "POST",

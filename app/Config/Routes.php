@@ -202,7 +202,7 @@ $routes->post('api/get-completed-transaction-limit', 'api\PendingTransactions::g
 
 
 $routes->post('api/count-pending-transactions', 'api\PendingTransactions::count_pending_transactions');
-
+$routes->post('api/get-rfa-data', 'api\PendingRFATransactions::get_rfa_data');
 
 //User Api:
 $routes->post('api/get-last-pmas-number', 'api\PendingTransactions::get_last_pmas_number');
@@ -243,6 +243,8 @@ $routes->post('api/get-clients', 'api\Clients::get_clients');
 $routes->post('api/add-rfa', 'api\PendingRFATransactions::add_rfa');
 $routes->post('api/get-all-rfa-transactions', 'api\CompletedRFATransactions::get_all_rfa_transactions');
 $routes->post('api/get-user-pending-rfa', 'api\PendingRFATransactions::get_user_pending_rfa_transactions');
+
+$routes->post('api/update-rfa', 'api\PendingRFATransactions::update_rfa');
 
 
 $routes->post('api/get-user-received-rfa', 'api\PendingRFATransactions::get_user_received_rfa_transactions');

@@ -62,12 +62,12 @@
 
             },
             {
-                data: "type_of_transaction",
+                data: "status1",
                
 
             },
             {
-                data: "type_of_request_name",
+                data: "action1",
                
 
             },

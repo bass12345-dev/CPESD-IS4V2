@@ -2,7 +2,7 @@
 	<div class="form-wizard">
 		<form id="update_transaction_form">
 			<fieldset class="wizard-fieldset show">
-				<h5>Information</h5>
+				<h5>Update Information</h5>
 				<div class="form-group">
 					<label>PMAS NO</label>
 					<div class="input-group mb-3">
