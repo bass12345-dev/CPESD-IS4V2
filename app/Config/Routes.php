@@ -44,6 +44,7 @@ $routes->add('view-transaction', 'ViewTransactionController::index',['filter' =>
 //Admin Panel
 $routes->group('admin', function($routes) {
     $routes->add('dashboard', 'admin\DashboardController::index',['filter' => 'authGuard']);
+    $routes->add('rfa-dashboard', 'admin\RFADashboardController::index',['filter' => 'authGuard']);
     $routes->add('completed-transactions', 'admin\CompletedTransactionsController::index',['filter' => 'authGuard']);
     $routes->add('pending-transactions', 'admin\PendingTransactionsController::index',['filter' => 'authGuard']);
     $routes->add('cso', 'admin\CsoController::index',['filter' => 'authGuard']);
