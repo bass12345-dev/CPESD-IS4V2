@@ -108,6 +108,45 @@ class PendingRFATransactions extends BaseController
     }
 
 
+
+
+    public function get_admin_pending_rfa_transaction_limit(){
+
+
+        $data = [];
+
+    $items = $this->RFAModel->getAdminPendingRFALimit();
+
+    foreach ($items as $row ) {
+
+                $ref_number = date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number;
+                $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+
+                $data[] = array(
+
+                        'rfa_id'                => $row->rfa_id ,
+                        'name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
+                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_transaction'   => $row->type_of_transaction,
+                        'address'               => $client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
+                   
+                         'ref_number'           => $ref_number,
+                         'created_by'           => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+
+
+
+                       
+                );
+
+        
+
+
+    }
+
+     echo json_encode($data);
+    }
+
+
         public function get_admin_pending_rfa_transactions(){
 
 
@@ -145,7 +184,7 @@ class PendingRFATransactions extends BaseController
                      $status1 = '<a href="javascript:;" class="btn btn-warning btn-rounded p-1 pl-2 pr-2">Reffered</a>
                      <br>'.$reffered->first_name.' '.$reffered->middle_name.' '.$reffered->last_name.' '.$reffered->extension;
                      $action1 = '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa_" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
                 }else if ($row->reffered_to != NULL && $row->accomplished_status == 1) {
 
@@ -157,7 +196,7 @@ class PendingRFATransactions extends BaseController
 
                       $action1 = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-success action-icon"  id="approved" data-id="'.$row->rfa_id.'" data-name="'.$ref_number.'"  ><i class="fa fa-check"></i></a></li>
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa_" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
                    
                 }
@@ -271,7 +310,7 @@ public function get_user_referred_rfa(){
             $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">No Action</a>';
             $action1 = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-success action-icon" data-id="'.$row->rfa_id.'" data-toggle="modal" data-target="#accomplished_modal" data-name="'.$ref_number.'" id="accomplished" ><i class="fa fa-check"></i></a></li>
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa_" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
 
 
@@ -280,7 +319,7 @@ public function get_user_referred_rfa(){
             
              $status1 = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">For Approval</a>';
              $action1 = '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa_" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
         }
 
@@ -499,6 +538,41 @@ public function get_rfa_data(){
                     'month'                 => date('m', strtotime($row->rfa_date_filed)),
 
                     'tor_id'                => $row->tor_id,
+
+
+
+                
+        );
+        echo json_encode($data);
+
+}
+
+public function view_rfa_data(){
+
+
+
+        $row = $this->RFAModel->ViewRFADATA($this->rfa_transactions_table,array('rfa_id' => $this->request->getPost('id')))[0];
+
+
+        $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+
+        $data = array(
+
+                    'date_time_filed'                   => date('F d Y h:i:A', strtotime($row->rfa_date_filed)),
+                    'rfa_id '               => $row->rfa_id ,
+                    'client_id'             => $client->rfa_client_id,
+                    'client_name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
+                    'type_of_request_name'  => $this->CustomModel->getwhere($this->type_of_request_table,array('type_of_request_id' => $row->tor_id))[0]->type_of_request_name,
+                    'type_of_transaction'   => $row->type_of_transaction,
+                    'address'               => $client->purok == 0 ? $client->barangay : $client->purok.' '.$client->barangay,
+                    'ref_number' => date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number,
+                    'number'                => $row->number,
+                    'year'                  => date('Y', strtotime($row->rfa_date_filed)),
+                    'month'                 => date('m', strtotime($row->rfa_date_filed)),
+
+                    'tor_id'                => $row->tor_id,
+                    'encoded_by'            => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                    'approved_date'         => date('F d Y h:i:A', strtotime($row->approved_date))
 
 
 

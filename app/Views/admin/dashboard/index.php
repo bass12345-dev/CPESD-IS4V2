@@ -103,7 +103,7 @@ function load_admin_chart(year){
          responsive: false,
          "pageLength": 3,
          "ajax" : {
-                        "url": base_url + 'api/get-completed-transaction-limit',
+                        "url": base_url + 'api/get-pending-transaction-limit',
                         "type" : "POST",
                         "dataSrc": "",
 

@@ -508,7 +508,7 @@ public function update_transaction(){
 
 
 
-public function get_admin_completed_transaction_limit(){
+public function get_admin_pending_transaction_limit(){
 
     $data = [];
 

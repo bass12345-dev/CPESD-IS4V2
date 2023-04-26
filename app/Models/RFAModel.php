@@ -60,6 +60,23 @@ class RFAModel extends Model
     }
 
 
+
+        public function getAdminPendingRFALimit(){
+
+        $builder = $this->db->table('rfa_transactions');
+        // $builder->join('rfa_clients','rfa_clients.rfa_client_id = rfa_transactions.client_id');
+
+        $builder->join('users','users.user_id = rfa_transactions.rfa_created_by');
+        $builder->join('type_of_request','type_of_request.type_of_request_id = rfa_transactions.tor_id');
+        $builder->where('rfa_transactions.rfa_status','pending');
+     
+        $builder->orderBy('rfa_transactions.rfa_date_filed','desc');
+        $builder->limit(10);
+        $query = $builder->get()->getResult();
+        return $query;
+    }
+
+
         public function getUserPendingRFA($where){
 
         $builder = $this->db->table('rfa_transactions');
@@ -108,6 +125,26 @@ class RFAModel extends Model
 
 
 
+         public  function ViewRFADATA($table,$where){
+
+        $builder = $this->db->table('rfa_transactions');
+
+        $builder->join('users','users.user_id = rfa_transactions.rfa_created_by');
+        $builder->join('type_of_request','type_of_request.type_of_request_id = rfa_transactions.tor_id');
+        $builder->where('rfa_transactions.rfa_id',$where['rfa_id']);
+        $query = $builder->get()->getResult();
+        return $query;
+
+
+    }
+
+
+
+
+
+
+
+
     public function getUserReceivedRFA(){
 
          $builder = $this->db->table('rfa_transaction_history');
@@ -131,4 +168,56 @@ class RFAModel extends Model
         $builder->insert($data);
         return $this->db->insertID();
     }
+
+
+
+
+    public function count_rfa_transaction_chart($table,$m,$y,$status){
+
+        $builder = $this->db->table('rfa_transactions');
+        $builder->where('MONTH(rfa_date_filed)',$m);
+        $builder->where('YEAR(rfa_date_filed)',$y);
+        $builder->where('rfa_transactions.rfa_status',$status);
+        $query = $builder->countAllResults();
+        return $query; 
+
+    }
+
+
+
+        public function count_user_rfa_transaction_chart($table,$m,$y,$status,$where){
+
+        $builder = $this->db->table('rfa_transactions');
+        $builder->where('MONTH(rfa_date_filed)',$m);
+        $builder->where('YEAR(rfa_date_filed)',$y);
+        $builder->where('rfa_transactions.rfa_status',$status);
+         $builder->where($where);
+        $query = $builder->countAllResults();
+        return $query; 
+
+    }
+
+
+
+
+
+    public function getRFATransactionDateFilter($filter_data) {
+
+         $builder = $this->db->table('rfa_transactions');
+
+        $builder->join('users','users.user_id = rfa_transactions.rfa_created_by');
+        $builder->join('type_of_request','type_of_request.type_of_request_id = rfa_transactions.tor_id');
+
+        $builder->where("DATE_FORMAT(rfa_transactions.rfa_date_filed,'%Y-%m-%d') >= '".$filter_data['start_date']."' ");
+        $builder->where("DATE_FORMAT(rfa_transactions.rfa_date_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
+
+        $builder->where('rfa_transactions.rfa_status','completed');
+     
+        $builder->orderBy('rfa_transactions.rfa_date_filed','desc');
+        $builder->limit(10);
+        $query = $builder->get()->getResult();
+        return $query;
+
+    }
+
 }

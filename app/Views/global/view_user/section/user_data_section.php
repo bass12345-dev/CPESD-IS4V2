@@ -6,7 +6,7 @@
                                                 <div class="col-lg-4">
                                                   <div class="card mb-4">
                                                     <div class="card-body text-center">
-                                                      <img src="https://cdn.imgbin.com/5/6/23/imgbin-computer-icons-avatar-user-profile-avatar-GHAXcd0jhNHcF0KLRkgjBDLPL.jpg" alt="avatar"
+                                                      <img src="assets/images/profile.jpg" alt="avatar"
                                                         class="rounded-circle img-fluid" style="width: 150px;">
                                                       <h5 class="my-3 name"></h5>
                                                       <p class="text-muted mb-1">CPESD Member</p>

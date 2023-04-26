@@ -68,7 +68,7 @@
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span>
                             <li class="scroll-down <?= $page == 'users' ? 'active' : ''?>"><a href="<?php echo base_url('admin/users') ?>"><i class="fa fa-users"></i> <span>Users</span></a></li>
                             <li class="scroll-down <?= $page == 'back-up-database' ? 'active' : ''?>"><a href="<?php echo base_url('admin/back-up-database') ?>"><i class="fa fa-database"></i> <span>Backup Database</span></a></li>
-                            <li class="scroll-down <?= $page == 'activity-logs' ? 'active' : ''?>"><a href="<?php echo base_url('admin/activity-logs') ?>"><i class="fa fa-history"></i> <span>Activity Logs</span></a></li>
+                            <!-- <li class="scroll-down <?= $page == 'activity-logs' ? 'active' : ''?>"><a href="<?php echo base_url('admin/activity-logs') ?>"><i class="fa fa-history"></i> <span>Activity Logs</span></a></li> -->
                             
                             <!--  <li><a href="<?php echo base_url() ?>Wallpaper"><i class="ti-map-alt"></i> <span>Login Wallpaper</span></a></li> -->
 
@@ -80,7 +80,17 @@
                          <?php }else if (session()->get('user_type') == 'user') { ?>
 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">PMAS</span>
-                            <li class="<?= $page == 'dashboard' ? 'active' : ''?>"><a href="<?php echo base_url('user/dashboard') ?>" ><i class="fa fa-dashboard"></i> <span>Dashboard </span></a></li>
+                            <li class="<?= $page == 'dashboard' || $page == 'rfa-dashboard' ? 'active' : ''?>">
+                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Dashboard</span>
+                                </a>
+                                <ul class="collapse">
+                                    <li class="<?= $page == 'dashboard' ? 'active' : ''?>"><a href="<?php echo base_url('user/dashboard') ?>" >PMAS Dashboard</a></li>    
+                                    <li class="<?= $page == 'rfa-dashboard' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa-dashboard') ?>" >RFA Dashboard</a></li>    
+                                   
+                               
+                                </ul>
+                            </li>
+                            <!-- <li class="<?= $page == 'dashboard' ? 'active' : ''?>"><a href="<?php echo base_url('user/dashboard') ?>" ><i class="fa fa-dashboard"></i> <span>Dashboard </span></a></li> -->
                             <li class="<?= $page == 'completed-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-transactions') ?>"><i class="fa fa-file"></i> <span>Completed Transactions </span></a></li>
                             <li  class="<?= $page == 'pending-transactions' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-transactions') ?>"><i class="fa fa-hourglass-start"></i> <span>Pending Transactions</span> <span class="badge badge-danger count_pending">0</span></a></li>
                             
@@ -89,7 +99,7 @@
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA</span>
                             <li class="<?= $page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('user/clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
-                            <li class="<?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending/Created RFA</span><span class="badge badge-danger count_pending_rfa">0</span></a></li>
+                            <li class="<?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending/Encoded RFA</span><span class="badge badge-danger count_pending_rfa">0</span></a></li>
                     
                              <li class="<?= $page == 'referred' ? 'active' : ''?>"><a href="<?php echo base_url('user/referred') ?>"><i class="fa fa-history"></i> <span>Referred To You</span><span class="badge badge-danger count_reffered_rfa">0</span></a></li>
 
@@ -106,9 +116,9 @@
                             </li> -->
                            
                             <hr> 
-                            <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span>
+                            <!-- <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span> -->
                            
-                            <li class="<?= $page == 'activity-logs' ? 'active' : ''?>"><a href="<?php echo base_url('user/activity-logs') ?>"><i class="fa fa-history"></i> <span>Activity Logs</span></a></li>
+                            <!-- <li class="<?= $page == 'activity-logs' ? 'active' : ''?>"><a href="<?php echo base_url('user/activity-logs') ?>"><i class="fa fa-history"></i> <span>Activity Logs</span></a></li> -->
                             <!--  <li><a href="<?php echo base_url() ?>Wallpaper"><i class="ti-map-alt"></i> <span>Login Wallpaper</span></a></li> -->
 
                              <br>

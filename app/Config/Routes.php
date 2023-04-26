@@ -40,6 +40,7 @@ $routes->get('/', 'Home::index');
 
 $routes->add('view-user', 'ViewUserController::index',['filter' => 'authGuard']);
 $routes->add('view-transaction', 'ViewTransactionController::index',['filter' => 'authGuard']);
+$routes->add('view-rfa', 'ViewRFA::index',['filter' => 'authGuard']);
 
 //Admin Panel
 $routes->group('admin', function($routes) {
@@ -71,6 +72,7 @@ $routes->get('admin/cso/cso-information', 'admin\CsoController::view_cso',['filt
 //User Panel
 $routes->group('user', function($routes) {
     $routes->add('dashboard', 'user\DashboardController::index',['filter' => 'authGuard']);
+    $routes->add('rfa-dashboard', 'user\RFADashboardController::index',['filter' => 'authGuard']);
     $routes->add('completed-transactions', 'user\CompletedTransactionsController::index',['filter' => 'authGuard']);
     $routes->add('pending-transactions', 'user\PendingTransactionsController::index',['filter' => 'authGuard']);
     $routes->add('completed-rfa', 'user\CompletedRFAController::index',['filter' => 'authGuard']);
@@ -196,15 +198,22 @@ $routes->post('api/admin/add-remark', 'api\PendingTransactions::add_remark');
 
 //Generate PMAS Report
 $routes->post('api/admin/generate-pmas-report', 'api\Transactions::generate_pmas_report');
+$routes->post('api/admin/generate-rfa-report', 'api\CompletedRFATransactions::generate_rfa_report');
 $routes->post('api/admin/get_total_report', 'api\Transactions::get_total_report');
 
 //Admin Dashboard
 $routes->post('api/load-admin-chart-transaction-data', 'api\Transactions::get_admin_chart_transaction_data');
-$routes->post('api/get-completed-transaction-limit', 'api\PendingTransactions::get_admin_completed_transaction_limit');
+$routes->post('api/get-pending-transaction-limit', 'api\PendingTransactions::get_admin_pending_transaction_limit');
+$routes->post('api/get-pending-rfa-transaction-limit', 'api\PendingRFATransactions::get_admin_pending_rfa_transaction_limit');
+
+
+$routes->post('api/load-admin-chart-rfa-transaction-data', 'api\CompletedRFATransactions::get_admin_chart_rfa_transaction_data');
 
 
 $routes->post('api/count-pending-transactions', 'api\PendingTransactions::count_pending_transactions');
 $routes->post('api/get-rfa-data', 'api\PendingRFATransactions::get_rfa_data');
+
+$routes->post('api/view-rfa-data', 'api\PendingRFATransactions::view_rfa_data');
 
 $routes->post('api/refer-to', 'api\PendingRFATransactions::refer_to');
 
@@ -236,7 +245,7 @@ $routes->post('api/user/get-user-completed-transactions', 'api\Transactions::get
 
 //User Dashboard
 $routes->post('api/load-user-chart-transaction-data', 'api\Transactions::get_user_chart_transaction_data');
-
+$routes->post('api/load-user-chart-rfa-transaction-data', 'api\CompletedRFATransactions::get_user_chart_rfa_transaction_data');
 
 ///Client
 $routes->post('api/search-names', 'api\Clients::search_name');

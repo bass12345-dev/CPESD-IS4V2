@@ -20,85 +20,9 @@
                           <div class="card" style="border: 1px solid;">
                              <div class="card-body">
                                   <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="input-group mb-3 ">
-                                                <input type="text" class="form-control pull-right mt-2 mb-2" name="daterange_completed_filter" value="" style="height: 45px;" />
-                                             
-                                              <div class="input-group-append">
-                                                <div class="col-md-12">  <a href="javascript:;" id="reset" class="btn  mb-3 mt-2 sub-button pull-right" ><i class="ti-calendar"></i></a> </div>
-                                              </div>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-5">
-                                        <select class="custom-select mt-2 mb-2" style="height: 45px;" id="filter_type_of_activity">
-                                            <option value="">Select Type Of Activity</option> 
-                                                <?php  foreach ($activities as $row) : ?>
-                                            <option value="<?php echo $row->type_of_activity_id  ?>"><?php echo $row->type_of_activity_name ?></option>
-                                                <?php  endforeach; ?>
-                                        </select>
-                                      </div>
-                                       <div class="col-md-1">
-                                             <button class="btn sub-button btn-block mt-2 mb-2" style="height: 45px;" id="reset-filter-options"><i class="ti-reload"></i></button>
-                                      </div>
-                                    </div>
-
-                                    <div id="select_cso_section" hidden>
-                                        <select class="custom-select mt-2 mb-2 pull-right" style="height: 45px;" id="select_cso">
-                                            <option value="">Select CSO</option> 
-                                                <?php  foreach ($cso as $row) : ?>
-                                            <option value="<?php echo $row->cso_id  ?>"><?php echo $row->cso_name ?></option>
-                                                <?php  endforeach; ?>
-                                        </select>
-                                    </div>
-                                    
-                                  
-                                        <button class="btn sub-button btn-block mt-2 mb-2" style="width: 100%;" id="generate-pmas-report">Generate Report</button>
-                                   
-                                    <div id="generate_pmas_report_section" hidden="true">
-                                        <div class="row mt-2">
-
-                                            <div class="col-md-12"> 
-                                                <button class="btn  mb-3 mt-2 btn-danger pull-right" id="close_pmas_report_section" ><i class="ti-close "></i></button>   
-                                               
-                                             </div>
-                                            
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 mt-2">
-                                                <table id="completed_transactions_table" class="text-center stripe ">
-                                                   <thead class="bg-light text-capitalize" >
-                                                       <tr>
-                                                           <th>PMAS NO</th>
-                                                           <th>Date & Time Filed</th>
-                                                           <th>Type of Activity</th>
-                                                           <th>CSO</th>
-                                                           <th>Person Responsible</th>
-                                                            <th>Action</th>
-                                                       </tr>
-                                                   </thead> 
-
-                                                  <!--   <tfoot>
-                                                            <tr>
-                                                                <th>Total Volume of Business:</th>
-                                                                <th></th>
-
-                                                                <th  >Total Cash Position:</th>
-                                                                <th></th>
-
-                                                            </tr>
-
-                                                             
-                                                        </tfoot> -->
-
-                                                                    
-                                               </table>   
-                                            </div>
-                                            <div id="total_section" hidden>
-                                            <div class="col-12"><h5>Total Volume of Business : <span class="all_total_volume_of_business"></span></h5> </div>
-                                            <div class="col-12"><h5>Total Cash Position :   <span class="all_total_cash_position"></span></h5></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?= view('admin/transactions/completed/sections/filter') ?>
+                                    <?= view('admin/transactions/completed/sections/report') ?>
+                                 
                                 </div>
                             </div>
                         </div>
