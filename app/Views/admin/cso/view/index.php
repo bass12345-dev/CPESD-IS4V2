@@ -169,7 +169,9 @@ function render() {
 
 $(document).on('click','a#view_cor',function (e) {
 
+    $('#view_cor').html('<div class="loader"></div>');
 
+         setTimeout(() => {
 
           $.ajax({
                             type: "POST",
@@ -177,10 +179,10 @@ $(document).on('click','a#view_cor',function (e) {
                             data : {'id' : '<?php echo $_GET['id'] ?>'},
                             cache: false,
                             dataType: 'json', 
-                            beforeSend :  function(){
+                            // beforeSend :  function(){
 
-                                    $('#view_cor').html('<div class="loader"></div>');
-                            },
+                            //         $('#view_cor').html('<div class="loader"></div>');
+                            // },
                             success: function(data){
 
                                 if (data.resp) {
@@ -220,6 +222,9 @@ $(document).on('click','a#view_cor',function (e) {
 
                     })
 
+
+           }, 500)
+
      
     
 });
@@ -228,7 +233,9 @@ $(document).on('click','a#view_cor',function (e) {
 
 $(document).on('click','a#view_bylaws',function (e) {
 
+ $('#view_bylaws').html('<div class="loader"></div>');
 
+  setTimeout(() => {
 
           $.ajax({
                             type: "POST",
@@ -236,10 +243,10 @@ $(document).on('click','a#view_bylaws',function (e) {
                             data : {'id' : '<?php echo $_GET['id'] ?>'},
                             cache: true,
                             dataType: 'json', 
-                            beforeSend :  function(){
+                            // beforeSend :  function(){
 
-                                    $('#view_bylaws').html('<div class="loader"></div>');
-                            },
+                            //         $('#view_bylaws').html('<div class="loader"></div>');
+                            // },
                             success: function(data){
 
                                 if (data.resp) {
@@ -273,69 +280,73 @@ $(document).on('click','a#view_bylaws',function (e) {
 
                     })
 
-     
+        }, 500)
     
 });
 
 
 
 
-$(document).on('click','a#view_bylaws',function (e) {
+// $(document).on('click','a#view_bylaws',function (e) {
 
+//      $('#view_cor').html('<div class="loader"></div>');
 
+//   setTimeout(() => {
 
-          $.ajax({
-                            type: "POST",
-                            url: base_url + 'api/get-bylaws',
-                            data : {'id' : '<?php echo $_GET['id'] ?>'},
-                            cache: true,
-                            dataType: 'json', 
-                            beforeSend :  function(){
+//           $.ajax({
+//                             type: "POST",
+//                             url: base_url + 'api/get-bylaws',
+//                             data : {'id' : '<?php echo $_GET['id'] ?>'},
+//                             cache: true,
+//                             dataType: 'json', 
+//                             beforeSend :  function(){
 
-                                    $('#view_bylaws').html('<div class="loader"></div>');
-                            },
-                            success: function(data){
+//                                     $('#view_bylaws').html('<div class="loader"></div>');
+//                             },
+//                             success: function(data){
 
-                                if (data.resp) {
+//                                 if (data.resp) {
 
-                                     $('#view_file_modal').modal('show');
-                                    pdf = data.file
-                                   pdfjsLib.getDocument(pdf).then((pdf) => {    
-                                        myState.pdf = pdf;
-                                        render();
-                                    });
+//                                      $('#view_file_modal').modal('show');
+//                                     pdf = data.file
+//                                    pdfjsLib.getDocument(pdf).then((pdf) => {    
+//                                         myState.pdf = pdf;
+//                                         render();
+//                                     });
 
-                                    $('#view_bylaws').html('View Bylaws');
+//                                     $('#view_bylaws').html('View Bylaws');
 
-                                }else {
+//                                 }else {
 
-                                     Toastify({
-                                              text: data.message,
-                                              className: "info",
-                                              style: {
-                                                "background" : "linear-gradient(to right, #00b09b, #96c93d)",
-                                                "height" : "60px",
-                                                "width" : "350px",
-                                                "font-size" : "20px"
-                                              }
-                                            }).showToast();
+//                                      Toastify({
+//                                               text: data.message,
+//                                               className: "info",
+//                                               style: {
+//                                                 "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+//                                                 "height" : "60px",
+//                                                 "width" : "350px",
+//                                                 "font-size" : "20px"
+//                                               }
+//                                             }).showToast();
                                     
-                                    $('#view_bylaws').html('View COR');
-                                }
+//                                     $('#view_bylaws').html('View COR');
+//                                 }
                                        
-                            }
+//                             }
 
-                    })
+//                     })
 
-     
+//      }, 500)
     
-});
+// });
 
 
 
 $(document).on('click','a#view_aoc',function (e) {
 
+     $('#view_aoc').html('<div class="loader"></div>');
 
+  setTimeout(() => {
 
           $.ajax({
                             type: "POST",
@@ -343,10 +354,10 @@ $(document).on('click','a#view_aoc',function (e) {
                             data : {'id' : '<?php echo $_GET['id'] ?>'},
                             cache: true,
                             dataType: 'json', 
-                            beforeSend :  function(){
+                            // beforeSend :  function(){
 
-                                    $('#view_aoc').html('<div class="loader"></div>');
-                            },
+                            //         $('#view_aoc').html('<div class="loader"></div>');
+                            // },
                             success: function(data){
 
                                 if (data.resp) {
@@ -380,7 +391,7 @@ $(document).on('click','a#view_aoc',function (e) {
 
                     })
 
-     
+       }, 500)
     
 });
 
