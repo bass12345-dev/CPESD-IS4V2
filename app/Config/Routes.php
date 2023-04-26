@@ -155,6 +155,7 @@ $routes->post('api/update-officer-information', 'api\Cso::update_officer');
 $routes->post('api/delete-cso-officer', 'api\Cso::delete_cso_officer');
 
 
+$routes->post('api/count-cso-per-barangay', 'api\Cso::count_cso_per_barangay');
 
 //Responsibility Center
 $routes->post('api/add-responsibility', 'api\Responsibility::add_responsibiliy');

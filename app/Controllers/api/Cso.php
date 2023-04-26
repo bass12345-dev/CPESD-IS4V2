@@ -778,6 +778,30 @@ if ($this->request->isAJAX()) {
     }
 
 
+        public function count_cso_per_barangay(){
+
+        $barangay = $this->config->barangay;
+
+        $data = [];
+
+        foreach($barangay as $row) {
+
+
+
+            $data[] = array(
+
+                    'barangay' => $row,
+                    'active' => $this->CustomModel->countwhere($this->cso_table,array('barangay' => $row , 'cso_status' => 'active')),
+                    'inactive' => $this->CustomModel->countwhere($this->cso_table,array('barangay' => $row , 'cso_status' => 'inactive')),
+
+                );
+
+        }
+
+        echo json_encode($data);
+    }
+
+
     public function delete_cso_officer(){
 
         

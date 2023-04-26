@@ -16,7 +16,7 @@
             <?php echo view('includes/breadcrumbs.php') ?> 
                 <div class="main-content-inner">
                     <?php echo view('admin/cso/sections/cso_table'); ?> 
-
+                    <?php echo view('admin/cso/sections/per_barangay_table'); ?> 
                 </div>
         </div>
     </div> 
@@ -33,6 +33,77 @@
         $("select").val('');
         get_cso();
     });
+
+
+    function per_barangay(){
+
+
+
+                $('#per_barangay_table').DataTable({
+
+
+                         "ajax" : {
+                        "url": base_url + 'api/count-cso-per-barangay',
+                        "type" : "POST",
+                        "dataSrc": "",
+                        },
+
+                     
+                        scrollX: true,
+                        "ordering": false,
+                        "paging" :  false,
+                        "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                                  {
+                                     extend: 'excel',
+                                     text: 'Excel',
+                                     className: 'btn btn-default ',
+                                     
+                                  },
+                                   {
+                                     extend: 'pdf',
+                                     text: 'pdf',
+                                     className: 'btn btn-default',
+                                     
+                                  },
+
+                                {
+                                     extend: 'print',
+                                     text: 'print',
+                                     className: 'btn btn-default',
+                                     
+                                  },    
+
+                        ],
+                        
+                        'columns': [
+
+                                    {
+                                           
+                                        data: 'barangay',
+                                        
+                                    },
+                                     
+                                     {
+                                           
+                                        data: 'active',
+                                        
+                                    },
+                                    {
+                                           
+                                        data: 'inactive',
+                                        
+                                    },
+              
+                        ]
+
+                     })
+
+    }
+
+    per_barangay();
 
     function get_cso(cso_status = '', cso_type = ''){
             
