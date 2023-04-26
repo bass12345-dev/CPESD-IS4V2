@@ -19,11 +19,11 @@
                        <div class="col-12 mt-5">
                           <div class="card" style="border: 1px solid;">
                              <div class="card-body">
-                                  <div class="row">
+                                  
                                     <?= view('admin/transactions/completed/sections/filter') ?>
                                     <?= view('admin/transactions/completed/sections/report') ?>
                                  
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

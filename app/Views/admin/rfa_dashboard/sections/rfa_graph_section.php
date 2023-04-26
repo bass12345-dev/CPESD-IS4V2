@@ -32,7 +32,7 @@
                               <th>Type of Request</th>
                               <th>Type of Transaction</th>
                               
-                              <th>Created By</th>
+                              <th>Encoded By</th>
                                
                            </tr>
                        </thead>                                      
