@@ -70,6 +70,11 @@
                         "dataSrc": "",
             },
              'columns': [
+                 {
+                data: "ref_number",
+                
+
+            },
             {
                 data: "name",
                 
@@ -111,7 +116,8 @@ load_admin_pending_rfa()
 $(document).on('click','button#reload_admin_pending_rfa',function (e) {
 
         $('#rfa_pending_table').DataTable().destroy();
-        load_admin_pending_rfa()
+        load_admin_pending_rfa();
+        count_total_rfa_pending();
 })
 
       $(document).on('click','a#refer_to',function (e) {
@@ -221,7 +227,7 @@ $(document).on('click','button#reload_admin_pending_rfa',function (e) {
 
           Swal.fire({
         title: "",
-        text: "Delete " + name,
+        text: "Approved RFA Reference No. " + name,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes",
@@ -260,7 +266,8 @@ $(document).on('click','button#reload_admin_pending_rfa',function (e) {
 
                                  
                                   $('#rfa_pending_table').DataTable().destroy();
-                                    load_admin_pending_rfa()
+                                    load_admin_pending_rfa();
+                                    count_total_rfa_pending();
                                  
                                  
                                }else {

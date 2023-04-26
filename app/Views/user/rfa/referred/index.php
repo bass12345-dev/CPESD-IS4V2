@@ -56,7 +56,9 @@
     $(document).on('click','button#reload_user_reffered_rfa',function (e) {
 
         $('#rfa_reffered_table').DataTable().destroy();
-        load_user_reffered_rfa()
+        load_user_reffered_rfa();
+        count_total_reffered_rfa();
+        count_total_rfa_pending()
 })
 
     function load_user_reffered_rfa() {
@@ -70,6 +72,12 @@
                         "dataSrc": "",
             },
              'columns': [
+
+                 {
+                data: "ref_number",
+                
+
+            },
             {
                 data: "name",
                 

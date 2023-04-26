@@ -144,7 +144,9 @@ class PendingRFATransactions extends BaseController
                     
                      $status1 = '<a href="javascript:;" class="btn btn-warning btn-rounded p-1 pl-2 pr-2">Reffered</a>
                      <br>'.$reffered->first_name.' '.$reffered->middle_name.' '.$reffered->last_name.' '.$reffered->extension;
-                     $action1 = '';
+                     $action1 = '<ul class="d-flex justify-content-center">
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
+                                </ul>';
                 }else if ($row->reffered_to != NULL && $row->accomplished_status == 1) {
 
                     
@@ -155,6 +157,7 @@ class PendingRFATransactions extends BaseController
 
                       $action1 = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-success action-icon"  id="approved" data-id="'.$row->rfa_id.'" data-name="'.$ref_number.'"  ><i class="fa fa-check"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
                    
                 }
@@ -268,12 +271,17 @@ public function get_user_referred_rfa(){
             $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">No Action</a>';
             $action1 = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-success action-icon" data-id="'.$row->rfa_id.'" data-toggle="modal" data-target="#accomplished_modal" data-name="'.$ref_number.'" id="accomplished" ><i class="fa fa-check"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
+
+
            
         }else if ($row->action_to_be_taken != NULL && $row->accomplished_status != 0) {
             
              $status1 = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">For Approval</a>';
-             $action1 = '';
+             $action1 = '<ul class="d-flex justify-content-center">
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa" ><i class="fa fa-eye"></i></a></li>
+                                </ul>';
         }
 
 

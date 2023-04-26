@@ -41,7 +41,9 @@
     $(document).on('click','button#reload_user_pending_rfa',function (e) {
 
         $('#rfa_pending_table').DataTable().destroy();
-        load_user_pending_rfa()
+        load_user_pending_rfa();
+         count_total_rfa_pending();
+         count_total_reffered_rfa()
 })
 
     function load_user_pending_rfa() {
@@ -55,6 +57,11 @@
                         "dataSrc": "",
             },
              'columns': [
+                 {
+                data: "ref_number",
+                
+
+            },
             {
                 data: "name",
                 
