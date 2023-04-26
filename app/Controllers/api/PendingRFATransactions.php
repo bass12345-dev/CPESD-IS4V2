@@ -307,7 +307,8 @@ public function get_user_referred_rfa(){
 
         if ($row->action_to_be_taken == NULL) {
 
-            $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">No Action</a>';
+            $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">No Action</a><br>
+                     <a href="javascript:;" id="view_action_taken_admin" data-id="'.$row->rfa_id.'" >View Action Taken</a>';
             $action1 = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-success action-icon" data-id="'.$row->rfa_id.'" data-toggle="modal" data-target="#accomplished_modal" data-name="'.$ref_number.'" id="accomplished" ><i class="fa fa-check"></i></a></li>
                                 <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->rfa_id.'"   id="view_rfa_" ><i class="fa fa-eye"></i></a></li>
@@ -741,6 +742,17 @@ public function view_action(){
         $data = [];
         $where = array('rfa_id'=>$this->request->getPost('id'));
         $data['action_to_be_taken'] = $this->CustomModel->getwhere($this->rfa_transactions_table,$where)[0]->action_to_be_taken;
+        $data['rfa_id'] = $where['rfa_id']; 
+        echo json_encode($data);
+}
+
+
+
+public function view_action_taken(){
+
+        $data = [];
+        $where = array('rfa_id'=>$this->request->getPost('id'));
+        $data['action_taken'] = $this->CustomModel->getwhere($this->rfa_transactions_table,$where)[0]->action_taken;
         $data['rfa_id'] = $where['rfa_id']; 
         echo json_encode($data);
 }

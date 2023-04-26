@@ -36,6 +36,7 @@
         </div>
     </div>     
 <?php echo view('user/rfa/referred/modals/accomplished_modal')  ?> 
+<?php echo view('user/rfa/referred/modals/view_action_taken_modal')  ?> 
 <?php echo view('includes/scripts.php') ?>   
 <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script>
@@ -128,6 +129,37 @@ load_user_reffered_rfa()
       });
 
 
+
+
+
+      $(document).on('click','a#view_action_taken_admin',function (e) {
+
+              
+
+               $.ajax({
+                    type: "POST",
+                    url: base_url + 'api/view-action-taken',
+                    data: {id : $(this).data('id')},
+                    dataType: 'json',
+                    beforeSend: function() {
+                         
+                           $('div#action_taken').addClass('.loader');
+                    },
+                    success: function(data)
+                    {           
+
+
+                        $('#view_action_taken_modal').modal('show');
+                        $('div#action_taken').find('p').html(data.action_taken);
+                        
+
+                    }
+            })
+
+
+            
+               
+      });
 
 
 

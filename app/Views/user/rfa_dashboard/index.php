@@ -17,7 +17,7 @@
                 <div class="main-content-inner">
                    
                          <?php echo view('user/rfa_dashboard/sections/rfa_count_section'); ?>
-                          <?php echo view('user/rfa_dashboard/sections/graph_section'); ?>
+                          <!-- <?php echo view('user/rfa_dashboard/sections/graph_section'); ?> -->
                      
                 </div>
         </div>

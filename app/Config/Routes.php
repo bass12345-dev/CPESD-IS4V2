@@ -236,6 +236,9 @@ $routes->post('api/accomplished', 'api\PendingTransactions::accomplished');
 $routes->post('api/completed', 'api\PendingTransactions::update_completed');
 
 
+//Completed RFA
+$routes->post('api/user/get-user-completed-rfa', 'api\CompletedRFATransactions::get_user_completed_transactions');
+
 
 //Completed Transactions
 $routes->post('api/get-all-transactions', 'api\Transactions::get_all_transactions');
@@ -262,6 +265,9 @@ $routes->post('api/update-rfa', 'api\PendingRFATransactions::update_rfa');
 $routes->post('api/get-user-pending-rfa', 'api\PendingRFATransactions::get_user_pending_rfa_transactions');
 
 $routes->post('api/view-action', 'api\PendingRFATransactions::view_action');
+$routes->post('api/view-action-taken', 'api\PendingRFATransactions::view_action_taken');
+
+
 $routes->post('api/approved-rfa', 'api\PendingRFATransactions::approved_rfa');
 
 $routes->post('api/get-user-reffered-rfa', 'api\PendingRFATransactions::get_user_referred_rfa');

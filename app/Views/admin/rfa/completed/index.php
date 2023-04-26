@@ -15,29 +15,30 @@
             <?php echo view('includes/topbar.php') ?>           
             <?php echo view('includes/breadcrumbs.php') ?> 
                 <div class="main-content-inner">
-                   <div class="col-md-6">
-                        <div class="input-group mb-3 ">
-                            <input type="text" class="form-control pull-right mt-2 mb-2" name="daterange_completed_filter" value="" style="height: 45px;" />
-                                <div class="input-group-append">
-                                    <div class="col-md-12">  <a href="javascript:;" id="reset" class="btn  mb-3 mt-2 sub-button pull-right" ><i class="ti-calendar"></i></a> 
+                    <div class="row">
+                       <div class="col-12 mt-5">
+                          <div class="card" style="border: 1px solid;">
+                             <div class="card-body">
+                                   <div class="col-md-6">
+                                        <div class="input-group mb-3 ">
+                                            <input type="text" class="form-control pull-right mt-2 mb-2" name="daterange_completed_filter" value="" style="height: 45px;" />
+                                                <div class="input-group-append">
+                                                    <div class="col-md-12">  <a href="javascript:;" id="reset" class="btn  mb-3 mt-2 sub-button pull-right" ><i class="ti-calendar"></i></a> 
+                                                    </div>
+                                                </div>
+                                              
+                                            </div>
                                     </div>
-                                </div>
-                              
-                            </div>
-                    </div>
                 <button class="btn sub-button btn-block mt-2 mb-2" style="width: 100%;" id="generate-rfa-report">Generate Report</button>
 
 
-                 <div id="generate_rfa_report_section" hidden="true">
-                                        <div class="row mt-2">
-
-                                            <div class="col-md-12"> 
-                                                <button class="btn  mb-3 mt-2 btn-danger pull-right" id="close_rfa_report_section" ><i class="ti-close "></i></button>   
-                                               
-                                             </div>
-                                            
-                                        </div>
-                                        <div class="row">
+                            <div id="generate_rfa_report_section" hidden="true">
+                                <div class="row mt-2">
+                                    <div class="col-md-12"> 
+                                        <button class="btn  mb-3 mt-2 btn-danger pull-right" id="close_rfa_report_section" ><i class="ti-close "></i></button>   
+                                    </div>
+                                </div>
+                                <div class="row">
                                             <div class="col-12 mt-2">
                                                 <table id="completed_transactions_table" class="text-center stripe ">
                                                    <thead class="bg-light text-capitalize" >
@@ -59,6 +60,9 @@
                                            
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
                 </div>                       
         </div>
     </div>     

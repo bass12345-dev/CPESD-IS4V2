@@ -198,6 +198,23 @@ class RFAModel extends Model
     }
 
 
+    public function getUserCompletedRFA($where){
+
+
+          $builder = $this->db->table('rfa_transactions');
+        // $builder->join('rfa_clients','rfa_clients.rfa_client_id = rfa_transactions.client_id');
+
+        $builder->join('users','users.user_id = rfa_transactions.rfa_created_by');
+        $builder->join('type_of_request','type_of_request.type_of_request_id = rfa_transactions.tor_id');
+        $builder->where('rfa_transactions.rfa_status','completed');
+        $builder->where('rfa_transactions.reffered_to',$where['user_id']);
+        $builder->orderBy('rfa_transactions.approved_date','desc');
+        $query = $builder->get()->getResult();
+        return $query;
+
+    }
+
+
 
 
 

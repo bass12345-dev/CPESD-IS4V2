@@ -170,4 +170,39 @@ class CompletedRFATransactions extends BaseController
      echo json_encode($data);
 
     }
+
+
+    public function get_user_completed_transactions(){
+
+
+        $where = array('user_id'=> session()->get('user_id'));
+         $items =   $this->RFAModel->getUserCompletedRFA($where);
+
+
+          foreach ($items as $row ) {
+
+                $ref_number = date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number;
+                $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+
+                $data[] = array(
+
+                        'rfa_id'                => $row->rfa_id ,
+                        'name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
+                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_transaction'   => $row->type_of_transaction,
+                        'address'               => $client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
+                   
+                         'ref_number'           => $ref_number,
+                         'created_by'           => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+
+
+
+                       
+                );
+
+
+
+    }
+    echo json_encode($data);
+}
 }
