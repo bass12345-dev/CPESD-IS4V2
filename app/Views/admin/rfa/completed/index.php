@@ -145,29 +145,29 @@
                                      extend: 'excel',
                                      text: 'Excel',
                                      className: 'btn btn-default ',
-                                     footer: true
-                                     // exportOptions: {
-                                     //    columns: 'th:not(:last-child)'
-                                     // }
+                                     footer: true,
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
                                   },
                                    {
                                      extend: 'pdf',
                                      text: 'pdf',
                                      className: 'btn btn-default',
-                                     footer: true
-                                     // exportOptions: {
-                                     //    columns: 'th:not(:last-child)'
-                                     // }
+                                     footer: true,
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
                                   },
 
                                 {
                                      extend: 'print',
                                      text: 'print',
                                      className: 'btn btn-default',
-                                     footer: true
-                                     // exportOptions: {
-                                     //    columns: 'th:not(:last-child)'
-                                     // }
+                                     footer: true,
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
                                   },    
 
                         ],

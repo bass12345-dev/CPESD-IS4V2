@@ -241,29 +241,29 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
                                      extend: 'excel',
                                      text: 'Excel',
                                      className: 'btn btn-default ',
-                                     footer: true
-                                     // exportOptions: {
-                                     //    columns: 'th:not(:last-child)'
-                                     // }
+                                     footer: true,
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
                                   },
                                    {
                                      extend: 'pdf',
                                      text: 'pdf',
                                      className: 'btn btn-default',
-                                     footer: true
-                                     // exportOptions: {
-                                     //    columns: 'th:not(:last-child)'
-                                     // }
+                                     footer: true,
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
                                   },
 
                                 {
                                      extend: 'print',
                                      text: 'print',
                                      className: 'btn btn-default',
-                                     footer: true
-                                     // exportOptions: {
-                                     //    columns: 'th:not(:last-child)'
-                                     // }
+                                     footer: true,
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
                                   },    
 
                         ],
