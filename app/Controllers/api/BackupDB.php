@@ -12,7 +12,7 @@ class BackupDB extends BaseController
         try {
         $filename = date("Y-m-d h.i.s") . ' ' . 'cpesd-is' . '.sql';
         $dump = new Mysqldump('mysql:host=localhost;dbname=cpesd-is;port=3306', 'root', '');
-        $dump->start(FCPATH .'/uploads/database/new/'.$filename);
+        $dump->start(FCPATH .'/uploads/database/new1/'.$filename);
         
         $data = array(
                 'response' => true,

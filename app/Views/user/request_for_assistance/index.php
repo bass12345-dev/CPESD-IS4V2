@@ -33,6 +33,15 @@
 
 <script>
 
+
+  $(document).on('click','a#reload_all_transactions',function (e) {
+
+                $('#request_table').DataTable().destroy();
+                get_last_reference_number()
+                list_all_rfa_transactions();
+            
+        });   
+
 function list_all_rfa_transactions(){
  $('#request_table').DataTable({
 

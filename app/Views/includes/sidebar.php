@@ -77,6 +77,9 @@
                             <li class="<?= $page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('user/clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
                             <li class="<?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
                             <li class="<?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('user/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span><span class="badge badge-danger count_pending_rfa">0</span></a></li>
+                    
+                             <li class="<?= $page == 'referred' ? 'active' : ''?>"><a href="<?php echo base_url('user/referred') ?>"><i class="fa fa-history"></i> <span>Referred To You</span><span class="badge badge-danger count_reffered_rfa">0</span></a></li>
+
             <!--                 <li class="<?= $third_page == 'received' || $third_page == 'track' ? 'active' : ''?>">
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>RFA Tracker</span>
                                 </a>

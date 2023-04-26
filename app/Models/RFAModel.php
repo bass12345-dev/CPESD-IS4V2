@@ -75,6 +75,22 @@ class RFAModel extends Model
     }
 
 
+
+    public function getUserRefferedRFA($where){
+
+        $builder = $this->db->table('rfa_transactions');
+        // $builder->join('rfa_clients','rfa_clients.rfa_client_id = rfa_transactions.client_id');
+
+        $builder->join('users','users.user_id = rfa_transactions.rfa_created_by');
+        $builder->join('type_of_request','type_of_request.type_of_request_id = rfa_transactions.tor_id');
+        $builder->where('rfa_transactions.rfa_status','pending');
+        $builder->where('rfa_transactions.reffered_to',$where['reffered_to']);
+        $builder->orderBy('rfa_transactions.reffered_date_and_time','desc');
+        $query = $builder->get()->getResult();
+        return $query;
+    }
+
+
      public  function getRFAData($table,$where){
 
         $builder = $this->db->table('rfa_transactions');

@@ -78,6 +78,7 @@ $routes->group('user', function($routes) {
 
     $routes->add('request-for-assistance', 'user\RequestForAssistanceController::index',['filter' => 'authGuard']);
     $routes->add('clients', 'ClientsController::index',['filter' => 'authGuard']);
+    $routes->add('referred', 'user\ReferredController::index',['filter' => 'authGuard']);
 });
 
 
@@ -204,6 +205,8 @@ $routes->post('api/get-completed-transaction-limit', 'api\PendingTransactions::g
 $routes->post('api/count-pending-transactions', 'api\PendingTransactions::count_pending_transactions');
 $routes->post('api/get-rfa-data', 'api\PendingRFATransactions::get_rfa_data');
 
+$routes->post('api/refer-to', 'api\PendingRFATransactions::refer_to');
+
 //User Api:
 $routes->post('api/get-last-pmas-number', 'api\PendingTransactions::get_last_pmas_number');
 $routes->post('api/get-last-reference-number', 'api\TypeOfRequest::get_last_ref_number');
@@ -246,10 +249,14 @@ $routes->post('api/get-user-pending-rfa', 'api\PendingRFATransactions::get_user_
 
 $routes->post('api/update-rfa', 'api\PendingRFATransactions::update_rfa');
 
+$routes->post('api/get-user-pending-rfa', 'api\PendingRFATransactions::get_user_pending_rfa_transactions');
 
-$routes->post('api/get-user-received-rfa', 'api\PendingRFATransactions::get_user_received_rfa_transactions');
+$routes->post('api/view-action', 'api\PendingRFATransactions::view_action');
+$routes->post('api/approved-rfa', 'api\PendingRFATransactions::approved_rfa');
 
-
+$routes->post('api/get-user-reffered-rfa', 'api\PendingRFATransactions::get_user_referred_rfa');
+$routes->post('api/count-reffered-rfa', 'api\PendingRFATransactions::count_reffered_rfa');
+$routes->post('api/accomplish-rfa', 'api\PendingRFATransactions::accomplished');
 
 $routes->post('api/received-rfa', 'api\PendingRFATransactions::received_rfa');
 

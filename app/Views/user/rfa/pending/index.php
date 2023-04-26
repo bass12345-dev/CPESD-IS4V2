@@ -20,6 +20,12 @@
                               <div class="card" style="border: 1px solid;">
                                  <div class="card-body">
                                     <div class="row">
+                                                <div class="col-md-12"> 
+                                                   
+                                                    <button  class="btn  mb-3 mt-2 sub-button pull-right mr-2" id="reload_user_pending_rfa" > Reload <i class="ti-loop"></i></button>
+                                                </div>
+                                            </div>
+                                    <div class="row">
                                        <?php echo view('user/rfa/pending/sections/pending_rfa_transactions_table'); ?>       
                                     </div>
                                 </div>
@@ -32,9 +38,14 @@
 <?php echo view('includes/scripts.php') ?>   
 <script type="text/javascript">
 
+    $(document).on('click','button#reload_user_pending_rfa',function (e) {
 
+        $('#rfa_pending_table').DataTable().destroy();
+        load_user_pending_rfa()
+})
 
-     var rfa_pending_table = $('#rfa_pending_table').DataTable({
+    function load_user_pending_rfa() {
+    $('#rfa_pending_table').DataTable({
 
             responsive: false,
             "ordering": false,
@@ -78,6 +89,9 @@
           ]
         });
 
+}
+
+load_user_pending_rfa()
 
  $(document).on('click','a#received-document',function (e) {
             e.preventDefault();

@@ -106,8 +106,25 @@ $(document).on('click','a#view_rfa',function (e) {
 })
 
 
+function count_total_reffered_rfa(){
 
 
+     $.ajax({
+                    type: "POST",
+                    url: base_url + 'api/count-reffered-rfa',
+                    cache: false,
+                    dataType: 'text',  
+                    success: function(data){
+
+                        $('.count_reffered_rfa').text(data);
+                    }
+
+                })
+
+}
+
+
+count_total_reffered_rfa();
 
     function count_total_rfa_pending(){
 

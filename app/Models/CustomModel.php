@@ -155,4 +155,15 @@ class CustomModel extends Model
 
 
 
+        public function getReferto(){
+         
+        $builder = $this->db->table('users');
+        $builder->where('user_type != "admin"');
+        $query = $builder->get()->getResult();
+        return $query;
+        
+    }
+
+
+
 }

@@ -117,18 +117,54 @@ class PendingRFATransactions extends BaseController
         foreach ($items as $row) {
 
                 $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+                $action1 = '';
+                $status1 = '';
+
+               $ref_number = date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number;
 
 
 
-                $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">needs to be refer</a>';
-                $action1 = '<div class="btn-group dropleft">
+                if ($row->reffered_to == NULL ) {
+
+
+                     $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">needs to be refer</a>';
+
+                      $action1 = '<div class="btn-group dropleft">
                                               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                <i class="ti-settings" style="font-size : 15px;"></i>
                                               </button>
                                               <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->rfa_id.'"   >Refer to</a>
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->rfa_id.'" id="refer_to" data-toggle="modal" data-target="#refer_to_modal"  >Refer to</a>
                                                
                                               </di>';
+                    
+                }else if ($row->reffered_to != NULL && $row->accomplished_status == 0) {
+
+                    $reffered = $this->CustomModel->getwhere($this->users_table,array('user_id' => $row->reffered_to))[0];
+                    
+                     $status1 = '<a href="javascript:;" class="btn btn-warning btn-rounded p-1 pl-2 pr-2">Reffered</a>
+                     <br>'.$reffered->first_name.' '.$reffered->middle_name.' '.$reffered->last_name.' '.$reffered->extension;
+                     $action1 = '';
+                }else if ($row->reffered_to != NULL && $row->accomplished_status == 1) {
+
+                    
+                    $reffered = $this->CustomModel->getwhere($this->users_table,array('user_id' => $row->reffered_to))[0];
+
+                     $status1 = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a><br>
+                     <a href="javascript:;" id="view_action" data-id="'.$row->rfa_id.'" >View</a><br>'.$reffered->first_name.' '.$reffered->middle_name.' '.$reffered->last_name.' '.$reffered->extension;
+
+                      $action1 = '<ul class="d-flex justify-content-center">
+                                <li class="mr-3 "><a href="javascript:;" class="text-success action-icon"  id="approved" data-id="'.$row->rfa_id.'" data-name="'.$ref_number.'"  ><i class="fa fa-check"></i></a></li>
+                                </ul>';
+                   
+                }
+
+
+
+              
+
+
+
             
                 $data[] = array(
 
@@ -138,7 +174,8 @@ class PendingRFATransactions extends BaseController
                         'type_of_transaction'   => $row->type_of_transaction,
                         'address'               => $client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
                         'status1'               => $status1,
-                        'action1'               => $action1
+                        'action1'               => $action1,
+                         'ref_number' => $ref_number,
 
 
 
@@ -159,8 +196,13 @@ class PendingRFATransactions extends BaseController
 
         foreach ($items as $row) {
 
+              $status1 = '';
+              $action1 = '';
 
-              $status1 = 'For Refferal';
+
+                if ($row->reffered_to == NULL ) {
+
+              $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">For Referral</a>';
               $action1 = '<div class="btn-group dropleft">
                                               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                <i class="ti-settings" style="font-size : 15px;"></i>
@@ -169,6 +211,19 @@ class PendingRFATransactions extends BaseController
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->rfa_id.'" data-status=""  id="view_rfa">View Update/Information</a>
                                                
                                               </di>';
+
+                }else if ($row->reffered_to != NULL) {
+
+
+                    $reffered = $this->CustomModel->getwhere($this->users_table,array('user_id' => $row->reffered_to))[0];
+
+                    $status1 = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Reffered</a>
+                     <br>'.$reffered->first_name.' '.$reffered->middle_name.' '.$reffered->last_name.' '.$reffered->extension;
+                     $action1 = '<ul class="d-flex justify-content-center">
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="" data-status=""  ><i class="fa fa-eye"></i></a></li>
+                                </ul>';
+
+                }
 
                  $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
             
@@ -180,7 +235,8 @@ class PendingRFATransactions extends BaseController
                         'type_of_transaction'   => $row->type_of_transaction,
                         'address'               => 'Purok '.$client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
                         'status1'               => $status1,
-                        'action1'               => $action1
+                        'action1'               => $action1,
+                         'ref_number' => date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number,
 
                        
                 );
@@ -188,6 +244,68 @@ class PendingRFATransactions extends BaseController
 
         echo json_encode($data);
     }
+
+
+public function get_user_referred_rfa(){
+
+    $data = [];
+    $where = array('reffered_to' => session()->get('user_id'));
+    $items = $this->RFAModel->getUserRefferedRFA($where);
+
+
+    foreach ($items as $row) {
+
+
+        $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+
+        $status1 = '';
+        $action1 = '';
+
+         $ref_number = date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number;
+
+        if ($row->action_to_be_taken == NULL) {
+
+            $status1 = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">No Action</a>';
+            $action1 = '<ul class="d-flex justify-content-center">
+                                <li class="mr-3 "><a href="javascript:;" class="text-success action-icon" data-id="'.$row->rfa_id.'" data-toggle="modal" data-target="#accomplished_modal" data-name="'.$ref_number.'" id="accomplished" ><i class="fa fa-check"></i></a></li>
+                                </ul>';
+           
+        }else if ($row->action_to_be_taken != NULL && $row->accomplished_status != 0) {
+            
+             $status1 = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">For Approval</a>';
+             $action1 = '';
+        }
+
+
+        $data[] = array(
+
+                        'rfa_id'               => $row->rfa_id ,
+                        'name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
+                        'type_of_request_name'  => $row->type_of_request_name,
+                        'type_of_transaction'   => $row->type_of_transaction,
+                        'address'               => 'Purok '.$client->purok == 0 ? $client->barangay : 'Purok '.$client->purok.' '.$client->barangay,
+                        'ref_number' => date('Y', strtotime($row->rfa_date_filed)).' - '.date('m', strtotime($row->rfa_date_filed)).' - '.$row->number,
+                        'status1' => $status1,
+                        'action1' => $action1
+                        
+
+                       
+                );
+
+    }
+
+
+     echo json_encode($data);
+}
+
+public function count_reffered_rfa(){
+
+    $where = array('rfa_status' => 'pending','reffered_to' => session()->get('user_id'));
+    $count = $this->CustomModel->countwhere($this->rfa_transactions_table,$where);
+
+    echo $count;
+
+}
 
 
 public function received_rfa(){
@@ -415,6 +533,137 @@ public function update_rfa(){
 
                     echo json_encode($resp);
 }
+
+
+public function refer_to(){
+
+
+            $where = array('rfa_id' => $this->request->getPost('rfa_id'));
+            $data = array(
+                'reffered_to'              => $this->request->getPost('reffered_to'),
+                'action_taken'             => $this->request->getPost('action_taken'),
+                'reffered_date_and_time'   => date('Y-m-d H:i:s', time()),
+            );
+
+
+            $update = $this->CustomModel->updatewhere($where,$data,$this->rfa_transactions_table);
+
+                if($update){
+
+                                $resp = array(
+                                    'message' => 'Reffered Successfully',
+                                    'response' => true
+                                );
+
+                }else {
+
+                                $resp = array(
+                                    'message' => 'Error',
+                                    'response' => false
+                                );
+
+                }
+
+                    echo json_encode($resp);
+
+
+
+
+}
+
+
+
+public function accomplished(){
+
+
+            $where = array('rfa_id' => $this->request->getPost('rfa_id'));
+            $data = array(
+                'accomplished_status'            => 1,
+                'action_to_be_taken'             => $this->request->getPost('action_to_be_taken'),
+                'action_to_be_taken_date_time'   => date('Y-m-d H:i:s', time()),
+            );
+
+
+    
+
+
+            $update = $this->CustomModel->updatewhere($where,$data,$this->rfa_transactions_table);
+
+                if($update){
+
+                                $resp = array(
+                                    'message' => 'Accomplished Successfully',
+                                    'response' => true
+                                );
+
+                }else {
+
+                                $resp = array(
+                                    'message' => 'Error',
+                                    'response' => false
+                                );
+
+                }
+
+                    echo json_encode($resp);
+
+
+
+
+}
+
+
+
+public function approved_rfa(){
+
+
+            $where = array('rfa_id' => $this->request->getPost('id'));
+            $data = array(
+                'rfa_status'            => 'completed',
+                'approved_date'   => date('Y-m-d H:i:s', time()),
+            );
+
+
+    
+
+
+            $update = $this->CustomModel->updatewhere($where,$data,$this->rfa_transactions_table);
+
+                if($update){
+
+                                $resp = array(
+                                    'message' => 'Approved Successfully',
+                                    'response' => true
+                                );
+
+                }else {
+
+                                $resp = array(
+                                    'message' => 'Error',
+                                    'response' => false
+                                );
+
+                }
+
+                    echo json_encode($resp);
+
+
+
+
+}
+
+
+
+public function view_action(){
+
+        $data = [];
+        $where = array('rfa_id'=>$this->request->getPost('id'));
+        $data['action_to_be_taken'] = $this->CustomModel->getwhere($this->rfa_transactions_table,$where)[0]->action_to_be_taken;
+        $data['rfa_id'] = $where['rfa_id']; 
+        echo json_encode($data);
+}
+
+
 
 
      
