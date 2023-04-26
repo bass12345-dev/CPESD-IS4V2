@@ -10,6 +10,7 @@ class Clients extends BaseController
 {
 
     public      $client_table       = 'rfa_clients';
+    public      $rfa_transactions_table = 'rfa_transactions';
     public      $order_by_desc      = 'desc';
     protected   $request;
     protected   $CustomModel;
@@ -171,5 +172,49 @@ class Clients extends BaseController
 
         echo json_encode($data);
 
+    }
+
+
+
+    public function delete_client(){
+
+
+
+        $where1 = array('rfa_client_id' => $this->request->getPost('id'));
+        $where2 = array('client_id' => $this->request->getPost('id'));
+        $check = $this->CustomModel->countwhere($this->rfa_transactions_table,$where2);
+
+
+        if ($check > 0) {
+
+             $data = array(
+                    'message' => 'This data is used in other operations',
+                    'response' => false
+                    );
+            
+        }else {
+
+             $result = $this->CustomModel->deleteData($this->client_table,$where1);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+        }
+       
+
+             echo json_encode($data);
     }
 }

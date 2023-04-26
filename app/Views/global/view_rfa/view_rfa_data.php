@@ -27,9 +27,17 @@
             <td >Date & Time Filed</td>
             <td class="date_and_time"></td>
          </tr>
-          <tr>
+        <!--   <tr>
             <td >Approved Date & Time</td>
             <td class="approve_date"></td>
+         </tr> -->
+           <tr>
+            <td >Status</td>
+            <td class="status"></td>
+         </tr>
+         <tr>
+            <td >Referred To</td>
+            <td class="referred_to"></td>
          </tr>
          <tr>
             <td >Encoded By</td>

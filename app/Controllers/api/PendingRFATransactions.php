@@ -556,6 +556,7 @@ public function view_rfa_data(){
 
 
         $client = $this->CustomModel->getwhere($this->client_table,array('rfa_client_id' => $row->client_id))[0];
+        $referred_to = $this->CustomModel->getwhere($this->users_table,array('user_id' => $row->reffered_to))[0];
 
         $data = array(
 
@@ -573,7 +574,9 @@ public function view_rfa_data(){
 
                     'tor_id'                => $row->tor_id,
                     'encoded_by'            => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
-                    'approved_date'         => date('F d Y h:i:A', strtotime($row->approved_date))
+                    'approved_date'         => date('F d Y h:i:A', strtotime($row->approved_date)),
+                    'referred_name'         => $referred_to->first_name.' '.$referred_to->middle_name.' '.$referred_to->last_name.' '.$referred_to->extension,
+                    'status'                => $row->rfa_status == 'completed' ? '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Completed</a>'.'<br>'.'<span>Approved Date  : </span> <b>'.date('F d Y h:i:A', strtotime($row->approved_date)).'</b>' : '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">Pending</a>'
 
 
 

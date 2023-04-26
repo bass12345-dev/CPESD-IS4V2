@@ -52,7 +52,11 @@
                                     $('.date_and_time').text(data.date_time_filed)
 
                                     $('.approve_date').text(data.approved_date)
-                                    $('.encoded_by').text(data.encoded_by)
+                                    $('.encoded_by').text(data.encoded_by);
+
+                                    $('.referred_to').text(data.referred_name);
+                                     $('.status').html(data.status);
+                                    
 
                                     
                                  
