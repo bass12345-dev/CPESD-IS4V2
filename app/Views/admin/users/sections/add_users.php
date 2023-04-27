@@ -19,6 +19,18 @@
              <i><label class="pull-right ">Jr Sr ...</label></i>
             <input  type="text" class="form-control input" name="ext"  placeholder="" >      
          </div>
+
+          <div class="form-group">
+            <label>Address<span class="text-danger">*</span></label>
+             <select class="custom-select" id="input_barangay" name="barangay" style="border: 1px solid;height: 45px;" required>
+                           <option  value="" selected>Select Barangay</option>
+                             <?php foreach ($barangay as $row) { ?>
+                              <option  value="<?php echo $row ?>"><?php echo $row; ?></option>
+                              <?php } ?>
+            </select> 
+         </div>
+
+        
          <div class="form-group ">
             <label for="inputEmail4">User Type<span class="text-danger">*</span></label>
             <select id="inputState" name="user_type" class="custom-select" style="border: 1px solid;">

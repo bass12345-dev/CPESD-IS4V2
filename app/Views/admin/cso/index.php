@@ -8,7 +8,7 @@
 
 <body>
    
- 
+ <?php echo view('includes/preloader') ?> 
     <div class="page-container">       
     <?php echo view('includes/sidebar.php') ?> 
         <div class="main-content">           

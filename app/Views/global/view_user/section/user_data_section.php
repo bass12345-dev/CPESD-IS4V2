@@ -11,10 +11,24 @@
                                                       <h5 class="my-3 name"></h5>
                                                       <p class="text-muted mb-1">CPESD Member</p>
                                                       <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
+                                                        <?php if (session()->user_id == $_GET['id']) {
+                                                          // code...
+                                                         ?>
                                                       <div class="d-flex justify-content-center mb-2">
-                                                        <!-- <button type="button" class="btn btn-primary">Follow</button> -->
-                                                        <button type="button" class="btn btn-outline-primary ms-1">Update Information</button>
+
+
+                                                      
+                                                      
+                                                        <button type="button" data-toggle="modal" data-target="#update_information_modal" class="btn btn-outline-primary ms-1">Update Information</button>
+
                                                       </div>
+                                                      <div class="d-flex justify-content-center mb-2">
+                                                      
+                                                        <button type="button"  data-toggle="modal" data-target="#old_password_modal" class="btn btn-outline-primary ms-1">Change Password</button>
+
+                                                      </div>
+
+                                                    <?php }  ?>
                                                     </div>
                                                   </div>
                                                  
@@ -24,10 +38,28 @@
                                                     <div class="card-body">
                                                       <div class="row">
                                                         <div class="col-sm-3">
+                                                          <p class="mb-0">Username</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                          <p class="text-muted mb-0 username "></p>
+                                                        </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                        <div class="col-sm-3">
                                                           <p class="mb-0">Full Name</p>
                                                         </div>
                                                         <div class="col-sm-9">
                                                           <p class="text-muted mb-0 name "></p>
+                                                        </div>
+                                                      </div>
+                                                      <hr>
+                                                      <div class="row">
+                                                        <div class="col-sm-3">
+                                                          <p class="mb-0">Address</p>
+                                                        </div>
+                                                        <div class="col-sm-9">
+                                                          <p class="text-muted mb-0 address"></p>
                                                         </div>
                                                       </div>
                                                       <hr>

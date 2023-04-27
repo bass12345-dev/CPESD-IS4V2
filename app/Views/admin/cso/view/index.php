@@ -53,6 +53,7 @@
       </style>
    </head>
    <body>
+    <?php echo view('includes/preloader') ?> 
       <div class="page-container sbar_collapsed">
          <div class="main-content">
             <?php echo view('admin/cso/view/sections/cso_topbar'); ?>

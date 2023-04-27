@@ -27,6 +27,7 @@ class Users extends BaseController
                 'middle_name' => ($this->request->getPost('middle_name') == '') ?  '' : $this->request->getPost('middle_name') ,
                 'last_name' => $this->request->getPost('last_name'),
                 'extension' => ($this->request->getPost('extension') == '') ?  '' : $this->request->getPost('extension') ,
+                'address' => $this->request->getPost('barangay'),
                 'user_type' => $this->request->getPost('user_type'),
                 'username' => $this->request->getPost('username'),
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
@@ -170,10 +171,128 @@ class Users extends BaseController
                         'last_name'      => $row->last_name,
                         'extension'      => $row->extension,
                         'email_address'  => $row->email_address,
-                        'contact_number' => $row->contact_number
+                        'contact_number' => $row->contact_number,
+                        'barangay'       => $row->address
         );
 
         echo json_encode($data);
+
+    }
+
+
+    public function update_user_information(){
+
+
+           if ($this->request->isAJAX()) {
+
+            $data = array(
+                'first_name' => $this->request->getPost('first_name'),
+                'middle_name' => ($this->request->getPost('middle_name') == '') ?  '' : $this->request->getPost('middle_name') ,
+                'last_name' => $this->request->getPost('last_name'),
+                'extension' => ($this->request->getPost('extension') == '') ?  '' : $this->request->getPost('extension') ,
+                'address' => $this->request->getPost('barangay'),
+                'email_address' =>  $this->request->getPost('email_address'),
+                'contact_number' => $this->request->getPost('contact_number'),
+                'username' => $this->request->getPost('username'),
+                
+              
+            );
+
+             $where = array(
+                        'user_id' => $this->request->getPost('user_id')
+                    );
+
+
+              $update = $this->CustomModel->updatewhere($where,$data,$this->users_table);
+
+                    if($update){
+
+                        $resp = array(
+                            'message' => 'Successfully Updated',
+                            'response' => true
+                        );
+
+                    }else {
+
+                        $resp = array(
+                            'message' => 'Error',
+                            'response' => false
+                        );
+
+                    }
+
+                    echo json_encode($resp);
+
+                    }
+
+           
+     
+        }
+
+    public function verify_old_password(){
+
+        // 
+
+        $where  = array('user_id' => $this->request->getPost('user_id'));
+        $pass   = $this->request->getPost('old_password');
+
+        $user = $this->CustomModel->getwhere($this->users_table,$where)[0];
+            
+            if (password_verify($pass,$user->password) ) {
+
+                 $resp = array(
+                            'message' => '',
+                            'response' => true
+                        );
+
+
+            }else {
+
+                $resp = array(
+                            'message' => "Password Don't Match ",
+                            'response' => false
+                        );
+
+            }
+
+
+            echo json_encode($resp);
+
+
+    }
+    
+
+    public function update_password(){
+
+        $where  = array('user_id' => $this->request->getPost('user_id'));
+
+         $data = array(
+               
+                'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                
+            );
+
+          $update = $this->CustomModel->updatewhere($where,$data,$this->users_table);
+
+                    if($update){
+
+                        $resp = array(
+                            'message' => 'Successfully Updated',
+                            'response' => true
+                        );
+
+                    }else {
+
+                        $resp = array(
+                            'message' => 'Error',
+                            'response' => false
+                        );
+
+                    }
+
+                    echo json_encode($resp);
+
+                    
 
     }
    

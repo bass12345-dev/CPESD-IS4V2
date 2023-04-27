@@ -124,9 +124,11 @@ $routes->post('api/get-inactive-user', 'api\Users::get_user_inactive');
 $routes->post('api/update-user-status', 'api\Users::update_user_status');
 
 $routes->post('api/get-user-data', 'api\Users::get_user_data');
+$routes->post('api/update-user-information', 'api\Users::update_user_information');
 
 
-
+$routes->post('api/verify-old-password', 'api\Users::verify_old_password');
+$routes->post('api/update-password', 'api\Users::update_password');
 //CSO
 $routes->post('api/add-cso', 'api\Cso::add_cso');
 $routes->post('api/get-cso', 'api\Cso::get_cso');
