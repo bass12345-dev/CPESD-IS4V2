@@ -157,12 +157,26 @@ class Cso extends BaseController
         $item = $this->CustomModel->get_all_desc($this->cso_table,'cso_created',$this->order_by_desc);
         foreach ($item as $row) {
 
+            $address = '';
+
+            if ($row->barangay == '') {
+
+                $address = '';
+                // code...
+            }else if ($row->purok_number == '' && $row->barangay != '') {
+                
+                $address = $row->barangay;
+            }else if ($row->purok_number != '' && $row->barangay != '') {
+                
+                $address = 'Purok '.$row->purok_number.' '.$row->barangay;
+            }
+
             $data[] = array(
 
                 'cso_id' => $row->cso_id,
                 'cso_name' => $row->cso_name,
                 'cso_code' => $row->cso_code,
-                'address' => 'Purok '.$row->purok_number.' '.$row->barangay,
+                'address' => $address,
                 'contact_person' => $row->contact_person,
                 'contact_number' => $row->contact_number,
                 'telephone_number' => $row->telephone_number,    
@@ -185,11 +199,26 @@ class Cso extends BaseController
         $item = $this->CustomModel->getwhere($this->cso_table,$where);
         foreach ($item as $row) {
 
+
+             $address = '';
+
+            if ($row->barangay == '') {
+
+                $address = '';
+                // code...
+            }else if ($row->purok_number == '' && $row->barangay != '') {
+                
+                $address = $row->barangay;
+            }else if ($row->purok_number != '' && $row->barangay != '') {
+                
+                $address = 'Purok '.$row->purok_number.' '.$row->barangay;
+            }
+
             $data[] = array(
                 'cso_id' => $row->cso_id,
                 'cso_name' => $row->cso_name,
                 'cso_code' => $row->cso_code,
-                'address' => $row->purok_number.' '.$row->barangay,
+                'address' => $address,
                 'contact_person' => $row->contact_person,
                 'contact_number' => $row->contact_number,
                 'telephone_number' => $row->telephone_number,    

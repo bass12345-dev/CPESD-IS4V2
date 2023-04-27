@@ -28,7 +28,7 @@
                      <table id="cso_table" style="width:100%" class="text-center">
                         <thead class="bg-light text-capitalize">
                            <tr>
-                              <th>Code</th>
+                              <th>Controll No.</th>
                               <th>CSO</th>
                               <th>Address</th>
                               <th>Contact Person</th>
