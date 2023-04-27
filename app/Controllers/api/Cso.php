@@ -154,7 +154,7 @@ class Cso extends BaseController
     function query_all_cso(){
 
         $data = [];
-        $item = $this->CustomModel->get_all_desc($this->cso_table,'cso_created',$this->order_by_desc);
+        $item = $this->CustomModel->get_all_desc($this->cso_table,'cso_code',$this->order_by_desc);
         foreach ($item as $row) {
 
             $address = '';

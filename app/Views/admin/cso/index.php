@@ -120,9 +120,10 @@
 
                 $('#cso_table').DataTable({
 
-                        scrollY: 600,
+                        // scrollY: 800,
                         scrollX: true,
                         "ordering": false,
+                         lengthMenu: [20, 50, 100, 200, 500],
                         "data": data,
                         "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
                                         "<'row'<'col-sm-12'tr>>" +

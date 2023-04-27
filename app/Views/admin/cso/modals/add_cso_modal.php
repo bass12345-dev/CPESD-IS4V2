@@ -11,7 +11,7 @@
             <div class="modal-body">
                <div class="form-group">
                   <div class="col-12">CSO Name<span class="text-danger">*</span></div>
-                  <input type="text" class="form-control input" name="cso_name"  placeholder="" required>
+                  <input type="text" class="form-control input" name="cso_name"  placeholder="" >
                </div>
                <div class="form-group">
                   <div class="col-12">Control No.<span class="text-danger">*</span></div>
@@ -19,7 +19,7 @@
                </div>
                <div class="form-group ">
                   <label for="input_barangay">CSO Type<span class="text-danger">*</span></label>
-                  <select  class=" custom-select" id="input_barangay" name="cso_type"   style="border: 1px solid;" required>
+                  <select  class=" custom-select" id="input_barangay" name="cso_type"   style="border: 1px solid;" >
                      <option  value="" selected>Select type</option>
                      <?php foreach ($type_of_cso as $row) { ?>
                      <option  value="<?php echo strtolower($row); ?>"><?php echo $row; ?></option>
@@ -41,7 +41,7 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text" for="input_barangay"  >Barangay</span>
                         </div>
-                         <select class="custom-select" id="input_barangay" name="barangay" style="border: 1px solid;height: 45px;">
+                         <select class="custom-select" id="input_barangay" name="barangay" style="border: 1px solid;height: 45px;" >
                            <option  value="" selected>Select Barangay</option>
                              <?php foreach ($barangay as $row) { ?>
                               <option  value="<?php echo $row ?>"><?php echo $row; ?></option>
