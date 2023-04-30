@@ -106,6 +106,9 @@
                                  $('.address').text(data.barangay);
                                   $('.username').text(data.username);
 
+                                   $("#profile_picture").attr('src', data.profile_picture);
+
+
                                  $('input[name=first_name]').val(data.first_name);
                                  $('input[name=middle_name]').val(data.middle_name);
                                  $('input[name=last_name]').val(data.last_name);
@@ -115,6 +118,7 @@
                                  $('input[name=contact_number]').val(data.contact_number);
                                   $('input[name=user_id]').val(data.user_id);
                                    $('input[name=username]').val(data.username);
+
 
 
 

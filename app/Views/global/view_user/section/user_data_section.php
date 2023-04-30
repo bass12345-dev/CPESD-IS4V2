@@ -6,8 +6,8 @@
                                                 <div class="col-lg-4">
                                                   <div class="card mb-4">
                                                     <div class="card-body text-center">
-                                                      <img src="assets/images/profile.jpg" alt="avatar"
-                                                        class="rounded-circle img-fluid" style="width: 150px;">
+                                                      <img src="" alt="avatar"
+                                                        class="rounded-circle img-fluid" id="profile_picture" style="width: 150px;">
                                                       <h5 class="my-3 name"></h5>
                                                       <p class="text-muted mb-1">CPESD Member</p>
                                                       <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->

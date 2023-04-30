@@ -172,10 +172,38 @@ class Users extends BaseController
                         'extension'      => $row->extension,
                         'email_address'  => $row->email_address,
                         'contact_number' => $row->contact_number,
-                        'barangay'       => $row->address
+                        'barangay'       => $row->address,
+                        'profile_picture'=> $this->get_profile_picture($this->request->getPost('id'))
         );
 
         echo json_encode($data);
+
+    }
+
+
+    function get_profile_picture($id){
+
+
+    $path = "./uploads/profile_picture/".$id;
+
+    $profile_pic = '';
+
+    if (is_dir($path)) {
+        
+         $file = scandir($path)[2];
+
+         $profile_pic = "uploads/profile_picture/".$id.'/'.$file;
+        
+    }else {
+
+          $profile_pic = './../../assets/images/profile.jpg';
+       
+
+    }
+
+
+    return $profile_pic;
+
 
     }
 
