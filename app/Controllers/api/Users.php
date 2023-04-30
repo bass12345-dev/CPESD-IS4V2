@@ -295,5 +295,70 @@ class Users extends BaseController
                     
 
     }
+
+
+    public function update_user_profile(){
+
+
+
+    $path = FCPATH ."uploads/profile_picture/".session()->get('user_id');
+
+    if (!is_dir($path)) {
+        mkdir($path,0777, true);
+    }
+
+
+
+
+
+
+    $allFiles = scandir($path);
+    $files = array_diff($allFiles, array('.', '..'));
+
+
+    if ($files > 0) {
+        
+         foreach ($files as $file) {
+
+                unlink($path.'/'.$file);
+         }
+    }
+
+    $destination = '';
+    $new_name = '';
+
+    if (is_dir($path)) {
+        if (isset($_FILES['update_profile_picture'])) {
+        $new_name = $_FILES['update_profile_picture']['name'];
+        $destination = $path.'/'.$new_name;
+        move_uploaded_file($_FILES['update_profile_picture']['tmp_name'], $destination);
+        
+
+    }
+
+     if(file_exists($destination)) {
+
+             $data = array(
+                'message' => 'Profile Picture Updated Successfully',
+                'response' => true
+                );
+         
+        } else {
+
+
+             $data = array(
+                'message' => 'Error',
+                'response' => false
+                );
+          
+        }
+
+
+        echo  json_encode($data);
+}
+
+
+
+    }
    
 }

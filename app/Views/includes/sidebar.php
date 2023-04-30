@@ -48,22 +48,13 @@
                             
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA</span>
-                             <li class="<?= $page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('admin/clients') ?>"><i class="fa fa-history"></i> <span>Clients</span></a></li>
-                            <li class="scroll-down <?= $page == 'type-of-request' ? 'active' : ''?>"><a href="<?php echo base_url('admin/type-of-request') ?>"><i class="fa fa-history"></i> <span>Type Of Request</span></a></li>
+                             <li class="<?= $page == 'clients' ? 'active' : ''?>"><a href="<?php echo base_url('admin/clients') ?>"><i class="fa fa-user"></i> <span>Clients</span></a></li>
+                            <li class="scroll-down <?= $page == 'type-of-request' ? 'active' : ''?>"><a href="<?php echo base_url('admin/type-of-request') ?>"><i class="fa fa-chevron-right"></i> <span>Type Of Request</span></a></li>
                             
-                            <li class="scroll-down <?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-rfa') ?>"><i class="fa fa-history"></i> <span>Pending RFA</span><span class="badge badge-danger count_pending_rfa">0</span></a></li>
+                            <li class="scroll-down <?= $page == 'pending-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/pending-rfa') ?>"><i class="fa fa-hourglass-start"></i> <span>Pending RFA</span><span class="badge badge-danger count_pending_rfa">0</span></a></li>
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">RFA Report</span>
-                            <li class="scroll-down <?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/completed-rfa') ?>"><i class="fa fa-history"></i> <span>Completed RFA</span></a></li>
-                             <!-- <li class="<?= $third_page == 'received' || $third_page == 'track' ? 'active' : ''?>">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>RFA Tracker</span>
-                                </a>
-                                <ul class="collapse">
-                                    <li class="<?= $third_page == 'received' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/received') ?>" >For Approval</a></li>    
-                                    <li class="<?= $third_page == 'received' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/received') ?>" >Track RFA</a></li>    
-                                   
-                               
-                                </ul>
-                            </li> -->
+                            <li class="scroll-down <?= $page == 'completed-rfa' ? 'active' : ''?>"><a href="<?php echo base_url('admin/completed-rfa') ?>"><i class="fa fa-file"></i> <span>Completed RFA</span></a></li>
+                            
                             <hr> 
                             <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span>
                             <li class="scroll-down <?= $page == 'users' ? 'active' : ''?>"><a href="<?php echo base_url('admin/users') ?>"><i class="fa fa-users"></i> <span>Users</span></a></li>
@@ -103,23 +94,10 @@
                     
                              <li class="<?= $page == 'referred' ? 'active' : ''?>"><a href="<?php echo base_url('user/referred') ?>"><i class="fa fa-history"></i> <span>Referred To You</span><span class="badge badge-danger count_reffered_rfa">0</span></a></li>
 
-            <!--                 <li class="<?= $third_page == 'received' || $third_page == 'track' ? 'active' : ''?>">
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>RFA Tracker</span>
-                                </a>
-                                <ul class="collapse">
-                                    <li><a href="linechart.html">Incoming</a></li>
-                                    <li class="<?= $third_page == 'received' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/received') ?>" >Received</a></li>    
-                                    <li><a href="piechart.html">Outgoing</a></li>
-                                    <li class="<?= $third_page == 'track' ? 'active' : ''?>"><a href="<?php echo base_url('user/rfa/track') ?>">Tracker</a></li>
-                               
-                                </ul>
-                            </li> -->
+           
                            
                             <hr> 
-                            <!-- <span style="color: #fff;" class="ml-1 p-2 mb-5">Others</span> -->
                            
-                            <!-- <li class="<?= $page == 'activity-logs' ? 'active' : ''?>"><a href="<?php echo base_url('user/activity-logs') ?>"><i class="fa fa-history"></i> <span>Activity Logs</span></a></li> -->
-                            <!--  <li><a href="<?php echo base_url() ?>Wallpaper"><i class="ti-map-alt"></i> <span>Login Wallpaper</span></a></li> -->
 
                              <br>
                              <br>

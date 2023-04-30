@@ -14,11 +14,12 @@
                                                         <?php if (session()->user_id == $_GET['id']) {
                                                           // code...
                                                          ?>
+                                                        <div class="d-flex justify-content-center mb-2">
+                                                      
+                                                        <button type="button"  data-toggle="modal" data-target="#update_profile_picture" class="btn btn-outline-primary ms-1">Update Profile Picture</button>
+
+                                                      </div>
                                                       <div class="d-flex justify-content-center mb-2">
-
-
-                                                      
-                                                      
                                                         <button type="button" data-toggle="modal" data-target="#update_information_modal" class="btn btn-outline-primary ms-1">Update Information</button>
 
                                                       </div>
