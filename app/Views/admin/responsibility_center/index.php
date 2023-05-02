@@ -44,7 +44,7 @@ var res_center_table = $('#responsibility_table').DataTable({
                 // data: "song_title",
                 data: null,
                 render: function (data, type, row) {
-                    return '<a href="javascript:;"  class="a"  data-id="'+data['responsibility_center_id']+'" data-code="'+data['responsibility_center_code']+'"  style="color: #000;"  >'+data['responsibility_center_name']+'</a>';
+                    return '<a href="javascript:;"    data-id="'+data['responsibility_center_id']+'" data-code="'+data['responsibility_center_code']+'"  style="color: #000;"  >'+data['responsibility_center_name']+'</a>';
                 }
 
             },

@@ -9,7 +9,7 @@
                             <option>2025</option>
                         </select>
                     </div>
-                <canvas id="user-bar-rfa-chart"  height="100"></canvas>
+                <canvas id="bar-chart"  width="800" height="450"></canvas>
             </div>
         </div>
     </div>

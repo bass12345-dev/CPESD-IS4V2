@@ -177,7 +177,7 @@ class CompletedRFATransactions extends BaseController
 
         $where = array('user_id'=> session()->get('user_id'));
          $items =   $this->RFAModel->getUserCompletedRFA($where);
-
+         $data = [];
 
           foreach ($items as $row ) {
 

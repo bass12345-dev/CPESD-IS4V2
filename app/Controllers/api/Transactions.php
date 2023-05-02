@@ -320,7 +320,7 @@ public function get_user_chart_transaction_data(){
 public function get_user_completed_transactions(){
 
     $items = $this->TransactionModel->getUserCompletedTransactions(array('created_by' => session()->get('user_id')));
-
+    $data = [];
 
      foreach ($items as $row) {
             

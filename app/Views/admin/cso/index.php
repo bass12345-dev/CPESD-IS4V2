@@ -1,5 +1,15 @@
 <!doctype html>
 <html class="no-js" lang="en">
+<style>
+    
+    .dataTables_scrollBody {
+    transform:rotateX(180deg);
+}
+.dataTables_scrollBody table {
+    transform:rotateX(180deg);
+}
+
+</style>
 
 <head>
     <?php echo view('includes/meta.php') ?>

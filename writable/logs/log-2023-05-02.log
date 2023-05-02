@@ -103,3 +103,38 @@ INFO - 2023-05-02 21:06:48 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2023-05-02 21:06:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-05-02 21:06:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2023-05-02 21:06:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2023-05-02 13:59:19 --> Undefined variable $data
+in APPPATH\Controllers\api\Transactions.php on line 339.
+ 1 APPPATH\Controllers\api\Transactions.php(339): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Transactions.php', 339)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Transactions->get_user_completed_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Transactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-02 13:59:26 --> Undefined variable $data
+in APPPATH\Controllers\api\Transactions.php on line 339.
+ 1 APPPATH\Controllers\api\Transactions.php(339): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Transactions.php', 339)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Transactions->get_user_completed_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Transactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-02 13:59:33 --> Undefined variable $data
+in APPPATH\Controllers\api\Transactions.php on line 339.
+ 1 APPPATH\Controllers\api\Transactions.php(339): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\Transactions.php', 339)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\Transactions->get_user_completed_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\Transactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-02 14:00:50 --> Undefined variable $data
+in APPPATH\Controllers\api\CompletedRFATransactions.php on line 206.
+ 1 APPPATH\Controllers\api\CompletedRFATransactions.php(206): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\CompletedRFATransactions.php', 206)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\CompletedRFATransactions->get_user_completed_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\CompletedRFATransactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-02 14:00:59 --> Undefined variable $data
+in APPPATH\Controllers\api\CompletedRFATransactions.php on line 206.
+ 1 APPPATH\Controllers\api\CompletedRFATransactions.php(206): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $data', 'C:\\xampp\\htdocs\\CPESD-IS4V2\\app\\Controllers\\api\\CompletedRFATransactions.php', 206)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Api\CompletedRFATransactions->get_user_completed_transactions()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Api\CompletedRFATransactions))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

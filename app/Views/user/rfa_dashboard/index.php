@@ -17,7 +17,7 @@
                 <div class="main-content-inner">
                    
                          <?php echo view('user/rfa_dashboard/sections/rfa_count_section'); ?>
-                          <!-- <?php echo view('user/rfa_dashboard/sections/graph_section'); ?> -->
+                          <?php echo view('user/rfa_dashboard/sections/graph_section'); ?>
                      
                 </div>
         </div>
@@ -40,7 +40,7 @@
                 {
 
                      try{
-                                 new Chart(document.getElementById("user-bar-rfa-chart"), {
+                                 new Chart(document.getElementById("bar-chart"), {
                                     type: 'bar',
                                     data: {
                                       labels: data.label,
