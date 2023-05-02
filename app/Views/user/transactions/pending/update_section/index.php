@@ -4,6 +4,8 @@
       <?php echo view('includes/meta.php') ?>
       <?php echo view('includes/css.php') ?> 
 
+       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
    </head>
    <body>
       <div class="page-container sbar_collapsed">
@@ -26,7 +28,14 @@
          </div>
       <?php echo view('user/transactions/pending/update_section/modals/update_select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
+      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
       <script>
+
+
+                $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
+
 
          $('#update_date_and_time').datetimepicker({
             "allowInputToggle": true,
@@ -146,6 +155,7 @@
                                 $('.responsible_section_name').text(data.responsible_section_name);
                                 $('.type_of_activity_name').text(data.type_of_activity_name);
                                 $('.responsibility_center_name').text(data.responsibility_center_name);
+                                $('.cso_name').text(data.cso_name);
                                 $('.date_and_time').text(data.date_time);
 
 

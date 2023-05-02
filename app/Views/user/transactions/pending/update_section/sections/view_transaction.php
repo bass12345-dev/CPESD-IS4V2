@@ -27,6 +27,10 @@
             <td >Responsibility Center</td>
             <td class="responsibility_center_name"></td>
          </tr>
+          <tr>
+            <td >CSO</td>
+            <td class="cso_name"></td>
+         </tr>
          <tr>
             <td >Date & Time</td>
             <td class="date_and_time"></td>

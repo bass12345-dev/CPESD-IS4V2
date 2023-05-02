@@ -965,6 +965,7 @@ public function get_transaction_data(){
                     'type_of_activity_id'        => $row->type_of_activity_id,
                     'responsibility_center_id'   => $row->responsibility_center_id,
                     'cso_id'                     => $row->cso_id,
+                    'cso_name'                   => $row->cso_name,
                     'date_and_time'              => date("m/d/Y h:i:s A", strtotime($row->date_and_time)),
                     'under_type_of_activity'     => $row->under_type_of_activity_id == 0 ? '' : $row->under_type_of_activity_id,
 

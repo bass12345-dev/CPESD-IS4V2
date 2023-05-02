@@ -65,7 +65,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Responsibility Center</div>
-						<select class="custom-select input responsibility wizard-required" name="responsibility_center_id" style="width: 100%;" required>
+						<select class="custom-select input responsibility wizard-required js-example-basic-single" name="responsibility_center_id" style="width: 100%;" required>
 						<option value="">Select Responsibility Center</option> 
 						<?php 
 
@@ -84,7 +84,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Select CSO</div>
-						<select class="custom-select input cso wizard-required" name="cso_id" style="width: 100%;" required> 
+						<select class="custom-select input cso wizard-required js-example-basic-single" name="cso_id" style="width: 100%;" required> 
 						<option value="">Select CSO</option> 
 						<?php 
 
