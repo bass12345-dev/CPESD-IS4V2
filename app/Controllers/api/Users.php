@@ -7,7 +7,9 @@ use App\Models\CustomModel;
 
 class Users extends BaseController
 {
-    public $users_table = 'users';
+    public    $users_table                  = 'users';
+    public    $transactions_table           = 'transactions';
+    public    $rfa_transactions_table       = 'rfa_transactions';
     protected $request;
     protected $CustomModel;
 
@@ -110,7 +112,7 @@ class Users extends BaseController
             if ($row->user_type == 'admin') {
                 $a = '';
             }else {
-                $a = '<ul class="d-flex justify-content-center"><li class="mr-1"><a href="javascript:;" data-id="'.$row->user_id.'"  id="view_user"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li><li><a href="javascript:;" data-id="'.$row->user_id.'" data-set="active" id="active-user"  class="text-success action-icon"><i class="ti-check"></i></a></li></ul>';
+                $a = '<ul class="d-flex justify-content-center"><li class="mr-1"><a href="javascript:;" data-id="'.$row->user_id.'"  id="view_user"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li><li><a href="javascript:;" data-id="'.$row->user_id.'" data-set="active" id="active-user"  class="text-success action-icon"><i class="ti-check"></i></a></li><li><a href="javascript:;" data-name="'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'" data-id="'.$row->user_id.'" data-set="active" id="remove-user"  class="text-danger action-icon"><i class="ti-trash"></i></a></li></ul>';
             }
 
                 $data[] = array(
@@ -455,6 +457,54 @@ class Users extends BaseController
 
     }
 
+
+   }
+
+   public function delete_user(){
+    
+
+    $where1 = array('user_id' => $this->request->getPost('id'));
+    $where2 = array('created_by' => $this->request->getPost('id'));
+    $where4 = array('rfa_client_added_by' => $this->request->getPost('id'));
+
+
+
+    $check1 = $this->CustomModel->countwhere($this->transactions_table,$where2);
+    $check2 = $this->CustomModel->countwhere('rfa_transactions',array('reffered_to' => $this->request->getPost('id')));
+    $check3 = $this->CustomModel->countwhere('rfa_clients',$where4);
+
+
+    if ($check1 > 0 || $check2 > 0 || $check3 > 0) {
+        
+          $data = array(
+                    'message' => "Can't Delete This user",
+                    'response' => false
+                    );
+    }else {
+
+        $result = $this->CustomModel->deleteData($this->users_table,$where1);
+
+
+            if ($result) {
+
+                    $data = array(
+                    'message' => 'Deleted Successfully',
+                    'response' => true
+                    );
+
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+    }
+
+
+
+    echo json_encode($data);
 
    }
 }

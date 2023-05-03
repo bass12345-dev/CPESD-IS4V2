@@ -132,6 +132,9 @@ $routes->post('api/update-user-information', 'api\Users::update_user_information
 
 $routes->post('api/update-user-profile', 'api\Users::update_user_profile');
 
+$routes->post('api/delete-user', 'api\Users::delete_user');
+
+
 
 $routes->post('api/verify-old-password', 'api\Users::verify_old_password');
 $routes->post('api/update-password', 'api\Users::update_password');

@@ -24,7 +24,23 @@
 
     var users_table = $('#users_table').DataTable({
 
-        scrollX: true, 
+        scrollX: true,
+
+         "dom": "<'row '<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                                  {
+                                     extend: 'excel',
+                                     text: 'Excel',
+                                     className: 'btn btn-default ',
+                                     
+                                  },
+                                  
+                                
+                            ],
+
+
         "ajax" : {
                         "url": base_url + 'api/get-active-user',
                         "type" : "POST",
@@ -220,6 +236,71 @@
     }
 
     });
+
+
+ $(document).on('click','a#remove-user',function (e) {
+
+
+        var id = $(this).data('id');   
+        var name = $(this).data('name');
+
+          Swal.fire({
+        title: "",
+        text: "Delete " + name,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/delete-user',
+                            data: {id:id,status : status},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                  Swal.fire({
+                                title: "",
+                                text: "Please Wait",
+                                icon: "",
+                                showCancelButton: false,
+                                showConfirmButton : false,
+                                reverseButtons: false,
+                                allowOutsideClick : false
+                            })
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                  Swal.fire(
+                "",
+                "Success",
+                "success"
+            )
+                                
+                               }
+
+                                users_table.ajax.reload();
+                                inactiveusers_table.ajax.reload()
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+             
+     });
 
 
     $(document).on('click','a#delete-user',function (e) {
