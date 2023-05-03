@@ -33,6 +33,8 @@ $routes->set404Override();
 //Authentication
 $routes->get('/login', 'auth\LoginController::index',['filter' => 'usercheck']);
 
+$routes->get('/register', 'auth\RegisterController::index');
+
 
 //Admin Panel
 $routes->get('/', 'Home::index');

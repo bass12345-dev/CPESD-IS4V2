@@ -10,27 +10,75 @@
     <?php echo view('includes/preloader') ?> 
     <div class="login-area login-bg" >       
         <div class="container">
-            <div class="login-box ptb--100 animate__animated animate__zoomInDown">
-                <form id="login_form">
+            <div class="login-box  animate__animated animate__zoomInDown" >
+                <form id="login_form" style="width: 700px;">
                     <div class="login-form-head">                    
-                        <img src="<?php echo base_url('peso_logo.png'); ?>" width="150" height="200">
-                        <h1 class="mt-2" style="color: #fff;">CPESD-IS</h1>
+                       
+                        <h1 class="mt-2" style="color: #fff;">CPESD-IS REGISTRATION</h1>
                      
                     </div>
                         <div class="login-form-body">
-                            <div class="form-gp">
-                                <label for="exampleInputEmail1">Username</label>
-                                    <input type="text" id="exampleInputUsername"  name="username" required >
-                                        <i class="ti-user"></i>
-                            </div>
-                            <div class="form-gp">
-                                <label for="exampleInputPassword1">Password</label>
-                                    <input type="password"  id="exampleInputPassword1" name="password" style="-webkit-text-security: disc;" required>
-                                    <i class="ti-lock lock"></i>
-                            </div>
                             
-                            <button id="form_submit" type="submit" class="btn  btn-lg btn-block mb-4"  style="background-color: #3F6BA4; color: #fff; font-size: 15px;" > Log In </button>
-                            <a   href="register" class="btn  btn-lg btn-block"  style="font-size: 15px;" > Register</a>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">First Name</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                                  
+                                </div>
+
+                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Middle Name</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                                  
+                                  </div>
+
+
+                                   <div class="form-group">
+                                    <label for="exampleInputEmail1">Last Name</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                                  
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Extension</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Address</label>
+                                    <select class="custom-select" id="input_barangay" name="barangay" style=" solid;height: 45px;" required>
+                                               <option  value="" selected>Select Barangay</option>
+                                                 <?php foreach ($barangay as $row) { ?>
+                                                  <option  value="<?php echo $row ?>"><?php echo $row; ?></option>
+                                                  <?php } ?>
+                                </select> 
+                                  </div>
+
+
+                                   <div class="form-group">
+                                    <label for="exampleInputPassword1">Work Status</label>
+                                    <select class="custom-select" id="input_barangay" name="barangay" style=" solid;height: 45px;" required>
+                                                 <?php foreach ($work_status as $row) { ?>
+                                                  <option  value="<?php echo $row ?>"><?php echo $row; ?></option>
+                                                  <?php } ?>
+                                </select> 
+                                  </div>
+
+
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Username</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Confirm Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                  </div>
+                            
+                            <button id="form_submit" type="submit" class="btn  btn-lg btn-block mb-4"  style="background-color: #3F6BA4; color: #fff; font-size: 15px;" >Register</button>
+
+                             <a  class="btn  btn-lg btn-block"  style=" font-size: 15px;" >Back to Login</a>
                         </div>
                 </form>
             </div>
