@@ -30,6 +30,7 @@ var res_center_table = $('#responsibility_table').DataTable({
                         "type" : "POST",
                         "dataSrc": "",
             },
+            "ordering": false,
             'columns': [
              {
                 // data: "song_title",

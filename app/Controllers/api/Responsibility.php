@@ -68,7 +68,7 @@ class  Responsibility  extends BaseController
 
 
         $data = [];
-        $item = $this->CustomModel->get_all_desc($this->responsibility_table,'responsibility_created',$this->order_by_desc); 
+        $item = $this->CustomModel->get_all_order_by($this->responsibility_table,'responsibility_center_id','desc'); 
         foreach ($item as $row) {
             
                 $data[] = array(
