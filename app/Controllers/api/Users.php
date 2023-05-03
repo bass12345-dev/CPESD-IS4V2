@@ -392,5 +392,69 @@ class Users extends BaseController
 
    public function register(){
 
+
+
+     if ($this->request->isAJAX()) {
+
+
+
+         $data = array(
+                'first_name'            => $this->request->getPost('first_name'),
+                'middle_name'           => ($this->request->getPost('middle_name') == '') ?  '' : $this->request->getPost('middle_name') ,
+                'last_name'             => $this->request->getPost('last_name'),
+                'extension'             => ($this->request->getPost('extension') == '') ?  '' : $this->request->getPost('extension') ,
+                'address'               => $this->request->getPost('barangay'),
+                'work_status'           => $this->request->getPost('work_status'),
+                'user_type'             => 'user',
+                'email_address'         => $this->request->getPost('email'),
+                'contact_number'        => $this->request->getPost('contact_number'),
+                'username'              => $this->request->getPost('username'),
+                'password'              => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+                'user_created'          =>  date('Y-m-d H:i:s', time()),
+                'user_status'           => 'inactive',
+              
+            );
+
+
+
+        $verify = $this->CustomModel->countwhere($this->users_table,array('username' => $data['username']));
+         if ($verify > 0) {
+
+            $data = array(
+                'message' => 'Username is Taken',
+                'response' => false
+                );
+
+         }else {
+
+
+
+              $result  = $this->CustomModel->addData($this->users_table,$data);
+
+                if ($result) {
+
+                    $data = array(
+                    'message' => 'Registered Successfully || Please Wait for Account Activation',
+                    'response' => true
+                    );
+                }else {
+
+                    $data = array(
+                    'message' => 'Error',
+                    'response' => false
+                    );
+                }
+
+
+
+         }
+
+
+
+            echo json_encode($data);
+
+    }
+
+
    }
 }
