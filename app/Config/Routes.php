@@ -120,6 +120,8 @@ $routes->post('api/auth/verify', 'api\Auth::verify');
 $routes->post('api/back-up-db', 'api\BackupDB::index');
 $routes->post('api/get-database', 'api\BackupDB::get_database');
 //Users
+
+$routes->post('api/register', 'api\Users::register');
 $routes->post('api/add-user', 'api\Users::add_user');
 $routes->post('api/get-active-user', 'api\Users::get_user_active');
 $routes->post('api/get-inactive-user', 'api\Users::get_user_inactive');

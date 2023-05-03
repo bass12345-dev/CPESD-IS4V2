@@ -389,4 +389,8 @@ class Users extends BaseController
 
     }
    
+
+   public function register(){
+
+   }
 }

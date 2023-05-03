@@ -11,7 +11,7 @@
     <div class="login-area login-bg" >       
         <div class="container">
             <div class="login-box  animate__animated animate__zoomInDown" >
-                <form id="login_form" style="width: 700px;">
+                <form id="registration_form" style="width: 700px;">
                     <div class="login-form-head">                    
                        
                         <h1 class="mt-2" style="color: #fff;">CPESD-IS REGISTRATION</h1>
@@ -21,30 +21,31 @@
                             
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">First Name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" class="form-control" name="first_name" required >
                                   
                                 </div>
 
                                  <div class="form-group">
                                     <label for="exampleInputEmail1">Middle Name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" class="form-control" name="middle_name" >
                                   
                                   </div>
 
 
                                    <div class="form-group">
                                     <label for="exampleInputEmail1">Last Name</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" >
+                                    <input type="text" class="form-control" name="last_name" required>
                                   
                                   </div>
                                   <div class="form-group">
+                                      <i><label class="pull-right ">Jr Sr ...</label></i>
                                     <label for="exampleInputPassword1">Extension</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                    <input type="extension" class="form-control"  name="extension" >
                                   </div>
 
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Address</label>
-                                    <select class="custom-select" id="input_barangay" name="barangay" style=" solid;height: 45px;" required>
+                                    <select class="custom-select"  name="barangay" style=" solid;height: 45px;" required>
                                                <option  value="" selected>Select Barangay</option>
                                                  <?php foreach ($barangay as $row) { ?>
                                                   <option  value="<?php echo $row ?>"><?php echo $row; ?></option>
@@ -55,7 +56,7 @@
 
                                    <div class="form-group">
                                     <label for="exampleInputPassword1">Work Status</label>
-                                    <select class="custom-select" id="input_barangay" name="barangay" style=" solid;height: 45px;" required>
+                                    <select class="custom-select"  name="work_status" style=" solid;height: 45px;" required>
                                                  <?php foreach ($work_status as $row) { ?>
                                                   <option  value="<?php echo $row ?>"><?php echo $row; ?></option>
                                                   <?php } ?>
@@ -65,19 +66,19 @@
 
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Username</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                    <input type="text" class="form-control" name="username" required >
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                    <input type="text" class="form-control" name="password" required  >
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleInputPassword1">Confirm Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" >
+                                    <input type="text" class="form-control" name="confirm_password" required  >
                                   </div>
                             
-                            <button id="form_submit" type="submit" class="btn  btn-lg btn-block mb-4"  style="background-color: #3F6BA4; color: #fff; font-size: 15px;" >Register</button>
-
+                            <button id="form_submit" type="submit" class="btn  btn-lg btn-block mb- btn-add-user"  style="background-color: #3F6BA4; color: #fff; font-size: 15px;" >Register</button>
+                            <div class="alert"></div>
                              <a  class="btn  btn-lg btn-block"  style=" font-size: 15px;" >Back to Login</a>
                         </div>
                 </form>
@@ -95,78 +96,114 @@
 <script src="<?php echo site_url(); ?>assets/js/popper.min.js"></script>
 <script src="<?php echo site_url(); ?>assets/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <script type="text/javascript">
 
      var base_url = '<?php echo base_url(); ?>';  
-     
-
-    $('#login_form').on('submit', function(e) {
-        e.preventDefault();
         
-           $.ajax({
+
+    
+        $('#registration_form').on('submit', function(e) {
+    e.preventDefault();
+
+    const password = $('input[name=password]').val();
+    const confirm_password = $('input[name=confirm_password]').val();
+    const username = $('input[name=username]').val();
+
+    if (username.length < 5) {
+         Swal.fire({
+                    text: "Username must least 5 characters",
+                     icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                            confirmButton: "btn btn-primary"
+                    }
+                });
+    }else if (password != confirm_password) {
+        Swal.fire({
+                    text: "Password Don't Match",
+                     icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                            confirmButton: "btn btn-primary"
+                    }
+                });
+    }else if (confirm_password.length < 6) {
+
+          Swal.fire({
+                    text: "Password must least 6 characters",
+                     icon: "error",
+                    buttonsStyling: false,
+                    confirmButtonText: "Ok, got it!",
+                    customClass: {
+                            confirmButton: "btn btn-primary"
+                    }
+                });
+    }else {
+
+         $.ajax({
             type: "POST",
-            url: base_url + 'api/auth/verify',
-            data: $(this).serialize(),
+            url: base_url + 'api/register',
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
             dataType: 'json',
             beforeSend: function() {
-                    $('#form_submit').html('<span class="loader"></span>');
-                    $('#form_submit').attr('disabled','disabled');
-                   
+                $('.btn-add-user').text('Please wait...');
+                $('.btn-add-user').attr('disabled','disabled');
             },
-            success: function(data)
+             success: function(data)
             {            
-
                 if (data.response) {
-
-                   if (data.res) {
-
-                         window.location.href = data.redirect;
-                            
-                   }else {
-
-                  
-
-                     Swal.fire({
-                        text: data.message,
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    });
-
-                    $("#form_submit").removeAttr('disabled');
-                     $('#form_submit').html('');
-                    $('#form_submit').text('Login');
-                   
+                    $('#registration_form')[0].reset();
+                    $('.btn-add-user').text('Submit');
+                    $('.btn-add-user').removeAttr('disabled');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
                     
-
-
-                   }
+                    setTimeout(function() { 
+                        $('.alert').html('')
+                    }, 3000);
+                   
                 }else {
-
-                   
-                    Swal.fire({
-                        text: data.message,
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary"
-                        }
-                    });
-
-                    $("#form_submit").removeAttr('disabled');
-                    $('#form_submit').text('Login');
-                    $('#form_submit').remove('<span class="loader"></span>');
-                    
-
+                    $('.btn-add-user').text('Submit');
+                    $('.btn-add-user').removeAttr('disabled');
+                    $('.alert').html(' <div class="alert-dismiss mt-2">\
+                                                        <div class="alert alert-warning alert-dismissible fade show" role="alert">\
+                                                            <strong>'+data.message+'.\
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>\
+                                                            </button>\
+                                                            </div>\
+                                                    </div>');
                 }
-            }
+           },
+            error: function(xhr) { // if error occured
+                    alert("Error occured.please try again");
+                    $('.btn-add-user').text('Submit');
+                    $('.btn-add-user').removeAttr('disabled');
+            },
 
-        })
-    })
+
+        });
+
+
+    }
+
+    }); 
+
+    
+
     /*================================
     Preloader
     ==================================*/
