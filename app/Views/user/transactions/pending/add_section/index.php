@@ -70,7 +70,7 @@ function get_last_pmas_number(){
             type : 'POST',
             dataType : 'text',
             success: function(result) { 
-               $('input[name=pmas_number]').val(parseInt(result) );
+               $('input[name=pmas_number]').val(result);
             }
          });
 }

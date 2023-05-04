@@ -35,28 +35,70 @@ class PendingTransactions extends BaseController
         if ($this->request->isAJAX()) {
 
             $l = '';
+
             $verify = $this->CustomModel->count_all_order_by($this->transactions_table,'date_and_time_filed',$this->order_by_desc);
             if($verify) {
                 if(date('Y', time()) > date('Y', strtotime($this->CustomModel->get_all_order_by($this->transactions_table,'date_and_time_filed',$this->order_by_desc)[0]->date_and_time_filed)))
                 {
-                    $l = 1;
+                    
+                     $l = '001';
+
+
                 }else if(date('Y', time()) < date('Y', strtotime($this->CustomModel->get_all_order_by($this->transactions_table,'date_and_time_filed',$this->order_by_desc)[0]->date_and_time_filed))){
 
-                    $l = $this->TransactionModel->get_last_pmas_number_where(date('Y-m-d', time()))->getResult()[0]->number + 1;
+
+
+                $x = $this->TransactionModel->get_last_pmas_number_where(date('Y-m-d', time()))->getResult()[0]->number + 1;
+
+                 $l = $this->put_zeros($x);
 
                 }else if (date('Y', time()) === date('Y', strtotime($this->CustomModel->get_all_order_by($this->transactions_table,'date_and_time_filed',$this->order_by_desc)[0]->date_and_time_filed))) 
 	
 			    {
-                    $l = $this->TransactionModel->get_last_pmas_number_where(date('Y', time()))->getResult()[0]->number + 1;
+                    $x = $this->TransactionModel->get_last_pmas_number_where(date('Y', time()))->getResult()[0]->number + 1;
+
+                    $l = $this->put_zeros($x);
+                 
                 }
             }else {
-                $l = 1;
+                    
+
+                $l = '001';
+
+
+
             }
             
             echo $l;
 
         }
     }
+
+
+    function put_zeros($x){
+
+        $l = '';
+           if ($x  < 10) {
+
+                        $l = '00'.$x;
+                      
+                    }else if($x < 100 ) {
+
+                        $l = '0'.$x;
+                       
+
+                    }else {
+
+
+                         $l = $x;
+                        
+                    }
+
+                    return $l;
+
+    }
+
+
 
 
     public function add_transaction(){

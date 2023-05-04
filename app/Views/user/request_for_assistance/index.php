@@ -172,7 +172,7 @@ $('#add_rfa_form').on('submit', function(e) {
             type : 'POST',
             dataType : 'text',
             success: function(result) { 
-               $('input[name=reference_number]').val(parseInt(result) );
+               $('input[name=reference_number]').val(result);
             }
          });
 }
