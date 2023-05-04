@@ -183,12 +183,28 @@ $('#add_transaction_form').on('submit', function(e) {
 
     }else {
 
-      
+
+
+
+
+
+          Swal.fire({
+        title: "",
+        text: "Review first before submitting",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+
+
 
         $.ajax({
             type: "POST",
             url: base_url + 'api/add-transaction',
-            data: $(this).serialize(),
+            data: $('#add_transaction_form').serialize(),
             dataType: 'json',
             beforeSend: function() {
                $('.btn-add-transaction').html('<div class="loader"></div>');
@@ -245,6 +261,18 @@ $('#add_transaction_form').on('submit', function(e) {
             },
 
             })
+
+          
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+
+      
+
+   
 
     }
 
