@@ -39,7 +39,7 @@
         </div>
     </div>
 
-<script src="<?php echo site_url(); ?>assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
 <!-- offset area end -->
 <script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/moment.js"></script>
 

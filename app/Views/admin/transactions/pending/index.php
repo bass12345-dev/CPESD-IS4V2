@@ -48,21 +48,39 @@
 <?php echo view('admin/transactions/pending/modals/add_remark_modal') ?>      
 
 <?php echo view('includes/scripts.php') ?>
- <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script>
+<!--  <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script> -->
+
+<script src="<?php echo site_url() ?>assets/js/tinymce/js/tinymce/tinymce.js"></script>
 <script type="text/javascript">
 
 
- $('textarea#tiny,textarea#update_tiny').tinymce({
-        height: 500,
-        menubar: false,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
-      });
+ // $('textarea#tiny,textarea#update_tiny').tinymce({
+ //        height: 500,
+ //        menubar: false,
+ //        plugins: [
+ //          'advlist autolink lists link image charmap print preview anchor',
+ //          'searchreplace visualblocks code fullscreen',
+ //          'insertdatetime media table paste code help wordcount'
+ //        ],
+ //        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
+ //      });
+
+
+tinymce.init({
+  selector: 'textarea#tiny,textarea#update_tiny',
+  height: 500,
+  plugins: [
+    'advlist', 'autolink', 'lists', 'charmap', 'preview',
+    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+  ],
+  toolbar: 'undo redo | blocks | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
 
 
 

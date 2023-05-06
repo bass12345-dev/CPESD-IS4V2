@@ -94,6 +94,9 @@
 
       <?php echo view('includes/scripts.php') ?> 
       <script src="https://balkan.app/js/OrgChart.js"></script>
+         <script 
+    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
+  </script>
       <script>
 
 
