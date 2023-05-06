@@ -46,7 +46,7 @@
 					<div class="form-group">
 					<div class="col-12">Type of Activity</div>
 						<input type="hidden" name="update_select_under_type_id" >
-						<select class="custom-select input wizard-required" id="update_type_of_activity_select"  name="update_type_of_activity_id" required> 
+						<select class="custom-select input wizard-required " id="update_type_of_activity_select"  name="update_type_of_activity_id" required> 
 						<option value="">Select Type Of Activity</option> 
 						<?php 
 
@@ -70,7 +70,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Responsibility Center</div>
-						<select class="custom-select input responsibility wizard-required" name="update_responsibility_center_id" style="width: 100%;" required>
+						<select class="custom-select js-example-basic-single input responsibility wizard-required" name="update_responsibility_center_id" style="width: 100%;" required>
 						<option value="">Select Responsibility Center</option> 
 						<?php 
 
@@ -89,7 +89,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Select CSO</div>
-						<select class="custom-select input cso wizard-required " name="update_cso_id" style="width: 100%;"> 
+						<select class="custom-select input cso wizard-required js-example-basic-single " name="update_cso_id" style="width: 100%;"> 
 						<option value="">Select CSO</option> 
 						<?php 
 

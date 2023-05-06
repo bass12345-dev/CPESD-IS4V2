@@ -29,7 +29,7 @@
          </div>
       <?php echo view('user/transactions/pending/update_section/modals/update_select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
-      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+      
       <script>
 
 
@@ -143,8 +143,15 @@
                                  $('input[name=update_month]').val(data.month);
                                  $('select[name=update_responsible_section_id]').val(data.responsible_section_id);
                                  $('select[name=update_type_of_activity_id]').val(data.type_of_activity_id);
-                                 $('select[name=update_responsibility_center_id]').val(data.responsibility_center_id);
-                                 $('select[name=update_cso_id]').val(data.cso_id);
+                                 // $('select[name=update_responsibility_center_id]').val(data.responsibility_center_id);
+
+                                $('select[name=update_responsibility_center_id]').select2("val", data.responsibility_center_id);
+
+
+                                 // $('select[name=update_cso_id]').val(data.cso_id);
+
+                                $('select[name=update_cso_id]').select2("val", data.cso_id);
+
                                   $('input[name=update_date_and_time]').val(data.date_and_time);
                                  $('input[name=update_select_under_type_id]').val(data.under_type_of_activity);
 
