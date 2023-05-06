@@ -6,6 +6,14 @@
             </div>
 
 
+
+
+            <div class="main-menu " >
+                <div class="menu-inner">
+                    <nav>
+                        <ul class="metismenu" id="menu">
+
+                            
                             <?php 
 
                             $request = \Config\Services::request();
@@ -17,14 +25,6 @@
                             if (session()->get('user_type') == 'admin') {
                             
                              ?>
-
-
-            <div class="main-menu " >
-                <div class="menu-inner">
-                    <nav>
-                        <ul class="metismenu" id="menu">
-
-
 
 
                             
