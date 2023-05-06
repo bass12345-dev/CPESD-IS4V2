@@ -10,8 +10,18 @@ class UserCheck implements FilterInterface
     {
         if (session()->get('isLoggedin'))
         {
-            return redirect()
+
+            if (session()->get('user_type') == 'admin') {
+
+                return redirect()
                 ->to('admin/dashboard');
+                // code...
+            }
+
+
+            return redirect()
+                ->to('user/dashboard');
+            
         }
     }
     
