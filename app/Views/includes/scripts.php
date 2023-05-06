@@ -218,8 +218,10 @@ count_total_reffered_rfa();
     /*================================
     slimscroll activation
     ==================================*/
-    $('.menu-inner').slimScroll({
-        height: 'auto'
+    $('.menu-inner ').slimScroll({
+        height: 'auto',
+       
+
     });
     $('.nofity-list').slimScroll({
         height: '435px'
@@ -233,6 +235,10 @@ count_total_reffered_rfa();
     $('.settings-list').slimScroll({
         height: 'calc(100vh - 158px)'
     });
+
+
+
+
 
     /*================================
     stickey Header

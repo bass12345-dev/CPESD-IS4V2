@@ -60,7 +60,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where('transactions.transaction_status','pending');
         $builder->orderBy('transactions.number','desc');
         $builder->limit(10);
@@ -76,7 +76,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where('transactions.transaction_status','pending');
         $builder->orderBy('transactions.number','desc');
         $query = $builder->get()->getResult();
@@ -91,7 +91,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') >= '".$filter_data['start_date']."' ");
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
         $builder->where('transactions.transaction_status','pending');
@@ -109,7 +109,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') >= '".$filter_data['start_date']."' ");
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
          $builder->where('transactions.type_of_activity_id',$filter_data['type_of_activity']);
@@ -127,7 +127,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') >= '".$filter_data['start_date']."' ");
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
          $builder->where('transactions.type_of_activity_id',$filter_data['type_of_activity']);
@@ -147,7 +147,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') >= '".$filter_data['start_date']."' ");
         $builder->where("DATE_FORMAT(transactions.date_and_time_filed,'%Y-%m-%d') <= '".$filter_data['end_date']."'");
         $builder->where('transactions.transaction_status','completed');
@@ -210,7 +210,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where('transactions.transaction_status','completed');
         $builder->where('transactions.created_by',$where['created_by']);
         $builder->orderBy('transactions.number','desc');
