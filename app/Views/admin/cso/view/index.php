@@ -200,6 +200,8 @@ $(document).on('click','a#view_cor',function (e) {
                                         render();
                                     });
 
+
+                                   $("a.download-file").attr("href", data.file)
                                     $('#view_cor').html('View COR');
 
                                 }else {
@@ -261,7 +263,7 @@ $(document).on('click','a#view_bylaws',function (e) {
                                         myState.pdf = pdf;
                                         render();
                                     });
-
+                                   $("a.download-file").attr("href", data.file)
                                     $('#view_bylaws').html('View Bylaws');
 
                                 }else {
@@ -277,7 +279,7 @@ $(document).on('click','a#view_bylaws',function (e) {
                                               }
                                             }).showToast();
                                     
-                                    $('#view_cor').html('View COR');
+                                    $('#view_bylaws').html('View Bylaws');
                                 }
                                        
                             }
@@ -372,7 +374,7 @@ $(document).on('click','a#view_aoc',function (e) {
                                         myState.pdf = pdf;
                                         render();
                                     });
-
+                                   $("a.download-file").attr("href", data.file)
                                     $('#view_aoc').html('View Bylaws');
 
                                 }else {
@@ -388,7 +390,7 @@ $(document).on('click','a#view_aoc',function (e) {
                                               }
                                             }).showToast();
                                     
-                                    $('#view_aoc').html('View COR');
+                                    $('#view_aoc').html('View Bylaws');
                                 }
                                        
                             }

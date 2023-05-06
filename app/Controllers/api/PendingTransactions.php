@@ -621,8 +621,9 @@ public function get_admin_pending_transaction_limit(){
                                                
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
                                               </di>';
-                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">remarks added</a><br><a href="javascript:;" data-id="'.$row->transaction_id.'"  id="update-remark" >Update</a>';
-
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">remarks added</a><br>
+                ';
+                // <a href="javascript:;" data-id="'.$row->transaction_id.'"  id="update-remark" >Update</a>
             }else if ($row->remarks != '' AND $row->action_taken_date != null) {
 
                 $action = '<a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2 completed"><i class="ti-check"></i></a>';

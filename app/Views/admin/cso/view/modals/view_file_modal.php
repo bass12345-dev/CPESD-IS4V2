@@ -19,7 +19,7 @@
                                             <button id="go_next" class="btn sub-button btn-rounded">Next</button>
                                            <!--   <button id="zoom_in" class="btn sub-button btn-rounded" >+</button>
                                             <button id="zoom_out" class="btn sub-button btn-rounded">-</button> -->
-                                             <a href="" id="download" class="btn btn-success btn-rounded pull-right">Download</a>
+                                             <a href="javascript:;" id="download" class="btn btn-success btn-rounded pull-right download-file">Download</a>
                                         </div>
                   </div>
                                       

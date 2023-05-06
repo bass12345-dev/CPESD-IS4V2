@@ -18,7 +18,7 @@
             </div>
             <div class="modal-footer">
                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn  btn-update-center sub-button" name="btn-add-remarks " >Save changes</button>
+               <button type="submit" class="btn  btn-add-remarks sub-button"  >Submit</button>
             </div>
          </form>
       </div>
