@@ -307,7 +307,7 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
                 data: null,
                 render: function (data, type, row) {
                     return '<ul class="d-flex justify-content-center">\
-                                <li><a href="javascript:;" data-id="'+data['transaction_id']+'"   id="view_transaction"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li>\
+                                <li><a href="javascript:;" data-id="'+data['transaction_id']+'"   id="view_transaction1"  class="text-secondary action-icon"><i class="ti-eye"></i></a></li>\
                                 </ul>';
                 }
 
@@ -339,6 +339,13 @@ function generate_pmas_report(date_filter,filter_type_of_activity,cso){
 
     
 }   
+
+
+    $(document).on('click','a#view_transaction1',function (e) {
+
+        window.open( base_url + 'view-transaction?id=' + $(this).data('id'),'_blank');
+
+})
     
 </script>
 </body>

@@ -1,11 +1,14 @@
 <?php
 
+
+
 namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
 use App\Models\CustomModel;
 use App\Models\TransactionModel;
 use Config\Custom_config;
+use CodeIgniter\I18n\Time;
 
 class PendingTransactions extends BaseController
 {
@@ -19,7 +22,8 @@ class PendingTransactions extends BaseController
     protected $CustomModel;
     protected $TransactionModel;
     protected $db;
-       public $config;
+    public $config;
+   
 
     public function __construct()
     {
@@ -28,6 +32,8 @@ class PendingTransactions extends BaseController
        $this->TransactionModel          = new TransactionModel($this->db); 
        $this->request                   = \Config\Services::request();  
         $this->config = new Custom_config;
+        
+       
     }
 
     public function get_last_pmas_number()
@@ -101,12 +107,19 @@ class PendingTransactions extends BaseController
 
 
 
+
+
+
+
+
     public function add_transaction(){
+
+         date_default_timezone_set('Asia/Manila');
         if ($this->request->isAJAX()) {
                 
             $data = array(
                 'number'                    => $this->request->getPost('pmas_number'),
-                'date_and_time_filed'       =>  date('Y-m-d H:i:s', time()),
+                'date_and_time_filed'       =>  date('Y-m-d h:i:s'),
                 'responsible_section_id'    =>$this->request->getPost('type_of_monitoring_id'),
                 'type_of_activity_id'       => $this->request->getPost('type_of_activity_id'),
                 'under_type_of_activity_id' => $this->request->getPost('select_under_type_id'),
@@ -116,6 +129,10 @@ class PendingTransactions extends BaseController
                 'created_by'                => session()->get('user_id'),
                 'transaction_status'        => 'pending'		
             );
+
+
+            
+
 
             
             $array_where = array(
@@ -627,7 +644,7 @@ public function get_admin_pending_transaction_limit(){
             }else if ($row->remarks != '' AND $row->action_taken_date != null) {
 
                 $action = '<a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2 completed"><i class="ti-check"></i></a>';
-                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a><br><a href="javascript:;" >'.date('F d Y', strtotime($row->action_taken_date)).'</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished </a><br><a href="javascript:;" >'.date('F d Y', strtotime($row->action_taken_date)).'</a>';
                 
             }
 
@@ -748,7 +765,7 @@ public function get_admin_pending_transaction_limit(){
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>
                                      
                                               </di>';
-                $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Waiting for Remarks....</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Wait for Remarks....</a>';
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
                 
                 $action = '<ul class="d-flex justify-content-center">
@@ -761,7 +778,7 @@ public function get_admin_pending_transaction_limit(){
                $action = '<ul class="d-flex justify-content-center">
                                 <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction" ><i class="fa fa-eye"></i></a></li>
                                 </ul>';
-                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished || For Approval</a>';
                 
             }
 

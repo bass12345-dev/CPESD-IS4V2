@@ -38,21 +38,27 @@
 <?php echo view('user/rfa/referred/modals/accomplished_modal')  ?> 
 <?php echo view('user/rfa/referred/modals/view_action_taken_modal')  ?> 
 <?php echo view('includes/scripts.php') ?>   
-<script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="https://cdn.tiny.cloud/1/ds0fhm6q5wk0i2dye0vxwap3wi77umvl550koo9laumyhtg1/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script>
+<script src="<?php echo site_url() ?>assets/js/tinymce/js/tinymce/tinymce.js"></script>
 <script type="text/javascript">
 
 
- $('textarea#action_to_be_taken').tinymce({
-        height: 500,
-        menubar: false,
-        plugins: [
-          'advlist autolink lists link image charmap print preview anchor',
-          'searchreplace visualblocks code fullscreen',
-          'insertdatetime media table paste code help wordcount'
-        ],
-        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help'
-      });
+
+
+
+tinymce.init({
+  selector: 'textarea#action_to_be_taken',
+  height: 500,
+  plugins: [
+    'advlist', 'autolink', 'lists', 'charmap', 'preview',
+    'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+    'insertdatetime', 'media', 'table', 'help', 'wordcount'
+  ],
+  toolbar: 'undo redo | blocks | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help',
+  content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
+});
 
     $(document).on('click','button#reload_user_reffered_rfa',function (e) {
 

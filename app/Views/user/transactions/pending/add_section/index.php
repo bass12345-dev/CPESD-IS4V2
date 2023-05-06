@@ -30,7 +30,7 @@
          </div>
       <?php echo view('user/transactions/pending/add_section/modals/select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
-      <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
       <script>
 
         $(document).ready(function() {

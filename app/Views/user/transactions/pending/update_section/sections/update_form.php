@@ -89,7 +89,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Select CSO</div>
-						<select class="custom-select input cso wizard-required " name="update_cso_id" style="width: 100%;" required> 
+						<select class="custom-select input cso wizard-required " name="update_cso_id" style="width: 100%;"> 
 						<option value="">Select CSO</option> 
 						<?php 
 

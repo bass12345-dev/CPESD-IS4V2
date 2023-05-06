@@ -44,7 +44,7 @@
     <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/vendor/daterangepicker.min.js"></script>
 
     <script src="<?php echo site_url(); ?>assets/js/vendor/select2.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/datepicker/bootstrap-datetimepicker.min.js"></script>
     <script src="<?php echo site_url(); ?>assets/js/vendor/jQuery.print.min.js" ></script>
 
 

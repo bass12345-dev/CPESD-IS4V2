@@ -194,7 +194,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where('transactions.transaction_status','pending');
         $builder->where('transactions.created_by',$where['created_by']);
         $builder->orderBy('transactions.number','desc');
@@ -225,7 +225,7 @@ class TransactionModel extends Model
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id');
         $builder->join('users','users.user_id = transactions.created_by');
-        $builder->join('cso','cso.cso_id = transactions.cso_Id');
+        $builder->join('cso','cso.cso_id = transactions.cso_Id','left');
         $builder->where($where);
         $query = $builder->get()->getResult();
         return $query;
