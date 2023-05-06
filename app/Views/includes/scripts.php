@@ -69,27 +69,27 @@
     
     $(document).on('click','a#view_transaction',function (e) {
 
-        window.open( base_url + 'view-transaction?id=' + $(this).data('id'),'_blank');
+        window.open( base_url + 'view-transaction?id=' + $(this).data('id'),'_self');
 
 })
 
 
 $(document).on('click','a#view_rfa',function (e) {
 
-        window.open( base_url + 'user/pending/update-rfa?id=' + $(this).data('id'),'_blank');
+        window.open( base_url + 'user/pending/update-rfa?id=' + $(this).data('id'),'_self');
 
 })
 
 
 $(document).on('click','a#view_rfa_',function (e) {
 
-        window.open( base_url + 'view-rfa?id=' + $(this).data('id'),'_blank');
+        window.open( base_url + 'view-rfa?id=' + $(this).data('id'),'_self');
 
 })
 
         $(document).on('click','a#view_user',function (e) {
 
-        window.open( base_url + 'view-user?id=' + $(this).data('id'),'_blank');
+        window.open( base_url + 'view-user?id=' + $(this).data('id'),'_self');
 
 })
 
@@ -110,6 +110,15 @@ function count_total_reffered_rfa(){
                 })
 
 }
+
+
+
+$(document).on('click','a.back-button',function (e) {
+
+        history.back()
+
+})
+
 
 
 count_total_reffered_rfa();
@@ -156,14 +165,14 @@ count_total_reffered_rfa();
 
      $(document).on('click','a#add_transactions',function (e) {
 
-        window.open( base_url + 'user/pending-transactions/add-transaction','_blank');
+        window.open( base_url + 'user/pending-transactions/add-transaction','_self');
 
         });
 
 
     $(document).on('click','a#request_for_assistance',function (e) {
 
-        window.open( base_url + 'user/request-for-assistance','_blank');
+        window.open( base_url + 'user/request-for-assistance','_self');
 
         });
     

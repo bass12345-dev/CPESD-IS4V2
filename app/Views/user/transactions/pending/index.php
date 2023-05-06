@@ -372,7 +372,7 @@
 
           $(document).on('click','a#update-transaction',function (e) {
 
-        window.open( base_url + 'user/update-pmas?id=' + $(this).data('id'),'_blank');
+        window.open( base_url + 'user/update-pmas?id=' + $(this).data('id'),'_self');
 
         });
 
