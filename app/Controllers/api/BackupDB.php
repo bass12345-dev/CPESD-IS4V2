@@ -10,7 +10,8 @@ class BackupDB extends BaseController
     public function index()
     {
         try {
-        $filename = date("Y-m-d H.i.s", time()) . ' ' . 'cpesd-is' . '.sql';
+        date_default_timezone_set('Asia/Manila');
+        $filename = date("Y-m-d h.i A", time()) . ' ' . 'cpesd-is' . '.sql';
         $dump = new Mysqldump('mysql:host=localhost;dbname=cpesd-is;port=3306', 'root', '');
         $dump->start(FCPATH .'/uploads/database/final_new1/'.$filename);
         

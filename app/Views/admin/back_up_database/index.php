@@ -25,7 +25,7 @@
                                         <div class="col-md-6">
                                              <button class="btn  pull-right mb-2 back-up-database sub-button">Back Up Now</button>
                                         </div>
-                                        <div class="invoice-table table-responsive mt-5">
+                                       <!--  <div class="invoice-table table-responsive mt-5">
                                             <table class="table table-bordered table-hover text-right" id="database_table">
                                                 <thead>
                                                     <tr class="text-capitalize">
@@ -37,7 +37,7 @@
                                                 <tbody>
                                                 </tbody>
                                             </table>
-                                        </div>
+                                        </div> -->
                                     </div>   
                                 </div>
                             </div>
