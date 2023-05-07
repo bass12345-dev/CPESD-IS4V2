@@ -114,7 +114,7 @@ class PendingTransactions extends BaseController
 
     public function add_transaction(){
 
-         date_default_timezone_set('Asia/Manila');
+         // date_default_timezone_set('Asia/Manila');
         if ($this->request->isAJAX()) {
                 
             $data = array(
