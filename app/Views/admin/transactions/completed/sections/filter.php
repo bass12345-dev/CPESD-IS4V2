@@ -20,6 +20,26 @@
                                              <button class="btn sub-button btn-block mt-2 mb-2" style="height: 45px;" id="reset-filter-options"><i class="ti-reload"></i></button>
                                       </div>
                                     </div>
+
+                                    <div class="row mb-3 " id="select_cso_section" hidden>
+                                        <div class="col-md-6 p"></div>
+                                    
+                                      <div class="col-md-6 p">
+                                        <select class="custom-select js-example-basic-single" id="select_cso" name="cso" style="width: 100%; " > 
+                                            <option value="">Select CSO</option> 
+                                            <?php 
+
+                                                foreach ($cso as $row) :
+                                                ?>
+                                                <option value="<?php echo $row->cso_id ?>"><?php echo $row->cso_code.' - '.$row->cso_name ?></option>
+                                                <?php 
+
+                                                endforeach;
+                                                ?>       
+                                            </select>
+                                      </div>
+                                      
+                                    </div>
                                        <div class="row">
                                         <button class="btn sub-button btn-block" style="width: 100%;" id="generate-pmas-report">Generate Report</button>
                                     </div>

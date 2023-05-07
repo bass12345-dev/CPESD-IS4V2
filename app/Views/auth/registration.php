@@ -128,14 +128,10 @@
 
 
 
-     $.validator.addMethod(
-    "regex",
-    function(value, element, regexp) {
-        var check = false;
-        return this.optional(element) || regexp.test(value);
-    },
-    "Please provide a valid username."
-);
+
+
+
+
 
 
  
@@ -147,6 +143,7 @@
                     username: {
                         required: true,
                         minlength: 6,
+                       
                        
                     },
                     email: {

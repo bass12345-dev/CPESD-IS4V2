@@ -265,7 +265,7 @@ class PendingTransactions extends BaseController
 
             }
             
-            echo json_encode($resp);
+            echo json_encode($project_data);
 
             
         }
