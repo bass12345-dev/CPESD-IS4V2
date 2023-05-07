@@ -119,6 +119,11 @@
             <td  class="overdue"></td>
          </tr>
          <tr>
+            <td colspan = "2">
+            
+            </td>
+         </tr>
+         <tr>
             <td>Total Production</td>
             <td  class="total_production"></td>
          </tr>
