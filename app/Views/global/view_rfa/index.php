@@ -32,48 +32,7 @@
          </div>
       <?php echo view('includes/scripts.php') ?> 
       <script>
-
-      
-
-        function load_rfa_data(){
-
-               $.ajax({
-                            type: "POST",
-                            url: base_url + 'api/view-rfa-data',
-                            data : {'id' : '<?php echo $_GET['id'] ?>'},
-                            cache: false,
-                            dataType: 'json',  
-                            success: function(data){
-                                    
-                                    $('.reference_no').text(data.ref_number)
-                                    $('.name_of_client').text(data.client_name)
-                                    $('.type_of_request').text(data.type_of_request_name)
-                                    $('.type_of_transaction').text(data.type_of_transaction)
-                                    $('.date_and_time').text(data.date_time_filed)
-
-                                    $('.approve_date').text(data.approved_date)
-                                    $('.encoded_by').text(data.encoded_by);
-
-                                    $('.referred_to').text(data.referred_name);
-                                     $('.status').html(data.status);
-                                    
-
-                                    
-                                 
-                                 }
-                        })
-
-
-            }
-                                       
-                            
-
-
-         load_rfa_data();
-
-
-
-
+function load_rfa_data(){ $.ajax({ type: "POST", url: base_url + 'api/view-rfa-data', data : {'id' : '<?php echo $_GET['id'] ?>'}, cache: false, dataType: 'json', success: function(data){ $('.reference_no').text(data.ref_number); $('.name_of_client').text(data.client_name); $('.type_of_request').text(data.type_of_request_name); $('.type_of_transaction').text(data.type_of_transaction); $('.date_and_time').text(data.date_time_filed); $('.approve_date').text(data.approved_date); $('.encoded_by').text(data.encoded_by); $('.referred_to').text(data.referred_name); $('.status').html(data.status); } }) } load_rfa_data();
       </script>
    </body>
 </html>
