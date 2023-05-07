@@ -9,33 +9,31 @@ use Config\Custom_config;
 class Clients extends BaseController
 {
 
-    public      $client_table       = 'rfa_clients';
+    public      $client_table           = 'rfa_clients';
     public      $rfa_transactions_table = 'rfa_transactions';
-    public      $order_by_desc      = 'desc';
+    public      $order_by_desc          = 'desc';
     protected   $request;
     protected   $CustomModel;
-    public $config;
+    public      $config;
 
     public function __construct()
     {
-       $db = db_connect();
-       $this->CustomModel = new CustomModel($db); 
-       $this->request = \Config\Services::request();  
+       $db                              = db_connect();
+       $this->CustomModel               = new CustomModel($db); 
+       $this->request                   = \Config\Services::request();  
     }
 
     public function search_name(){
-        $data = [];
-        $search_data = array(
-
-                    'first_name' => $this->request->getPost('first_name'),
-                    'last_name' => $this->request->getPost('last_name'),
-                    );
-
-        $items = $this->CustomModel->search($this->client_table,$search_data);
+        $data                           = [];
+        $search_data                    = array(
+                            'first_name'    => $this->request->getPost('first_name'),
+                            'last_name'     => $this->request->getPost('last_name'),
+                            );
+        $items                          = $this->CustomModel->search($this->client_table,$search_data);
 
         foreach ($items as $row) {
             
-                $data[] = array(
+                $data[]                 = array(
 
                         'rfa_client_id'     => $row->rfa_client_id,
                         'first_name'        => $row->first_name,
@@ -45,66 +43,59 @@ class Clients extends BaseController
                         'address'           => $row->purok == 0 ? $row->barangay : 'Purok '.$row->purok.' '.$row->barangay,
                         'contact_number'    => $row->contact_number,
                         'age'               => $row->age,
-                        'employment_status'=> $row->employment_status,
+                        'employment_status' => $row->employment_status,
                        
                 );
         }
 
         echo json_encode($data);
-
-
-
    }
 
    public function add_client(){
 
          if ($this->request->isAJAX()) {
+
           $data = array(
-                'rfa_client_added_by'   =>  session()->get('user_id'),
-                'first_name'            => $this->request->getPost('first_name'),
-                'middle_name'           => ($this->request->getPost('middle_name') == '') ?  '' : $this->request->getPost('middle_name') ,
-                'last_name'             => $this->request->getPost('last_name'),
-                'extension'             => ($this->request->getPost('extension') == '') ?  '' : $this->request->getPost('extension') ,
-                'purok'                 => $this->request->getPost('purok') ,
-                'barangay'              => $this->request->getPost('barangay'),
-                'contact_number'        => $this->request->getPost('contact_number'),
-                'age'                   => $this->request->getPost('age'),
-                'employment_status'    => $this->request->getPost('employment_status'),
-                'rfa_client_created'          =>  date('Y-m-d H:i:s', time()),
+                'rfa_client_added_by'       =>  session()->get('user_id'),
+                'first_name'                => $this->request->getPost('first_name'),
+                'middle_name'               => ($this->request->getPost('middle_name') == '') ?  '' : $this->request->getPost('middle_name') ,
+                'last_name'                 => $this->request->getPost('last_name'),
+                'extension'                 => ($this->request->getPost('extension') == '') ?  '' : $this->request->getPost('extension') ,
+                'purok'                     => $this->request->getPost('purok') ,
+                'barangay'                  => $this->request->getPost('barangay'),
+                'contact_number'            => $this->request->getPost('contact_number'),
+                'age'                       => $this->request->getPost('age'),
+                'employment_status'         => $this->request->getPost('employment_status'),
+                'rfa_client_created'        =>  date('Y-m-d H:i:s', time()),
                 
               
             );
 
 
         $verify = $this->CustomModel->count_search($this->client_table,array(
-
-                                                                    'first_name'    => $data['first_name'],
-                                                                    'middle_name'   => $data['middle_name'],
-                                                                    'last_name'     => $data['last_name']
-                                                              ));
+                            'first_name'    => $data['first_name'],
+                            'middle_name'   => $data['middle_name'],
+                            'last_name'     => $data['last_name']));
         if ($verify > 0) {
            
-            $data = array(
-                'message' => 'Duplicate Name',
-                'response' => false
-                );
+            $data                   = array(
+                            'message'       => 'Duplicate Name',
+                            'response'      => false);
 
         }else {
 
-             $result  = $this->CustomModel->addData($this->client_table,$data);
+             $result                = $this->CustomModel->addData($this->client_table,$data);
 
                 if ($result) {
 
-                    $data = array(
-                    'message' => 'Data Saved Successfully',
-                    'response' => true
-                    );
+                    $data           = array(
+                            'message'       => 'Data Saved Successfully',
+                            'response'      => true);
                 }else {
 
-                    $data = array(
-                    'message' => 'Error',
-                    'response' => false
-                    );
+                    $data           = array(
+                            'message'       => 'Error',
+                            'response'      => false);
                 }    
 
         }
@@ -144,7 +135,7 @@ class Clients extends BaseController
         }
 
            
-            // code...
+         
         }else {
        
         $item = $this->CustomModel->getwhere_orderby($this->client_table,array('rfa_client_added_by' => session()->get('user_id')),'first_name',$this->order_by_desc); 
@@ -171,6 +162,60 @@ class Clients extends BaseController
     }
 
         echo json_encode($data);
+
+    }
+
+    public function update_client(){
+
+
+        if ($this->request->isAJAX()) {
+
+
+          $data = array(
+            
+                'first_name'            => $this->request->getPost('update_first_name'),
+                'middle_name'           => ($this->request->getPost('update_middle_name') == '') ?  '' : $this->request->getPost('update_middle_name') ,
+                'last_name'             => $this->request->getPost('update_last_name'),
+                'extension'             => ($this->request->getPost('update_extension') == '') ?  '' : $this->request->getPost('update_extension') ,
+                'purok'                 => $this->request->getPost('update_purok') ,
+                'barangay'              => $this->request->getPost('update_barangay'),
+                'contact_number'        => $this->request->getPost('update_contact_number'),
+                'age'                   => $this->request->getPost('update_age'),
+                'employment_status'     => $this->request->getPost('update_employment_status'),
+                
+                
+              
+            );
+
+
+        $where = array('rfa_client_id' => $this->request->getPost('client_id_'));
+
+        $update = $this->CustomModel->updatewhere($where,$data,$this->client_table);
+
+        if($update){
+
+                $resp = array(
+                    'message' => 'Successfully Updated',
+                    'response' => true
+                );
+
+            }else {
+
+                $resp = array(
+                    'message' => 'Error',
+                    'response' => false
+                );
+
+            }
+
+            echo json_encode($resp);
+
+
+
+
+
+      }
+
 
     }
 

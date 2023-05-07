@@ -268,6 +268,8 @@ $routes->post('api/add-client', 'api\Clients::add_client');
 $routes->post('api/get-clients', 'api\Clients::get_clients');
 $routes->post('api/delete-client', 'api\Clients::delete_client');
 
+$routes->post('api/update-client', 'api\Clients::update_client');
+
 
 //RFA
 $routes->post('api/add-rfa', 'api\PendingRFATransactions::add_rfa');

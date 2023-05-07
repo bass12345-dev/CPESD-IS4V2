@@ -198,7 +198,7 @@ class Users extends BaseController
         
     }else {
 
-          $profile_pic = './../../assets/images/profile.jpg';
+          $profile_pic = 'assets/images/profile.jpg';
        
 
     }

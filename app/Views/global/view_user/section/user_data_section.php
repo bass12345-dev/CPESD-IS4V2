@@ -7,7 +7,7 @@
                                                   <div class="card mb-4">
                                                     <div class="card-body text-center">
                                                       <img src="" alt="avatar"
-                                                        class="rounded-circle img-fluid" id="profile_picture" style="width: 150px;">
+                                                        class="rounded-circle img-fluid" id="profile_picture" >
                                                       <h5 class="my-3 name"></h5>
                                                       <p class="text-muted mb-1">CPESD Member</p>
                                                       <!-- <p class="text-muted mb-4">Bay Area, San Francisco, CA</p> -->
@@ -84,14 +84,7 @@
                                                       <hr>
                                                   
                                                      
-                                                    <!--   <div class="row">
-                                                        <div class="col-sm-3">
-                                                          <p class="mb-0">Address</p>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                          <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                                                        </div>
-                                                      </div> -->
+                                              
                                                     </div>
                                                   </div>
                                                  
