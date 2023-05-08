@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-lg-6 mt-sm-30 mt-xs-30">
-        <div class="card" style="height: 557px;">
+        <div class="card" >
             <div class="card-body">
                 <div class="col-md-12 mt-2 mb-2">
                      <h2>New Transactions</h2>

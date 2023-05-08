@@ -97,7 +97,7 @@ class PendingRFATransactions extends BaseController
 
 
                  $resp = array(
-                    'message' => 'Error Duplicate PMAS NO',
+                    'message' => 'Error Duplicate Reference NO',
                     'response' => false
                 );
            }
