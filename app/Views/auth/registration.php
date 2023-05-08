@@ -112,15 +112,14 @@
 
 
 <!-- offset area end -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+<script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/moment.js"></script>
 <!-- jquery latest version -->
-<!-- <script src="<?php echo site_url(); ?>assets/js/vendor/jquery-2.2.4.min.js"></script> -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/jquery.js"></script>
 <!-- bootstrap 4 js -->
 <script src="<?php echo site_url(); ?>assets/js/popper.min.js"></script>
 <script src="<?php echo site_url(); ?>assets/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="<?php echo site_url(); ?>assets/js/vendor/swal2.js" ></script>
+<script src="<?php echo site_url(); ?>assets/js/vendor/validate.js" ></script>
 
 <script type="text/javascript">
 
