@@ -215,6 +215,8 @@ $routes->post('api/admin/get_total_report', 'api\Transactions::get_total_report'
 
 //Admin Dashboard
 $routes->post('api/load-admin-chart-transaction-data', 'api\Transactions::get_admin_chart_transaction_data');
+$routes->post('api/load-admin-chart-cso-data', 'api\Cso::get_admin_chart_cso_data');
+
 $routes->post('api/get-pending-transaction-limit', 'api\PendingTransactions::get_admin_pending_transaction_limit');
 $routes->post('api/get-pending-rfa-transaction-limit', 'api\PendingRFATransactions::get_admin_pending_rfa_transaction_limit');
 

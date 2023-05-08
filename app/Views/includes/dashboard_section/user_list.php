@@ -1,5 +1,35 @@
 <div class="row">
-   <div class="col-xl-12 col-lg-5 col-md-12 ">
+
+
+   <?php if (session()->get('user_type') == 'admin') {
+      // code...
+    ?>
+   <div class="col-lg-7 mt-sm-30 mt-xs-30">
+        <div class="card" >
+            <div class="card-body">
+                <div class="col-md-12 mt-2 mb-2">
+                     <h2>New Transactions</h2>
+                </div>
+                 <div class="data-tables">
+                    <table id="pending_transactions_table_limit" style="width:100%" class="text-center stripe">
+                       <thead class="bg-light text-capitalize" >
+                           <tr>
+                               <th>PMAS NO</th>
+                               <th>Date & Time Filed</th>
+                               <th>Type of Activity</th>
+                               <th>CSO</th>
+                               <th>Person Responsible</th>
+                               
+                           </tr>
+                       </thead>                                      
+                   </table>   
+                </div>     
+            </div>
+        </div>
+    </div>
+
+ <?php } ?>
+   <div class="col-xl-<?php echo session()->get('user_type') == 'admin' ? '5' : '12' ?> col-lg-5 col-md-12 ">
       <div class="card">
          <div class="card-body">
             <div class="d-sm-flex flex-wrap justify-content-between mb-4 align-items-center">

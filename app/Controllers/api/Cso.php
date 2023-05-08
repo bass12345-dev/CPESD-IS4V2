@@ -78,6 +78,53 @@ class Cso extends BaseController
 
 
 
+     public function get_admin_chart_cso_data(){
+
+
+        $csos = array();
+        $active_cso = array();
+
+        $types = array();
+
+        foreach($this->config->cso_type as $row) {
+
+            $cso = $this->CustomModel->countwhere($this->cso_table,array('cso_status' => 'active','type_of_cso' => $row));
+            array_push($csos, $cso);
+
+            array_push($types,$row);
+
+        }
+
+
+        
+        $data['label'] = $types;
+        $data['cso']    = $csos;
+        $data['color'] = ['#063970','#2596be','#e28743'];
+
+       echo json_encode($data);
+       
+
+        // for ($m = 1; $m <= 12; $m++) {
+
+        //     $completed_transaction = $this->TransactionModel->count_transaction_chart($this->transactions_table,$m,$year,'completed');
+        //     array_push($completed_transactions, $completed_transaction);
+
+
+           
+           
+        //     $month =  date('M', mktime(0, 0, 0, $m, 1));
+        //     array_push($months, $month);
+        // }
+
+
+        // $data['label'] = $months;
+       
+        // $data['data_completed'] = $completed_transactions;
+        // echo json_encode($data);
+     }
+
+
+
        public function delete_cso(){
 
         $where1 = array('cso_Id' => $this->request->getPost('id'));

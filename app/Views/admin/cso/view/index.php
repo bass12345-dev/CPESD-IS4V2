@@ -192,7 +192,9 @@ $(document).on('click','a#view_cor',function (e) {
                                 if (data.resp) {
 
                                      $('#view_file_modal').modal('show');
-                                    pdf = data.file
+                                    pdf = data.file;
+
+                                    console.log(pdf)
                                    pdfjsLib.getDocument(pdf).then((pdf) => {  
 
                                        
@@ -201,7 +203,7 @@ $(document).on('click','a#view_cor',function (e) {
                                     });
 
 
-                                   $("a.download-file").attr("href", data.file)
+                                   $("a.download-file").attr("href", pdf)
                                     $('#view_cor').html('View COR');
 
                                 }else {
@@ -222,7 +224,9 @@ $(document).on('click','a#view_cor',function (e) {
                                        
                             }, error : function(){
 
-                                    alert('error')
+                                    alert('error');
+                                     $("a.download-file").attr("href", data.file)
+                                    $('#view_cor').html('View COR');
 
                             }
 

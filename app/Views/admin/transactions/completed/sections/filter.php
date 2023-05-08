@@ -26,7 +26,7 @@
                                     
                                       <div class="col-md-6 p">
                                         <select class="custom-select js-example-basic-single" id="select_cso" name="cso" style="width: 100%; " > 
-                                            <option value="">Select CSO</option> 
+                                            <option value="0">Select CSO</option> 
                                             <?php 
 
                                                 foreach ($cso as $row) :

@@ -14,7 +14,18 @@
         </div>
     </div>
 
-    <div class="col-lg-6 mt-sm-30 mt-xs-30">
+     <div class="col-lg-6 mt-sm-30 mt-xs-30">
+        <div class="card">
+            <div class="card-body">
+                   
+                <canvas id="admin-cso-chart" width="800" height="800"></canvas>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="col-lg-6 mt-sm-30 mt-xs-30">
         <div class="card" >
             <div class="card-body">
                 <div class="col-md-12 mt-2 mb-2">
@@ -36,7 +47,7 @@
                 </div>     
             </div>
         </div>
-    </div>
+    </div> -->
    
 </div>
 
