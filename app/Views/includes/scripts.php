@@ -1,51 +1,12 @@
     <script type="text/javascript">var base_url = '<?php echo site_url(); ?>';</script>
 
-    <!-- offset area end -->
-    <script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/moment.js"></script>
+ 
    
-    <script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/jquery.js"></script>
-    <!-- bootstrap 4 js -->
-    <script src="<?php echo site_url(); ?>assets/js/popper.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/owl.carousel.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/metisMenu.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/jquery.slimscroll.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/jquery.slicknav.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url() ?>assets/js/bundle.js"></script>
 
-    <!-- start chart js -->
-    <script src="<?php echo site_url() ?>assets/js/vendor/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="<?php echo site_url() ?>assets/js/vendor/highcharts.js"></script>
-  
-      <!-- Start datatable js -->
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/jquery.dataTables.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script> -->
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/dataTables.responsive.min.js"></script>
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/responsive.bootstrap.min.js"></script>
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/dataTables.buttons.min.js"></script>
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/buttons.print.min.js"></script>
-    <script src="<?php echo site_url() ?>assets/js/vendor/datatables/dataTables.dateTime.min.js"></script>
 
-    <script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/jszip.min.js"></script>
-    <script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/buttons.html5.min.js"></script>
-
-  
-
-    <!-- others plugins -->
-    <script src="<?php echo site_url(); ?>assets/js/plugins.js"></script>
-    <!-- <script src="assets/js/scripts.js"></script> -->
-    <script src="<?php echo site_url(); ?>assets/js/vendor/swal2.js" ></script>
-
-    <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/vendor/toastify.js"></script>
-
-    <script src="<?php echo site_url(); ?>assets/js/vendor/jquery.mask.min.js" ></script>
-
-    <script type="text/javascript" src="<?php echo site_url(); ?>assets/js/vendor/daterangepicker.min.js"></script>
-
-    <script src="<?php echo site_url(); ?>assets/js/vendor/select2.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/datepicker/bootstrap-datetimepicker.min.js"></script>
-    <script src="<?php echo site_url(); ?>assets/js/vendor/jQuery.print.min.js" ></script>
+    
 
 
   

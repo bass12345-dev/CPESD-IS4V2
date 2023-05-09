@@ -2,7 +2,8 @@
 <html class="no-js" lang="en">
 
 <head>
-    <?php echo view('includes/css') ?>
+    <link rel="shortcut icon" type="image/png" href="<?php echo base_url('peso_logo.png') ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/login-bundle.css'); ?>">
     <?php echo view('includes/meta') ?> 
     <style>
             
@@ -112,14 +113,7 @@
 
 
 <!-- offset area end -->
-<script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/moment.js"></script>
-<!-- jquery latest version -->
-<script type="text/javascript" src="<?php echo site_url() ?>assets/js/vendor/jquery.js"></script>
-<!-- bootstrap 4 js -->
-<script src="<?php echo site_url(); ?>assets/js/popper.min.js"></script>
-<script src="<?php echo site_url(); ?>assets/js/bootstrap.min.js"></script>
-<script src="<?php echo site_url(); ?>assets/js/vendor/swal2.js" ></script>
-<script src="<?php echo site_url(); ?>assets/js/vendor/validate.js" ></script>
+<script type="text/javascript" src="<?php echo site_url() ?>assets/js/login-bundle.js"></script>
 
 <script type="text/javascript">
 
