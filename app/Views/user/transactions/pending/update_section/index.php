@@ -74,7 +74,7 @@ function load_transaction_data() {
          $('input[name=update_date_and_time]').val(data.date_and_time);
          $('input[name=update_select_under_type_id]').val(data.under_type_of_activity);
   
-         tinymce.get('tiny').setContent(data.annotation_text);
+         // tinymce.get('tiny').setContent(data.annotation_text);
 
 
          $('.pmas_no').text(data.pmas_no);
