@@ -4,7 +4,7 @@
       <?php echo view('includes/meta.php') ?>
       <?php echo view('includes/css.php') ?> 
 
-       <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 
    </head>
    <body>
@@ -30,9 +30,11 @@
       <?php echo view('user/transactions/pending/update_section/modals/update_select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
       <script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
-      
+      <script src="<?php echo site_url() ?>assets/js/tinymce/js/tinymce/tinymce.js"></script>
       <script>
 
+
+tinymce.init({ selector: 'textarea#tiny', height: 500, plugins: ['advlist', 'autolink', 'lists', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'], toolbar: 'undo redo | blocks | ' + 'bold italic backcolor | alignleft aligncenter ' + 'alignright alignjustify | bullist numlist outdent indent | ' + 'removeformat | help', content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }' });
 $(document).ready(function () {
    $('.js-example-basic-single').select2();
 });
@@ -71,6 +73,10 @@ function load_transaction_data() {
          $('select[name=update_cso_id]').select2("val", data.cso_id);
          $('input[name=update_date_and_time]').val(data.date_and_time);
          $('input[name=update_select_under_type_id]').val(data.under_type_of_activity);
+  
+         tinymce.get('tiny').setContent(data.annotation_text);
+
+
          $('.pmas_no').text(data.pmas_no);
          $('.date_and_time_filed').text(data.date_and_time_filed);
          $('.responsible_section_name').text(data.responsible_section_name);
@@ -78,6 +84,7 @@ function load_transaction_data() {
          $('.responsibility_center_name').text(data.responsibility_center_name);
          $('.cso_name').text(data.cso_name);
          $('.date_and_time').text(data.date_time);
+         $('.annotations').html(data.annotations);
          if (data.training_data.length > 0) {
             $('#under_type_activity_select').removeAttr('hidden').fadeIn("slow");
             $('.for_training').removeAttr('hidden').fadeIn("slow");
@@ -149,13 +156,16 @@ $(document).on('click', 'button.close-under-type', function () {
 });
 $('#update_transaction_form').on('submit', function (e) {
    e.preventDefault();
+
+   var myContent = tinymce.get("tiny").getContent();
+
    if ($('input[name=update_pmas_number]').val() == '') {
       alert('something');
    } else {
       $.ajax({
          type: "POST",
          url: base_url + 'api/update-transaction',
-         data: $(this).serialize(),
+         data: $(this).serialize()+"&annotation="+myContent,
          dataType: 'json',
          beforeSend: function () {
             $('.btn-update-transaction').html('<div class="loader"></div>');

@@ -282,6 +282,13 @@ class PendingTransactions extends BaseController
 public function update_transaction(){
         
     if ($this->request->isAJAX()) {
+
+
+
+   
+
+
+
         $where = array('transaction_id' => $this->request->getPost('transaction_id'));
 
         $data = array(
@@ -291,9 +298,12 @@ public function update_transaction(){
                 'under_type_of_activity_id' => $this->request->getPost('update_select_under_type_id'),
                 'date_and_time'             =>  date("Y/m/d H:i:s", strtotime($this->request->getPost('update_date_and_time'))),
                 'responsibility_center_id'  =>   $this->request->getPost('update_responsibility_center_id'),
-                'cso_Id'                    => $this->request->getPost('update_cso_id'),       
+                'cso_Id'                    => $this->request->getPost('update_cso_id'),      
+                'annotations'                => $this->request->getPost('annotation'),
+                'update_status'             => 'updated' 
         );
- 
+    
+
         $result         = $this->CustomModel->updatewhere($where,$data,$this->transactions_table);
 
         if ($result) {
@@ -1044,7 +1054,9 @@ public function get_transaction_data(){
                     'responsible_section_name'    => $row->responsible_section_name,
                     'type_of_activity_name'       => $row->type_of_activity_name,
                     'responsibility_center_name'  => $row->responsibility_center_name,
-                    'date_time'                   => date('F d Y', strtotime($row->date_and_time))
+                    'date_time'                   => date('F d Y', strtotime($row->date_and_time)),
+                    'annotations'                 => $row->annotations == '' ? 'No Annotation' : $row->annotations,
+                    'annotation_text'                 => $row->annotations
         );
         echo json_encode($data);
 }

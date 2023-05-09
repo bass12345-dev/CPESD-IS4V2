@@ -161,5 +161,24 @@
 
          
       </table>
+
+
+      <table class="tablesaw table-bordered table-hover table" >   
+    
+         <tr>
+            <td colspan = "2">
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Annotations</a>
+            </td>
+         </tr>
+         <tr>
+   
+            <td class="annotations"></td>
+         </tr>
+        
+
+
+
+
+      </table>
    </div>
 </div>

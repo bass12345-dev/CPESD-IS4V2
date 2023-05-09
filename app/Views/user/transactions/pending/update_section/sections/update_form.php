@@ -116,6 +116,15 @@
 				</div>
 				    <?php echo view('user/transactions/pending/update_section/sections/update_for_training'); ?>
 					<?php echo view('user/transactions/pending/update_section/sections/update_for_project_monitoring'); ?>
+
+				<div class="form-group">
+					<div class="col-12">Annotation</div>
+					
+						 <textarea class="form-control" id="tiny"></textarea>
+					
+					
+				</div>
+
 						<div class="form-group clearfix">
 							<button type="submit" class="form-wizard-submit float-right btn-update-transaction"> Submit</button> <a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a> 
                         </div>
