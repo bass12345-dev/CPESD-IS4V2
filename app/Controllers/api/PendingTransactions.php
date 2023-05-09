@@ -1055,7 +1055,7 @@ public function get_transaction_data(){
                     'type_of_activity_name'       => $row->type_of_activity_name,
                     'responsibility_center_name'  => $row->responsibility_center_name,
                     'date_time'                   => date('F d Y', strtotime($row->date_and_time)),
-                    'annotations'                 => $row->annotations == '' ? 'No Annotation' : $row->annotations,
+                    'annotations'                 => $row->annotations == NULL ? 'No Annotation' : $row->annotations,
                     'annotation_text'                 => $row->annotations
         );
         echo json_encode($data);

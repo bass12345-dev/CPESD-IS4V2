@@ -118,7 +118,7 @@
 					<?php echo view('user/transactions/pending/update_section/sections/update_for_project_monitoring'); ?>
 
 				<div class="form-group">
-					<div class="col-12">Annotation</div>
+					<div class="col-12">Notes/Proceedings</div>
 					
 						 <textarea class="form-control" id="tiny"></textarea>
 					

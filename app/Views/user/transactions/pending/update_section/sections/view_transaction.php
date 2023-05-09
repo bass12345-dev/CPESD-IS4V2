@@ -167,7 +167,7 @@
     
          <tr>
             <td colspan = "2">
-               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Annotations</a>
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Notes/Proceedings</a>
             </td>
          </tr>
          <tr>
