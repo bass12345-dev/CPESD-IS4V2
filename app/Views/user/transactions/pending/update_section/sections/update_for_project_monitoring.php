@@ -1,4 +1,4 @@
-<div class=" for_project_monitoring" hidden>
+<div class="for_project_monitoring" hidden>
 	<h3>For Project Monitoring</h3>
 	<div class="form-group">
 		<div class="col-12">Project Title</div>

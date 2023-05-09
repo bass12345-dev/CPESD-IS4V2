@@ -137,6 +137,16 @@ function load_transaction_data() {
    })
 }
 load_transaction_data();
+$(document).on('click', 'button.close-under-type', function () {
+   var text = $('#type_of_activity_select').find('option:selected').text();
+   var select_type = $('#select_under_type').find('option:selected').val();
+   if (!select_type) {
+      alert('Please Select Type of' + text);
+   } else {
+      $('#select_under_activity_modal').modal('hide');
+      $("#select_under_type option").remove();
+   }
+});
 $('#update_transaction_form').on('submit', function (e) {
    e.preventDefault();
    if ($('input[name=update_pmas_number]').val() == '') {
@@ -197,6 +207,68 @@ $('#update_transaction_form').on('submit', function (e) {
 $(".numbers").keyup(function (e) { checkNumbersOnly($(this)); }); 
 
 function checkNumbersOnly(myfield) { if (/[^\d\.]/g.test(myfield.val())) { myfield.val(myfield.val().replace(/[^\d\.]/g, '')); } }
+
+
+$(document).on('change', 'select#update_type_of_activity_select', function (e) {
+   $("#update_select_under_type option").remove();
+   var id = $('#update_type_of_activity_select').find('option:selected').val();
+   var text = $('#update_type_of_activity_select').find('option:selected').text().toString().toLowerCase();
+   $('input[name=update_select_under_type_id]').val('');
+   if (!id) {
+      alert('Please Select Type Of Activity');
+   } else {
+      $.ajax({
+         url: base_url + 'api/get_under_type_of_activity',
+         data: {
+            id: id
+         },
+         type: 'POST',
+         dataType: 'json',
+         beforeSend :  function(){
+
+               JsLoadingOverlay.show({
+                    'overlayBackgroundColor': '#666666',
+                    'overlayOpacity': 0.6,
+                    'spinnerIcon': 'ball-atom',
+                    'spinnerColor': '#000',
+                    'spinnerSize': '2x',
+                    'overlayIDName': 'overlay',
+                    'spinnerIDName': 'spinner',
+                  });
+
+         },
+         error: err => {
+            console.log(err);
+            alert("An error occured");
+         },
+         success: function (result) {
+            if (text == '<?php echo $training_text ?>') {
+              
+               $('#update_select_under_activity_modal').modal('show');
+               var $dropdown = $("#update_select_under_type");
+               $dropdown.append($("<option />").val('').text('Select Type'));
+               $.each(result, function () {
+                  $dropdown.append($("<option />").val(this.under_type_act_id).text(this.under_type_act_name));
+               });
+            }
+             JsLoadingOverlay.hide();
+         }
+      })
+   }
+   if (text == '<?php echo $training_text ?>') {
+      $('#update_under_type_activity_select').removeAttr('hidden').fadeIn("slow");
+      $('.for_training').removeAttr('hidden').fadeIn("slow");
+      $('.for_project_monitoring').attr('hidden', 'hidden');
+   } else if (text == '<?php echo  $rgpm_text ?>') {
+      $('#update_under_type_activity_select').attr('hidden', 'hidden');
+      $('.for_training').attr('hidden', 'hidden');
+      $('.for_project_monitoring').removeAttr('hidden').fadeIn("slow");
+   } else {
+      $('#update_under_type_activity_select').attr('hidden', 'hidden');
+      $('.for_training').attr('hidden', 'hidden');
+      $('.for_project_monitoring').attr('hidden', 'hidden');
+   }
+});
 
     
       </script>

@@ -55,6 +55,10 @@ class Clients extends BaseController
 
          if ($this->request->isAJAX()) {
 
+
+             $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+
           $data = array(
                 'rfa_client_added_by'       =>  session()->get('user_id'),
                 'first_name'                => $this->request->getPost('first_name'),
@@ -66,7 +70,7 @@ class Clients extends BaseController
                 'contact_number'            => $this->request->getPost('contact_number'),
                 'age'                       => $this->request->getPost('age'),
                 'employment_status'         => $this->request->getPost('employment_status'),
-                'rfa_client_created'        =>  date('Y-m-d H:i:s', time()),
+                'rfa_client_created'        => $now->format('Y-m-d H:i:s'),
                 
               
             );

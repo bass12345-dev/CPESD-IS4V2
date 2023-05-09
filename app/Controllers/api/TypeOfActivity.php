@@ -26,10 +26,14 @@ class TypeOfActivity extends BaseController
 
         if ($this->request->isAJAX()) {
 
+
+              $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+
             $data = array(
 
                         'type_of_activity_name' => $this->request->getPost('activity'),
-                        'type_act_created' =>  date('Y-m-d H:i:s', time())
+                        'type_act_created' =>   $now->format('Y-m-d H:i:s')
             );
 
             $result  = $this->CustomModel->addData($this->activities_table,$data);

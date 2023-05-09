@@ -49,9 +49,9 @@ class Transactions extends BaseController
             $data[] = array(
                         'transaction_id' => $row->transaction_id,
                         'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
-                        'date_and_time_filed' => date('M,d Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
+                        'date_and_time_filed' => date('M d, Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
 
-                        'date_time' => date('M,d Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
+                        'date_time' => date('M d, Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
                         'is_training' => $row->is_training == 1 ? true : false,
                         'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
                         'name' => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension

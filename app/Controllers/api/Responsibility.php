@@ -23,11 +23,15 @@ class  Responsibility  extends BaseController
     {
        if ($this->request->isAJAX()) {
 
+            $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+            
+
             $data = array(
 
                     'responsibility_center_code' => $this->request->getPost('res_code'),
                     'responsibility_center_name' => $this->request->getPost('center_name'),
-                    'responsibility_created' =>  date('Y-m-d H:i:s', time())
+                    'responsibility_created' =>  $now->format('Y-m-d H:i:s')
             );
 
            $verify = $this->CustomModel->countwhere($this->responsibility_table,array('responsibility_center_code' => $data['responsibility_center_code']));

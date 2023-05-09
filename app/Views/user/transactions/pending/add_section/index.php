@@ -106,7 +106,7 @@ $(document).on('change', 'select#type_of_activity_select', function (e) {
          },
          success: function (result) {
             if (text == '<?php echo $training_text ?>') {
-               JsLoadingOverlay.hide();
+              
                $('#select_under_activity_modal').modal('show');
                var $dropdown = $("#select_under_type");
                $dropdown.append($("<option />").val('').text('Select Type'));
@@ -114,6 +114,7 @@ $(document).on('change', 'select#type_of_activity_select', function (e) {
                   $dropdown.append($("<option />").val(this.under_type_act_id).text(this.under_type_act_name));
                });
             }
+             JsLoadingOverlay.hide();
          }
       })
    }

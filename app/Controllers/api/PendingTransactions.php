@@ -116,10 +116,14 @@ class PendingTransactions extends BaseController
 
          // date_default_timezone_set('Asia/Manila');
         if ($this->request->isAJAX()) {
+
+
+              $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
                 
             $data = array(
                 'number'                    => $this->request->getPost('pmas_number'),
-                'date_and_time_filed'       =>  date('Y-m-d h:i:s'),
+                'date_and_time_filed'       => $now->format('Y-m-d H:i:s'),
                 'responsible_section_id'    =>$this->request->getPost('type_of_monitoring_id'),
                 'type_of_activity_id'       => $this->request->getPost('type_of_activity_id'),
                 'under_type_of_activity_id' => $this->request->getPost('select_under_type_id'),

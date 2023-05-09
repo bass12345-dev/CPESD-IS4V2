@@ -22,7 +22,14 @@ class Users extends BaseController
 
     public function add_user()
     {
+
+    //     $now = new DateTime();
+    //     $now->setTimezone(new DateTimezone('Asia/Manila'));
+    // echo $now->format('Y-m-d H:i:s');
         if ($this->request->isAJAX()) {
+
+             $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
 
             $data = array(
                 'first_name' => $this->request->getPost('first_name'),
@@ -33,7 +40,7 @@ class Users extends BaseController
                 'user_type' => $this->request->getPost('user_type'),
                 'username' => $this->request->getPost('username'),
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-                'user_created' =>  date('Y-m-d H:i:s', time()),
+                'user_created' =>  $now->format('Y-m-d H:i:s'),
                 'user_status' => 'active',
               
             );
@@ -128,6 +135,8 @@ class Users extends BaseController
         }
 
         echo json_encode($data);
+
+
 
     }
 
@@ -398,7 +407,8 @@ class Users extends BaseController
 
      if ($this->request->isAJAX()) {
 
-
+        $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
 
          $data = array(
                 'first_name'            => $this->request->getPost('first_name'),
@@ -412,7 +422,7 @@ class Users extends BaseController
                 'contact_number'        => $this->request->getPost('contact_number'),
                 'username'              => $this->request->getPost('username'),
                 'password'              => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-                'user_created'          =>  date('Y-m-d H:i:s', time()),
+                'user_created'          =>  $now->format('Y-m-d H:i:s'),
                 'user_status'           => 'inactive',
               
             );

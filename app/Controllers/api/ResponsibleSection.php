@@ -24,10 +24,13 @@ class ResponsibleSection extends BaseController
 
         if ($this->request->isAJAX()) {
 
+            $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+
            $data = array(
 
                         'responsible_section_name' => $this->request->getPost('responsible_section'),
-                        'responsible_section_created' =>  date('Y-m-d H:i:s', time())
+                        'responsible_section_created' =>  $now->format('Y-m-d H:i:s')
             );
 
             $result  = $this->CustomModel->addData($this->responsible_table,$data);

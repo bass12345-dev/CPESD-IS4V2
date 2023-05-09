@@ -29,6 +29,9 @@ class Cso extends BaseController
     public function add_cso()
     {
     if ($this->request->isAJAX()) {
+
+         $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
         $data = array(
                 'cso_name' => $this->request->getPost('cso_name'),
                 'cso_code' => $this->request->getPost('cso_code'),
@@ -40,7 +43,7 @@ class Cso extends BaseController
                 'telephone_number' => ($this->request->getPost('telephone_number') == '') ?  '' : $this->request->getPost('telephone_number'),
                 'email_address' => ($this->request->getPost('email_address') == '') ?  '' : $this->request->getPost('email_address'),
                 'cso_status' => 'active',
-                'cso_created' => date('Y-m-d H:i:s', time())
+                'cso_created' => $now->format('Y-m-d H:i:s')
               
             );
 

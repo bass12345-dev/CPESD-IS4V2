@@ -93,10 +93,14 @@ class TypeofRequest extends BaseController
     {
         if ($this->request->isAJAX()) {
 
+
+              $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+
             $data = array(
 
                         'type_of_request_name' => $this->request->getPost('request_name'),
-                        'type_of_request_created' =>  date('Y-m-d H:i:s', time())
+                        'type_of_request_created' =>  $now->format('Y-m-d H:i:s')
             );
 
             $result  = $this->CustomModel->addData($this->type_of_request_table,$data);

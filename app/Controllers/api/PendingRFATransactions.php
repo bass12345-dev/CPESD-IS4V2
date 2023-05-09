@@ -34,10 +34,13 @@ class PendingRFATransactions extends BaseController
     public function add_rfa(){
           if ($this->request->isAJAX()) {
 
+             $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+
             $data = array(
                 'rfa_tracking_code'         => mt_rand().date('Ymd', time()).$this->request->getPost('reference_number'),
                 'number'                    => $this->request->getPost('reference_number'),
-                'rfa_date_filed'            =>  date('Y-m-d H:i:s', time()),
+                'rfa_date_filed'            => $now->format('Y-m-d H:i:s'),
                 'type_of_transaction'       =>$this->request->getPost('type_of_transaction'),
                 'tor_id'                    => $this->request->getPost('type_of_request'),
                 'client_id'                 => $this->request->getPost('client_id'),

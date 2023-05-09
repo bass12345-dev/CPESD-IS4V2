@@ -15,11 +15,12 @@
             <?php echo view('includes/topbar.php') ?>           
             <?php echo view('includes/breadcrumbs.php') ?> 
                 <div class="main-content-inner">
+
                      <?php echo view('user/dashboard/sections/count_section'); ?>
                      <?php echo view('user/dashboard/sections/graph_section'); ?>
                      <?php echo view('includes/dashboard_section/user_list'); ?>
 
-                     
+
                 </div>
         </div>
     </div>     
