@@ -31,9 +31,7 @@
          </div>
       <?php echo view('user/transactions/pending/add_section/modals/select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
-      <script src="
-https://cdn.jsdelivr.net/npm/js-loading-overlay@1.2.0/dist/js-loading-overlay.min.js
-"></script>
+      <script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
 
       <script>
 

@@ -29,6 +29,7 @@
          </div>
       <?php echo view('user/transactions/pending/update_section/modals/update_select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
+      <script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
       
       <script>
 
