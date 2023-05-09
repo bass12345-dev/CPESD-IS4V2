@@ -664,7 +664,7 @@ public function get_admin_pending_transaction_limit(){
                             'is_training'           => $row->is_training == 1 ? true : false,
                             'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
                             'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
-                            'cso_name'              => $row->cso_name,
+                            'cso_name'              => $row->cso_id == 0 ? ' - ' : $row->cso_name,
                             's'                     => $status_display,
                             'action'                => $action,
                 );
@@ -729,7 +729,7 @@ public function get_admin_pending_transaction_limit(){
                             'is_training'           => $row->is_training == 1 ? true : false,
                             'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,
                             'name'                  => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
-                            'cso_name'              => $row->cso_name,
+                            'cso_name'              => $row->cso_id == 0 ? ' - ' : $row->cso_name,
                             's'                     => $status_display,
                             'action'                => $action,
                 );
