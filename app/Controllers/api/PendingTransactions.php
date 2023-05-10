@@ -131,7 +131,8 @@ class PendingTransactions extends BaseController
                 'responsibility_center_id'  =>   $this->request->getPost('responsibility_center_id'),
                 'cso_Id'                    => $this->request->getPost('cso_id'),
                 'created_by'                => session()->get('user_id'),
-                'transaction_status'        => 'pending'		
+                'transaction_status'        => 'pending',
+                'update_status'             => 'to-update' 		
             );
 
 
@@ -627,8 +628,20 @@ public function get_admin_pending_transaction_limit(){
 
             $action = '';
             $status_display = '';
+            $update_status = '';
+
+            
 
             if ($row->remarks == '' AND $row->action_taken_date == null) {
+
+
+                if ($row->update_status == 'updated') {
+
+                $update_status  = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Updated</a>';
+                // code...
+            }else {
+                $update_status = '';
+            }
                 
                 $action = '<div class="btn-group dropleft">
                                               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -641,7 +654,7 @@ public function get_admin_pending_transaction_limit(){
                                                  <hr>
                                                 <a class="dropdown-item completed" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  >Approve</a>
                                               </di>';
-                $status_display = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">no remarks</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">no remarks</a> '.$update_status;
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
                 
                 $action = '<div class="btn-group dropleft">
@@ -767,7 +780,7 @@ public function get_admin_pending_transaction_limit(){
             $action = '';
             $status_display = '';
             $update_status_display = '';
-
+            $updated_status = '';
 
             if ($row->remarks == '' AND $row->action_taken_date == null) {
 
@@ -775,6 +788,7 @@ public function get_admin_pending_transaction_limit(){
                 if ($row->update_status == 'updated') {
 
                     $update_status_display = '<a class="dropdown-item text-success" href="javascript:;"> <i class="ti-check"></i> Last Updated </br>'.date('F d, Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)).'</a>';
+
 
                     // code...
                 }else {
@@ -788,11 +802,11 @@ public function get_admin_pending_transaction_limit(){
                                                <i class="ti-settings" style="font-size : 15px;"></i>
                                               </button>
                                               <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>'.$update_status_display.'
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>
                                         
                                      
                                               </di>';
-                $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Wait for Remarks....</a>';
+                $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Wait for Remarks....</a>'.' '. $update_status_display;
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
                 
                 $action = '<ul class="d-flex justify-content-center">
