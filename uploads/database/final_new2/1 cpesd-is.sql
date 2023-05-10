@@ -2,8 +2,8 @@
 --
 -- Host: localhost	Database: cpesd-is
 -- ------------------------------------------------------
--- Server version 	10.4.28-MariaDB
--- Date: Wed, 10 May 2023 06:51:38 +0000
+-- Server version 	10.4.27-MariaDB
+-- Date: Wed, 10 May 2023 04:43:27 +0000
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -180,7 +180,7 @@ CREATE TABLE `project_monitoring` (
   `cash_on_hand` float(10,2) NOT NULL,
   `inventories` float(10,2) NOT NULL,
   PRIMARY KEY (`project_monitoring_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,12 +190,12 @@ CREATE TABLE `project_monitoring` (
 LOCK TABLES `project_monitoring` WRITE;
 /*!40000 ALTER TABLE `project_monitoring` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `project_monitoring` VALUES (1,3,'','1970-01-01 00:00:00',0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00);
+INSERT INTO `project_monitoring` VALUES (1,3,'','1970-01-01 00:00:00',0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(2,7,'','1970-01-01 00:00:00',0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00),(3,8,'','1970-01-01 00:00:00',0,0,0,0,0,0.00,0.00,0.00,0.00,0.00,0.00,0.00);
 /*!40000 ALTER TABLE `project_monitoring` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `project_monitoring` with 1 row(s)
+-- Dumped table `project_monitoring` with 3 row(s)
 --
 
 --
@@ -397,12 +397,12 @@ CREATE TABLE `trainings` (
 LOCK TABLES `trainings` WRITE;
 /*!40000 ALTER TABLE `trainings` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `trainings` VALUES (1,1,'Employers Forum',52,36,'','','0000-00-00 00:00:00'),(2,3,'asdsad',12,11,'sd','asdasd asdsa','0000-00-00 00:00:00');
+INSERT INTO `trainings` VALUES (1,1,'Employers Forum',52,36,'','','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `trainings` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `trainings` with 2 row(s)
+-- Dumped table `trainings` with 1 row(s)
 --
 
 --
@@ -431,7 +431,7 @@ CREATE TABLE `transactions` (
   `updated_on` datetime NOT NULL,
   `action_taken_date` datetime DEFAULT NULL,
   PRIMARY KEY (`transaction_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,12 +441,12 @@ CREATE TABLE `transactions` (
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `transactions` VALUES (1,13,'124','2023-05-09 13:26:12',3,5,3,95,'2023-05-04 13:25:53',0,0,1,'','pending',NULL,'','0000-00-00 00:00:00',NULL),(2,13,'125','2023-05-09 13:43:49',2,6,0,31,'2023-05-08 13:43:32',0,0,0,'','pending',NULL,'','0000-00-00 00:00:00',NULL),(3,9,'126','2023-05-09 13:49:05',1,5,2,1,'2023-05-09 13:48:40',1,0,1,'','pending','<p>asdsadasdasd</p>','updated','2023-05-10 14:11:26',NULL),(4,9,'127','2023-05-10 14:12:19',2,7,0,1,'2023-05-09 23:12:17',2,0,0,'','pending','<ol>\r\n<li>asdasdasd</li>\r\n<li>asdasd</li>\r\n<li>asdsad</li>\r\n<li>asdasd</li>\r\n</ol>','updated','2023-05-10 14:33:02',NULL);
+INSERT INTO `transactions` VALUES (1,13,'124','2023-05-09 13:26:12',3,5,3,95,'2023-05-04 13:25:53',0,0,1,'','completed',NULL,'','0000-00-00 00:00:00',NULL),(2,13,'125','2023-05-09 13:43:49',2,6,0,31,'2023-05-08 13:43:32',0,0,0,'<p>dgaskbdkasbdkbaskdbksabdsabdasbkdsad</p>','pending',NULL,'updated','0000-00-00 00:00:00',NULL),(6,9,'126','2023-05-10 08:31:23',1,7,0,3,'2023-05-10 08:31:20',2,0,0,'<p>for follow-up</p>','pending','<p>sadsadasdsad</p>','updated','2023-05-10 08:36:47',NULL),(7,19,'127','2023-05-10 11:08:51',1,4,0,111,'2023-05-11 09:00:00',36,1,0,'','pending',NULL,'to-update','0000-00-00 00:00:00',NULL),(8,19,'128','2023-05-10 11:10:04',1,4,0,111,'2023-05-11 10:30:00',89,1,0,'','pending',NULL,'to-update','0000-00-00 00:00:00',NULL),(9,12,'129','2023-05-10 12:04:04',2,8,0,0,'2023-05-10 13:30:00',0,0,0,'','pending',NULL,'to-update','0000-00-00 00:00:00',NULL);
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `transactions` with 4 row(s)
+-- Dumped table `transactions` with 6 row(s)
 --
 
 --
@@ -460,7 +460,7 @@ CREATE TABLE `type_of_activities` (
   `type_of_activity_name` varchar(150) NOT NULL,
   `type_act_created` datetime NOT NULL,
   PRIMARY KEY (`type_of_activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -470,12 +470,12 @@ CREATE TABLE `type_of_activities` (
 LOCK TABLES `type_of_activities` WRITE;
 /*!40000 ALTER TABLE `type_of_activities` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `type_of_activities` VALUES (1,'Regular Monthly Meeting','2023-04-27 23:11:32'),(2,'Regular Monthly COOP Visit','2023-04-27 23:11:53'),(3,'Job Vacancy Solicitation','2023-04-27 23:12:04'),(4,'Regular Monthly Project Monitoring','2023-04-27 23:12:25'),(5,'Training','2023-04-27 23:12:31'),(6,'others','2023-05-09 13:42:59'),(7,'LRA','2023-05-09 13:57:10');
+INSERT INTO `type_of_activities` VALUES (1,'Regular Monthly Meeting','2023-04-27 23:11:32'),(2,'Regular Monthly COOP Visit','2023-04-27 23:11:53'),(3,'Job Vacancy Solicitation','2023-04-27 23:12:04'),(4,'Regular Monthly Project Monitoring','2023-04-27 23:12:25'),(5,'Training','2023-04-27 23:12:31'),(6,'others','2023-05-09 13:42:59'),(7,'LRA','2023-05-09 13:57:10'),(8,'Inspection','2023-05-10 09:50:37'),(9,'Pre-con meeting','2023-05-10 09:51:26');
 /*!40000 ALTER TABLE `type_of_activities` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `type_of_activities` with 7 row(s)
+-- Dumped table `type_of_activities` with 9 row(s)
 --
 
 --
@@ -560,7 +560,7 @@ CREATE TABLE `users` (
   `password` varchar(200) NOT NULL,
   `user_created` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -570,12 +570,12 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 SET autocommit=0;
-INSERT INTO `users` VALUES (8,'Mark Anthony','','Artigas','','0905788844','Binuangan','markeeboi1985@gmail.com',NULL,'admin','active',NULL,'markuser','$2y$10$LNjjAwAdQazQMF22UnUCde32RHVohPL3QPjpQ2tJMkH4xswinXPu6','2023-04-06 16:32:32'),(9,'Basil John','C.','Manabo','','0912321321','Lower Rizal','manabobasil@gmail.com',NULL,'user','active',NULL,'basiluser','$2y$10$9/ESqpwWBUnryLu3QtGE5OK3qNrA/nvSTp42sOH650.fNNbeyXYMu','2023-04-07 03:04:02'),(12,'Katlyn Mary','','Daraman','','0963936232','Canubay','daraman.cp',NULL,'user','active','jo','katlyn1388','$2y$10$HU/SEKRHDbELpPI10DLnx.EjP2uh0akDblmg0o1vES9lHPRc47xkC','2023-05-05 05:00:46'),(13,'Judith','P.','Abuhon','','09107324580','Villaflor','abuhon.cpesdoroq@gmail.com',NULL,'user','active','jo','ram_tom','$2y$10$TE3O7GRzGKGl18SRaGV9s.u7BpPN.Fsv/YHAujQXEhROnnfAm1Xbm','2023-05-05 07:01:00'),(14,'Sheila Marie','','Daque','','09516531821','Lower Loboc','daquesheilamarie@gmail.com',NULL,'user','active','jo','Shelayla','$2y$10$Md/bS.rZKXp/HDAuIkoXgOR9iwbLGGli51TY8kGiSJZZ3yyZzZsGe','2023-05-05 07:23:18'),(15,'Cel','Betero','Chua','','0912789660','Talairon','chua.cpesd',NULL,'user','active','jo','Choyerns','$2y$10$InNvidAtcrzChJgWFn6joubY5J2nSFS7aUUlWT3ULls4pmTBBr3l2','2023-05-05 07:25:12'),(16,'WIENGELYN','MILO','IBASAN','','0912367928','Tipan','ibasan.cpesdoroq@gmail.com',NULL,'user','active','jo','Wiengy ','$2y$10$QsoMylmly4nLdJSS318MReBYY1a7wkNKdaGE/g7SsQvt4gJD2sS5O','2023-05-05 07:27:14'),(17,'John Rick','Himpayan','Tac-an','','09618058910','Proper Langcangan','jrtacanambush@gmail.com',NULL,'user','active','jo','John Rick','$2y$10$gtbD6ggrpp8YD4CKOdUkj.PXYN4J2h21Z1hUONiAzi0MzwmsMRIuy','2023-05-05 07:46:38'),(18,'celrose','o','español','','09465543788','Mobod','celrose14@gmail.com',NULL,'user','active','jo','celrose','$2y$10$GEbJsRNIXgE4JPi3Sg.4YuJXV2J6HRlcrqdkzF3loj7RcTICmqA4q','2023-05-05 08:18:24'),(19,'Judy Mae','Taberao','Catane','','09462326054','Pines','catane.cpesdoroq@gmail.com',NULL,'user','inactive','jo','judai09','$2y$10$2j8deWGJKg6ftOrTRH43pudfIajE/BBn5n8mbZ2KWTzKK90gIcg1y','2023-05-09 14:24:42'),(20,'Dayanara Mae','Molina','Hipos','','09700746605','Villaflor','hipos.cpesdoroq@gmail.com',NULL,'user','inactive','jo','Dayanara','$2y$10$qIHpUso7ScnxB4x0c3HGMOnDcAF.B4lWyx8uCkoWaxRSDf4vEcgwu','2023-05-09 14:30:58');
+INSERT INTO `users` VALUES (8,'Mark Anthony','','Artigas','','0905788844','Binuangan','markeeboi1985@gmail.com',NULL,'admin','active',NULL,'markuser','$2y$10$LNjjAwAdQazQMF22UnUCde32RHVohPL3QPjpQ2tJMkH4xswinXPu6','2023-04-06 16:32:32'),(9,'Basil John','C.','Manabo','','0912321321','Lower Rizal','manabobasil@gmail.com',NULL,'user','active',NULL,'basiluser','$2y$10$9/ESqpwWBUnryLu3QtGE5OK3qNrA/nvSTp42sOH650.fNNbeyXYMu','2023-04-07 03:04:02'),(12,'Katlyn Mary','','Daraman','','0963936232','Canubay','daraman.cp',NULL,'user','active','jo','katlyn1388','$2y$10$HU/SEKRHDbELpPI10DLnx.EjP2uh0akDblmg0o1vES9lHPRc47xkC','2023-05-05 05:00:46'),(13,'Judith','P.','Abuhon','','09107324580','Villaflor','abuhon.cpesdoroq@gmail.com',NULL,'user','active','jo','ram_tom','$2y$10$TE3O7GRzGKGl18SRaGV9s.u7BpPN.Fsv/YHAujQXEhROnnfAm1Xbm','2023-05-05 07:01:00'),(14,'Sheila Marie','','Daque','','09516531821','Lower Loboc','daquesheilamarie@gmail.com',NULL,'user','active','jo','Shelayla','$2y$10$Md/bS.rZKXp/HDAuIkoXgOR9iwbLGGli51TY8kGiSJZZ3yyZzZsGe','2023-05-05 07:23:18'),(15,'Cel','Betero','Chua','','0912789660','Talairon','chua.cpesd',NULL,'user','active','jo','Choyerns','$2y$10$InNvidAtcrzChJgWFn6joubY5J2nSFS7aUUlWT3ULls4pmTBBr3l2','2023-05-05 07:25:12'),(16,'WIENGELYN','MILO','IBASAN','','0912367928','Tipan','ibasan.cpesdoroq@gmail.com',NULL,'user','active','jo','Wiengy ','$2y$10$QsoMylmly4nLdJSS318MReBYY1a7wkNKdaGE/g7SsQvt4gJD2sS5O','2023-05-05 07:27:14'),(17,'John Rick','Himpayan','Tac-an','','09618058910','Proper Langcangan','jrtacanambush@gmail.com',NULL,'user','active','jo','John Rick','$2y$10$gtbD6ggrpp8YD4CKOdUkj.PXYN4J2h21Z1hUONiAzi0MzwmsMRIuy','2023-05-05 07:46:38'),(18,'celrose','o','español','','09465543788','Mobod','celrose14@gmail.com',NULL,'user','active','jo','celrose','$2y$10$GEbJsRNIXgE4JPi3Sg.4YuJXV2J6HRlcrqdkzF3loj7RcTICmqA4q','2023-05-05 08:18:24'),(19,'Judy Mae','Taberao','Catane','','09462326054','Pines','catane.cpesdoroq@gmail.com',NULL,'user','active','jo','judai09','$2y$10$2j8deWGJKg6ftOrTRH43pudfIajE/BBn5n8mbZ2KWTzKK90gIcg1y','2023-05-09 14:24:42'),(20,'Dayanara Mae','Molina','Hipos','','09700746605','Villaflor','hipos.cpesdoroq@gmail.com',NULL,'user','active','jo','Dayanara','$2y$10$qIHpUso7ScnxB4x0c3HGMOnDcAF.B4lWyx8uCkoWaxRSDf4vEcgwu','2023-05-09 14:30:58'),(21,'Marilou','Inting','Gumapac ','','09632873186','Binuangan','gumapac.cpesdoroq@gmail.com',NULL,'user','active','regular','MIG101583','$2y$10$mqZM/5a49RucInt0oMQ8zOQEoRiww9hE67fferYtXynrhMDg.Jso2','2023-05-10 08:49:43'),(22,'Reymond','Manlod','Tacastacas','','09090821383','Taboc Sur','verzacheboitax@gmail.com',NULL,'user','active','jo','boitacs','$2y$10$3HcPLa8XnlvpYxLpn99Xj.ZLBT5SXnfd4kl3yS3vmaPdVrIK6H05S','2023-05-10 09:26:41'),(23,'Richard','Cariaga ','Liberto ','','09383926364','Canubay','richardliberto11@gmail.com',NULL,'user','active','regular','Jhong ','$2y$10$v83WR45m3GZb9mxaqZxp5O.3Z9l3tdTPCsuU/b0Tlyc5rn5jSvldK','2023-05-10 09:28:27');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `users` with 11 row(s)
+-- Dumped table `users` with 14 row(s)
 --
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -588,4 +588,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Wed, 10 May 2023 06:51:38 +0000
+-- Dump completed on: Wed, 10 May 2023 04:43:27 +0000

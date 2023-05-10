@@ -164,6 +164,11 @@ $routes->post('api/update-officer-information', 'api\Cso::update_officer');
 $routes->post('api/delete-cso-officer', 'api\Cso::delete_cso_officer');
 
 
+//Add Implemented Project
+$routes->post('api/add-project', 'api\Cso::add_project');
+$routes->post('api/get-projects', 'api\Cso::get_projects');
+$routes->post('api/update-project', 'api\Cso::update_project');
+
 $routes->post('api/count-cso-per-barangay', 'api\Cso::count_cso_per_barangay');
 
 //Responsibility Center

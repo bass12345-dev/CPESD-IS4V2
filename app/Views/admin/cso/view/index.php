@@ -70,6 +70,9 @@
 			                           <div class="tab-pane active" id="1a">
                                        <?php echo view('admin/cso/view/sections/cso_information'); ?>  
 				                        </div>
+                                        <div class="tab-pane " id="1b">
+                                        <?php echo view('admin/cso/view/sections/project_implemented'); ?>  
+                                        </div>
 				                        <div class="tab-pane" id="2a">
                                        <?php echo view('admin/cso/view/sections/cso_officers'); ?>  
 				                        </div>
@@ -85,12 +88,16 @@
       <?php echo view('admin/cso/view/modals/update_cso_information'); ?> 
       <?php echo view('admin/cso/view/modals/update_officer_modal'); ?> 
       <?php echo view('admin/cso/view_officers/modals/add_officer_modal'); ?>   
+
+
       <?php echo view('admin/cso/modals/update_cso_status_modal'); ?> 
      <?php echo view('admin/cso/view/modals/update_cor_modal'); ?> 
      <?php echo view('admin/cso/view/modals/update_bylaws_modal'); ?> 
      <?php echo view('admin/cso/view/modals/update_aoc_modal'); ?> 
      <?php echo view('admin/cso/view/modals/view_file_modal'); ?> 
 
+    <?php echo view('admin/cso/view/modals/add_project_modal'); ?> 
+    <?php echo view('admin/cso/view/modals/update_project_modal'); ?> 
 
       <?php echo view('includes/scripts.php') ?> 
       <script src="<?php echo site_url() ?>assets/js/vendor/orgchart.js"></script>
@@ -407,6 +414,9 @@ $(document).on('click','a#view_aoc',function (e) {
 
 
 
+
+
+
 function Validate_file(oInput) {
 
        
@@ -637,6 +647,64 @@ $('#update_cor_form').on('submit', function(e) {
 
     })
 
+
+$('#add_project_form').on('submit', function(e) {
+    e.preventDefault();
+
+         $.ajax({
+            type: "POST",
+            url: base_url + 'api/add-project',
+            data: $(this).serialize(),
+            cache: false,
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-add-project').text('Please wait...');
+                $('.btn-add-project').attr('disabled','disabled');
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#add_project_form')[0].reset();
+                    $('.btn-add-project').text('Submit');
+                    $('.btn-add-project').removeAttr('disabled');
+                    Toastify({
+                                text: data.message,
+                                className: "info",
+                                style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                }
+                            }).showToast();
+                        $('#project_table').DataTable().destroy();
+                            load_projects();
+                           
+                }else {
+                    $('.btn-add-project').text('Submit');
+                    $('.btn-add-project').removeAttr('disabled');
+                    Toastify({
+                                text: data.message,
+                                className: "info",
+                                style: {
+                                    "background" : "#e01c0d",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                }
+                            }).showToast();
+                }
+           },
+            error: function(xhr) { // if error occured
+                    alert("Error occured.please try again");
+                    $('.btn-add-project').text('Submit');
+                    $('.btn-add-project').removeAttr('disabled');
+            },
+
+
+        });
+
+      });
 
 
 
@@ -1075,6 +1143,72 @@ $('input[name=update_email]').val($(this).data('email'));
 
 
 
+$('#update_project_form').on('submit', function(e) {
+        e.preventDefault();
+
+         $.ajax({
+            type: "POST",
+            url: base_url + 'api/update-project',
+            data: $(this).serialize(),
+            cache: false,
+            dataType: 'json',
+            beforeSend: function() {
+                $('.btn-update-project_').text('Please wait...');
+                $('.btn-update-project_').attr('disabled','disabled');
+            },
+             success: function(data)
+            {            
+                if (data.response) {
+                    $('#update_project_modal').modal('hide');
+                    $('.btn-update-project_').text('Save Changes');
+                    $('.btn-update-project_').removeAttr('disabled');
+                    
+                   Toastify({
+                                text: data.message,
+                                className: "info",
+                                style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                }
+                            }).showToast();
+                    
+                    $('#project_table').DataTable().destroy();
+                    load_projects();
+                }else {
+                    
+                     $('.btn-update-project_').text('Save Changes');
+                    $('.btn-update-project_').removeAttr('disabled');
+                      
+                   Toastify({
+                                text: data.message,
+                                className: "info",
+                                style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                }
+                            }).showToast();
+                   
+                }
+           },
+            error: function(xhr) { // if error occured
+                alert("Error occured.please try again");
+                $('.btn-update-project_').text('Save Changes');
+                $('.btn-update-project_').removeAttr('disabled');
+            },
+
+
+        });
+
+    });
+
+
+      
+
+
 $('#update_officer_form').on('submit', function(e) {
         e.preventDefault();
 
@@ -1202,8 +1336,150 @@ $('#update_officer_form').on('submit', function(e) {
 
     });
     
+$(".numbers").keyup(function (e) {
+   checkNumbersOnly($(this));
+});
+
+function checkNumbersOnly(myfield) {
+   if (/[^\d\.]/g.test(myfield.val())) {
+      myfield.val(myfield.val().replace(/[^\d\.]/g, ''));
+   }
+}
 
 
+
+function load_projects(){
+
+   $.ajax({
+            url: base_url + 'api/get-projects',
+            type: "POST",
+            data : {cso_id :"<?php echo $_GET['id'] ?>"},
+            dataType: "json",
+            success: function(data) {
+
+            
+
+
+               $('#project_table').DataTable({
+                scrollY: 500,
+                scrollX: true,
+               "ordering" : false,
+               "data": data,
+               "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
+                                        "<'row'<'col-sm-12'tr>>" +
+                                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        buttons: [
+                                  {
+                                     extend: 'excel',
+                                     text: 'Excel',
+                                     className: 'btn btn-default ',
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
+                                  },
+                                   {
+                                     extend: 'pdf',
+                                     text: 'pdf',
+                                     className: 'btn btn-default',
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
+                                  },
+
+                                {
+                                     extend: 'print',
+                                     text: 'print',
+                                     className: 'btn btn-default',
+                                     exportOptions: {
+                                        columns: 'th:not(:last-child)'
+                                     }
+                                  },    
+
+                        ],
+               'columns': [
+                  {
+                     // data: "song_title",
+                     data: null,
+                     render: function (data, type, row) {
+                        return row.project_title;
+                     }
+
+                  },
+                  {
+                     // data: "song_title",
+                     data: null,
+                     render: function (data, type, row) {
+                           return row.amount;
+                     }
+
+                  },
+                  {
+                     // data: "song_title",
+                     data: null,
+                     render: function (data, type, row) {
+                           return row.year;
+                     }
+
+                  },
+                  {
+                     // data: "song_title",
+                     data: null,
+                     render: function (data, type, row) {
+                           return row.funding_agency;
+                     }
+
+                  },
+                  {
+             // data: "song_title",
+             data: null,
+             render: function (data, type, row) {
+                 return '<ul class="d-flex justify-content-center">\
+                             <li class="mr-3 ">\
+                             <a href="javascript:;" class="text-secondary action-icon" \
+                             data-id="'+data['cso_project_id']+'"  \
+                             data-project-title="'+data['project_title']+'"  \
+                             data-amount="'+data['amount']+'"  \
+                             data-year1="'+data['year1']+'"  \
+                             data-funding-agency="'+data['funding_agency']+'"  \
+                             id="update-cso-project"><i class="fa fa-edit"></i></a></li>\
+                             <li class="mr-3 ">\
+                             <a href="javascript:;" class="text-danger action-icon" \
+                             data-id="'+data['cso_officer_id']+'"  \
+                             id="delete-cso-officer"><i class="fa fa-trash"></i></a></li>\
+                             </ul>';
+             }
+
+         },
+]
+
+})
+
+            }
+
+
+   });
+
+}
+
+
+$(document).on('click','a#update-cso-project',function (e) {
+
+$('#update_project_modal').modal('show');
+ 
+$('input[name=cso_project_id]').val($(this).data('id'));
+$('input[name=update_title_of_project]').val($(this).data('project-title'));
+$('input[name=update_amount]').val($(this).data('amount'));
+$('input[name=update_year]').val($(this).data('year1'));
+$('input[name=update_funding_agency]').val($(this).data('funding-agency'));
+
+
+});
+
+
+
+
+
+load_projects();
 get_cso_information();
 load_organization_chart();
 

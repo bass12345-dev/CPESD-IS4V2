@@ -12,6 +12,7 @@ class Cso extends BaseController
     public $cso_table                    = 'cso';
     public $cso_officer_table            = 'cso_officers';
     public $transactions_table           = 'transactions';
+    public $cso_project_table            = 'cso_project_implemented';
     public $order_by_desc                = 'desc';
     public $order_by_asc                 = 'asc';
     protected $request;
@@ -295,13 +296,32 @@ public function get_cso_information(){
 
 
 	$row = $this->CustomModel->getwhere($this->cso_table,array('cso_id' =>  $this->request->getPost('id')))[0];
+
+
+     $address = '';
+
+            if ($row->barangay == '') {
+
+                $address = '';
+                // code...
+            }else if ($row->purok_number == '' && $row->barangay != '') {
+                
+                $address = $row->barangay;
+
+            }else if ($row->purok_number != '' && $row->barangay != '') {
+                
+                $address = 'Purok '.$row->purok_number.' '.$row->barangay;
+            }
+
+
+
 	$data = array(
         'cso_id' => $row->cso_id,
         'cso_name' => $row->cso_name,
         'cso_code' => $row->cso_code,
         'purok_number' => $row->purok_number,
         'barangay' => $row->barangay,
-        'address' => 'Purok '.$row->purok_number.' '.$row->barangay,
+        'address' => $address,
         'contact_person' => $row->contact_person,
         'contact_number' => $row->contact_number,
         'telephone_number' => $row->telephone_number,    
@@ -907,5 +927,109 @@ if ($this->request->isAJAX()) {
     
 
     }
+
+
+    public function add_project(){
+
+
+        $now = new \DateTime();
+        $now->setTimezone(new \DateTimezone('Asia/Manila'));
+        $data = array(
+                'title_of_project'      => $this->request->getPost('title_of_project'),
+                'amount'                => $this->request->getPost('amount'),
+                'year'                  => date("Y-m-d", strtotime($this->request->getPost('year'))),
+                'funding_agency'        => $this->request->getPost('funding_agency') ,
+                'status'                => 'active',
+                'cso_project_created'   => $now->format('Y-m-d H:i:s'),
+                'project_cso_id'        => $this->request->getPost('cso_idd')
+            );
+
+
+       
+        $result  = $this->CustomModel->addData($this->cso_project_table,$data);
+
+            if ($result) {
+
+                $data = array(
+                'message' => 'Data Saved Successfully',
+                'response' => true
+                );
+            }else {
+
+                $data = array(
+                'message' => 'Error',
+                'response' => false
+                );
+            }
+
+
+        echo json_encode($data);
+
+
+
+    }
+
+
+    public function get_projects(){
+
+
+        $data = [];
+        $item = $this->CustomModel->get_all_order_by($this->cso_project_table,'cso_project_created',$this->order_by_desc); 
+        foreach ($item as $row) {
+            
+                $data[] = array(
+
+                        'project_title' => $row->title_of_project,
+                        'amount'        => number_format($row->amount, 2, '.',',') ,
+                        'year'          => $row->year != NULL ?  date('F d, Y', strtotime($row->year)) : '',
+                        'year1'          => $row->year != NULL ?  date('Y-m-d', strtotime($row->year)) : '',
+                        'funding_agency'=> $row->funding_agency,
+                        'status'        => $row->status,
+                        'cso_project_id'=> $row->cso_project_implemented_id
+                );
+        }
+
+        echo json_encode($data);
+
+
+    }
+
+
+    public function update_project(){
+
+            $data = array(
+                'title_of_project'      => $this->request->getPost('update_title_of_project'),
+                'amount'                => $this->request->getPost('update_amount'),
+                'year'                  => date("Y-m-d", strtotime($this->request->getPost('update_year'))),
+                'funding_agency'        => $this->request->getPost('update_funding_agency') ,
+            );
+
+            $where = array(
+                        'cso_project_implemented_id' => $this->request->getPost('cso_project_id')
+                    );
+
+            $update = $this->CustomModel->updatewhere($where,$data,$this->cso_project_table);
+
+            if($update){
+
+                        $resp = array(
+                            'message' => 'Successfully Updated',
+                            'response' => true
+                        );
+
+                    }else {
+
+                        $resp = array(
+                            'message' => 'Error',
+                            'response' => false
+                        );
+
+                    }
+
+                    echo json_encode($resp);
+
+
+    }
 }
 
+    

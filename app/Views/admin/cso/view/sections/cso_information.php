@@ -76,3 +76,23 @@
 		</div>
 	</div> -->
 </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="data-tables">
+            <button class="btn sub-button pull-right mb-3 " data-toggle="modal" data-target="#add_project_modal">Add Project</button>
+                <table id="project_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" style="width:100%"  >
+                        <tr>
+                            <th>Title Of Project</th>  
+                            <th>Amount</th> 
+                            <th>Year</th>                                                     
+                            <th>Funding Agency</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                </table> 
+        </div>
+    </div>
+</div>
