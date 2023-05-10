@@ -77,6 +77,8 @@ $(document).on('click','button.back-up-database',function (e) {
                                     "font-size" : "20px"
                                 }
                             }).showToast();
+                }else {
+                    alert('error back-up')
                 }
             }
         });

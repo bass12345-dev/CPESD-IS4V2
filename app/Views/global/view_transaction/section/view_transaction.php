@@ -23,6 +23,10 @@
             <td class="type_of_activity_name text-center"></td>
          </tr>
          <tr>
+            <td>CSO</td>
+            <td class="cso text-center"></td>
+         </tr>
+         <tr>
             <td >Responsibility Center</td>
             <td class="responsibility_center_name text-center "></td>
          </tr>
@@ -166,4 +170,28 @@
 
 
          
+      </table>
+
+
+            <table class="tablesaw table-bordered table-hover table" >   
+    
+         <tr>
+            <td colspan = "2">
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Notes/Proceedings</a>
+            </td>
+         </tr>
+         <tr>
+   
+            <td class="annotations p-5" colspan = "2"></td>
+         </tr>
+
+        <tr>
+            <td><b>Last Updated</b></td>
+            <td style="font-weight: bold;" class="last_updated"></td>
+         </tr>
+        
+
+
+
+
       </table>

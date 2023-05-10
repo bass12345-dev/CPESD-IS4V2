@@ -284,9 +284,8 @@ public function update_transaction(){
     if ($this->request->isAJAX()) {
 
 
-
-   
-
+        $now = new \DateTime();
+        $now->setTimezone(new \DateTimezone('Asia/Manila'));
 
 
         $where = array('transaction_id' => $this->request->getPost('transaction_id'));
@@ -300,6 +299,7 @@ public function update_transaction(){
                 'responsibility_center_id'  =>   $this->request->getPost('update_responsibility_center_id'),
                 'cso_Id'                    => $this->request->getPost('update_cso_id'),      
                 'annotations'                => $this->request->getPost('annotation'),
+                'updated_on'                => $now->format('Y-m-d H:i:s'),
                 'update_status'             => 'updated' 
         );
     
@@ -766,9 +766,21 @@ public function get_admin_pending_transaction_limit(){
 
             $action = '';
             $status_display = '';
+            $update_status_display = '';
 
 
             if ($row->remarks == '' AND $row->action_taken_date == null) {
+
+
+                if ($row->update_status == 'updated') {
+
+                    $update_status_display = '<a class="dropdown-item text-success" href="javascript:;"> <i class="ti-check"></i> Last Updated </br>'.date('F d, Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)).'</a>';
+
+                    // code...
+                }else {
+
+                    $update_status_display = '<a class="dropdown-item text-danger" href="javascript:;">Not Updated</a>';
+                }
                
 
                 $action = '<div class="btn-group dropleft">
@@ -776,7 +788,8 @@ public function get_admin_pending_transaction_limit(){
                                                <i class="ti-settings" style="font-size : 15px;"></i>
                                               </button>
                                               <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>'.$update_status_display.'
+                                        
                                      
                                               </di>';
                 $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Wait for Remarks....</a>';
@@ -1037,9 +1050,10 @@ public function get_transaction_data(){
                     'year'                       =>  date('Y', strtotime($row->date_and_time_filed)),
                     'responsible_section_id'     => $row->responsible_section_id,
                     'type_of_activity_id'        => $row->type_of_activity_id,
+                    'under_type_activity'        => $row->under_type_of_activity_id == 0 ? '' : $this->CustomModel->getwhere('under_type_of_activity',array('under_type_act_id' => $row->under_type_of_activity_id))[0]->under_type_act_name,   
                     'responsibility_center_id'   => $row->responsibility_center_id,
                     'cso_id'                     => $row->cso_id,
-                    'cso_name'                   => $row->cso_name,
+                    'cso_name'                   => $row->cso_Id == 0 ? ' - ' : $row->cso_name,
                     'date_and_time'              => date("m/d/Y h:i:s A", strtotime($row->date_and_time)),
                     'under_type_of_activity'     => $row->under_type_of_activity_id == 0 ? '' : $row->under_type_of_activity_id,
 
@@ -1055,8 +1069,9 @@ public function get_transaction_data(){
                     'type_of_activity_name'       => $row->type_of_activity_name,
                     'responsibility_center_name'  => $row->responsibility_center_name,
                     'date_time'                   => date('F d Y', strtotime($row->date_and_time)),
-                    'annotations'                 => $row->annotations == NULL ? 'No Annotation' : $row->annotations,
-                    'annotation_text'                 => $row->annotations
+                    'annotations'                 => $row->annotations == NULL ? 'No Notes' : $row->annotations,
+                    'annotation_text'             => $row->annotations,
+                    'last_updated'                => $row->updated_on ==  '0000-00-00 00:00:00' ? '<span class="text-danger">Not Updated</span>' : date('F d Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)) ,
         );
         echo json_encode($data);
 }

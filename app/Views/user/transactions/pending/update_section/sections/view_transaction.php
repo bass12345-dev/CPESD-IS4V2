@@ -172,7 +172,13 @@
          </tr>
          <tr>
    
-            <td class="annotations"></td>
+            <td class="annotations p-5" colspan="2"></td>
+         </tr>
+
+
+        <tr>
+            <td><b>Last Updated</b></td>
+            <td style="font-weight: bold;" class="last_updated"></td>
          </tr>
         
 

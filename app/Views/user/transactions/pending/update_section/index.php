@@ -30,11 +30,26 @@
       <?php echo view('user/transactions/pending/update_section/modals/update_select_under_type_of_activity_modal') ?> 
       <?php echo view('includes/scripts.php') ?> 
       <script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
-      <script src="<?php echo site_url() ?>assets/js/tinymce/js/tinymce/tinymce.js"></script>
+      <script src="<?php echo base_url() ?>assets/tinymce/tinymce.min.js"></script>
       <script>
 
 
-tinymce.init({ selector: 'textarea#tiny', height: 500, plugins: ['advlist', 'autolink', 'lists', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media', 'table', 'help', 'wordcount'], toolbar: 'undo redo | blocks | ' + 'bold italic backcolor | alignleft aligncenter ' + 'alignright alignjustify | bullist numlist outdent indent | ' + 'removeformat | help', content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }' });
+tinymce.init({
+                    selector: "textarea#tiny"
+                    , theme: "modern"
+                    , height: 300
+                    , plugins: [
+                     "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker"
+                     , "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking"
+                     , "save table contextmenu directionality emoticons template paste textcolor  tabfocus", 
+                     ]
+                    , toolbar: "insertfile undo redo | fontsizeselect | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink | print preview  fullpage | forecolor backcolor emoticons ",
+                    fontsize_formats : "8pt 9pt 10pt 11pt 12pt 14pt 18pt 24pt",
+
+                   
+                });
+
+
 $(document).ready(function () {
    $('.js-example-basic-single').select2();
 });
@@ -50,6 +65,9 @@ $('#update_select_under_activity_form').on('submit', function (e) {
    $('input[name=update_select_under_type_id]').val($('#update_select_under_type').find('option:selected').val());
    $('#update_select_under_activity_modal').modal('hide');
 });
+
+
+
 
 function load_transaction_data() {
    $.ajax({
@@ -74,17 +92,23 @@ function load_transaction_data() {
          $('input[name=update_date_and_time]').val(data.date_and_time);
          $('input[name=update_select_under_type_id]').val(data.under_type_of_activity);
   
-         // tinymce.get('tiny').setContent(data.annotation_text);
+
+
+       // tinyMCE.get('tiny').setContent(data.annotation_text);
+
+       
+
 
 
          $('.pmas_no').text(data.pmas_no);
          $('.date_and_time_filed').text(data.date_and_time_filed);
          $('.responsible_section_name').text(data.responsible_section_name);
-         $('.type_of_activity_name').text(data.type_of_activity_name);
+         $('.type_of_activity_name').text(data.type_of_activity_name + ' - ' + data.under_type_activity);
          $('.responsibility_center_name').text(data.responsibility_center_name);
          $('.cso_name').text(data.cso_name);
          $('.date_and_time').text(data.date_time);
          $('.annotations').html(data.annotations);
+         $('.last_updated').html(data.last_updated);
          if (data.training_data.length > 0) {
             $('#under_type_activity_select').removeAttr('hidden').fadeIn("slow");
             $('.for_training').removeAttr('hidden').fadeIn("slow");
@@ -157,15 +181,20 @@ $(document).on('click', 'button.close-under-type', function () {
 $('#update_transaction_form').on('submit', function (e) {
    e.preventDefault();
 
-   var myContent = tinymce.get("tiny").getContent();
+   // var myContent = tinymce.get("tiny").getContent();
+   
 
    if ($('input[name=update_pmas_number]').val() == '') {
       alert('something');
    } else {
+
+      tinyMCE.triggerSave();
+
       $.ajax({
          type: "POST",
          url: base_url + 'api/update-transaction',
-         data: $(this).serialize()+"&annotation="+myContent,
+         // data: $(this).serialize()+"&annotation="+myContent,
+          data: $(this).serialize(),
          dataType: 'json',
          beforeSend: function () {
             $('.btn-update-transaction').html('<div class="loader"></div>');

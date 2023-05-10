@@ -120,7 +120,7 @@
 				<div class="form-group">
 					<div class="col-12">Notes/Proceedings</div>
 					
-						 <textarea class="form-control" id="tiny"></textarea>
+						 <textarea id="tiny" name="annotation"></textarea>
 					
 					
 				</div>

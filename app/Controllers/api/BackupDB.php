@@ -9,15 +9,17 @@ class BackupDB extends BaseController
 {
     public function index()
     {
+
+         if ($this->request->isAJAX()) {
         try {
             
-       $now = new \DateTime();
-            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+        $now = new \DateTime();
+        $now->setTimezone(new \DateTimezone('Asia/Manila'));
 
 
-        $filename = 'sample'. ' ' . 'cpesd-is' . '.sql';
+        $filename = '1'. ' ' . 'cpesd-is' . '.sql';
         $dump = new Mysqldump('mysql:host=localhost;dbname=cpesd-is;port=3306', 'root', '');
-        $dump->start(FCPATH .'/uploads/database/final_new1/'.$filename);
+        $dump->start(FCPATH .'/uploads/database/final_new2/'.$filename);
         
         $data = array(
                 'response' => true,
@@ -30,6 +32,8 @@ class BackupDB extends BaseController
         }
 
         echo json_encode($data);
+
+    }
              
     }
 
