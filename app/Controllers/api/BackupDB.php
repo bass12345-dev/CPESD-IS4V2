@@ -17,7 +17,7 @@ class BackupDB extends BaseController
         $now->setTimezone(new \DateTimezone('Asia/Manila'));
 
 
-        $filename = '1'. ' ' . 'cpesd-is' . '.sql';
+        $filename = '2'. ' ' . 'cpesd-is' . '.sql';
         $dump = new Mysqldump('mysql:host=localhost;dbname=cpesd-is;port=3306', 'root', '');
         $dump->start(FCPATH .'/uploads/database/final_new2/'.$filename);
         
