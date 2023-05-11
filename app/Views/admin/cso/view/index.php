@@ -110,6 +110,7 @@
       <script src="<?php echo site_url() ?>assets/js/vendor/orgchart.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script> 
       <script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
+      <script src="<?php echo base_url(); ?>assets/js/Jquery-print.js"></script>
       <script>
 
 
@@ -1582,17 +1583,22 @@ $(document).on('click','button#generate_for_print',function (e) {
 
 
 
+
+
+
     if (selectedValues.length > 0) {
 
-
+         $('#print_button').removeAttr('hidden','hidden');
 
          $.ajax({
             url: base_url + 'api/generate-for-print',
             type: "POST",
             data : {options : selectedValues , year : select_year, cso_id :"<?php echo $_GET['id'] ?>"},
-            dataType: "json",
+            dataType: "html",
         success: function(data) {
 
+
+            $('.print_generated').html(data);
 
 
 
@@ -1606,19 +1612,40 @@ $(document).on('click','button#generate_for_print',function (e) {
 
     }else {
 
+         
+
         Swal.fire(
                 "",
                 "Please select an Option",
                 "warning"
             );
+        $('#print_button').attr('hidden','hidden');
+         $('.print_generated').html('');
 
     }
 
 })
 
 
-  
+  function print(){
 
+     $(".print_generated").print({
+            globalStyles: true,
+            mediaPrint: false,
+            stylesheet: null,
+            noPrintSelector: ".no-print",
+            iframe: true,
+            append: null,
+            prepend: null,
+            manuallyCopyFormValues: true,
+            deferred: $.Deferred(),
+            timeout: 750,
+            title: null,
+            doctype: '<!doctype html>'
+    });
+
+
+  }
 
 
 

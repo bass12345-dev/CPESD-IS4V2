@@ -27,10 +27,11 @@ class CsoController extends BaseController
     {
 
         if (session()->get('user_type') == 'admin') {
-            $data['title'] = 'CSO';
-            $data['type_of_cso'] = $this->config->cso_type;
-            $data['barangay'] = $this->config->barangay;
-            $data['positions'] = $this->config->positions;
+            $data['title']              = 'CSO';
+            $data['type_of_cso']        = $this->config->cso_type;
+            $data['barangay']           = $this->config->barangay;
+            $data['positions']          = $this->config->positions;
+            
             
             return view('admin/cso/index',$data);
         }else {
@@ -58,12 +59,14 @@ class CsoController extends BaseController
    
            }
 
-               $data['title'] = $this->CustomModel->getwhere($this->cso_table,array('cso_id' => $_GET['id']))[0]->cso_name;
-               $data['cso_type'] = strtoupper($this->CustomModel->getwhere($this->cso_table,array('cso_id' => $_GET['id']))[0]->type_of_cso);
+               $data['title']               = $this->CustomModel->getwhere($this->cso_table,array('cso_id' => $_GET['id']))[0]->cso_name;
+               $data['cso_type']            = strtoupper($this->CustomModel->getwhere($this->cso_table,array('cso_id' => $_GET['id']))[0]->type_of_cso);
             //    $data['positions'] = $this->position_array; 
-                $data['type_of_cso'] = $this->config->cso_type;
-                $data['barangay'] = $this->config->barangay;
-                $data['positions'] = $a; 
+                $data['type_of_cso']        = $this->config->cso_type;
+                $data['barangay']           = $this->config->barangay;
+                $data['positions']          = $a; 
+                $data['cso_print_options'] = $this->config->cso_print_options;
+
 
                return view('admin/cso/view/index',$data);
            }else {

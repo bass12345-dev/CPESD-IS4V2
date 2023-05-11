@@ -1066,12 +1066,13 @@ if ($this->request->isAJAX()) {
 
     public function generate_for_print(){
 
+    
 
-        foreach ($this->request->getPost('options') as $row) {
+    $search = '';
+    
+    foreach ($this->request->getPost('options') as $row) {
 
-
-                echo $row;
-
+                $search .= $row.'-';
 
 
 
@@ -1079,6 +1080,235 @@ if ($this->request->isAJAX()) {
 
 
 
+
+
+        switch ($search) {
+
+            case 'print_cso_information-':
+                
+               echo $this->print_cso_information();
+
+            break;
+
+            case 'print_cso_project-':
+                
+              echo $this->print_cso_project();
+
+            break;
+
+             case 'print_cso_officers-':
+                
+              echo $this->print_cso_officers();
+
+            break;
+
+            case 'print_cso_information-print_cso_project-':
+                
+              echo $this->print_cso_informationANDprint_cso_project();
+
+            break;
+
+            case 'print_cso_information-print_cso_officers-':
+                
+              echo 'information and officers';
+
+            break;
+
+              case 'print_cso_project-print_cso_officers-':
+                
+              echo 'project and officers';
+
+            break;
+
+
+            case 'print_cso_project-print_cso_information-':
+                
+              echo 'project and information';
+
+            break;
+
+
+             case 'print_cso_officers-print_cso_information-':
+                
+              echo 'officers and information';
+
+            break;
+
+
+            case 'print_cso_officers-print_cso_project-':
+                
+              echo 'officers an project';
+
+            break;
+
+
+
+
+            
+            default:
+                // code...
+                break;
+        }
+
+
+    }
+
+
+    function print_cso_informationANDprint_cso_project(){
+
+
+         $data = '<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
+            <tr>
+                <td colspan="2"> <a href="javascript:;" class="mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block"><i class = "fa fa-user" aria-hidden = "true"></i> CSO Information</a> 
+               
+            </tr>
+            <tr>
+                <td>CSO Code</td>
+                <td class="cso_code"></td>
+            </tr>
+            <tr>
+                <td>CSO</td>
+                <td class="cso_name"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td class="cso_address"></td>
+            </tr>
+            <tr>
+                <td>Contact Person</td>
+                <td class="contact_person"></td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td class="contact_number"></td>
+            </tr>
+            <tr>
+                <td>Telephone Number</td>
+                <td class="telephone_number"></td>
+            </tr>
+            <tr>
+                <td>Email Address</td>
+                <td class="email"></td>
+            </tr>
+            <tr>
+                <td>CSO Classification</td>
+                <td class="classification"></td>
+            </tr>
+            <tr>
+                <td>CSO Status</td>
+                <td class="cso_status"> </td>
+            </tr>
+           
+        
+        </table>
+
+
+        <table id="project_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" style="width:100%"  >
+                        <tr>
+                            <th>Title Of Project</th>  
+                            <th>Amount</th> 
+                            <th>Year</th>                                                     
+                            <th>Funding Agency</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                </table>';
+
+        return $data;
+
+    }
+
+
+     function print_cso_officers(){
+
+
+        $data = ' <table id="officers_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" >
+                        <tr>
+                            <th>Name</th>  
+                            <th>Position</th> 
+                            <th>Contact Number</th>                                                     
+                            <th>Email Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                </table> ';
+
+        return $data;
+
+
+     }
+
+
+     function print_cso_project(){
+
+
+        $data = '<table id="project_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" style="width:100%"  >
+                        <tr>
+                            <th>Title Of Project</th>  
+                            <th>Amount</th> 
+                            <th>Year</th>                                                     
+                            <th>Funding Agency</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                </table>';
+
+        return $data;
+
+
+     }
+
+    function print_cso_information(){
+
+        $data = '<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
+            <tr>
+                <td colspan="2"> <a href="javascript:;" class="mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block"><i class = "fa fa-user" aria-hidden = "true"></i> CSO Information</a> 
+               
+            </tr>
+            <tr>
+                <td>CSO Code</td>
+                <td class="cso_code"></td>
+            </tr>
+            <tr>
+                <td>CSO</td>
+                <td class="cso_name"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td class="cso_address"></td>
+            </tr>
+            <tr>
+                <td>Contact Person</td>
+                <td class="contact_person"></td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td class="contact_number"></td>
+            </tr>
+            <tr>
+                <td>Telephone Number</td>
+                <td class="telephone_number"></td>
+            </tr>
+            <tr>
+                <td>Email Address</td>
+                <td class="email"></td>
+            </tr>
+            <tr>
+                <td>CSO Classification</td>
+                <td class="classification"></td>
+            </tr>
+            <tr>
+                <td>CSO Status</td>
+                <td class="cso_status"> </td>
+            </tr>
+           
+        
+        </table>';
+
+        return $data;
     }
 }
 

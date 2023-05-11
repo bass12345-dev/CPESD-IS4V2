@@ -84,6 +84,8 @@ class Custom_config extends BaseConfig
     public $employment_status = ['employed','self-employed','unemployed and actively looking for work', 'underemployed'];
 
     public $type_of_transactions = ['simple','complex'];
+
+    public $cso_print_options = ['CSO Information' => 'print_cso_information', 'CSO Project' => 'print_cso_project', 'Officers' => 'print_cso_officers'];
  
 
 } 

@@ -8,24 +8,39 @@
             </button>
          </div>
         
-         <form id="add_project_form" class="p-2">
-            <div class="modal-body">
+       
+            <div class="modal-body p-4">
               <input type="hidden" name="cso_idd">
 
               <div class="row ">
                 <div class="col-md-8 mb-2">
-                    <div class="form-check form-check-inline">
-                       <input class="form-check-input" type="checkbox" name="options"  value="print_cso_information">
-                       <label class="form-check-label" for="inlineCheckbox1">CSO Information</label>
+
+                  <?php
+                        foreach ($cso_print_options as $row) {
+
+                           $option = '';
+                           $id= '';
+                           if ($row == 'print_cso_information') {
+                              $option = 'CSO Information';
+                           }else if ($row == 'print_cso_project') {
+                              $option = 'CSO Project';
+                              $id     = 'id="cso_project_option"';
+                           }else if ($row == 'print_cso_officers') {
+                              $option = 'Officers';
+
+                           }
+                        
+                        
+                   ?>
+
+                   <div class="form-check form-check-inline">
+                       <input class="form-check-input" type="checkbox" name="options" <?php echo $id ?>  value="<?php echo $row ?>">
+                       <label class="form-check-label" for="inlineCheckbox1"><?php echo $option ?></label>
                      </div>
-                     <div class="form-check form-check-inline">
-                       <input class="form-check-input" type="checkbox" id="cso_project_option" name="options"  value="print_cso_project">
-                       <label class="form-check-label" for="inlineCheckbox2">CSO Project</label>
-                     </div>
-                      <div class="form-check form-check-inline">
-                       <input class="form-check-input" type="checkbox" name="options"  value="print_cso_officers">
-                       <label class="form-check-label" for="inlineCheckbox2">Officers</label>
-                     </div>
+
+
+                <?php } ?>
+             
                 </div>
                 <div class="col-md-4" id="select_year_section" hidden>
                      <select id="select_year_cso_project" class="form-control">
@@ -38,11 +53,19 @@
                 </div>
               </div>
               <div class="row mt-3">
-               <button type="button" class="btn sub-button btn-block" id="generate_for_print">Generate</button>
+               <button type="button" class="btn sub-button btn-block" id="generate_for_print" >Generate</button>
+                <button type="button" class="btn btn-success btn-block" id="print_button" onclick="print(); " hidden><i class="fa fa-print"></i> Print</button>
               </div>
+
+              <div class="row mt-3 print_generated p-3">
+             
+               </div>
             </div>
            
-         </form>
+
+            
+           
+   
       </div>
    </div>
 </div>
