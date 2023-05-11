@@ -974,7 +974,7 @@ if ($this->request->isAJAX()) {
 
 
         $data = [];
-        $item = $this->CustomModel->get_all_order_by($this->cso_project_table,'cso_project_created',$this->order_by_desc); 
+        $item = $this->CustomModel->getwhere_orderby($this->cso_project_table,array('project_cso_id' => $this->request->getPost('cso_id') ),'cso_project_created',$this->order_by_desc); 
         foreach ($item as $row) {
             
                 $data[] = array(
@@ -1027,6 +1027,56 @@ if ($this->request->isAJAX()) {
                     }
 
                     echo json_encode($resp);
+
+
+    }
+
+
+        public function delete_project(){
+
+        
+
+         $where = array(
+        'cso_project_implemented_id' => $id = $this->request->getPost('id')
+        );
+
+        $delete =  $this->CustomModel->deleteData($this->cso_project_table,$where);
+
+        if($delete){
+
+                $resp = array(
+                    'message' => 'Successfully Updated',
+                    'response' => true
+                );
+
+            }else {
+
+                $resp = array(
+                    'message' => 'Error',
+                    'response' => false
+                );
+
+            }
+
+            echo json_encode($resp);
+    
+
+    }
+
+
+    public function generate_for_print(){
+
+
+        foreach ($this->request->getPost('options') as $row) {
+
+
+                echo $row;
+
+
+
+
+        }
+
 
 
     }

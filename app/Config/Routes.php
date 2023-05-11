@@ -168,6 +168,12 @@ $routes->post('api/delete-cso-officer', 'api\Cso::delete_cso_officer');
 $routes->post('api/add-project', 'api\Cso::add_project');
 $routes->post('api/get-projects', 'api\Cso::get_projects');
 $routes->post('api/update-project', 'api\Cso::update_project');
+$routes->post('api/delete-cso-project', 'api\Cso::delete_project');
+
+
+$routes->post('api/generate-for-print', 'api\Cso::generate_for_print');
+
+
 
 $routes->post('api/count-cso-per-barangay', 'api\Cso::count_cso_per_barangay');
 

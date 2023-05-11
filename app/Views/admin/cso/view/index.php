@@ -61,18 +61,24 @@
             <div class="main-content-inner">
             <div class="row">
                <div class="col-12 mt-5">
-                  <div class="card" style="border: 1px solid; height: 200vh;">
+                  <div class="card" style="border: 1px solid; height: 250vh;">
                      <div class="card-body">
                         <div class="row">
+                            <div class="col-md-12">
+                                
+                                    <button class="btn sub-button pull-right mb-3 " data-toggle="modal" data-target="#print_option_modal"><i class="fa fa-print"></i> Print</button>         
+                            </div>
+                        </div>
+                        <div class="row">
+
                            <div class="col-md-12">
+
                               <?php echo view('admin/cso/view/sections/cso_tabs'); ?>
                                  <div class="tab-content clearfix mt-3">
 			                           <div class="tab-pane active" id="1a">
                                        <?php echo view('admin/cso/view/sections/cso_information'); ?>  
 				                        </div>
-                                        <div class="tab-pane " id="1b">
-                                        <?php echo view('admin/cso/view/sections/project_implemented'); ?>  
-                                        </div>
+                                        
 				                        <div class="tab-pane" id="2a">
                                        <?php echo view('admin/cso/view/sections/cso_officers'); ?>  
 				                        </div>
@@ -98,10 +104,12 @@
 
     <?php echo view('admin/cso/view/modals/add_project_modal'); ?> 
     <?php echo view('admin/cso/view/modals/update_project_modal'); ?> 
+    <?php echo view('admin/cso/view/modals/print_option_modal'); ?> 
 
       <?php echo view('includes/scripts.php') ?> 
       <script src="<?php echo site_url() ?>assets/js/vendor/orgchart.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script> 
+      <script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
       <script>
 
 
@@ -1398,7 +1406,7 @@ function load_projects(){
                         ],
                'columns': [
                   {
-                     // data: "song_title",
+                
                      data: null,
                      render: function (data, type, row) {
                         return row.project_title;
@@ -1406,7 +1414,7 @@ function load_projects(){
 
                   },
                   {
-                     // data: "song_title",
+                
                      data: null,
                      render: function (data, type, row) {
                            return row.amount;
@@ -1414,7 +1422,7 @@ function load_projects(){
 
                   },
                   {
-                     // data: "song_title",
+                
                      data: null,
                      render: function (data, type, row) {
                            return row.year;
@@ -1422,7 +1430,7 @@ function load_projects(){
 
                   },
                   {
-                     // data: "song_title",
+                
                      data: null,
                      render: function (data, type, row) {
                            return row.funding_agency;
@@ -1430,7 +1438,7 @@ function load_projects(){
 
                   },
                   {
-             // data: "song_title",
+        
              data: null,
              render: function (data, type, row) {
                  return '<ul class="d-flex justify-content-center">\
@@ -1444,8 +1452,9 @@ function load_projects(){
                              id="update-cso-project"><i class="fa fa-edit"></i></a></li>\
                              <li class="mr-3 ">\
                              <a href="javascript:;" class="text-danger action-icon" \
-                             data-id="'+data['cso_officer_id']+'"  \
-                             id="delete-cso-officer"><i class="fa fa-trash"></i></a></li>\
+                            data-id="'+data['cso_project_id']+'"  \
+                             data-project-title="'+data['project_title']+'"  \
+                             id="delete-cso-project"><i class="fa fa-trash"></i></a></li>\
                              </ul>';
              }
 
@@ -1474,6 +1483,143 @@ $('input[name=update_funding_agency]').val($(this).data('funding-agency'));
 
 
 });
+
+
+
+$(document).on('click','a#delete-cso-project',function (e) {
+
+
+var id = $(this).data('id');
+var project = $(this).data('project-title');
+
+   
+Swal.fire({
+        title: "",
+        text: "Delete Project " + project,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then(function(result) {
+        if (result.value) {
+            
+                    $.ajax({
+                            type: "POST",
+                            url: base_url + 'api/delete-cso-project',
+                            data: {id: id},
+                            cache: false,
+                            dataType: 'json', 
+                            beforeSend : function(){
+
+                                JsLoadingOverlay.show({
+                                    'overlayBackgroundColor': '#666666',
+                                    'overlayOpacity': 0.6,
+                                    'spinnerIcon': 'ball-atom',
+                                    'spinnerColor': '#000',
+                                    'spinnerSize': '2x',
+                                    'overlayIDName': 'overlay',
+                                    'spinnerIDName': 'spinner',
+                                  });
+
+                            },
+                            success: function(data){
+                               if (data.response) {
+
+                                JsLoadingOverlay.hide();
+
+                                  Swal.fire(
+                "",
+                "Deleted Successfully",
+                "success"
+            )
+
+                                
+                            $('#project_table').DataTable().destroy();
+                            load_projects();
+                                
+                               }
+
+                              
+                            }
+                    })
+
+
+
+            // result.dismiss can be "cancel", "overlay",
+            // "close", and "timer"
+        } else if (result.dismiss === "cancel") {
+           swal.close()
+
+        }
+    });
+
+});
+
+
+$('#cso_project_option').change(function() {
+    if ($(this).is(':checked')) {
+        $('#select_year_section').removeAttr('hidden','hidden');
+    }else {
+        $('#select_year_section').attr('hidden','hidden');
+    }
+  });
+
+
+
+
+$(document).on('click','button#generate_for_print',function (e) {
+
+    var selectedValues = [];
+
+
+    $('input[name=options]:checked').map(function() {
+                    selectedValues.push($(this).val());
+        });
+
+    var select_year = $('#select_year_cso_project option:selected').val();
+
+
+
+
+    if (selectedValues.length > 0) {
+
+
+
+         $.ajax({
+            url: base_url + 'api/generate-for-print',
+            type: "POST",
+            data : {options : selectedValues , year : select_year, cso_id :"<?php echo $_GET['id'] ?>"},
+            dataType: "json",
+        success: function(data) {
+
+
+
+
+            }
+
+        })
+
+
+
+
+
+    }else {
+
+        Swal.fire(
+                "",
+                "Please select an Option",
+                "warning"
+            );
+
+    }
+
+})
+
+
+  
+
+
 
 
 

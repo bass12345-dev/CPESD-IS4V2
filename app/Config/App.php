@@ -17,7 +17,7 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://192.168.1.32/CPESD-IS4V2/';
+    public string $baseURL = 'http://localhost/CPESD-IS4V2/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.

@@ -62,23 +62,14 @@
 					<a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article" data-toggle="modal" data-target="#update_aoc_modal" >Update AOC/AOI </a>
 				</td>
 			</tr>
-		<!-- 	<tr>
-				<td>Other Docs</td>
-				<td><a href="javascript:; " class="view-pdf" id="view_article" data-type="articles">View Docs</a> <a href="javascript:;" class="btn btn-rounded btn-secondary pull-right" id="update_article">Update Article</a></td>
-			</tr> -->
+		
 		</table>
 	</div>
-	<!-- <div class="col-md-6 tree-content">
-        <div class="col-md-12"><h1>PDF Viewer</h1></div>
-		<div id="canvas_container">
-			<div id="pdf_alert"></div>
-			<canvas id="pdf_renderer" style="width: 100%;"></canvas>
-		</div>
-	</div> -->
+	
 </div>
 
 
-<div class="row">
+<div class="row mt-4">
     <div class="col-md-12">
         <div class="data-tables">
             <button class="btn sub-button pull-right mb-3 " data-toggle="modal" data-target="#add_project_modal">Add Project</button>
