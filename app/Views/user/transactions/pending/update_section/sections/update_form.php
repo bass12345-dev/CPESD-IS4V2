@@ -70,7 +70,7 @@
 					
 					<div class="form-group">
 					<div class="col-12">Responsibility Center</div>
-						<select class="custom-select js-example-basic-single input responsibility wizard-required" name="update_responsibility_center_id" style="width: 100%;" required>
+						<select class="custom-select js-example-basic-single input responsibility wizard-required" name="update_responsibility_center_id" style="width: 100%;" >
 						<option value="">Select Responsibility Center</option> 
 						<?php 
 

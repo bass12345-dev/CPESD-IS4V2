@@ -1119,36 +1119,14 @@ if ($this->request->isAJAX()) {
 
             break;
 
-              case 'print_cso_project-print_cso_officers-':
+            case 'print_cso_project-print_cso_officers-':
                 
-              echo 'project and officers';
+              echo $this->print_cso_projectANDprint_cso_officers($cso_id,$year);
 
             break;
 
 
-            case 'print_cso_project-print_cso_information-':
-                
-              echo 'project and information';
-
-            break;
-
-
-             case 'print_cso_officers-print_cso_information-':
-                
-              echo 'officers and information';
-
-            break;
-
-
-            case 'print_cso_officers-print_cso_project-':
-                
-              echo 'officers an project';
-
-            break;
-
-
-
-
+        
             
             default:
                 // code...
@@ -1160,8 +1138,193 @@ if ($this->request->isAJAX()) {
 
 
 
+    function print_cso_projectANDprint_cso_officers($cso_id,$year){
+
+
+        $result =  $this->get_cso_project($cso_id,$year);
+        $result_officer  = $this->get_cso_officers($cso_id);
+
+        $data = '<table id="project_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" style="width:100%"  >
+                        <tr>
+                            <th>Title Of Project</th>  
+                            <th>Amount</th> 
+                            <th>Year</th>                                                     
+                            <th>Funding Agency</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+
+
+        foreach ($result as $row) {
+
     
-    
+            $status = $row->status == "active" ? '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-1 pr-1">Active</a> ' : '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-1 pr-1">Inactive</a> ' ;
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->title_of_project.'</td>
+                         <td>'.number_format($row->amount, 2, '.',',').'</td>
+                         <td>'.date('Y', strtotime($row->year)).'</td>
+                         <td>'.$row->funding_agency.'</td>
+                        <td >'.$status.'</td>
+                       </tr>
+
+            ';
+
+    }
+
+        $data .= '</tbody>
+                </table>';
+
+
+
+        $data .= ' <table id="officers_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" >
+                        <tr>
+                            <th>Name</th>  
+                            <th>Position</th> 
+                            <th>Contact Number</th>                                                     
+                            <th>Email Address</th>
+                            
+                        </tr>
+                    </thead><tbody>';
+
+
+
+
+        foreach ($result_officer as $row) {
+
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'</td>
+                         <td>'.explode("-",$row->cso_position)[0].'</td>
+                         <td>'. $row->contact_number.'</td>
+                         <td>'.$row->email_address.'</td>
+                        
+                       </tr>
+
+            ';
+
+    }
+
+
+
+     
+       $data .= '</tbody>
+                </table>';
+                   
+
+        return $data;
+
+
+
+
+    }
+
+
+
+
+    function print_cso_informationANDprint_cso_officers($cso_id){
+
+        $result_info    = $this->get_cso_info($cso_id);
+        $result_officer  = $this->get_cso_officers($cso_id);
+
+
+        $data = '<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
+            <tr>
+                <td colspan="2"> <a href="javascript:;" class="mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block"><i class = "fa fa-user" aria-hidden = "true"></i> CSO Information</a> 
+               
+            </tr>
+            <tr>
+                <td>CSO Code</td>
+                <td>'.$result_info['cso_code'].'</td>
+            </tr>
+            <tr>
+                <td>CSO</td>
+                <td>'.$result_info['cso_name'].'</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>'.$result_info['address'].'</td>
+            </tr>
+            <tr>
+                <td>Contact Person</td>
+                <td>'.$result_info['contact_person'].'</td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td>'.$result_info['contact_number'].'</td>
+            </tr>
+            <tr>
+                <td>Telephone Number</td>
+                <td>'.$result_info['telephone_number'].'</td>
+            </tr>
+            <tr>
+                <td>Email Address</td>
+                <td>'.$result_info['email_address'].'</td>
+            </tr>
+            <tr>
+                <td>CSO Classification</td>
+                <td>'.$result_info['type_of_cso'].'</td>
+            </tr>
+            <tr>
+                <td>CSO Status</td>
+                <td>'.$result_info['cso_status'].'</td>
+            </tr>
+           
+        
+        </table>';
+
+
+         $data .= ' <table id="officers_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" >
+                        <tr>
+                            <th>Name</th>  
+                            <th>Position</th> 
+                            <th>Contact Number</th>                                                     
+                            <th>Email Address</th>
+                            
+                        </tr>
+                    </thead><tbody>';
+
+
+
+
+        foreach ($result_officer as $row) {
+
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'</td>
+                         <td>'.explode("-",$row->cso_position)[0].'</td>
+                         <td>'. $row->contact_number.'</td>
+                         <td>'.$row->email_address.'</td>
+                        
+                       </tr>
+
+            ';
+
+    }
+
+
+
+     
+       $data .= '</tbody>
+                </table>';
+
+
+        return $data;
+
+
+
+}
+
 
 
     function print_cso_informationANDprint_cso_project($cso_id,$year){
@@ -1287,7 +1450,7 @@ if ($this->request->isAJAX()) {
 
             <tr>
                          <td>'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'</td>
-                         <td>'.$row->cso_position.'</td>
+                         <td>'.explode("-",$row->cso_position)[0].'</td>
                          <td>'. $row->contact_number.'</td>
                          <td>'.$row->email_address.'</td>
                         
