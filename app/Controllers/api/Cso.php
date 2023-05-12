@@ -1115,7 +1115,7 @@ if ($this->request->isAJAX()) {
 
             case 'print_cso_information-print_cso_officers-':
                 
-              echo 'information and officers';
+              echo $this->print_cso_informationANDprint_cso_officers($cso_id);
 
             break;
 
@@ -1157,6 +1157,11 @@ if ($this->request->isAJAX()) {
 
 
     }
+
+
+
+    
+    
 
 
     function print_cso_informationANDprint_cso_project($cso_id,$year){

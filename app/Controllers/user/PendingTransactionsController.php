@@ -56,8 +56,8 @@ class PendingTransactionsController extends BaseController
 
     public function update_transaction(){
         if (session()->get('user_type')      == 'user') {
-            $data['transaction_data']                             = $this->TransactionModel->getTransactionData($this->transactions_table,array('transaction_id' => $_GET['id']))[0];
-            $data['title']                   = "UPDATE".' PMAS NO '.date('Y', strtotime($data['transaction_data']->date_and_time_filed)).' - '.date('m', strtotime($data['transaction_data']->date_and_time_filed)).' - '.$data['transaction_data']->number;
+            $data['transaction_data']         = $this->TransactionModel->getTransactionData($this->transactions_table,array('transaction_id' => $_GET['id']))[0];
+            $data['title']                      = "UPDATE".' PMAS NO '.date('Y', strtotime($data['transaction_data']->date_and_time_filed)).' - '.date('m', strtotime($data['transaction_data']->date_and_time_filed)).' - '.$data['transaction_data']->number;
             $data['activities']              = $this->CustomModel->get_all_order_by($this->activity_table,'type_of_activity_name',$this->order_by_desc);
             $data['responsible']             = $this->CustomModel->get_all_order_by($this->responsible_section_table,'responsible_section_name',$this->order_by_desc);
             $data['responsibility_centers']  = $this->CustomModel->get_all_order_by($this->responsibility_center_table,'responsibility_center_id',$this->order_by_desc);
@@ -65,6 +65,7 @@ class PendingTransactionsController extends BaseController
             $data['training_text']           = 'training';
             $data['rgpm_text']               = 'regular monthly project monitoring';
             return view('user/transactions/pending/update_section/index',$data);
+
 
 
 
