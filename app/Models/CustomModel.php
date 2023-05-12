@@ -165,5 +165,18 @@ class CustomModel extends Model
     }
 
 
+    public function get_cso_project_by_year($where,$year,$order_key,$order_by){
+
+
+        $builder = $this->db->table('cso_project_implemented');
+        $builder->where($where);
+        $builder->where("DATE_FORMAT(cso_project_implemented.year,'%Y') = '".$year."' ");
+        $builder->orderBy($order_key, $order_by);
+        $query = $builder->get()->getResult();
+        return $query;
+
+    }
+
+
 
 }

@@ -1438,6 +1438,14 @@ function load_projects(){
                      }
 
                   },
+                   {
+                
+                     data: null,
+                     render: function (data, type, row) {
+                           return row.status;
+                     }
+
+                  },
                   {
         
              data: null,
@@ -1450,6 +1458,7 @@ function load_projects(){
                              data-amount="'+data['amount']+'"  \
                              data-year1="'+data['year1']+'"  \
                              data-funding-agency="'+data['funding_agency']+'"  \
+                             data-status="'+data['status1']+'"  \
                              id="update-cso-project"><i class="fa fa-edit"></i></a></li>\
                              <li class="mr-3 ">\
                              <a href="javascript:;" class="text-danger action-icon" \
@@ -1482,6 +1491,7 @@ $('input[name=update_amount]').val($(this).data('amount'));
 $('input[name=update_year]').val($(this).data('year1'));
 $('input[name=update_funding_agency]').val($(this).data('funding-agency'));
 
+$('select[name=update_status]').val($(this).data('status'));
 
 });
 
@@ -1561,8 +1571,10 @@ Swal.fire({
 $('#cso_project_option').change(function() {
     if ($(this).is(':checked')) {
         $('#select_year_section').removeAttr('hidden','hidden');
+       
     }else {
         $('#select_year_section').attr('hidden','hidden');
+        
     }
   });
 
@@ -1581,11 +1593,6 @@ $(document).on('click','button#generate_for_print',function (e) {
     var select_year = $('#select_year_cso_project option:selected').val();
 
 
-
-
-
-
-
     if (selectedValues.length > 0) {
 
          $('#print_button').removeAttr('hidden','hidden');
@@ -1595,12 +1602,23 @@ $(document).on('click','button#generate_for_print',function (e) {
             type: "POST",
             data : {options : selectedValues , year : select_year, cso_id :"<?php echo $_GET['id'] ?>"},
             dataType: "html",
+             beforeSend : function(){
+
+                                JsLoadingOverlay.show({
+                                    'overlayBackgroundColor': '#666666',
+                                    'overlayOpacity': 0.6,
+                                    'spinnerIcon': 'ball-atom',
+                                    'spinnerColor': '#000',
+                                    'spinnerSize': '2x',
+                                    'overlayIDName': 'overlay',
+                                    'spinnerIDName': 'spinner',
+                                  });
+
+                            },
         success: function(data) {
 
-
+             JsLoadingOverlay.hide();
             $('.print_generated').html(data);
-
-
 
             }
 

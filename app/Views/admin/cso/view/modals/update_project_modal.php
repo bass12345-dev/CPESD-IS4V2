@@ -34,6 +34,15 @@
                   <div class="col-12">Funding Agency<span class="text-danger">*</span></div>
                   <input type="text" class="form-control input" name="update_funding_agency"  placeholder="">
                </div>
+
+                <div class="form-group">
+           
+                  <div class="col-12">Status<span class="text-danger">*</span></div>
+                  <select class="form-control" name="update_status">
+                     <option value="active">Active</option>
+                     <option value="inactive">InActive</option>
+                  </select>
+               </div>
         
               
             </div>

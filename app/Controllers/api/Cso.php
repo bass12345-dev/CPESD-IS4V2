@@ -976,15 +976,18 @@ if ($this->request->isAJAX()) {
         $data = [];
         $item = $this->CustomModel->getwhere_orderby($this->cso_project_table,array('project_cso_id' => $this->request->getPost('cso_id') ),'cso_project_created',$this->order_by_desc); 
         foreach ($item as $row) {
+
+              $status = $row->status == "active" ? '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-1 pr-1">Active</a> ' : '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-1 pr-1">Inactive</a> ' ;
             
                 $data[] = array(
 
                         'project_title' => $row->title_of_project,
                         'amount'        => number_format($row->amount, 2, '.',',') ,
-                        'year'          => $row->year != NULL ?  date('F d, Y', strtotime($row->year)) : '',
+                        'year'          => $row->year != NULL ?  date('Y', strtotime($row->year)) : '',
                         'year1'          => $row->year != NULL ?  date('Y-m-d', strtotime($row->year)) : '',
                         'funding_agency'=> $row->funding_agency,
-                        'status'        => $row->status,
+                        'status'        => $status,
+                        'status1'        => $row->status,
                         'cso_project_id'=> $row->cso_project_implemented_id
                 );
         }
@@ -1068,7 +1071,9 @@ if ($this->request->isAJAX()) {
 
     
 
-    $search = '';
+    $search     = '';
+    $cso_id     = $this->request->getPost('cso_id');
+    $year       = $this->request->getPost('year');
     
     foreach ($this->request->getPost('options') as $row) {
 
@@ -1086,25 +1091,25 @@ if ($this->request->isAJAX()) {
 
             case 'print_cso_information-':
                 
-               echo $this->print_cso_information();
+               echo $this->print_cso_information($cso_id);
 
             break;
 
             case 'print_cso_project-':
                 
-              echo $this->print_cso_project();
+              echo $this->print_cso_project($cso_id,$year);
 
             break;
 
              case 'print_cso_officers-':
                 
-              echo $this->print_cso_officers();
+              echo $this->print_cso_officers($cso_id);
 
             break;
 
             case 'print_cso_information-print_cso_project-':
                 
-              echo $this->print_cso_informationANDprint_cso_project();
+              echo $this->print_cso_informationANDprint_cso_project($cso_id,$year);
 
             break;
 
@@ -1154,56 +1159,58 @@ if ($this->request->isAJAX()) {
     }
 
 
-    function print_cso_informationANDprint_cso_project(){
+    function print_cso_informationANDprint_cso_project($cso_id,$year){
 
 
-         $data = '<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
+        $result_info = $this->get_cso_info($cso_id);
+        $result_project = $this->get_cso_project($cso_id,$year);
+
+        $data = '<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
             <tr>
                 <td colspan="2"> <a href="javascript:;" class="mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block"><i class = "fa fa-user" aria-hidden = "true"></i> CSO Information</a> 
                
             </tr>
             <tr>
                 <td>CSO Code</td>
-                <td class="cso_code"></td>
+                <td>'.$result_info['cso_code'].'</td>
             </tr>
             <tr>
                 <td>CSO</td>
-                <td class="cso_name"></td>
+                <td>'.$result_info['cso_name'].'</td>
             </tr>
             <tr>
                 <td>Address</td>
-                <td class="cso_address"></td>
+                <td>'.$result_info['address'].'</td>
             </tr>
             <tr>
                 <td>Contact Person</td>
-                <td class="contact_person"></td>
+                <td>'.$result_info['contact_person'].'</td>
             </tr>
             <tr>
                 <td>Contact Number</td>
-                <td class="contact_number"></td>
+                <td>'.$result_info['contact_number'].'</td>
             </tr>
             <tr>
                 <td>Telephone Number</td>
-                <td class="telephone_number"></td>
+                <td>'.$result_info['telephone_number'].'</td>
             </tr>
             <tr>
                 <td>Email Address</td>
-                <td class="email"></td>
+                <td>'.$result_info['email_address'].'</td>
             </tr>
             <tr>
                 <td>CSO Classification</td>
-                <td class="classification"></td>
+                <td>'.$result_info['type_of_cso'].'</td>
             </tr>
             <tr>
                 <td>CSO Status</td>
-                <td class="cso_status"> </td>
+                <td>'.$result_info['cso_status'].'</td>
             </tr>
            
         
-        </table>
+        </table>';
 
-
-        <table id="project_table" style="width:100%" class="text-center mb-3">
+        $data .= '<table id="project_table" style="width:100%" class="text-center mb-3">
                     <thead class="bg-light text-capitalize" style="width:100%"  >
                         <tr>
                             <th>Title Of Project</th>  
@@ -1213,16 +1220,47 @@ if ($this->request->isAJAX()) {
                             <th>Status</th>
                         </tr>
                     </thead>
-                </table>';
+                    <tbody>';
 
-        return $data;
+
+        foreach ($result_project as $row) {
+
+    
+            $status = $row->status == "active" ? '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-1 pr-1">Active</a> ' : '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-1 pr-1">Inactive</a> ' ;
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->title_of_project.'</td>
+                         <td>'.number_format($row->amount, 2, '.',',').'</td>
+                         <td>'.date('Y', strtotime($row->year)).'</td>
+                         <td>'.$row->funding_agency.'</td>
+                        <td >'.$status.'</td>
+                       </tr>
+
+            ';
 
     }
 
+        $data .= '</tbody>
+                </table>';
+                   
 
-     function print_cso_officers(){
+        return $data;
 
 
+        
+
+      
+    }
+
+
+     function print_cso_officers($cso_id){
+
+
+        $result = $this->get_cso_officers($cso_id);
+
+        
         $data = ' <table id="officers_table" style="width:100%" class="text-center mb-3">
                     <thead class="bg-light text-capitalize" >
                         <tr>
@@ -1230,19 +1268,47 @@ if ($this->request->isAJAX()) {
                             <th>Position</th> 
                             <th>Contact Number</th>                                                     
                             <th>Email Address</th>
-                            <th>Action</th>
+                            
                         </tr>
-                    </thead>
-                </table> ';
+                    </thead><tbody>';
+
+
+
+
+        foreach ($result as $row) {
+
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'</td>
+                         <td>'.$row->cso_position.'</td>
+                         <td>'. $row->contact_number.'</td>
+                         <td>'.$row->email_address.'</td>
+                        
+                       </tr>
+
+            ';
+
+    }
+
+
+
+     
+       $data .= '</tbody>
+                </table>';
+
 
         return $data;
-
-
      }
 
 
-     function print_cso_project(){
+     function print_cso_project($cso_id,$year){
 
+
+
+
+       $result =  $this->get_cso_project($cso_id,$year);
 
         $data = '<table id="project_table" style="width:100%" class="text-center mb-3">
                     <thead class="bg-light text-capitalize" style="width:100%"  >
@@ -1254,14 +1320,41 @@ if ($this->request->isAJAX()) {
                             <th>Status</th>
                         </tr>
                     </thead>
+                    <tbody>';
+
+
+        foreach ($result as $row) {
+
+    
+            $status = $row->status == "active" ? '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-1 pr-1">Active</a> ' : '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-1 pr-1">Inactive</a> ' ;
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->title_of_project.'</td>
+                         <td>'.number_format($row->amount, 2, '.',',').'</td>
+                         <td>'.date('Y', strtotime($row->year)).'</td>
+                         <td>'.$row->funding_agency.'</td>
+                        <td >'.$status.'</td>
+                       </tr>
+
+            ';
+
+    }
+
+        $data .= '</tbody>
                 </table>';
+                   
 
         return $data;
 
 
      }
 
-    function print_cso_information(){
+    function print_cso_information($cso_id){
+
+
+        $result = $this->get_cso_info($cso_id);
 
         $data = '<table class="tablesaw table-bordered table-hover table" data-tablesaw-mode="swipe" data-tablesaw-sortable data-tablesaw-sortable-switch data-tablesaw-minimap data-tablesaw-mode-switch id="_table">
             <tr>
@@ -1270,45 +1363,125 @@ if ($this->request->isAJAX()) {
             </tr>
             <tr>
                 <td>CSO Code</td>
-                <td class="cso_code"></td>
+                <td>'.$result['cso_code'].'</td>
             </tr>
             <tr>
                 <td>CSO</td>
-                <td class="cso_name"></td>
+                <td>'.$result['cso_name'].'</td>
             </tr>
             <tr>
                 <td>Address</td>
-                <td class="cso_address"></td>
+                <td>'.$result['address'].'</td>
             </tr>
             <tr>
                 <td>Contact Person</td>
-                <td class="contact_person"></td>
+                <td>'.$result['contact_person'].'</td>
             </tr>
             <tr>
                 <td>Contact Number</td>
-                <td class="contact_number"></td>
+                <td>'.$result['contact_number'].'</td>
             </tr>
             <tr>
                 <td>Telephone Number</td>
-                <td class="telephone_number"></td>
+                <td>'.$result['telephone_number'].'</td>
             </tr>
             <tr>
                 <td>Email Address</td>
-                <td class="email"></td>
+                <td>'.$result['email_address'].'</td>
             </tr>
             <tr>
                 <td>CSO Classification</td>
-                <td class="classification"></td>
+                <td>'.$result['type_of_cso'].'</td>
             </tr>
             <tr>
                 <td>CSO Status</td>
-                <td class="cso_status"> </td>
+                <td>'.$result['cso_status'].'</td>
             </tr>
            
         
         </table>';
 
         return $data;
+    }
+
+    function get_cso_officers($cso_id){
+
+
+    $item = $this->CustomModel->getwhere_orderby($this->cso_officer_table,array('officer_cso_id' => $cso_id),'position_number',$this->order_by_asc); 
+
+    return $item;
+
+
+    }
+
+    function get_cso_project($cso_id,$year){
+
+        $result = '';
+
+        if ($year == 0) {
+
+        $item = $this->CustomModel->getwhere_orderby($this->cso_project_table,array('project_cso_id' => $cso_id ),'cso_project_created',$this->order_by_desc);
+
+        $result = $item;
+                    
+        }else {
+
+        $item = $this->CustomModel->get_cso_project_by_year(array('project_cso_id' => $cso_id ),$year,'cso_project_created',$this->order_by_desc); 
+
+        $result = $item;
+
+        }
+
+
+        return $result;
+        
+    }
+
+
+    function get_cso_info($cso_id){
+
+            $row = $this->CustomModel->getwhere($this->cso_table,array('cso_id' =>  $cso_id))[0];
+
+
+    $address = '';
+
+            if ($row->barangay == '') {
+
+                $address = '';
+                // code...
+            }else if ($row->purok_number == '' && $row->barangay != '') {
+                
+                $address = $row->barangay;
+
+            }else if ($row->purok_number != '' && $row->barangay != '') {
+                
+                $address = 'Purok '.$row->purok_number.' '.$row->barangay;
+            }
+
+
+
+    $result = array(
+        'cso_id' => $row->cso_id,
+        'cso_name' => $row->cso_name,
+        'cso_code' => $row->cso_code,
+        'purok_number' => $row->purok_number,
+        'barangay' => $row->barangay,
+        'address' => $address,
+        'contact_person' => $row->contact_person,
+        'contact_number' => $row->contact_number,
+        'telephone_number' => $row->telephone_number,    
+        'email_address' => $row->email_address,
+        'type_of_cso' => strtoupper($row->type_of_cso),
+        'status' => $row->cso_status,
+        'cso_status' => $row->cso_status == 'active' ?  '<span class="status-p bg-success">'.ucfirst($row->cso_status).'</span>' : '<span class="status-p bg-danger">'.ucfirst($row->cso_status).'</span>',
+        
+      
+           
+
+    );
+
+
+    return $result;
     }
 }
 
