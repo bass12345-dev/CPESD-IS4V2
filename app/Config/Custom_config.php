@@ -85,7 +85,7 @@ class Custom_config extends BaseConfig
 
     public $type_of_transactions = ['simple','complex'];
 
-    public $cso_print_options = ['CSO Information' => 'print_cso_information', 'CSO Project' => 'print_cso_project', 'Officers' => 'print_cso_officers'];
+    public $cso_print_options = ['CSO Information' => 'print_cso_information', 'Officers' => 'print_cso_officers', 'CSO Project' => 'print_cso_project' ];
  
 
 } 

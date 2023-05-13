@@ -30,8 +30,8 @@
                 </li>
 
 
-                 <li class="dropdown">
-                    <i class="ti-calendar " id="view_my_calendar" ></i>
+                 <li class="dropdown" >
+                    <i class="ti-calendar " id="view_my_calendar" style="color: orange;" ></i>
                 </li>
          <?php } ?>
     </ul>

@@ -1111,10 +1111,10 @@ public function get_pmas_activities(){
         $responsible_section_name = ' <a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">'.$this->CustomModel->getwhere($this->responsible_section_table,array('responsible_section_id' => $row->responsible_section_id))[0]->responsible_section_name.'</a>';
 
         // $cso1 = $row->cso_Id == 0 ? '' :  '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">'.$this->CustomModel->getwhere($this->cso_table,array('cso_id' => $row->cso_Id))[0]->cso_name.'</a>';
+        $time = 'Time : '.date('h:i:s', strtotime($row->date_and_time)); 
 
 
-
-        $description = $status.'<br><br>'.$responsible_section_name.'<br><br>'.$type_of_activity.'<br><br>';
+        $description = $status.'<br><br>'.$responsible_section_name.'<br><br>'.$type_of_activity.'<br><br>'.$time;
 
 
        
@@ -1122,9 +1122,9 @@ public function get_pmas_activities(){
 
 
                 'id'            => $row->transaction_id,
-                'name'          => 'PMAS NO'. date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                'name'          => 'PMAS NO '. date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
                 'description'   => $description,
-                'date'          => date('M d Y', strtotime($row->date_and_time)),  
+                'date'          => date('M d Y h:i:s', strtotime($row->date_and_time)),  
                 'type'          => $type
 
        );
