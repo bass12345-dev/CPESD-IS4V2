@@ -84,7 +84,7 @@ class PendingRFATransactions extends BaseController
                     $resp = array(
 
                    
-                    'message' => 'Data Saved Successfully',
+                    'message' => 'RFA Created Successfully',
                     'response' => true
                     );
 

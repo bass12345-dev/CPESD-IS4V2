@@ -91,6 +91,19 @@ $('#update_refer_form').on('submit', function (e) {
    var myContent = tinymce.get("action_taken").getContent();
    var id = $('input[name=rfa_id]').val();
    var refer_to = $('#refer_to_id :selected').val();
+   var name = $('#refer_to_id :selected').text();
+
+   Swal.fire({
+         title: "",
+         text: "Refer to " + name,
+         icon: "warning",
+         showCancelButton: true,
+         confirmButtonText: "Yes",
+         cancelButtonText: "No, cancel!",
+         reverseButtons: true
+      }).then(function (result) {
+
+        if (result.value) {
    $.ajax({
       type: "POST",
       url: base_url + 'api/refer-to',
@@ -124,6 +137,11 @@ $('#update_refer_form').on('submit', function (e) {
          $('.btn-refer').removeAttr('disabled');
       },
    });
+
+}
+
+   });
+   
 });
 $(document).on('click', 'a#view_action', function (e) {
    $.ajax({
