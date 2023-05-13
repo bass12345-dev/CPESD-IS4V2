@@ -13,9 +13,11 @@ use CodeIgniter\I18n\Time;
 class PendingTransactions extends BaseController
 {
     public $transactions_table          = 'transactions';
+    public $responsible_section_table   = 'responsible_section';
     public $type_of_activity_table      = 'type_of_activities';
     public $training_table              = 'trainings';
     public $project_monitoring_table    = 'project_monitoring';
+    public $cso_table                   = 'cso';
     public $order_by_desc               = 'desc';
     public $order_by_asc                = 'asc';
     protected $request;
@@ -1088,6 +1090,47 @@ public function get_transaction_data(){
                     'last_updated'                => $row->updated_on ==  '0000-00-00 00:00:00' ? '<span class="text-danger">Not Updated</span>' : date('F d Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)) ,
         );
         echo json_encode($data);
+}
+
+
+
+public function get_pmas_activities(){
+
+    $items = $this->CustomModel->getwhere($this->transactions_table,array('created_by' => session()->get('user_id')));
+
+   $data = [];
+
+   foreach ($items as $row) {
+
+
+        $status = $row->transaction_status == 'completed' ? '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Completed</a>' : '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">Pending</a>';
+        $type = $row->transaction_status == 'completed' ? 'birthday' : 'event';
+        $type_of_activity = 'Type of Activity :  <a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">'.$this->CustomModel->getwhere($this->type_of_activity_table,array('type_of_activity_id' => $row->type_of_activity_id))[0]->type_of_activity_name.'</a>';
+        $responsible_section_name = ' <a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">'.$this->CustomModel->getwhere($this->responsible_section_table,array('responsible_section_id' => $row->responsible_section_id))[0]->responsible_section_name.'</a>';
+
+        // $cso1 = $row->cso_Id == 0 ? '' :  '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">'.$this->CustomModel->getwhere($this->cso_table,array('cso_id' => $row->cso_Id))[0]->cso_name.'</a>';
+
+
+
+        $description = $status.'<br><br>'.$responsible_section_name.'<br><br>'.$type_of_activity.'<br><br>';
+
+
+       
+       $data[] = array(
+
+
+                'id'            => $row->transaction_id,
+                'name'          => 'PMAS NO'. date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
+                'description'   => $description,
+                'date'          => date('M d Y', strtotime($row->date_and_time)),  
+                'type'          => $type
+
+       );
+   }
+
+
+   return json_encode($data);
+
 }
 
 

@@ -84,6 +84,8 @@ $routes->group('user', function($routes) {
     $routes->add('request-for-assistance', 'user\RequestForAssistanceController::index',['filter' => 'authGuard']);
     $routes->add('clients', 'ClientsController::index',['filter' => 'authGuard']);
     $routes->add('referred', 'user\ReferredController::index',['filter' => 'authGuard']);
+
+    $routes->add('calendar-of-activities', 'user\CalendarController::index',['filter' => 'authGuard']);
 });
 
 
@@ -309,6 +311,10 @@ $routes->post('api/add-rfa-action-taken', 'api\PendingRFATransactions::add_rfa_a
 
 
 $routes->post('api/count-pending-rfa', 'api\PendingRFATransactions::count_pending_rfa');
+
+
+$routes->post('api/get-pmas-activities', 'api\PendingTransactions::get_pmas_activities');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

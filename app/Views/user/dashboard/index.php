@@ -4,6 +4,7 @@
 <head>
     <?php echo view('includes/meta.php') ?>
     <?php echo view('includes/css.php') ?> 
+    
 </head>
 
 <body>
