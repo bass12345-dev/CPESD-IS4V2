@@ -57,6 +57,25 @@ $('#update_select_under_activity_form').on('submit', function (e) {
    $('#update_select_under_activity_modal').modal('hide');
 });
 
+
+function load_notes(notes){
+
+   setTimeout(function () {
+      tinymce.remove();
+       tinymce.init({
+            selector: '#tiny',
+            setup: function (editor) {
+            editor.on('init', function (e) {
+            editor.setContent(notes);
+            });
+            }
+            });
+   }, 300)
+
+
+
+}
+
 function load_transaction_data() {
    $.ajax({
       type: "POST",
@@ -69,15 +88,8 @@ function load_transaction_data() {
       success: function (data) {
          if (data) {
 
-          tinymce.remove();
-            tinymce.init({
-            selector: '#tiny',
-            setup: function (editor) {
-            editor.on('init', function (e) {
-            editor.setContent(data.annotations);
-            });
-            }
-            });
+         
+         load_notes(data.annotations); 
 
          $('#project_section').attr('hidden', 'hidden');
          $('#training_section').attr('hidden', 'hidden');
