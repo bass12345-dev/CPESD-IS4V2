@@ -805,6 +805,8 @@ public function get_admin_pending_transaction_limit(){
                                               </button>
                                               <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>
+
+                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  data-toggle="modal" data-target="#pass_to_modal"> <i class="ti-arrow-right"></i> Pass to</a>
                                         
                                      
                                               </di>';
@@ -1085,7 +1087,7 @@ public function get_transaction_data(){
                     'type_of_activity_name'       => $row->type_of_activity_name,
                     'responsibility_center_name'  => $row->responsibility_center_name,
                     'date_time'                   => date('F d Y', strtotime($row->date_and_time)),
-                    'annotations'                 => $row->annotations == NULL ? 'No Notes' : $row->annotations,
+                    'annotations'                 => $row->annotations == NULL ? ' ' : $row->annotations,
                     'annotation_text'             => $row->annotations,
                     'last_updated'                => $row->updated_on ==  '0000-00-00 00:00:00' ? '<span class="text-danger">Not Updated</span>' : date('F d Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)) ,
         );

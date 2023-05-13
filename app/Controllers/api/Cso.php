@@ -1197,6 +1197,44 @@ if ($this->request->isAJAX()) {
         
         </table>';
 
+
+           $data .= ' <table id="officers_table" style="width:100%" class="text-center mb-3">
+                    <thead class="bg-light text-capitalize" >
+                        <tr>
+                            <th>Name</th>  
+                            <th>Position</th> 
+                            <th>Contact Number</th>                                                     
+                            <th>Email Address</th>
+                            
+                        </tr>
+                    </thead><tbody>';
+
+
+
+
+        foreach ($result_officer as $row) {
+
+
+            $data .= '
+
+            <tr>
+                         <td>'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'</td>
+                         <td>'.explode("-",$row->cso_position)[0].'</td>
+                         <td>'. $row->contact_number.'</td>
+                         <td>'.$row->email_address.'</td>
+                        
+                       </tr>
+
+            ';
+
+    }
+
+
+
+     
+       $data .= '</tbody>
+                </table>';
+
         $data .= '<table id="project_table" style="width:100%" class="text-center mb-3">
                     <thead class="bg-light text-capitalize" style="width:100%"  >
                         <tr>
@@ -1233,42 +1271,7 @@ if ($this->request->isAJAX()) {
                 </table>';
 
 
-        $data .= ' <table id="officers_table" style="width:100%" class="text-center mb-3">
-                    <thead class="bg-light text-capitalize" >
-                        <tr>
-                            <th>Name</th>  
-                            <th>Position</th> 
-                            <th>Contact Number</th>                                                     
-                            <th>Email Address</th>
-                            
-                        </tr>
-                    </thead><tbody>';
-
-
-
-
-        foreach ($result_officer as $row) {
-
-
-            $data .= '
-
-            <tr>
-                         <td>'.$row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension.'</td>
-                         <td>'.explode("-",$row->cso_position)[0].'</td>
-                         <td>'. $row->contact_number.'</td>
-                         <td>'.$row->email_address.'</td>
-                        
-                       </tr>
-
-            ';
-
-    }
-
-
-
      
-       $data .= '</tbody>
-                </table>';
 
                    
 

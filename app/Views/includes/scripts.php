@@ -34,6 +34,10 @@ $(document).on('click', 'a#view_user', function (e) {
    window.open(base_url + 'view-user?id=' + $(this).data('id'), '_self');
 });
 
+   $(document).on('click', '#view_my_calendar', function (e) { 
+            window.open(base_url + 'user/calendar-of-activities', '_blank'); 
+        }); 
+
 function count_total_reffered_rfa() {
    $.ajax({
       type: "POST",

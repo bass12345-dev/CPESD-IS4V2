@@ -30,6 +30,7 @@ class PendingTransactionsController extends BaseController
        if (session()->get('user_type')       == 'user') {
 
         $data['title']                       = 'Pending Transactions';
+        $data['pass_to']                    = $this->CustomModel->getReferto();
         return view('user/transactions/pending/index',$data);
 
         }else {

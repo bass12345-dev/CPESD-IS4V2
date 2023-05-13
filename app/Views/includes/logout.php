@@ -5,8 +5,12 @@
         <i class="ti-bell"></i>
         </li> -->
 
+        <?php if (session()->get('user_type') == 'user') {
+           // code...
+         ?>
+
         <li class="dropdown">
-                <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
+      <!--           <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
                 <span>2</span>
                 </i>
                 <div class="dropdown-menu bell-notify-box notify-box">
@@ -22,7 +26,13 @@
                 </a>
                
                 </div>
-                </div>
+                </div> -->
                 </li>
+
+
+                 <li class="dropdown">
+                    <i class="ti-calendar " id="view_my_calendar" ></i>
+                </li>
+         <?php } ?>
     </ul>
 </div>

@@ -26,7 +26,7 @@
                                                 <div class="col-md-12"> 
                                                   
                                                     <button  class="btn  mb-3 mt-2 sub-button pull-right mr-2" id="reload_user_pending_transaction" > Reload <i class="ti-loop"></i></button>
-                                                    <button  class="btn  mb-3 mt-2 sub-button pull-right mr-2" id="view_my_calendar"  > Calendar of Activities <i class="ti-calendar"></i></button>
+                                                  
                                                 </div>
                                             </div>
                                             <div class="data-tables">
@@ -57,6 +57,7 @@
     </div>     
 
 <?php echo view('user/transactions/pending/modals/view_remark_modal') ?>  
+<?php echo view('user/transactions/pending/modals/pass_to_modal') ?>  
 <?php echo view('includes/scripts.php') ?> 
 
 <script>
@@ -64,9 +65,7 @@ $(document).on('click', 'button#reload_user_pending_transaction', function (e) {
 
 
     
-   $(document).on('click', 'button#view_my_calendar', function (e) { 
-            window.open(base_url + 'user/calendar-of-activities', '_blank'); 
-        }); 
+
        
 </script> 
 </body>
