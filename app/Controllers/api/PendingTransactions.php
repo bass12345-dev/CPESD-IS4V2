@@ -806,7 +806,7 @@ public function get_admin_pending_transaction_limit(){
                                               <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>
 
-                                                 <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  data-toggle="modal" data-target="#pass_to_modal"> <i class="ti-arrow-right"></i> Pass to</a>
+                                                 <a class="dropdown-item" href="javascript:;" id="pass_to" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  data-toggle="modal" data-target="#pass_to_modal"> <i class="ti-arrow-right"></i> Pass to</a>
                                         
                                      
                                               </di>';

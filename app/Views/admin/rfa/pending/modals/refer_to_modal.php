@@ -4,7 +4,6 @@
          <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Refer to</h5>
             &nbsp;
-            <h5 class="modal-title type_of_training_title" ></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -23,7 +22,7 @@
                               <option value="">Refer to</option> 
                
                              <?php foreach ($refer_to as $row) { ?>
-                              <option  value="<?php echo $row->user_id ?>"><?php echo $row->first_name; ?></option>
+                              <option  value="<?php echo $row->user_id ?>"><?php echo $row->first_name.' '.$row->last_name; ?></option>
                               <?php } ?>
                         </select>
                           
