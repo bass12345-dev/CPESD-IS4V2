@@ -1125,7 +1125,7 @@ if ($this->request->isAJAX()) {
 
             break;
 
-            case 'print_cso_information-print_cso_project-print_cso_officers-':
+            case 'print_cso_information-print_cso_officers-print_cso_project-':
                 
               echo $this->print_cso_projectANDprint_cso_projectANDprint_cso_officers($cso_id,$year);
 
