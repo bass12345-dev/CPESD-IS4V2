@@ -156,7 +156,7 @@ function load_transaction_data() {
             $('.absent').text(data.project_monitoring_data[0].absent);
             $('.delinquent').text(data.project_monitoring_data[0].delinquent);
             $('.overdue').text(data.project_monitoring_data[0].overdue);
-            $('.total_production').text('₱ ' + data.project_monitoring_data[0].total_production);
+            $('.total_production').text(data.project_monitoring_data[0].total_production);
             $('.total_collection_sales').text('₱ ' + data.project_monitoring_data[0].total_collection_sales);
             $('.total_released_purchases').text('₱ ' + data.project_monitoring_data[0].total_released_purchases);
             $('.total_delinquent_account').text('₱ ' + data.project_monitoring_data[0].total_delinquent_account);
