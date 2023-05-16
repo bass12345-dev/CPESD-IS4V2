@@ -665,7 +665,7 @@ public function get_admin_pending_transaction_limit(){
                                               </button>
                                               <div class="dropdown-menu">
                                                
-                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction_pending">View Information</a>
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction">View Information</a>
                                               </di>';
                 $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">remarks added</a><br>
                 ';

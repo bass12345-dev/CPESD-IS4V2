@@ -10,16 +10,18 @@ class BackupDB extends BaseController
     public function index()
     {
 
-         if ($this->request->isAJAX()) {
-        try {
-            
+
         $now = new \DateTime();
         $now->setTimezone(new \DateTimezone('Asia/Manila'));
-
-
-        $filename = '2'. ' ' . 'cpesd-is' . '.sql';
+        $date_time  = $now->format('Y-m-d H-i-s');
+        $filename = $date_time.' ' . 'cpesd-is' . '.sql';
+       
+        try {
+            
+    
+        
         $dump = new Mysqldump('mysql:host=localhost;dbname=cpesd-is;port=3306', 'root', '');
-        $dump->start(FCPATH .'/uploads/database/final_new2/'.$filename);
+        $dump->start(FCPATH .'/uploads/database/final_database_backup/'.$filename);
         
         $data = array(
                 'response' => true,
@@ -33,33 +35,33 @@ class BackupDB extends BaseController
 
         echo json_encode($data);
 
-    }
+    
              
     }
 
 
-    public function get_database()
-    {
-        $dir = FCPATH . '/uploads/database/';
-        $data = [];
-        $file_data = scandir($dir);
+    // public function get_database()
+    // {
+    //     $dir = FCPATH . '/uploads/database/';
+    //     $data = [];
+    //     $file_data = scandir($dir);
 
-        foreach ($file_data as $file) {
+    //     foreach ($file_data as $file) {
 
-            if ($file === '.' OR $file === '..') {
+    //         if ($file === '.' OR $file === '..') {
 
-                continue;
-                // code...
-            }else {
+    //             continue;
+    //             // code...
+    //         }else {
                 
-                $data[] = array(
+    //             $data[] = array(
 
-                    'database' => $file
-                );
-            }
-        }
+    //                 'database' => $file
+    //             );
+    //         }
+    //     }
 
-        echo json_encode($data);
-    }
+    //     echo json_encode($data);
+    // }
 
 }
