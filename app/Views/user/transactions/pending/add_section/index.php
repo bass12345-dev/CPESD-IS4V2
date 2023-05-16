@@ -122,14 +122,24 @@ $(document).on('change', 'select#type_of_activity_select', function (e) {
       $('#under_type_activity_select').removeAttr('hidden').fadeIn("slow");
       $('.for_training').removeAttr('hidden').fadeIn("slow");
       $('.for_project_monitoring').attr('hidden', 'hidden');
+      $('.for_project_meeting').attr('hidden', 'hidden');
    } else if (text == '<?php echo  $rgpm_text ?>') {
       $('#under_type_activity_select').attr('hidden', 'hidden');
       $('.for_training').attr('hidden', 'hidden');
       $('.for_project_monitoring').removeAttr('hidden').fadeIn("slow");
-   } else {
+      $('.for_project_meeting').attr('hidden', 'hidden');
+   } else if (text == '<?= $rmm ?>') {
+
       $('#under_type_activity_select').attr('hidden', 'hidden');
       $('.for_training').attr('hidden', 'hidden');
       $('.for_project_monitoring').attr('hidden', 'hidden');
+      $('.for_project_meeting').removeAttr('hidden').fadeIn("slow");
+
+   }else{
+      $('#under_type_activity_select').attr('hidden', 'hidden');
+      $('.for_training').attr('hidden', 'hidden');
+      $('.for_project_monitoring').attr('hidden', 'hidden');
+      $('.for_project_meeting').attr('hidden', 'hidden');
    }
 });
 $('#select_under_activity_form').on('submit', function (e) {
@@ -168,8 +178,18 @@ $('#add_transaction_form').on('submit', function (e) {
                data: $('#add_transaction_form').serialize(),
                dataType: 'json',
                beforeSend: function () {
+
                   $('.btn-add-transaction').html('<div class="loader"></div>');
                   $('.btn-add-transaction').prop("disabled", true);
+                   JsLoadingOverlay.show({
+                    'overlayBackgroundColor': '#666666',
+                    'overlayOpacity': 0.6,
+                    'spinnerIcon': 'pacman',
+                    'spinnerColor': '#000',
+                    'spinnerSize': '2x',
+                    'overlayIDName': 'overlay',
+                    'spinnerIDName': 'spinner',
+                  });
                },
                success: function (data) {
                   if (data.response) {
@@ -190,6 +210,7 @@ $('#add_transaction_form').on('submit', function (e) {
                         }
                      }).showToast();
                      $('a.form-wizard-previous-btn').click();
+                      JsLoadingOverlay.hide();
                   } else {
                      $('.btn-add-transaction').prop("disabled", false);
                      $('.btn-add-transaction').text('Submit');

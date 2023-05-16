@@ -17,6 +17,7 @@ class PendingTransactions extends BaseController
     public $type_of_activity_table      = 'type_of_activities';
     public $training_table              = 'trainings';
     public $project_monitoring_table    = 'project_monitoring';
+    public $project_meeting_table       = 'project_meeting';
     public $cso_table                   = 'cso';
     public $order_by_desc               = 'desc';
     public $order_by_asc                = 'asc';
@@ -187,6 +188,12 @@ class PendingTransactions extends BaseController
 
             );
 
+                 $project_meeting = array(
+                     'meeting_transaction_id'   => $id,
+                     'meeting_present'          => $this->request->getPost('meeting_present'),
+                     'meeting_absent'           => $this->request->getPost('meeting_absent'),
+                 );
+
             if (strtolower($type_act_name) == 'training' ) {
 
                     $where = array('transaction_id'=>$id);
@@ -254,8 +261,47 @@ class PendingTransactions extends BaseController
                             );
             }
 
+            }else if(strtolower($type_act_name) == 'regular monthly meeting'){
+
+
+                $where = array('transaction_id'=>$id);
+                $data = array('is_project_meeting' => 1);
+                $update_project_meeting = $this->CustomModel->updatewhere($where,$data,$this->transactions_table);
+
+                if ($update_project_meeting) {
+
+                    $add_project_meeting = $this->CustomModel->addData($this->project_meeting_table,$project_meeting);
+                                if ($add_project_meeting) {
+
+                                    $resp = array(
+                                            'message' => 'Success',
+                                            'response' => true
+                                        );
+
+
+                                    // code...
+                                }else {
+
+                                    $resp = array(
+                                            'message' => 'error add project',
+                                            'response' => false
+                                        );
+
+                                }
+
+                }else {
+
+                    $resp = array(
+                                'message' => 'Error Update',
+                                'response' => false
+                            );
             }
 
+
+
+
+
+            }
             $resp = array(
 				'message' => 'Successfully Added',
 				'response' => true

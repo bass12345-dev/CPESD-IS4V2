@@ -56,7 +56,7 @@ class TransactionModel extends Model
     public function getAdminPendingTransactionsLimit(){
 
          $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -72,7 +72,7 @@ class TransactionModel extends Model
     public function getAdminPendingTransactions(){
 
          $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -87,7 +87,7 @@ class TransactionModel extends Model
     public function getPendingTransactionDateFilter($filter_data) {
 
         $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -105,7 +105,7 @@ class TransactionModel extends Model
     public function getCompletedTransactionDateFilterWhere($filter_data){
 
         $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -123,7 +123,7 @@ class TransactionModel extends Model
         public function getCompletedTransactionDateFilterWhereCSO($filter_data){
 
         $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -143,7 +143,7 @@ class TransactionModel extends Model
     public function getCompletedTransactionDateFilter($filter_data){
 
         $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -190,7 +190,7 @@ class TransactionModel extends Model
     public function getUserPendingTransactions($where){
 
          $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -206,7 +206,7 @@ class TransactionModel extends Model
     public function getUserCompletedTransactions($where){
 
          $builder = $this->db->table('transactions');
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');
@@ -221,7 +221,7 @@ class TransactionModel extends Model
     public function getTransactionData($table,$where){
 
         $builder = $this->db->table($table);
-        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id');
+        $builder->join('responsible_section','responsible_section.responsible_section_id = transactions.responsible_section_id','left');
         $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id','left');
         $builder->join('responsibility_center','responsibility_center.responsibility_center_id = transactions.responsibility_center_id','left');
         $builder->join('users','users.user_id = transactions.created_by');

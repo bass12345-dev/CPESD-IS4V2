@@ -111,6 +111,7 @@
 				</div>
 				    <?php echo view('user/transactions/pending/add_section/sections/for_training'); ?>
 					<?php echo view('user/transactions/pending/add_section/sections/for_project_monitoring'); ?>
+					<?php echo view('user/transactions/pending/add_section/sections/for_project_meeting'); ?>
 						<div class="form-group clearfix">
 							<button type="submit" class="form-wizard-submit float-right btn-add-transaction"> Submit</button> <a href="javascript:;" class="form-wizard-previous-btn float-left">Previous</a> 
                         </div>

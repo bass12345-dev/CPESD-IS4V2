@@ -48,6 +48,7 @@ class PendingTransactionsController extends BaseController
             $data['cso'] = $this->CustomModel->getwhere_orderby($this->cso_table,array('cso_status'=> 'active'),'cso_code',$this->order_by_asc);
             $data['training_text']           = 'training';
             $data['rgpm_text']               = 'regular monthly project monitoring';
+            $data['rmm']                     = 'regular monthly meeting';
             return view('user/transactions/pending/add_section/index',$data);
             }else {
                throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
