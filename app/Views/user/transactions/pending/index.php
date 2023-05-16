@@ -59,11 +59,23 @@
 <?php echo view('user/transactions/pending/modals/view_remark_modal') ?>  
 <?php echo view('user/transactions/pending/modals/pass_to_modal') ?>  
 <?php echo view('includes/scripts.php') ?> 
+<script src="<?php echo base_url(); ?>assets/js/overly.js"></script>
 
 <script>
 $(document).on('click', 'button#reload_user_pending_transaction', function (e) {
    $('#pending_transactions_table').DataTable().destroy();
-   fetch_user_pending_transactions()
+   fetch_user_pending_transactions();
+
+               JsLoadingOverlay.show({
+                    'overlayBackgroundColor': '#666666',
+                    'overlayOpacity': 0.6,
+                    'spinnerIcon': 'pacman',
+                    'spinnerColor': '#000',
+                    'spinnerSize': '2x',
+                    'overlayIDName': 'overlay',
+                    'spinnerIDName': 'spinner',
+                  });
+
 });
 $(document).on('click', 'a#view-remarks', function (e) {
    $.ajax({
@@ -90,6 +102,7 @@ function fetch_user_pending_transactions() {
       type: "POST",
       dataType: "json",
       success: function (data) {
+         JsLoadingOverlay.hide();
          $('#pending_transactions_table').DataTable({
             scrollY: 800,
             scrollX: true,
