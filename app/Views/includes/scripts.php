@@ -94,9 +94,9 @@ function loadlink() {
    count_total_rfa_pending();
    count_total_reffered_rfa();
 }
-// setInterval(function () {
-//    loadlink()
-// }, 8000);
+setInterval(function () {
+   loadlink()
+}, 8000);
 $('.dropdown-toggle').dropdown();
 var preloader = $('#preloader');
 $(window).on('load', function () {
