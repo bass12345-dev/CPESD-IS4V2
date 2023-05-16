@@ -93,6 +93,7 @@ function load_transaction_data() {
 
          $('#project_section').attr('hidden', 'hidden');
          $('#training_section').attr('hidden', 'hidden');
+         $('#meeting_section').attr('hidden', 'hidden');
          $('input[name=transaction_id]').val(data.transaction_id);
          $('input[name=update_pmas_number]').val(data.number);
          $('input[name=update_year]').val(data.year);
@@ -116,6 +117,7 @@ function load_transaction_data() {
             $('#under_type_activity_select').removeAttr('hidden').fadeIn("slow");
             $('.for_training').removeAttr('hidden').fadeIn("slow");
             $('.for_project_monitoring').attr('hidden', 'hidden');
+            $('.for_project_meeting').attr('hidden', 'hidden');
             $('input[name=update_title_of_training]').val(data.training_data[0].title_of_training);
             $('input[name=update_number_of_participants]').val(data.training_data[0].number_of_participants);
             $('input[name=update_female]').val(data.training_data[0].female);
@@ -123,6 +125,7 @@ function load_transaction_data() {
             $('input[name=update_name_of_trainor]').val(data.training_data[0].name_of_trainor);
             $('#training_section').removeAttr('hidden');
             $('#project_section').attr('hidden', 'hidden');
+            $('#meeting_section').attr('hidden', 'hidden');
             $('.title_of_training').text(data.training_data[0].title_of_training);
             $('.number_of_participants').text(data.training_data[0].number_of_participants);
             $('.female').text(data.training_data[0].female);
@@ -134,6 +137,7 @@ function load_transaction_data() {
             $('#under_type_activity_select').attr('hidden', 'hidden');
             $('.for_training').attr('hidden', 'hidden');
             $('.for_project_monitoring').removeAttr('hidden').fadeIn("slow");
+            $('.for_project_meeting').attr('hidden', 'hidden');
             $('input[name=update_project_title]').val(data.project_monitoring_data[0].project_title);
             $('input[name=update_period]').val(data.project_monitoring_data[0].period);
             $('input[name=update_present]').val(data.project_monitoring_data[0].present);
@@ -150,6 +154,7 @@ function load_transaction_data() {
             $('input[name=update_inventories]').val(data.project_monitoring_data[0].inventories);
             $('#training_section').attr('hidden', 'hidden');
             $('#project_section').removeAttr('hidden');
+            $('#meeting_section').attr('hidden', 'hidden');
             $('.project_title').text(data.project_monitoring_data[0].project_title);
             $('.period').text(data.project_monitoring_data[0].period);
             $('.present').text(data.project_monitoring_data[0].present);
@@ -166,6 +171,29 @@ function load_transaction_data() {
             $('.inventories').text('₱ ' + data.project_monitoring_data[0].inventories);
             $('.total_volume_of_business').text('₱ ' + data.project_monitoring_data[0].total_volume_of_business);
             $('.total_cash_position').text('₱ ' + data.project_monitoring_data[0].total_cash_position);
+         }
+
+
+
+
+         if (data.project_meeting_data.length > 0) {
+
+            $('#update_under_type_activity_select').attr('hidden', 'hidden');
+            $('.for_training').attr('hidden', 'hidden');
+            $('.for_project_monitoring').attr('hidden', 'hidden');
+            $('.for_project_meeting').removeAttr('hidden').fadeIn("slow");
+
+            $('input[name=update_meeting_present]').val(data.project_meeting_data[0].meeting_present);
+            $('input[name=update_meeting_absent]').val(data.project_meeting_data[0].meeting_absent);
+
+            $('#training_section').attr('hidden', 'hidden');
+            $('#project_section').attr('hidden', 'hidden');
+            $('#meeting_section').removeAttr('hidden');
+
+            $('.meeting_present').text(data.project_meeting_data[0].meeting_present);
+            $('.meeting_absent').text(data.project_meeting_data[0].meeting_absent);
+
+
          }
       }
 
@@ -295,14 +323,23 @@ $(document).on('change', 'select#update_type_of_activity_select', function (e) {
       $('#update_under_type_activity_select').removeAttr('hidden').fadeIn("slow");
       $('.for_training').removeAttr('hidden').fadeIn("slow");
       $('.for_project_monitoring').attr('hidden', 'hidden');
+      $('.for_project_meeting').attr('hidden', 'hidden');
    } else if (text == '<?php echo  $rgpm_text ?>') {
       $('#update_under_type_activity_select').attr('hidden', 'hidden');
       $('.for_training').attr('hidden', 'hidden');
       $('.for_project_monitoring').removeAttr('hidden').fadeIn("slow");
-   } else {
+      $('.for_project_meeting').attr('hidden', 'hidden');
+   }else if (text == '<?= $rmm_text ?>') {
       $('#update_under_type_activity_select').attr('hidden', 'hidden');
       $('.for_training').attr('hidden', 'hidden');
       $('.for_project_monitoring').attr('hidden', 'hidden');
+      $('.for_project_meeting').removeAttr('hidden').fadeIn("slow");
+
+   }else {
+      $('#update_under_type_activity_select').attr('hidden', 'hidden');
+      $('.for_training').attr('hidden', 'hidden');
+      $('.for_project_monitoring').attr('hidden', 'hidden');
+      $('.for_project_meeting').attr('hidden', 'hidden');
    }
 });
 

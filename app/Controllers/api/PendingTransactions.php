@@ -283,6 +283,7 @@ class PendingTransactions extends BaseController
                                 }else {
 
                                     $resp = array(
+
                                             'message' => 'error add project',
                                             'response' => false
                                         );
@@ -393,6 +394,8 @@ public function update_transaction(){
 
             $where2 = array('training_transact_id'      => $where['transaction_id']);
             $where3 = array('project_transact_id'       => $where['transaction_id'] );
+            $where4 = array('meeting_transaction_id'    => $where['transaction_id']);
+
 
 
            
@@ -413,7 +416,7 @@ public function update_transaction(){
                     'name_of_trainor'           => $this->request->getPost('update_name_of_trainor'),
                  );
 
-            $is_training_data = array('is_training' => 1,'is_project_monitoring' => 0);
+            $is_training_data = array('is_training' => 1,'is_project_monitoring' => 0, 'is_project_meeting' => 0);
             $update_is_training = $this->CustomModel->updatewhere($where,$is_training_data,$this->transactions_table);
 
 
@@ -511,7 +514,7 @@ public function update_transaction(){
 
 
                
-                $is_project_data = array('is_project_monitoring' => 1, 'is_training' => 0);
+                $is_project_data = array('is_project_monitoring' => 1, 'is_training' => 0,'is_project_meeting' => 0);
                 $update_project = $this->CustomModel->updatewhere($where,$is_project_data,$this->transactions_table);
 
                 if ($update_project) {
@@ -586,6 +589,96 @@ public function update_transaction(){
 
                 }
 
+
+
+            }else if (strtolower($type_act_name) == 'regular monthly meeting') {
+                    
+
+
+                $is_meeting_data = array('is_training' => 0,'is_project_monitoring' => 0, 'is_project_meeting' => 1);
+
+                 $add_project_meeting_data = array(
+
+                    'meeting_transaction_id'       => $where['transaction_id'],
+                    'meeting_present'              => $this->request->getPost('update_meeting_present'),
+                    'meeting_absent'              => $this->request->getPost('update_meeting_absent'),
+            );
+
+
+                 $update_project = $this->CustomModel->updatewhere($where,$is_meeting_data,$this->transactions_table);
+
+
+                 if ($update_project) {
+
+
+                    $count_project =  $this->CustomModel->countwhere($this->project_meeting_table,$where4);
+
+
+                    if ($count_project > 0) {
+                    
+                    $update_project = $this->CustomModel->updatewhere($where4,$add_project_meeting_data,$this->project_meeting_table);
+
+
+                     if ($update_project) {
+
+                         $resp = array(
+                                            'message' => 'Success Updated',
+                                            'response' => true
+                                        );
+                       
+                    }else {
+
+                          $resp = array(
+                                            'message' => 'error Update training',
+                                            'response' => false
+                                        );
+                    }
+
+
+                }else {
+
+
+
+
+                      $add_project = $this->CustomModel->addData($this->project_monitoring_table,$add_project_data);
+                                if ($add_project) {
+
+                                    $resp = array(
+                                            'message' => 'Success',
+                                            'response' => true
+                                        );
+
+
+                                    // code...
+                                }else {
+
+                                    $resp = array(
+                                            'message' => 'error add training',
+                                            'response' => false
+                                        );
+
+                                }
+
+                 
+
+
+
+
+                }
+
+
+
+
+                    //end
+                    
+                }else {
+
+                    $resp = array(
+                                    'message' => 'Error Update',
+                                    'response' => false
+                                );
+
+                }
 
 
             }else {
@@ -1049,6 +1142,8 @@ public function get_transaction_data(){
 
         $training_data = [];
         $project_data = [];
+        $project_meeting_data = [];
+
 
         if ($row->is_training == 1) {
 
@@ -1106,6 +1201,19 @@ public function get_transaction_data(){
             );
         }
 
+
+        if ($row->is_project_meeting) {
+
+                    $row_project_meeting = $this->CustomModel->getwhere($this->project_meeting_table,array('meeting_transaction_id' => $row->transaction_id))[0];
+
+                    $project_meeting_data[] = array(
+
+                        'meeting_present' => $row_project_meeting->meeting_present,
+                        'meeting_absent'  => $row_project_meeting->meeting_absent
+                    );
+            // code...
+        }
+
         $data = array(
 
                     'transaction_id'             => $row->transaction_id,
@@ -1124,6 +1232,7 @@ public function get_transaction_data(){
 
                     'training_data'              => $training_data,
                     'project_monitoring_data'    => $project_data,
+                    'project_meeting_data'       => $project_meeting_data,
 
 
                     //View Information

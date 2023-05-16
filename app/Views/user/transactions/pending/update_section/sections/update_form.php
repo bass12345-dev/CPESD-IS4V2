@@ -116,6 +116,7 @@
 				</div>
 				    <?php echo view('user/transactions/pending/update_section/sections/update_for_training'); ?>
 					<?php echo view('user/transactions/pending/update_section/sections/update_for_project_monitoring'); ?>
+					<?php echo view('user/transactions/pending/update_section/sections/update_for_project_meeting'); ?>
 
 				<div class="form-group">
 					<div class="col-12">Notes/Proceedings</div>
