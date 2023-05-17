@@ -63,6 +63,18 @@ class TypeOfActivity extends BaseController
         $data = [];
         $item = $this->CustomModel->get_all_desc($this->activities_table,'type_act_created',$this->order_by_desc); 
         foreach ($item as $row) {
+
+            $delete = '';
+
+            if (strtolower($row->type_of_activity_name) == 'regular monthly meeting' || strtolower($row->type_of_activity_name) == 'regular monthly project monitoring' ) {
+
+                $delete = '';
+                // code...
+            }else {
+
+                $delete = '<li><a href="javascript:;" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>';
+
+            }
             
                 $data[] = array(
 
@@ -71,13 +83,13 @@ class TypeOfActivity extends BaseController
                         'action' => strtolower($row->type_of_activity_name) != 'training' ? 
 
                         '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" data-toggle="modal" data-target="#update_type_of_activity_modal" id="update-activity"><i class="fa fa-edit"></i></a></li>
+                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" data-toggle="modal" data-target="#update_type_of_activity_modal" id="update-activity"><i class="fa fa-edit"></i></a></li>'.$delete.'
                                 
-                                <li><a href="javascript:;" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
+                                
                                 </ul>' : '<ul class="d-flex justify-content-center">
                                
                                 <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->type_of_activity_id.'" data-name="'.$row->type_of_activity_name.'" id="add-under-activity"><i class="fa fa-arrow-down"></i></a></li>
-                                <li><a href="javascript:;" data-id="'.$row->type_of_activity_id.'"  id="delete-activity"  class="text-danger action-icon"><i class="ti-trash"></i></a></li>
+                              
                                 </ul>'
                        
                 );
