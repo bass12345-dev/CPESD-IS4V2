@@ -75,6 +75,26 @@
             <td class="name_of_trainor"></td>
          </tr>
 
+      </table>
+
+
+            <table class="tablesaw table-bordered table-hover table" id="meeting_section" hidden >   
+    
+         <tr>
+            <td colspan = "2">
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">About Project Meeting</a>
+            </td>
+         </tr>
+         <tr>
+            <td >Meeting Present</td>
+            <td class="meeting_present"></td>
+         </tr>
+         <tr>
+            <td >Meeting Absent</td>
+            <td class="meeting_absent"></td>
+         </tr>
+        
+
 
 
 

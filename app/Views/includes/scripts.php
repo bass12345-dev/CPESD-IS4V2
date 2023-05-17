@@ -50,7 +50,7 @@ function count_total_reffered_rfa() {
    })
 }
 $(document).on('click', 'a.back-button', function (e) {
-   history.back()
+   history.back();
 });
 count_total_reffered_rfa();
 

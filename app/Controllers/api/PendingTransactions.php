@@ -602,7 +602,7 @@ public function update_transaction(){
                     'meeting_transaction_id'       => $where['transaction_id'],
                     'meeting_present'              => $this->request->getPost('update_meeting_present'),
                     'meeting_absent'              => $this->request->getPost('update_meeting_absent'),
-            );
+                );
 
 
                  $update_project = $this->CustomModel->updatewhere($where,$is_meeting_data,$this->transactions_table);
@@ -686,7 +686,8 @@ public function update_transaction(){
 
                 $this->CustomModel->deleteData($this->training_table,$where2);
                 $this->CustomModel->deleteData($this->project_monitoring_table,$where3);
-                $data_update_2 = array('is_training' => 0, 'is_project_monitoring' => 0 );
+                 $this->CustomModel->deleteData($this->project_meeting_table,$where4);
+                $data_update_2 = array('is_training' => 0, 'is_project_monitoring' => 0, 'is_project_meeting' => 0 );
 
                 $this->CustomModel->updatewhere($where,$data_update_2,$this->transactions_table);
 
