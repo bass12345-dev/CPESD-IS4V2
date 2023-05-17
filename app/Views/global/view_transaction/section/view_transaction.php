@@ -34,6 +34,11 @@
             <td >Date & Time</td>
             <td class="date_and_time text-center"></td>
          </tr>
+
+         <tr>
+            <td >Person Responsible</td>
+            <td class="person_responsible text-center"></td>
+         </tr>
       </table>
 
 
@@ -94,10 +99,6 @@
             <td class="meeting_absent"></td>
          </tr>
         
-
-
-
-
       </table>
 
 
@@ -214,4 +215,39 @@
 
 
 
+      </table>
+
+       <table class="tablesaw table-bordered table-hover table" >   
+    
+         <tr>
+            <td colspan = "2">
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Remarks</a>
+            </td>
+         </tr>
+         <tr>
+   
+            <td class="remarks p-5" colspan = "2"></td>
+         </tr>
+      </table>
+
+
+       <table class="tablesaw table-bordered table-hover table" >   
+    
+         <tr>
+            <td colspan = "2">
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Transaction Status</a>
+            </td>
+         </tr>
+         <tr>
+   
+            <td class="status_display" colspan = "2"></td>
+         </tr>
+
+         <tr class="date_approved_display" hidden>
+            <td><b>Date Approved</b></td>
+            <td style="font-weight: bold;" class="date_approved"> asd</td>
+         </tr>
+
+
+          
       </table>

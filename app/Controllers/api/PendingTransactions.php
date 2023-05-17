@@ -1242,10 +1242,15 @@ public function get_transaction_data(){
                     'responsible_section_name'    => $row->responsible_section_name,
                     'type_of_activity_name'       => $row->type_of_activity_name,
                     'responsibility_center_name'  => $row->responsibility_center_name,
-                    'date_time'                   => date('F d Y', strtotime($row->date_and_time)),
+                    'date_time'                   => date('F d, Y', strtotime($row->date_and_time)),
                     'annotations'                 => $row->annotations == NULL ? ' ' : $row->annotations,
                     'annotation_text'             => $row->annotations,
                     'last_updated'                => $row->updated_on ==  '0000-00-00 00:00:00' ? '<span class="text-danger">Not Updated</span>' : date('F d Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)) ,
+                    'remarks'                     => $row->remarks == '' ? 'No Remarks' : $row->remarks,
+                    'status_display'              => $row->transaction_status == 'pending' ? '<a href="javascript:;" class="btn btn-danger btn-rounded   pull-left">Pending</a>' : '<a href="javascript:;" class="btn btn-success btn-rounded   pull-left">Completed</a>',
+                    'date_approved'               => $row->transaction_date_time_completed == NULL ? '' : date("m/d/Y h:i:s A", strtotime($row->transaction_date_time_completed)),
+                    'person_responsible'          => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+
         );
         echo json_encode($data);
 }

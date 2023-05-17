@@ -12,11 +12,12 @@
             <?php echo view('global/view_transaction/includes/view_transaction_topbar'); ?>
             <?php echo view('global/view_transaction/includes/view_transaction_breadcrumbs'); ?>
             <div class="main-content-inner "  style="padding: 100px;" >
-                
+                   
                       <div class="row">
                         <div class="col-12 ">
                            <div class="card" style="border: 1px solid;  ">
                               <div class="card-body">
+                                 
                                  <div class="row">
                                     <div class="col-md-12">               
                                         <?php echo view('global/view_transaction/section/view_transaction'); ?>
@@ -55,6 +56,9 @@
          $('.date_and_time').text(data.date_time);
          $('.annotations').html(data.annotations);
          $('.last_updated').html(data.last_updated);
+         $('.status_display').html(data.status_display);
+         $('.remarks').html(data.remarks);
+         $('.person_responsible').html(data.person_responsible);
          if (data.training_data.length > 0) {
             $('#under_type_activity_select').removeAttr('hidden').fadeIn("slow");
             $('.for_training').removeAttr('hidden').fadeIn("slow");
@@ -105,6 +109,12 @@
             $('.meeting_present').text(data.project_meeting_data[0].meeting_present);
             $('.meeting_absent').text(data.project_meeting_data[0].meeting_absent);
 
+
+         }
+
+         if (data.date_approved != '') {
+            $('.date_approved_display').removeAttr('hidden').fadeIn("slow");
+            $('.date_approved').html(data.date_approved);
 
          }
       }
