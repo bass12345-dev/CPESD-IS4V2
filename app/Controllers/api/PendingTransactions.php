@@ -953,9 +953,15 @@ public function get_admin_pending_transaction_limit(){
                 $status_display = '<a href="javascript:;" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2">Wait for Remarks....</a>'.' '. $update_status_display;
             }else if ($row->remarks != '' AND $row->action_taken_date == null) {
                 
-                $action = '<ul class="d-flex justify-content-center">
-                                <li class="mr-3 "><a href="javascript:;" class="text-secondary action-icon" data-id="'.$row->transaction_id.'" data-status="'.$row->transaction_status.'"  id="view_transaction"><i class="fa fa-eye"></i></a></li>
-                                </ul>';
+                $action = '<div class="btn-group dropleft">
+                                              <button type="button" class="btn btn-secondary dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                               <i class="ti-settings" style="font-size : 15px;"></i>
+                                              </button>
+                                              <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="javascript:;" data-id="'.$row->transaction_id.'"  data-name="'.date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number.'"  id="update-transaction" > <i class="ti-eye"></i> View/Update Information</a>
+
+                                     
+                                              </di>';
                 $status_display = '<a href="javascript:;" class="btn btn-danger btn-rounded p-1 pl-2 pr-2">remarks added</a><br><a href="javascript:;"  data-id="'.$row->transaction_id.'" id="view-remarks">View Remarks</a>';
 
             }else if ($row->remarks != '' AND $row->action_taken_date != null) {
