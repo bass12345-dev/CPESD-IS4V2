@@ -91,7 +91,7 @@ class Transactions extends BaseController
 
         $data               = [];
 
-        if ($type_of_activity != null && $cso_id == null) {
+        if ($type_of_activity != null && $cso_id == 0) {
 
             $filter_data    = array(
 
