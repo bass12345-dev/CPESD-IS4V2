@@ -706,10 +706,14 @@ public function accomplished(){
 public function approved_rfa(){
 
 
+
+            $now = new \DateTime();
+            $now->setTimezone(new \DateTimezone('Asia/Manila'));
+
             $where = array('rfa_id' => $this->request->getPost('id'));
             $data = array(
                 'rfa_status'            => 'completed',
-                'approved_date'   => date('Y-m-d H:i:s', time()),
+                'approved_date'   =>  $now->format('Y-m-d H:i:s'),
             );
 
 
