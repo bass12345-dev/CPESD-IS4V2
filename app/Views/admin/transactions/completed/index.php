@@ -51,9 +51,13 @@ $(function () {
       format: 'YYYY-MM-DD'
    }, function (start, end, label) {});
 });
+
+var filter_type_of_activity = '';
+
+
 $(document).on('click', 'button#generate-pmas-report', function (e) {
    var date_filter = $('input[name="daterange_completed_filter"]').val();
-   var filter_type_of_activity = $('#filter_type_of_activity option:selected').val();
+   filter_type_of_activity = $('#filter_type_of_activity option:selected').val();
    var cso = $('#select_cso option:selected').val();
    $('#completed_transactions_table').DataTable().destroy();
    generate_pmas_report(date_filter, filter_type_of_activity, cso);
@@ -150,15 +154,21 @@ function generate_pmas_report(date_filter, filter_type_of_activity, cso) {
          $('#generate_pmas_report_section').removeAttr('hidden');
          var total_volume_of_business = 0;
          var total_cash_position = 0;
+         
+         if (filter_type_of_activity == '<?php echo  $rgpm_text ?>') {
          for (var i = 0; i < data.length; i++) {
-            str = data[i].total_volume_of_business;
-            total_volume_of_business = total_volume_of_business + parseFloat(str.replace(',', ''));
+            
+            total_volume_of_business = total_volume_of_business + parseFloat(data[i].total_volume_of_business.replace(',', ''));
          }
          $('.all_total_volume_of_business').text('₱ ' + parseFloat(total_volume_of_business).toFixed(2));
          for (var i = 0; i < data.length; i++) {
-            str1 = data[i].total_cash_position;
-            total_cash_position = total_cash_position + parseFloat(str1.replace(',', ''));
+        
+            total_cash_position = total_cash_position + parseFloat(data[i].total_cash_position.replace(',', ''));
          }
+
+        }
+
+        
          $('.all_total_cash_position').text('₱ ' + parseFloat(total_cash_position).toFixed(2));
          JsLoadingOverlay.hide();
          $('#completed_transactions_table').DataTable({
