@@ -75,8 +75,7 @@ function load_transaction_data() {
       type: "POST",
       url: base_url + 'api/get-transaction-data',
       data: {
-         'id': '<?php echo $_GET['
-         id '] ?>'
+         'id': '<?php echo $_GET['id'] ?>'
       },
       cache: false,
       dataType: 'json',
