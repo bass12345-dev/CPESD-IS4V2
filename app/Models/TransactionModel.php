@@ -40,6 +40,7 @@ class TransactionModel extends Model
     public function getAllTransactions($order_key,$order_by){
          
         $builder = $this->db->table('transactions');
+        $builder->join('type_of_activities','type_of_activities.type_of_activity_id = transactions.type_of_activity_id');
         $builder->join('users','users.user_id = transactions.created_by');
         $builder->orderBy($order_key, $order_by);
         $query = $builder->get()->getResult();

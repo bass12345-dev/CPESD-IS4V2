@@ -5,6 +5,7 @@
         <tr>
             <th>PMAS NO</th>
             <th>Date & Time Filed</th>
+            <th>Type of Activity</th>
             <th>Person Responsible</th>
         </tr>
     </thead> 

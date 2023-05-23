@@ -50,7 +50,7 @@ class Transactions extends BaseController
                         'transaction_id' => $row->transaction_id,
                         'pmas_no' => date('Y', strtotime($row->date_and_time_filed)).' - '.date('m', strtotime($row->date_and_time_filed)).' - '.$row->number,
                         'date_and_time_filed' => date('M d, Y', strtotime($row->date_and_time_filed)).' '.date('h:i a', strtotime($row->date_and_time_filed)),
-
+                        'type_of_activity'    => $row->type_of_activity_name,
                         'date_time' => date('M d, Y', strtotime($row->date_and_time)).' '.date('h:i a', strtotime($row->date_and_time)),
                         'is_training' => $row->is_training == 1 ? true : false,
                         'is_project_monitoring' =>  $row->is_project_monitoring == 1 ? true : false,

@@ -51,37 +51,37 @@
 	</div>
 	<div class="form-group">
 		<div class="col-12">Total Collection/Sales</div>
-		<input type="text" class="form-control input numbers" name="update_total_collection" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_total_collection" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-12">Total Released/Purchases</div>
-		<input type="text" class="form-control input numbers" name="update_total_released" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_total_released" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-12">Total Delinquent Account</div>
-		<input type="text" class="form-control input numbers" name="update_total_deliquent" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_total_deliquent" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-12">Total Over-due Account</div>
-		<input type="text" class="form-control input numbers" name="update_total_overdue" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_total_overdue" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-12">Cash in bank</div>
-		<input type="text" class="form-control input numbers" name="update_cash_in_bank" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_cash_in_bank" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-12">Cash on hand</div>
-		<input type="text" class="form-control input numbers" name="update_cash_on_hand" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_cash_on_hand" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 	<div class="form-group">
 		<div class="col-12">Inventories(Store)</div>
-		<input type="text" class="form-control input numbers" name="update_inventories" placeholder="">
+		<input type="text" class="form-control input numbers" name="update_inventories" placeholder="0000.00">
 		<div class="wizard-form-error"></div>
 	</div>
 </div>
