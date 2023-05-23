@@ -812,7 +812,7 @@ public function get_admin_pending_transaction_limit(){
                 // <a href="javascript:;" data-id="'.$row->transaction_id.'"  id="update-remark" >Update</a>
             }else if ($row->remarks != '' AND $row->action_taken_date != null) {
 
-                $action = '<a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2 completed"><i class="ti-check"></i></a>';
+                $action = '<a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn sub-button btn-rounded p-1 pl-2 pr-2 completed mr-2"><i class="ti-check"></i></a><a href="javascript:;"  data-id="'.$row->transaction_id.'" class="btn btn-secondary btn-rounded p-1 pl-2 pr-2" id="view_transaction" ><i class="ti-eye"></i></a>';
                 $status_display = '<a href="javascript:;" class="btn btn-success btn-rounded p-1 pl-2 pr-2">Accomplished </a><br><a href="javascript:;" >'.date('F d Y', strtotime($row->action_taken_date)).'</a>';
                 
             }
