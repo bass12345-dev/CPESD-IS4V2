@@ -1177,7 +1177,7 @@ public function get_transaction_data(){
             $project_data[] = array(
 
                     'project_title'             => $row_project->project_title,
-                    'period'                    => date("m/d/Y", strtotime($row_project->period)),
+                    'period'                    => date("m/d/Y", strtotime($row_project->period)) == '01/01/1970' ? ' - ' : date("m/d/Y", strtotime($row_project->period)),
                     'present'                   => $row_project->attendance_present,
                     'absent'                    => $row_project->attendance_absent,
 
@@ -1248,7 +1248,7 @@ public function get_transaction_data(){
                     'responsible_section_name'    => $row->responsible_section_name,
                     'type_of_activity_name'       => $row->type_of_activity_name,
                     'responsibility_center_name'  => $row->responsibility_center_name,
-                    'date_time'                   => date('F d, Y', strtotime($row->date_and_time)),
+                    'date_time'                   => date('F d, Y -  h:i A ', strtotime($row->date_and_time)),
                     'annotations'                 => $row->annotations == NULL ? ' ' : $row->annotations,
                     'annotation_text'             => $row->annotations,
                     'last_updated'                => $row->updated_on ==  '0000-00-00 00:00:00' ? '<span class="text-danger">Not Updated</span>' : date('F d Y', strtotime($row->updated_on)).' '.date('h:i a', strtotime($row->updated_on)) ,
