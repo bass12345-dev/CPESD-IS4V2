@@ -1303,4 +1303,48 @@ public function get_pmas_activities(){
 }
 
 
+
+public function pass_pmas(){
+
+
+    if ($this->request->isAJAX()) {
+
+        $where   = array('transaction_id' => $this->request->getPost('pmas_id'));
+
+        $data    = array('created_by'    =>$this->request->getPost('pass_to_id'));
+        
+        $result  = $this->CustomModel->updatewhere($where,$data,$this->transactions_table);
+
+        if ($result) {
+
+
+            $resp = array(
+                                    'message' => 'Success',
+                                    'response' => false
+                                );
+
+          
+
+        }else {
+
+
+
+                    $resp = array(
+                                    'message' => 'Error',
+                                    'response' => false
+                                );
+
+        }
+
+                    
+        echo json_encode($resp);
+       
+
+
+            
+        }
+
+}
+
+
 }

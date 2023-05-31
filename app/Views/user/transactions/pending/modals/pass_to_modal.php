@@ -9,11 +9,13 @@
          </div>
          <div class="modal-body">
            
-            <form id="update_refer_form">
+            <form id="pass_to_form">
+
+               <input type="hidden" name="pmas_id">
                         
                         <div class="form-group">
                           
-                          <select class="custom-select input responsibility wizard-required" id="refer_to_id" name="refer_to_id" style="width: 100%;" required>
+                          <select class="custom-select input responsibility wizard-required" id="pass_to_id" name="pass_to_id" style="width: 100%;" required>
                               <option value="">Pass to</option> 
                
                              <?php foreach ($pass_to as $row) { ?>
@@ -25,9 +27,8 @@
                         </div>
 
                     
-                        <button  type="submit" class="btn sub-button mt-1 pr-4 pl-4 btn-refer pull-right"> Submit</button>
-                        <div class="alert-add-under-activity"></div>
-                        <!--  -->
+                        <button  type="submit" class="btn sub-button mt-1 pr-4 pl-4 btn-refer pull-right pass-button"> Submit</button>
+                        
                </form>
            
          </div>

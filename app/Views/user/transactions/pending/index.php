@@ -265,9 +265,86 @@ fetch_user_pending_transactions();
 $(document).on('click', 'a#pass_to', function (e) {
 
     $('.pass-to-title').text('PMAS NO '+$(this).data('name'));
+    $('input[name=pmas_id]').val($(this).data('id'));
     
 });
     
+
+// $('#select_under_type').find('option:selected').val();
+
+$('#pass_to_form').on('submit', function (e) {
+   e.preventDefault();
+
+   var pass_to_id = $('#pass_to_id').find('option:selected').val();
+
+   if (pass_to_id == '') {
+      alert('Please select user');
+   } else {
+
+      $.ajax({
+         type: "POST",
+         url: base_url + 'api/pass-pmas',
+         data: $(this).serialize(),
+         dataType: 'json',
+         beforeSend: function () {
+            $('.pass-button').html('<div class="loader"></div>');
+            $('.pass-button').prop("disabled", true);
+            JsLoadingOverlay.show({
+               'overlayBackgroundColor': '#666666',
+               'overlayOpacity': 0.6,
+               'spinnerIcon': 'ball-atom',
+               'spinnerColor': '#000',
+               'spinnerSize': '2x',
+               'overlayIDName': 'overlay',
+               'spinnerIDName': 'spinner',
+            });
+         },
+         success: function (data) {
+            if (data.response) {
+               $('#pass_to_form')[0].reset();
+               $('.pass-button').prop("disabled", false);
+               $('.pass-button').text('Submit');
+               Toastify({
+                  text: data.message,
+                  className: "info",
+                  style: {
+                     "background": "linear-gradient(to right, #00b09b, #96c93d)",
+                     "height": "60px",
+                     "width": "350px",
+                     "font-size": "20px"
+                  }
+               }).showToast();
+               
+            } else {
+               $('.pass-button').prop("disabled", false);
+               $('.pass-button').text('Submit');
+               Toastify({
+                  text: data.message,
+                  className: "info",
+                  style: {
+                     "background": "linear-gradient(to right, #00b09b, #96c93d)",
+                     "height": "60px",
+                     "width": "350px",
+                     "font-size": "20px"
+                  }
+               }).showToast();
+              
+            }
+              JsLoadingOverlay.hide();
+            $('#pass_to_modal').modal('hide');
+            $('#pending_transactions_table').DataTable().destroy();
+            fetch_user_pending_transactions();
+           
+         },
+         error: function (xhr) {
+            alert("Error occured.please try again");
+            $('.pass-button').prop("disabled", false);
+            $('.pass-button').text('Submit');
+         },
+      })
+
+      }
+});
 
        
 </script> 
