@@ -258,6 +258,10 @@ $routes->post('api/get-transaction-data', 'api\PendingTransactions::get_transact
 $routes->post('api/update-transaction', 'api\PendingTransactions::update_transaction');
 
 
+
+$routes->post('api/pass-pmas', 'api\PendingTransactions::pass_pmas');
+
+
 $routes->post('api/view-remark', 'api\PendingTransactions::view_remark');
 $routes->post('api/accomplished', 'api\PendingTransactions::accomplished');
 $routes->post('api/completed', 'api\PendingTransactions::update_completed');
@@ -314,6 +318,8 @@ $routes->post('api/count-pending-rfa', 'api\PendingRFATransactions::count_pendin
 
 
 $routes->post('api/get-pmas-activities', 'api\PendingTransactions::get_pmas_activities');
+
+
 
 /*
  * --------------------------------------------------------------------
