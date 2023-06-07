@@ -194,7 +194,22 @@
       </table>
 
 
-            <table class="tablesaw table-bordered table-hover table" >   
+            
+       <table class="tablesaw table-bordered table-hover table" >   
+    
+         <tr>
+            <td colspan = "2">
+               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Remarks</a>
+            </td>
+         </tr>
+         <tr>
+   
+            <td class="remarks p-5" colspan = "2"></td>
+         </tr>
+      </table>
+
+
+      <table class="tablesaw table-bordered table-hover table" >   
     
          <tr>
             <td colspan = "2">
@@ -217,18 +232,6 @@
 
       </table>
 
-       <table class="tablesaw table-bordered table-hover table" >   
-    
-         <tr>
-            <td colspan = "2">
-               <a  href    = "javascript:;" class = "mt-2  mb-2 btn sub-button text-center  btn-rounded btn-md btn-block">Remarks</a>
-            </td>
-         </tr>
-         <tr>
-   
-            <td class="remarks p-5" colspan = "2"></td>
-         </tr>
-      </table>
 
 
        <table class="tablesaw table-bordered table-hover table" >   
