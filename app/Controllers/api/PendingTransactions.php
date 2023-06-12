@@ -1096,8 +1096,13 @@ public function accomplished(){
 
 public function update_completed(){
 
+
+    $now = new \DateTime();
+    $now->setTimezone(new \DateTimezone('Asia/Manila'));
+    
     $data = array(
-                'transaction_status' => 'completed'
+                'transaction_status' => 'completed',
+                'transaction_date_time_completed' => $now->format('Y-m-d H:i:s'),
         );
     $where = array('transaction_id'=>$this->request->getPost('id'));
     $update = $this->CustomModel->updatewhere($where,$data,$this->transactions_table);
