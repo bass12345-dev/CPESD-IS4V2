@@ -10,6 +10,7 @@
                               <th>Type of Request</th>
                               <th>Type of Transaction</th>
                               <th>Status</th>
+                              <th>Encoded By</th>
                                <th>Action</th>
                            </tr>
                         </thead>

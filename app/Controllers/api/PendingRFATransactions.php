@@ -214,6 +214,7 @@ class PendingRFATransactions extends BaseController
                 $data[] = array(
 
                         'rfa_id'               => $row->rfa_id ,
+                        'encoded_by'            => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
                         'name'                  => $client->first_name.' '.$client->middle_name.' '.$client->last_name.' '.$client->extension,
                         'type_of_request_name'  => $row->type_of_request_name,
                         'type_of_transaction'   => $row->type_of_transaction,
