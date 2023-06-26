@@ -186,15 +186,23 @@ function generate_pmas_report(date_filter, filter_type_of_activity, cso) {
             responsive: false,
             "data": data,
             "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-            buttons: [{
+            buttons: [
+            {
                extend: 'excel',
                text: 'Excel',
                className: 'btn btn-default ',
                footer: true,
                exportOptions: {
-                  columns: 'th:not(:last-child)'
+                  columns: 'th:not(:last-child)',
+                  orthogonal: 'excel',
+                    modifier: {
+                        order: 'current',
+                        page: 'all',
+                        selected: false,
+                    },
                }
-            }, {
+            }, 
+            {
                extend: 'pdf',
                text: 'pdf',
                className: 'btn btn-default',
@@ -208,7 +216,7 @@ function generate_pmas_report(date_filter, filter_type_of_activity, cso) {
                className: 'btn btn-default',
                footer: true,
                exportOptions: {
-                  columns: 'th:not(:last-child)'
+                  columns: 'th:not(:last-child)',
                }
             }, ],
             'columns': [{
