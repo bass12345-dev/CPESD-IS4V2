@@ -36,12 +36,12 @@
             <td class="status"></td>
          </tr>
          <tr>
-            <td >Referred To</td>
-            <td class="referred_to"></td>
-         </tr>
-         <tr>
             <td >Encoded By</td>
             <td class="encoded_by"></td>
+         </tr>
+         <tr>
+            <td >Referred To</td>
+            <td class="referred_to"></td>
          </tr>
       </table>
 
