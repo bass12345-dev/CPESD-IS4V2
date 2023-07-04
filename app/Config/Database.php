@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'cpesd_is_backup',
+        'database' => 'cpesd_is',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
