@@ -51,37 +51,8 @@
     
 $(document).on('click','button.back-up-database',function (e) {
 
-    $.ajax({
-            url: base_url + 'api/back-up-db',
-            type: "POST",
-            beforeSend: function() {
-                $('.back-up-database').text('Please wait...');
-                $('.back-up-database').prop("disabled", true);                
-            },
-            dataType : 'json',
-            success: function(data)
-            {            
-                if (data.response) 
-                {
+        back_up_database();
 
-                    $('.back-up-database').prop("disabled", false);    
-                    $('.back-up-database').text('Back up Now');
-                    
-                    Toastify({
-                                text: data.message,
-                                className: "info",
-                                style: {
-                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
-                                    "height" : "60px",
-                                    "width" : "350px",
-                                    "font-size" : "20px"
-                                }
-                            }).showToast();
-                }else {
-                    alert('error back-up')
-                }
-            }
-        });
     });
 
 // function fetch_database(){

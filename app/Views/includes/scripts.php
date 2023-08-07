@@ -338,5 +338,54 @@ jQuery(document).ready(function () {
       }
    });
 });
+
+
+
+    function back_up_database(){
+
+          $.ajax({
+            url: base_url + 'api/back-up-db',
+            type: "POST",
+            beforeSend: function() {
+                $('.back-up-database').text('Please wait...');
+                $('.back-up-database').prop("disabled", true);                
+            },
+            dataType : 'json',
+            success: function(data)
+            {            
+                if (data.response) 
+                {
+
+                    $('.back-up-database').prop("disabled", false);    
+                    $('.back-up-database').text('Back up Now');
+                    
+                    Toastify({
+                                text: data.message,
+                                className: "info",
+                                style: {
+                                    "background" : "linear-gradient(to right, #00b09b, #96c93d)",
+                                    "height" : "60px",
+                                    "width" : "350px",
+                                    "font-size" : "20px"
+                                }
+                            }).showToast();
+                }else {
+                    alert('error back-up')
+                }
+            }
+        });
+    }
+
+
+    function scheduleBackUp(){
+
+      setInterval(back_up_database, 6 * 60 * 60 * 1000);
+
+    }
+
+    $(document).ready(function() {
+
+      scheduleBackUp();
+    })
     </script>
   
