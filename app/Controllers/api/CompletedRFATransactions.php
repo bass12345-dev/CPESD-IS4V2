@@ -8,11 +8,11 @@ use App\Models\RFAModel;
 
 class CompletedRFATransactions extends BaseController
 {
-    public    $type_of_request_table        = 'type_of_request';
-    public    $rfa_transactions_table       = 'rfa_transactions';
-    public    $client_table                 = 'rfa_clients';
-    public    $order_by_desc                = 'desc';
-    public    $order_by_asc                 = 'asc';
+    private    $type_of_request_table        = 'type_of_request';
+    private    $rfa_transactions_table       = 'rfa_transactions';
+    private    $client_table                 = 'rfa_clients';
+    private    $order_by_desc                = 'desc';
+    private    $order_by_asc                 = 'asc';
     protected $request;
     protected $CustomModel;
     protected $RFAModel;

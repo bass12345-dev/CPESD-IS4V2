@@ -72,6 +72,7 @@ class Clients extends BaseController
                 'barangay'                  => $this->request->getPost('barangay'),
                 'contact_number'            => $this->request->getPost('contact_number'),
                 'age'                       => $this->request->getPost('age'),
+                'gender'                    => $this->request->getPost('gender'),
                 'employment_status'         => $this->request->getPost('employment_status'),
                 'rfa_client_created'        => $now->format('Y-m-d H:i:s'),
                 
@@ -162,7 +163,8 @@ class Clients extends BaseController
                         'employment_status' => $row->employment_status,
                         'purok'             => $row->purok,
                         'barangay'          => $row->barangay,
-                        'full_name'         => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension
+                        'full_name'         => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'gender'            => $row->gender == null ? '' : $row->gender
                         
                 );
         }

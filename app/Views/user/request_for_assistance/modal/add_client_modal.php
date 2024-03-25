@@ -60,6 +60,14 @@
                   <input type="number" class="form-control input" name="age"  placeholder="">
                </div>
                <div class="form-group">
+                  <label for="exampleInputPassword1">Gender</label><span class="text-danger">*</span>
+                   <select class="custom-select"  name="gender" style="border: 1px solid;height: 45px;" required>
+                        <option value="" selected>Select Gender</option> 
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                     </select>
+               </div>
+               <div class="form-group">
                   <label for="exampleInputPassword1">Employment Status</label><span class="text-danger">*</span>
                    <select class="custom-select"  name="employment_status" style="border: 1px solid;height: 45px;" required>
 
