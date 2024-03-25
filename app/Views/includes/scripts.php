@@ -89,14 +89,14 @@ $(document).on('click', '#back-button', function (e) {
    window.history.back();
 });
 
-function loadlink() {
-   load_total_pending_transactions();
-   count_total_rfa_pending();
-   count_total_reffered_rfa();
-}
-setInterval(function () {
-   loadlink()
-}, 8000);
+// function loadlink() {
+//    load_total_pending_transactions();
+//    count_total_rfa_pending();
+//    count_total_reffered_rfa();
+// }
+// setInterval(function () {
+//    loadlink()
+// }, 8000);
 $('.dropdown-toggle').dropdown();
 var preloader = $('#preloader');
 $(window).on('load', function () {

@@ -9,12 +9,12 @@ use Config\Custom_config;
 class Clients extends BaseController
 {
 
-    public      $client_table           = 'rfa_clients';
-    public      $rfa_transactions_table = 'rfa_transactions';
-    public      $order_by_desc          = 'desc';
+    private      $client_table           = 'rfa_clients';
+    private      $rfa_transactions_table = 'rfa_transactions';
+    private      $order_by_desc          = 'desc';
     protected   $request;
     protected   $CustomModel;
-    public      $config;
+    private      $config;
 
     public function __construct()
     {
@@ -133,7 +133,8 @@ class Clients extends BaseController
                         'employment_status' => $row->employment_status,
                         'purok'             => $row->purok,
                         'barangay'          => $row->barangay,
-                        'full_name'         => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension
+                        'full_name'         => $row->first_name.' '.$row->middle_name.' '.$row->last_name.' '.$row->extension,
+                        'gender'            => $row->gender == null ? '' : $row->gender
                         
                 );
         }
@@ -186,6 +187,7 @@ class Clients extends BaseController
                 'contact_number'        => $this->request->getPost('update_contact_number'),
                 'age'                   => $this->request->getPost('update_age'),
                 'employment_status'     => $this->request->getPost('update_employment_status'),
+                'gender'                => $this->request->getPost('gender'),
                 
                 
               
