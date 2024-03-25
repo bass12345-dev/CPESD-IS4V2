@@ -286,9 +286,12 @@ $routes->post('api/search-names', 'api\Clients::search_name');
 $routes->post('api/add-client', 'api\Clients::add_client');
 $routes->post('api/get-clients', 'api\Clients::get_clients');
 $routes->post('api/delete-client', 'api\Clients::delete_client');
-
 $routes->post('api/update-client', 'api\Clients::update_client');
 
+
+//For RFA Dashbaord Gender Total
+$routes->post('api/bygender-total', 'api\Clients::get_by_gender_total');
+$routes->post('api/l-g-c-b-m', 'api\Clients::load_gender_client_by_month');
 
 //RFA
 $routes->post('api/add-rfa', 'api\PendingRFATransactions::add_rfa');

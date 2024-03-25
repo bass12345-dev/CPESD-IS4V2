@@ -5,6 +5,7 @@ namespace App\Controllers\Api;
 use App\Controllers\BaseController;
 use App\Models\CustomModel;
 use Config\Custom_config;
+use App\Models\RFAModel;
 
 class Clients extends BaseController
 {
@@ -12,14 +13,16 @@ class Clients extends BaseController
     private      $client_table           = 'rfa_clients';
     private      $rfa_transactions_table = 'rfa_transactions';
     private      $order_by_desc          = 'desc';
-    protected   $request;
-    protected   $CustomModel;
+    protected    $request;
+    protected    $CustomModel;
+    protected $RFAModel;
     private      $config;
 
     public function __construct()
     {
        $db                              = db_connect();
        $this->CustomModel               = new CustomModel($db); 
+       $this->RFAModel                      = new RFAModel($db); 
        $this->request                   = \Config\Services::request();  
     }
 
@@ -225,6 +228,7 @@ class Clients extends BaseController
 
     }
 
+    
 
 
     public function delete_client(){
@@ -268,4 +272,50 @@ class Clients extends BaseController
 
              echo json_encode($data);
     }
+
+
+    public function get_by_gender_total(){
+        $total = array();
+        $gender = ['male','female'];
+        foreach($gender as $row) {
+
+            $res = $this->CustomModel->countwhere($this->client_table,array('gender' => $row));
+            array_push($total, $res);
+        }
+
+       $data['label'] = $gender;
+       $data['total']    = $total;
+       $data['color'] = ['rgb(41,134,204)','rgb(201,0,118)'];
+       return $this->response->setJSON($data);
+    }
+
+    public function load_gender_client_by_month(){
+
+        $year                               = $this->request->getPost('year1');
+        $months                             = array();
+        $male                               = array();
+        $female                             = array();
+
+        for ($m = 1; $m <= 12; $m++) {
+
+            $total_male          = $this->RFAModel->count_gender_by_month($this->rfa_transactions_table,$m,$year,'male');
+            array_push($male, $total_male);
+
+
+            $total_female            = $this->RFAModel->count_gender_by_month($this->rfa_transactions_table,$m,$year,'female');
+            array_push($female, $total_female);
+           
+            $month                          =  date('M', mktime(0, 0, 0, $m, 1));
+            array_push($months, $month);
+        }
+        $data['label']                      = $months;
+        $data['male']                       = $male;
+        $data['female']                     = $female;
+        echo json_encode($data);
+
+    }
+
+
+
+
 }

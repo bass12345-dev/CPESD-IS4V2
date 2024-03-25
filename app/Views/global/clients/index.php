@@ -33,6 +33,10 @@
 <?php echo view('includes/scripts.php') ?>   
 <?php echo view('global/clients/modals/update_client_modal'); ?>    
 <script type="text/javascript">
+function capitalize_first_letter(s){
+   var x = s.charAt(0).toUpperCase() + s.slice(1);
+   return x;
+}
 
 var rfa_clients_table = $('#rfa_clients_table').DataTable({
    responsive: false,
@@ -50,7 +54,10 @@ var rfa_clients_table = $('#rfa_clients_table').DataTable({
    }, {
       data: "age",
    }, {
-      data: "gender",
+      data: null,
+      render :function(row){
+         return row.gender == '' ? '<span class="text-danger">Please Update Gender</span>' : capitalize_first_letter(row.gender)
+      }
    }, {
       data: "employment_status",
    }, {

@@ -26,9 +26,6 @@ class Auth extends BaseController
     public function verify()
     {
             
-        
-
-
         if ($this->request->isAJAX()) {
             $where = array('username' => $this->request->getPost('username'));
             $pass = $this->request->getPost('password');

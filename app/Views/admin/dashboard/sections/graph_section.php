@@ -7,9 +7,14 @@
                     </div>
                     <div class="col-md-6 pull-right "   >
                         <select class="custom-select" id="admin_year" onchange="load_graph(this)"  >
-                            <option selected >2023</option>
-                            <option>2024</option>
-                            <option>2025</option>
+
+                             <?php  for ($i=2023; $i <= 2030 ; $i++) { 
+
+                                $selected = $i == date('Y')  ? "selected" : "";
+                              
+                                echo '<option '.$selected.'>'.$i.'</option>';
+
+                           }    ?>          
                         </select>
                     </div>
                 <canvas id="admin-bar-chart" width="800" height="800"></canvas>

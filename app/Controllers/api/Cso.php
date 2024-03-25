@@ -9,12 +9,12 @@ use Config\Custom_config;
 
 class Cso extends BaseController
 {
-    public $cso_table                    = 'cso';
-    public $cso_officer_table            = 'cso_officers';
-    public $transactions_table           = 'transactions';
-    public $cso_project_table            = 'cso_project_implemented';
-    public $order_by_desc                = 'desc';
-    public $order_by_asc                 = 'asc';
+    private $cso_table                    = 'cso';
+    private $cso_officer_table            = 'cso_officers';
+    private $transactions_table           = 'transactions';
+    private $cso_project_table            = 'cso_project_implemented';
+    private $order_by_desc                = 'desc';
+    private $order_by_asc                 = 'asc';
     protected $request;
     protected $CustomModel;
     public $config;

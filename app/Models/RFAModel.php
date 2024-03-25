@@ -183,6 +183,18 @@ class RFAModel extends Model
 
     }
 
+    //By Gender and Month Chart
+    public function count_gender_by_month($table,$m,$y,$gender){
+
+        $builder = $this->db->table('rfa_clients');
+        $builder->where('MONTH(rfa_client_created)',$m);
+        $builder->where('YEAR(rfa_client_created)',$y);
+        $builder->where('rfa_clients.gender',$gender);
+        $query = $builder->countAllResults();
+        return $query; 
+
+    }
+
 
 
         public function count_user_rfa_transaction_chart($table,$m,$y,$status,$where){
